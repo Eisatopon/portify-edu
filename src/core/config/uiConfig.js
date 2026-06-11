@@ -128,8 +128,8 @@ export const SERVICES = Object.freeze([
     href:        '/fthinatora',
     gridArea:    'fthinatora',
     size:        'full',
-    isNew:       true,
-    comingSoon:  false,
+    isNew:       false,
+    comingSoon:  true,
     highlight:   true,
     visuals: {
       hoverEffect:     'lift',

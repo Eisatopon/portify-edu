@@ -59,16 +59,18 @@ export default function PortifyHeader({ serviceId }) {
             return (
               <Link
                 key={s.id}
-                href={s.href}
-                className={`ph-nav-pill${isActive ? ' ph-nav-pill-active' : ''}`}
+                href={s.comingSoon ? '#' : s.href}
+                className={`ph-nav-pill${isActive ? ' ph-nav-pill-active' : ''}${s.comingSoon ? ' ph-nav-pill-soon' : ''}`}
                 style={isActive ? {
                   background: s.bg,
                   color: getContrastColor(s.bg),
                   borderColor: s.bg,
                 } : {}}
+                onClick={s.comingSoon ? (e) => e.preventDefault() : undefined}
               >
                 {s.shortName}
                 {s.isNew && <span className="ph-pill-new">Νέο</span>}
+                {s.comingSoon && <span className="ph-pill-new" style={{ background:'#888' }}>Σύντομα</span>}
               </Link>
             );
           })}
@@ -105,13 +107,6 @@ export default function PortifyHeader({ serviceId }) {
           ))}
         </nav>
       )}
-
-      {/* Breadcrumb */}
-      <div className="ph-breadcrumb">
-        <Link href="/">PORTIFY.GR</Link>
-        <span className="ph-bc-sep">/</span>
-        <span>{service.shortName}</span>
-      </div>
 
       {/* Hero */}
       <header className="ph-hero" style={{ background: service.bg, color: service.color }}>

@@ -46,6 +46,26 @@ function AnimatedCounter({ value, suffix = "" }) {
 function ServiceTile({ service, tileRef, large, small, fullWidth }) {
   const nameParts = service.name.split('\n');
 
+  if (service.comingSoon) {
+    return (
+      <div
+        ref={tileRef}
+        className="service-tile"
+        style={{ gridArea: service.gridArea, background: service.bg, color: service.color, opacity: 0.55, cursor: 'default', position: 'relative' }}
+      >
+        <div className="service-tile-inner">
+          <div>
+            <div className="service-tile-name" style={{ fontSize: '1.3rem' }}>
+              {nameParts.map((part, i) => (<span key={i}>{part}{i < nameParts.length - 1 && <br />}</span>))}
+            </div>
+            <div className="service-tile-cat" style={{ color: service.subColor }}>{service.category}</div>
+          </div>
+        </div>
+        <div style={{ position:'absolute', top:12, right:12, background:'rgba(255,255,255,0.25)', color:'#fff', fontSize:10, fontWeight:700, letterSpacing:'0.1em', textTransform:'uppercase', padding:'3px 8px', borderRadius:99 }}>Σύντομα</div>
+      </div>
+    );
+  }
+
   return (
     <Link
       href={service.href}
