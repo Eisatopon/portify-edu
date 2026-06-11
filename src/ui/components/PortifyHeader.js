@@ -289,7 +289,7 @@ export default function PortifyHeader({ serviceId }) {
         .ph-hero-inner {
           max-width: 1200px;
           margin: 0 auto;
-          padding: 3rem 2rem;
+          padding: 1.5rem 2rem;
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -303,18 +303,18 @@ export default function PortifyHeader({ serviceId }) {
           font-weight: 700;
           letter-spacing: 0.16em;
           text-transform: uppercase;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.4rem;
           opacity: 0.85;
         }
         .ph-hero-title {
-          font-size: clamp(2.5rem, 5vw, 4rem);
+          font-size: clamp(1.8rem, 3vw, 2.8rem);
           font-weight: 900;
           letter-spacing: -0.04em;
           line-height: 1.05;
-          margin-bottom: 0.5rem;
+          margin-bottom: 0.4rem;
         }
         .ph-hero-desc {
-          font-size: 0.95rem;
+          font-size: 0.9rem;
           line-height: 1.5;
           opacity: 0.88;
           max-width: 440px;
