@@ -38,20 +38,6 @@ const MarketChips = memo(function MarketChips() {
   )
 })
 
-// ─── KPI Block ────────────────────────────────────────────────────────────────
-
-const KpiBlock = memo(function KpiBlock() {
-  return (
-    <div className="fthinatora-kpi">
-      <div className="fthinatora-kpi-inner">
-        <div className="fthinatora-kpi-label">Μέση εξοικονόμηση σήμερα</div>
-        <div className="fthinatora-kpi-value">12.84€</div>
-        <div className="fthinatora-kpi-sub">σε σύγκριση με το ακριβότερο καλάθι</div>
-      </div>
-    </div>
-  )
-})
-
 // ─── SearchSection ────────────────────────────────────────────────────────────
 
 function SearchSection({ query, setQuery, loading, onClear, results, onSelect, searchError }) {
@@ -217,8 +203,6 @@ export default function FthinaToraPage() {
     <main className="fthinatora-page animate-page-in">
 
       <PortifyHeader serviceId="fthinatora" />
-
-      <KpiBlock />
 
       <SearchSection
         query={query}

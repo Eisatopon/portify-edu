@@ -635,24 +635,7 @@ body {
   border: 0.5px solid var(--border);
 }
 
-.fthinatora-page .btn-add {
-  width: 100%;
-  margin-top: .75rem;
-  padding: 10px;
-  background: var(--accent-success) !important;
-  color: #fff !important;
-  border: none !important;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  font-weight: 500 !important;
-  cursor: pointer;
-  font-family: var(--font-sans);
-  transition: filter 0.15s ease, transform 0.1s ease;
-}
 
-.fthinatora-page .btn-add:hover { filter: brightness(1.08); }
-.fthinatora-page .btn-add:active { transform: scale(0.98); }
-.fthinatora-page .btn-add:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
 /* Empty & skeleton states */
 .fthinatora-page .empty-state {
@@ -674,172 +657,21 @@ body {
 .fthinatora-page .error-text { color: var(--accent-danger); font-size: 13px; }
 
 /* ─── Basket panel ──────────────────────────────────────────── */
-.fthinatora-page .basket-panel {
-  background: var(--surface);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1rem 1.25rem;
-  position: sticky;
-  top: 1rem;
-  box-shadow: var(--shadow-sm);
-}
 
-.fthinatora-page .basket-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: .75rem;
-}
 
-.fthinatora-page .basket-header h3 {
-  font-size: 15px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--text-primary);
-}
 
-.fthinatora-page .basket-badge {
-  background: var(--accent-success);
-  color: #fff;
-  font-size: 10px;
-  padding: 2px 7px;
-  border-radius: 10px;
-}
 
-.fthinatora-page .clear-link {
-  font-size: 12px;
-  color: var(--text-muted);
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-family: var(--font-sans);
-  transition: color 0.15s ease;
-}
-.fthinatora-page .clear-link:hover { color: var(--accent-danger); }
 
-.fthinatora-page .basket-empty {
-  font-size: 13px;
-  color: var(--text-muted);
-  text-align: center;
-  padding: 1.5rem 0;
-}
 
-.fthinatora-page .basket-items { display: flex; flex-direction: column; gap: 5px; margin-bottom: .75rem; }
 
-.fthinatora-page .basket-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 10px;
-  background: var(--background);
-  border: 0.5px solid var(--border);
-  border-radius: var(--radius-sm);
-  transition: background 0.15s ease;
-}
 
-.fthinatora-page .basket-item:hover { background: var(--brand-green-mid); }
 .fthinatora-page .item-name { flex: 1; font-size: 12px; color: var(--text-primary); }
 
-.fthinatora-page .stepper { display: flex; align-items: center; gap: 4px; }
-.fthinatora-page .stepper button {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  border: 0.5px solid var(--border) !important;
-  background: var(--surface) !important;
-  color: var(--text-primary) !important;
-  font-size: 13px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-sans);
-  transition: background 0.15s ease, border-color 0.15s ease;
-}
-.fthinatora-page .stepper button:hover {
-  background: var(--brand-green-light) !important;
-  border-color: var(--accent-success) !important;
-}
-.fthinatora-page .stepper span { font-size: 12px; min-width: 16px; text-align: center; }
 
-.fthinatora-page .basket-subtotal {
-  font-size: 12px;
-  color: var(--text-muted);
-  text-align: right;
-  margin-bottom: .75rem;
-  padding: .5rem .75rem;
-  background: var(--background);
-  border-radius: var(--radius-sm);
-}
-.fthinatora-page .basket-subtotal strong { color: var(--text-primary); }
 
-.fthinatora-page .btn-compare {
-  width: 100%;
-  padding: 10px;
-  background: var(--accent-success) !important;
-  color: #fff !important;
-  border: none !important;
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-weight: 500 !important;
-  cursor: pointer;
-  margin-bottom: .75rem;
-  font-family: var(--font-sans);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  transition: filter 0.15s ease, transform 0.1s ease;
-}
-.fthinatora-page .btn-compare:hover { filter: brightness(1.08); }
-.fthinatora-page .btn-compare:active { transform: scale(0.98); }
-.fthinatora-page .btn-compare:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
-.fthinatora-page .stale-notice {
-  font-size: 11px;
-  color: var(--accent-warning);
-  margin-bottom: .5rem;
-  text-align: center;
-}
 
-.fthinatora-page .savings-banner {
-  background: var(--brand-green-light);
-  border: 0.5px solid #b8dcc9;
-  border-radius: var(--radius-sm);
-  padding: .75rem 1rem;
-  margin-bottom: .75rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.fthinatora-page .sav-amt {
-  font-size: 22px;
-  font-weight: 600;
-  color: var(--accent-success);
-  font-variant-numeric: tabular-nums;
-  font-feature-settings: "tnum";
-}
-.fthinatora-page .sav-label { font-size: 11px; color: var(--accent-success); }
-.fthinatora-page .sav-subtitle { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
-.fthinatora-page .sav-pct { font-size: 13px; color: var(--accent-success); font-weight: 500; }
 
-.fthinatora-page .ranked { display: flex; flex-direction: column; gap: 5px; }
-.fthinatora-page .ranked-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 10px;
-  background: var(--background);
-  border-radius: var(--radius-sm);
-  font-size: 12px;
-  transition: background 0.15s ease;
-}
-.fthinatora-page .ranked-item.cheapest {
-  background: var(--brand-green-light);
-  border: 0.5px solid var(--accent-success);
-}
 .fthinatora-page .r-rank { font-size: 11px; color: var(--text-muted); width: 16px; text-align: center; }
 .fthinatora-page .r-name { flex: 1; color: var(--text-secondary); }
 .fthinatora-page .r-bar-wrap { flex: 2; height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; }
@@ -891,7 +723,6 @@ body {
   }
   .fthinatora-page .offers-grid { grid-template-columns: 1fr 1fr; }
   .fthinatora-page .trust-items { grid-template-columns: 1fr; }
-  .fthinatora-page .basket-panel { position: static; }
   .fthinatora-page .trust-bar { flex-wrap: wrap; }
   .fthinatora-page .trust-item {
     border-right: none;
@@ -1018,60 +849,7 @@ body {
 .fthinatora-page .fthinatora-search-section .search-result-btn:hover { background: var(--background); }
 .fthinatora-page .fthinatora-search-section .result-cat { font-size: 11px; color: var(--text-muted); }
 
-.fthinatora-page .basket-hint {
-  display: flex;
-  align-items: flex-start;
-  gap: 7px;
-  font-size: 12px;
-  color: var(--text-muted);
-  line-height: 1.5;
-  padding: .5rem .75rem;
-  background: var(--background);
-  border-radius: var(--radius-sm);
-  border: 0.5px solid var(--border);
-  margin-bottom: .75rem;
-}
-.fthinatora-page .basket-hint i {
-  color: var(--accent-success);
-  font-size: 14px;
-  flex-shrink: 0;
-  margin-top: 1px;
-}
 
-/* ─── KPI Block ─────────────────────────────────────────────────────────────── */
-.fthinatora-page .fthinatora-kpi {
-  background: var(--accent-success);
-  border-bottom: 4px solid #111;
-  padding: 2rem;
-}
-.fthinatora-page .fthinatora-kpi-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
-}
-.fthinatora-page .fthinatora-kpi-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.75);
-  margin-bottom: 0.5rem;
-}
-.fthinatora-page .fthinatora-kpi-value {
-  font-size: clamp(2.8rem,6vw,4rem);
-  font-weight: 900;
-  color: #fff;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  font-variant-numeric: tabular-nums;
-}
-.fthinatora-page .fthinatora-kpi-sub {
-  font-size: 13px;
-  color: rgba(255,255,255,0.65);
-  margin-top: 0.4rem;
-}
-
-/* ─── Empty state suggestions ───────────────────────────────────────────────── */
 .fthinatora-page .empty-suggestions {
   display: flex;
   flex-wrap: wrap;
@@ -1102,52 +880,6 @@ body {
 .fthinatora-page .suggestion-btn:hover {
   background: var(--brand-green-light);
   border-color: var(--accent-success);
-}
-
-/* ─── btn-add success state ─────────────────────────────────────────────────── */
-.fthinatora-page .btn-add-success {
-  background: #145c37 !important;
-}
-
-/* ─── Remove button ─────────────────────────────────────────────────────────── */
-.fthinatora-page .btn-remove {
-  background: none;
-  border: none;
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 14px;
-  padding: 2px 4px;
-  border-radius: 4px;
-  transition: color 0.15s ease;
-  flex-shrink: 0;
-}
-.fthinatora-page .btn-remove:hover { color: var(--accent-danger); }
-
-/* ─── Sticky progress bar ───────────────────────────────────────────────────── */
-.fthinatora-page .sticky-progress {
-  position: sticky;
-  top: 68px;
-  z-index: 90;
-  background: #111;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 1.5rem;
-  font-size: 13px;
-  border-bottom: 2px solid var(--accent-success);
-}
-.fthinatora-page .sticky-progress strong { color: var(--accent-gold); }
-.fthinatora-page .sticky-progress button {
-  background: var(--accent-success);
-  color: #fff;
-  border: none;
-  border-radius: var(--radius-sm);
-  padding: 5px 14px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-  font-family: var(--font-sans);
 }
 
 /* ─── Single column main grid ──────────────────────────────────────────────── */
