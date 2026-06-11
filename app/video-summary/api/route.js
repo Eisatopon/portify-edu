@@ -134,8 +134,9 @@ export async function POST(req) {
       if (!file) return NextResponse.json({ error: 'Δεν βρέθηκε αρχείο PDF.' }, { status: 400 });
       if (file.size > MAX_PDF_SIZE) return NextResponse.json({ error: 'Μέγιστο μέγεθος 10MB.' }, { status: 400 });
 
-      const buffer = Buffer.from(await file.arrayBuffer());
-      const { text: rawText, totalPages } = await extractText(buffer, { mergePages: true });
+      const arrayBuffer = await file.arrayBuffer();
+      const uint8Array = new Uint8Array(arrayBuffer);
+      const { text: rawText, totalPages } = await extractText(uint8Array, { mergePages: true });
       const text = rawText.replace(/\s+/g, ' ').replace(/-\s+/g, '').trim().slice(0, 12000);
 
       if (!text || text.length < 150) {
