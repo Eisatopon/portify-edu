@@ -30,12 +30,14 @@ function extractVideoId(url) {
 }
 
 async function fetchTranscript(videoId) {
-  const langs = ['el', 'en', null];
+  const langs = ['el', 'en', 'el-GR', 'en-US', null];
   for (const lang of langs) {
     try {
       const opts = lang ? { lang } : {};
       const items = await YoutubeTranscript.fetchTranscript(videoId, opts);
-      return items.map(i => i.text).join(' ').slice(0, 12000);
+      if (items?.length) {
+        return items.map(i => i.text).join(' ').slice(0, 12000);
+      }
     } catch {}
   }
   return null;
@@ -75,7 +77,7 @@ async function summarize(text) {
     if (!message) throw new Error('Κενή απάντηση από το μοντέλο.');
 
     const clean = message.replace(/```json|```/g, '').trim();
-  const parsed = JSON.parse(clean);
+    const parsed = JSON.parse(clean);
     if (!Array.isArray(parsed.bullets)) throw new Error('Μη έγκυρη μορφή απάντησης.');
     return parsed.bullets;
   } finally {
@@ -102,20 +104,19 @@ export async function POST(req) {
       }
 
       const buffer = Buffer.from(await file.arrayBuffer());
-      const { text: rawText } = await extractText(buffer, { mergePages: true });
-const text = rawText
-  .replace(/\s+/g, ' ')
-  .replace(/-\s+/g, '')
-  .trim()
-  .slice(0, 12000);
-      const pages = pdfData.numpages;
+      const { text: rawText, totalPages } = await extractText(buffer, { mergePages: true });
+      const text = rawText
+        .replace(/\s+/g, ' ')
+        .replace(/-\s+/g, '')
+        .trim()
+        .slice(0, 12000);
 
       if (!text.trim() || text.length < 150) {
         return NextResponse.json({ error: 'Το PDF δεν περιέχει αρκετό κείμενο ή είναι σαρωμένο (image-based).' }, { status: 422 });
       }
 
       const bullets = await summarize(text);
-      return NextResponse.json({ success: true, bullets, pages });
+      return NextResponse.json({ success: true, bullets, pages: totalPages || 1 });
     }
 
     // Video mode
@@ -127,7 +128,9 @@ const text = rawText
 
     const transcript = await fetchTranscript(videoId);
     if (!transcript) {
-      return NextResponse.json({ error: 'Δεν βρέθηκαν υπότιτλοι για αυτό το βίντεο.' }, { status: 422 });
+      return NextResponse.json({
+        error: 'Δεν βρέθηκαν υπότιτλοι για αυτό το βίντεο. Δοκίμασε βίντεο με ενεργοποιημένους υπότιτλους.'
+      }, { status: 422 });
     }
 
     const estimatedMinutes = Math.max(Math.round(transcript.split(' ').length / 150), 1);
