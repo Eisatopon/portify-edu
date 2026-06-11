@@ -65,7 +65,7 @@ export async function POST(req) {
           { role: 'user',   content: userPrompt },
         ],
       }),
-      signal: AbortSignal.timeout(10000),
+      signal: AbortSignal.timeout(25000),
     });
 
     if (!response.ok) {
