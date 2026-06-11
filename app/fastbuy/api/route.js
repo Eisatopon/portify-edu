@@ -90,14 +90,8 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Μη έγκυρη απάντηση. Δοκίμασε ξανά.' }, { status: 502 });
     }
 
-    if (!Array.isArray(parsed.results) || parsed.results.length !== 5) {
+    if (!Array.isArray(parsed.results) || parsed.results.length < 3) {
       console.error('[fastbuy] Invalid results length:', parsed.results?.length);
-      return NextResponse.json({ error: 'Πρόβλημα με την υπηρεσία. Δοκίμασε ξανά.' }, { status: 502 });
-    }
-
-    const tiers = new Set(parsed.results.map(r => r.tier));
-    if (!tiers.has('best') || !tiers.has('value') || !tiers.has('premium') || !tiers.has('budget') || !tiers.has('popular')) {
-      console.error('[fastbuy] Missing tiers:', [...tiers]);
       return NextResponse.json({ error: 'Πρόβλημα με την υπηρεσία. Δοκίμασε ξανά.' }, { status: 502 });
     }
 
