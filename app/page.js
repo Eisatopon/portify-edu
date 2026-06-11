@@ -1,65 +1,459 @@
-import Image from "next/image";
+'use client';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
+import { HERO, SERVICES } from '@/src/core/config/uiConfig';
+
+// ─── Animated Counter ─────────────────────────────────────────────────────────
+
+function AnimatedCounter({ value, suffix = "" }) {
+  const [display, setDisplay] = useState('0');
+  const ref = useRef(null);
+  const animated = useRef(false);
+
+  useEffect(() => {
+    const num = parseInt(value);
+    if (isNaN(num)) { setDisplay(value + (suffix || "")); return; }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !animated.current) {
+        animated.current = true;
+        const duration = 1200;
+        const steps = 40;
+        const stepVal = num / steps;
+        let current = 0;
+        const timer = setInterval(() => {
+          current += stepVal;
+          if (current >= num) {
+            setDisplay(value + (suffix || ""));
+            clearInterval(timer);
+          } else {
+            setDisplay(String(Math.floor(current)));
+          }
+        }, duration / steps);
+        observer.disconnect();
+      }
+    }, { threshold: 0.5 });
+
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [value]);
+
+  return <span ref={ref}>{display}</span>;
+}
+
+// ─── Service Tile ─────────────────────────────────────────────────────────────
+
+function ServiceTile({ service, tileRef, large, small, fullWidth }) {
+  const nameParts = service.name.split('\n');
+
+  return (
+    <Link
+      href={service.href}
+      ref={tileRef}
+      className="service-tile focus-ring"
+      style={{
+        gridArea: service.gridArea,
+        background: service.bg,
+        color: service.color,
+      }}
+    >
+      <div className="service-tile-inner">
+        <div>
+          <div
+            className="service-tile-name"
+            style={{
+              fontSize: large
+                ? 'clamp(1.8rem,3.5vw,2.6rem)'
+                : small
+                ? '1rem'
+                : fullWidth
+                ? 'clamp(1.5rem,3vw,2rem)'
+                : '1.3rem',
+            }}
+          >
+            {nameParts.map((part, i) => (
+              <span key={i}>{part}{i < nameParts.length - 1 && <br />}</span>
+            ))}
+          </div>
+          <div className="service-tile-cat" style={{ color: service.subColor }}>
+            {service.category}
+          </div>
+          {service.description && (
+            <div className="service-tile-desc" style={{ color: service.subColor }}>
+              {service.description}
+            </div>
+          )}
+        </div>
+
+
+      </div>
+
+      <div className="service-tile-arrow" style={{ color: service.arrowColor }}>
+        →
+      </div>
+    </Link>
+  );
+}
+
+// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function Home() {
+  const tilesRef   = useRef([]);
+  const whitesRef  = useRef([]);
+  const statsRef   = useRef([]);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    if (hasAnimated.current) return;
+    hasAnimated.current = true;
+
+    const ease = 'cubic-bezier(.22,1,.36,1)';
+    const allAnimated = [
+      ...tilesRef.current,
+      ...whitesRef.current,
+    ];
+
+    allAnimated.forEach(el => {
+      if (!el) return;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+    });
+    statsRef.current.forEach(el => {
+      if (!el) return;
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(28px)';
+    });
+
+    setTimeout(() => {
+      allAnimated.forEach((el, i) => {
+        if (!el) return;
+        setTimeout(() => {
+          el.style.transition = `transform .55s ${ease}, opacity .55s ${ease}`;
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 200 + i * 55);
+      });
+      statsRef.current.forEach((el, i) => {
+        if (!el) return;
+        setTimeout(() => {
+          el.style.transition = `transform .5s ${ease}, opacity .5s ${ease}`;
+          el.style.opacity = '1';
+          el.style.transform = 'translateY(0)';
+        }, 700 + i * 60);
+      });
+    }, 150);
+  }, []);
+
+  const whites = ['w1','w2','w3','wa','wb','wc','wd'];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.js file.
+    <main className="portify-home">
+      <div className="portify-container">
+
+        {/* Nav */}
+        <nav className="portify-nav">
+          <div className="portify-nav-logo">PORTIFY.GR</div>
+          <div className="portify-nav-badge">BETA</div>
+        </nav>
+
+        {/* Hero */}
+        <section className="portify-hero">
+          <p className="portify-hero-eyebrow">{HERO.EYEBROW}</p>
+          <h1 className="portify-hero-title">
+            {HERO.TITLE}
+            <br />
+            <em className="portify-hero-em">{HERO.TITLE_EM}</em>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+          <p className="portify-hero-sub">{HERO.SUBTITLE}</p>
+        </section>
+
+        {/* Mondrian Grid */}
+        <div className="portify-mondrian">
+
+          {SERVICES.map((service, i) => (
+            <ServiceTile
+              key={service.id}
+              service={service}
+              tileRef={el => tilesRef.current[i] = el}
+              large={service.gridArea === 'molis'}
+              small={service.gridArea === 'video'}
+              fullWidth={service.gridArea === 'fthinatora'}
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          ))}
+
+          {whites.map((area, i) => (
+            <div
+              key={area}
+              ref={el => whitesRef.current[i] = el}
+              className="white-tile"
+              style={{ gridArea: area }}
+            />
+          ))}
+
         </div>
-      </main>
-    </div>
+
+        {/* Stats */}
+        <div className="portify-stats">
+          {HERO.STATS.map((s, i) => (
+            <div
+              key={s.label}
+              ref={el => statsRef.current[i] = el}
+              className="portify-stat"
+            >
+              <div className="portify-stat-num">
+                <AnimatedCounter value={s.value} suffix={s.suffix} />
+              </div>
+              <div className="portify-stat-label">{s.label}</div>
+            </div>
+          ))}
+          <div
+            ref={el => statsRef.current[3] = el}
+            className="portify-stat portify-stat-dark"
+          >
+            <p>Faster than <span>search.</span></p>
+          </div>
+        </div>
+
+      </div>
+
+      <style jsx global>{`
+        .portify-home {
+          font-family: var(--font-inter), Inter, sans-serif;
+          background: #e8e8e8;
+          min-height: 100vh;
+        }
+        .portify-container {
+          max-width: 1200px;
+          margin: 0 auto;
+          background: #fff;
+        }
+        .portify-nav {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 18px 32px;
+          border-bottom: 1px solid #e8e8e8;
+        }
+        .portify-nav-logo {
+          font-size: 14px;
+          font-weight: 700;
+          letter-spacing: 0.06em;
+          color: #111;
+        }
+        .portify-nav-badge {
+          font-size: 11px;
+          letter-spacing: 0.12em;
+          color: #888;
+          border: 1px solid #ddd;
+          padding: 4px 10px;
+          border-radius: 99px;
+        }
+        .portify-hero {
+          background: #111;
+          padding: clamp(40px,8vw,80px) clamp(20px,4vw,32px) clamp(36px,7vw,72px);
+          text-align: center;
+        }
+        .portify-hero-eyebrow {
+          font-size: 11px;
+          font-weight: 500;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: #f5c842;
+          margin-bottom: 24px;
+        }
+        .portify-hero-title {
+          font-size: clamp(36px,7vw,80px);
+          font-weight: 900;
+          line-height: 1.0;
+          letter-spacing: -0.03em;
+          color: #fff;
+          margin: 0 0 16px;
+        }
+        .portify-hero-em {
+          font-style: italic;
+          font-weight: 400;
+          color: #555;
+          font-size: clamp(24px,4vw,52px);
+        }
+        .portify-hero-sub {
+          font-size: 16px;
+          color: #666;
+          max-width: 400px;
+          line-height: 1.6;
+          margin: 0 auto;
+        }
+
+        /* ─── Mondrian Grid ─── */
+        .portify-mondrian {
+          display: grid;
+          grid-template-columns: 2fr 0.45fr 1.2fr 1fr;
+          grid-template-rows: 180px 140px 90px 150px;
+          grid-template-areas:
+            "molis w1  gov   buy"
+            "molis w2  video w3"
+            "wa    wb  wc    wd"
+            "fthinatora fthinatora fthinatora fthinatora";
+          border-left: 4px solid #111;
+          border-top: 4px solid #111;
+        }
+
+        /* ─── Service Tiles ─── */
+        .service-tile {
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          padding: 1.5rem;
+          text-decoration: none;
+          position: relative;
+          overflow: hidden;
+          border-right: 4px solid #111;
+          border-bottom: 4px solid #111;
+          will-change: transform, opacity;
+          transition: transform 0.2s cubic-bezier(0.4,0,0.2,1),
+                      box-shadow 0.2s cubic-bezier(0.4,0,0.2,1),
+                      filter 0.2s ease;
+        }
+        .service-tile:hover {
+          transform: translateY(-4px);
+          box-shadow: 8px 8px 0px #111;
+          filter: brightness(0.95);
+          z-index: 10;
+        }
+        .service-tile:hover .service-tile-arrow {
+          transform: translateX(6px);
+        }
+        .service-tile[style*="fthinatora"] {
+          flex-direction: row;
+          align-items: center;
+          justify-content: flex-start;
+          gap: 2rem;
+          padding: 1.5rem 2rem;
+        }
+        .service-tile-inner {
+          display: flex;
+          flex-direction: column;
+          gap: 0.3rem;
+          position: relative;
+          z-index: 1;
+        }
+        .service-tile-name {
+          font-weight: 800;
+          letter-spacing: -0.03em;
+          line-height: 1.1;
+        }
+        .service-tile-cat {
+          font-size: 10px;
+          font-weight: 700;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          opacity: 0.9;
+          margin-top: 6px;
+        }
+        .service-tile-desc {
+          font-size: 13px;
+          opacity: 0.85;
+          margin-top: 5px;
+          line-height: 1.4;
+          font-weight: 500;
+        }
+        .service-tile-icon {
+          display: none;
+        }
+        .service-tile-badge {
+          position: absolute;
+          top: 0;
+          right: 0;
+          background: rgba(255,255,255,0.22);
+          color: #fff;
+          font-size: 8px;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          padding: 2px 8px;
+          border-radius: 20px;
+          text-transform: uppercase;
+        }
+        .service-tile-arrow {
+          font-size: 1.3rem;
+          align-self: flex-end;
+          opacity: 0.55;
+          transition: transform 0.2s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        /* ─── White tiles ─── */
+        .white-tile {
+          background: #fff;
+          background-image: radial-gradient(#d8d8d8 0.5px, transparent 0.5px);
+          background-size: 16px 16px;
+          border-right: 4px solid #111;
+          border-bottom: 4px solid #111;
+          will-change: transform, opacity;
+        }
+
+        /* ─── Stats ─── */
+        .portify-stats {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1fr 1fr;
+          border-left: 4px solid #111;
+        }
+        .portify-stat {
+          background: #f7f5f0;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          padding: 28px 16px;
+          border-right: 4px solid #111;
+          border-bottom: 4px solid #111;
+          will-change: transform, opacity;
+        }
+        .portify-stat-num {
+          font-size: clamp(24px,3vw,36px);
+          font-weight: 900;
+          color: #111;
+          letter-spacing: -0.03em;
+          font-variant-numeric: tabular-nums;
+          font-feature-settings: "tnum";
+        }
+        .portify-stat-label {
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+          color: #888;
+          text-align: center;
+        }
+        .portify-stat-dark {
+          background: #111;
+          align-items: center;
+          justify-content: center;
+        }
+        .portify-stat-dark p {
+          font-size: clamp(18px,2.5vw,28px);
+          font-weight: 700;
+          letter-spacing: -0.02em;
+          line-height: 1.2;
+          text-align: center;
+          color: #fff;
+        }
+        .portify-stat-dark span { color: #f5c842; }
+
+        /* ─── Responsive ─── */
+        @media (max-width: 767px) {
+          .portify-mondrian {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 180px 140px 140px 110px;
+            grid-template-areas:
+              "molis  molis"
+              "gov    buy"
+              "video  w1"
+              "fthinatora fthinatora";
+          }
+          .portify-mondrian .white-tile:not([style*="w1"]) { display: none; }
+          .portify-stats { grid-template-columns: 1fr 1fr; }
+          .portify-nav { padding: 14px 20px; }
+        }
+      `}</style>
+    </main>
   );
 }
