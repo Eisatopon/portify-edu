@@ -16,9 +16,11 @@ const SUGGESTIONS = [
 ];
 
 const TIER_CONFIG = {
-  best:    { label:'🥇 Καλύτερη Επιλογή', bg:'#f0ebff', color:'#5a2d9e', border:'#5a2d9e', borderWidth:2 },
-  value:   { label:'💚 Value for Money',   bg:'#e8f7f0', color:'#1a6b4a', border:'#1a6b4a', borderWidth:2 },
-  premium: { label:'⭐ Premium Choice',    bg:'#fff8e8', color:'#8a6000', border:'#e8c84a', borderWidth:1 },
+  budget:   { label:'💰 Φθηνότερη Επιλογή',   bg:'#f0f7ff', color:'#1a4fa8', border:'#1a4fa8', borderWidth:2 },
+  best:     { label:'🥇 Καλύτερη Επιλογή',    bg:'#f0ebff', color:'#5a2d9e', border:'#5a2d9e', borderWidth:2 },
+  value:    { label:'💚 Value for Money',      bg:'#e8f7f0', color:'#1a6b4a', border:'#1a6b4a', borderWidth:2 },
+  premium:  { label:'⭐ Premium Choice',       bg:'#fff8e8', color:'#8a6000', border:'#e8c84a', borderWidth:1 },
+  popular:  { label:'🔥 Πιο Δημοφιλής',       bg:'#fff1f0', color:'#c0392b', border:'#e8380d', borderWidth:2 },
 };
 
 const STORES = [
