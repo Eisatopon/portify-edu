@@ -34,6 +34,36 @@ function GovFastPageInner() {
   const [copied, setCopied] = useState(false);
   const lastActiveRef = useRef('popular');
 
+  // AI Guide state
+  const [aiQuery, setAiQuery] = useState('');
+  const [aiLoading, setAiLoading] = useState(false);
+  const [aiResult, setAiResult] = useState(null);
+  const [aiError, setAiError] = useState(null);
+
+  const handleAiSearch = async () => {
+    if (!aiQuery.trim()) return;
+    setAiLoading(true);
+    setAiResult(null);
+    setAiError(null);
+    try {
+      const res = await fetch('/govfast/api', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: aiQuery }),
+      });
+      const data = await res.json();
+      if (data.found === false) {
+        setAiError(data.message || 'Δεν βρέθηκε σχετική υπηρεσία.');
+      } else {
+        setAiResult(data);
+      }
+    } catch {
+      setAiError('Πρόβλημα σύνδεσης. Δοκίμασε ξανά.');
+    } finally {
+      setAiLoading(false);
+    }
+  };
+
   const serviceId = searchParams.get('service');
   const selected = serviceId ? SERVICES.find(s => s.id === serviceId) : null;
 
@@ -228,6 +258,71 @@ function GovFastPageInner() {
     <main className="min-h-screen font-sans" style={{ background:'#e8e8e8' }}>
       <div className="mx-auto bg-white" style={{ maxWidth:1200 }}>
         <PortifyHeader serviceId="govfast" />
+
+        {/* AI Guide */}
+        <div className="px-8 py-5 border-b-4 border-black bg-[#f0f6ff]">
+          <div className="text-xs font-bold uppercase tracking-widest text-[#0D5EAF] mb-3">
+            🤖 Ρώτα με φυσική γλώσσα
+          </div>
+          <div className="flex gap-3">
+            <input
+              type="text"
+              value={aiQuery}
+              onChange={e => setAiQuery(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && handleAiSearch()}
+              placeholder='π.χ. "Θέλω να πουλήσω αυτοκίνητο" ή "Πώς βγάζω διαβατήριο;"'
+              className="flex-1 bg-white border-2 border-[#0D5EAF] rounded-xl py-3 px-4 text-sm outline-none focus:border-blue-600"
+            />
+            <button
+              type="button"
+              onClick={handleAiSearch}
+              disabled={aiLoading || !aiQuery.trim()}
+              className="px-6 py-3 bg-[#0D5EAF] hover:bg-[#0a4d9a] disabled:opacity-50 text-white font-bold text-sm rounded-xl transition-colors border-none cursor-pointer"
+            >
+              {aiLoading ? 'Ψάχνω...' : 'Βρες →'}
+            </button>
+          </div>
+
+          {aiError && (
+            <div className="mt-4 p-4 bg-white rounded-xl border border-gray-200 text-sm text-gray-500">
+              😕 {aiError}
+            </div>
+          )}
+
+          {aiResult && (
+            <div className="mt-4 bg-white rounded-xl border border-[#0D5EAF] overflow-hidden">
+              <div className="px-5 py-4 border-b border-gray-100">
+                <p className="text-sm text-gray-700 font-medium">{aiResult.intro}</p>
+                {aiResult.tip && (
+                  <p className="text-xs text-[#8a6000] mt-2 bg-[#fffbe8] px-3 py-2 rounded-lg">
+                    💡 {aiResult.tip}
+                  </p>
+                )}
+              </div>
+              <div className="divide-y divide-gray-100">
+                {aiResult.services?.map(s => {
+                  const diff = DIFFICULTY[s.difficulty];
+                  return (
+                    <button key={s.id} type="button" onClick={() => selectService(s.id)}
+                      className="w-full flex items-center gap-4 px-5 py-3 hover:bg-[#f0f6ff] transition-colors text-left cursor-pointer bg-transparent border-none">
+                      <span className="text-xl">{s.icon}</span>
+                      <div className="flex-1">
+                        <div className="text-sm font-bold text-gray-900">{s.name}</div>
+                        <div className="text-xs text-gray-400">{s.desc}</div>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs px-2 py-0.5 rounded-full font-medium" style={{ background: diff.bg, color: diff.color }}>
+                          {diff.dot} {diff.label}
+                        </span>
+                        <span className="text-xs text-[#0D5EAF] font-semibold">→</span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+        </div>
 
         <div className="px-8 py-4 border-b border-gray-100 bg-[#f7f5f0]">
           <input type="text" value={search}
