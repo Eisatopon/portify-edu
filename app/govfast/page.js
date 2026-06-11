@@ -293,12 +293,38 @@ function GovFastPageInner() {
             <div className="mt-4 bg-white rounded-xl border border-[#0D5EAF] overflow-hidden">
               <div className="px-5 py-4 border-b border-gray-100">
                 <p className="text-sm text-gray-700 font-medium">{aiResult.intro}</p>
+
+                {aiResult.goal && (
+                  <p className="text-xs text-gray-500 mt-1">Στόχος: {aiResult.goal}</p>
+                )}
+
+                {aiResult.steps?.length > 0 && (
+                  <div className="mt-3">
+                    <div className="text-xs font-bold uppercase tracking-widest text-gray-400 mb-2">Βήματα</div>
+                    <ol className="space-y-1 text-xs text-gray-700 list-decimal list-inside">
+                      {aiResult.steps.map((step, i) => (
+                        <li key={i}>{step}</li>
+                      ))}
+                    </ol>
+                  </div>
+                )}
+
+                {aiResult.warnings?.length > 0 && (
+                  <div className="mt-3 bg-[#fff0f0] border border-[#f5a2a2] text-xs text-[#8a1f1f] px-3 py-2 rounded-lg">
+                    <div className="font-semibold mb-1">⚠️ Προσοχή</div>
+                    <ul className="list-disc list-inside space-y-1">
+                      {aiResult.warnings.map((w, i) => <li key={i}>{w}</li>)}
+                    </ul>
+                  </div>
+                )}
+
                 {aiResult.tip && (
                   <p className="text-xs text-[#8a6000] mt-2 bg-[#fffbe8] px-3 py-2 rounded-lg">
                     💡 {aiResult.tip}
                   </p>
                 )}
               </div>
+
               <div className="divide-y divide-gray-100">
                 {aiResult.services?.map(s => {
                   const diff = DIFFICULTY[s.difficulty];

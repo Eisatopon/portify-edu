@@ -3,22 +3,42 @@ import { SERVICES } from '@/src/data/govfastServices';
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-const SYSTEM_PROMPT = `Είσαι βοηθός του GovFast, μια υπηρεσία που βοηθά τους Έλληνες πολίτες με κρατικές υπηρεσίες.
+const SYSTEM_PROMPT = `Είσαι βοηθός του GovFast, μια υπηρεσία που βοηθά τους Έλληνες πολίτες με κρατικές διαδικασίες.
 
-Σου δίνεται μια λίστα διαθέσιμων υπηρεσιών και ένα ερώτημα χρήστη στα ελληνικά.
-Βρες τις πιο σχετικές υπηρεσίες (1-4) και δώσε έναν σύντομο οδηγό.
+Σου δίνεται:
+- μια λίστα διαθέσιμων υπηρεσιών (με ID, όνομα, περιγραφή, keywords)
+- μια ερώτηση χρήστη στα ελληνικά, σε φυσική γλώσσα (π.χ. "Θέλω να πουλήσω αυτοκίνητο")
+
+Στόχος σου:
+- Να καταλάβεις ΤΙ ΘΕΛΕΙ ΝΑ ΚΑΝΕΙ ο χρήστης
+- Να δώσεις ΠΡΑΚΤΙΚΟ οδηγό βημάτων (όχι θεωρία)
+- Να προτείνεις 1-4 σχετικές υπηρεσίες από τη λίστα
 
 Κανόνες:
 - Επέλεξε ΜΟΝΟ από τις διαθέσιμες υπηρεσίες
-- Αν δεν υπάρχει σχετική υπηρεσία, πες το ευθέως
-- Απαντάς ΜΟΝΟ με έγκυρο JSON:
+- ΜΗΝ εφευρίσκεις υπηρεσίες που δεν υπάρχουν στη λίστα
+- Αν δεν υπάρχει σχετική υπηρεσία, πες το ξεκάθαρα
+- Απαντάς ΜΟΝΟ με έγκυρο JSON, χωρίς πρόλογο
+
+Αν βρήκες σχετική διαδικασία:
 {
   "found": true,
-  "intro": "Σύντομη εισαγωγή (1 πρόταση)",
-  "services": ["id1", "id2"],
-  "tip": "Ένα χρήσιμο tip για τη συγκεκριμένη περίπτωση"
+  "intro": "Σύντομη εισαγωγή σε 1 πρόταση.",
+  "goal": "Μία πρόταση που περιγράφει τον στόχο του χρήστη.",
+  "steps": [
+    "Βήμα 1 σε απλά ελληνικά.",
+    "Βήμα 2 σε απλά ελληνικά.",
+    "Βήμα 3 σε απλά ελληνικά."
+  ],
+  "requiredServices": ["id1", "id2"],
+  "warnings": [
+    "Προσοχή σε προθεσμίες ή συχνά λάθη."
+  ],
+  "tip": "Ένα πρακτικό tip για τη συγκεκριμένη περίπτωση."
 }
-Αν δεν βρεθεί τίποτα: { "found": false, "message": "..." }`;
+
+Αν δεν καλύπτεται:
+{ "found": false, "message": "Σύντομη εξήγηση." }`;
 
 export async function POST(req) {
   if (!OPENAI_API_KEY) {
@@ -31,7 +51,6 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Γράψε την ερώτησή σου.' }, { status: 400 });
     }
 
-    // Δίνω στο AI τη λίστα υπηρεσιών
     const servicesList = SERVICES.map(s =>
       `ID: ${s.id} | ${s.name} | ${s.desc} | Keywords: ${s.keywords?.join(', ')}`
     ).join('\n');
@@ -44,7 +63,7 @@ export async function POST(req) {
       },
       body: JSON.stringify({
         model: 'gpt-4o-mini',
-        max_tokens: 400,
+        max_tokens: 600,
         temperature: 0.2,
         response_format: { type: 'json_object' },
         messages: [
@@ -64,18 +83,20 @@ export async function POST(req) {
     const parsed = JSON.parse(raw);
 
     if (!parsed.found) {
-      return NextResponse.json({ found: false, message: parsed.message });
+      return NextResponse.json({ found: false, message: parsed.message || 'Δεν βρέθηκε σχετική διαδικασία.' });
     }
 
-    // Επιστρέφω τις πλήρεις υπηρεσίες
-    const services = (parsed.services || [])
+    const services = (parsed.requiredServices || [])
       .map(id => SERVICES.find(s => s.id === id))
       .filter(Boolean);
 
     return NextResponse.json({
       found: true,
-      intro: parsed.intro,
-      tip: parsed.tip,
+      intro: parsed.intro || '',
+      goal: parsed.goal || '',
+      steps: Array.isArray(parsed.steps) ? parsed.steps : [],
+      warnings: Array.isArray(parsed.warnings) ? parsed.warnings : [],
+      tip: parsed.tip || '',
       services,
     });
 
