@@ -333,11 +333,15 @@ export default function Home() {
                       box-shadow 0.2s cubic-bezier(0.4,0,0.2,1),
                       filter 0.2s ease;
         }
+        .service-tile {
+          perspective: 1200px;
+        }
         .service-tile:hover {
-          transform: translateY(-4px);
-          box-shadow: 8px 8px 0px #111;
+          transform: perspective(1200px) rotateY(-18deg) translateX(6px);
+          box-shadow: 12px 0 32px rgba(0,0,0,0.3);
           filter: brightness(0.95);
           z-index: 10;
+          transform-origin: left center;
         }
         .service-tile:hover .service-tile-arrow {
           transform: translateX(6px);
