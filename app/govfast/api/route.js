@@ -65,7 +65,8 @@ export async function POST(req) {
     const raw = data.choices?.[0]?.message?.content;
     if (!raw) throw new Error('Κενή απάντηση.');
 
-    const parsed = JSON.parse(raw);
+    const cleaned = raw.replace(/```json|```/g, '').trim();
+const parsed = JSON.parse(cleaned);
 
     if (!parsed.found) {
       return NextResponse.json({ found: false, message: parsed.message || 'Δεν βρέθηκε σχετική διαδικασία.' });
