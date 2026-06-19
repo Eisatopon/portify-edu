@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import booksData from '../src/data/books.json';
-
+import FooterFAQ from '../src/ui/components/FooterFAQ';
 export default function HomePage() {
   // States για τα φίλτρα
   const [level, setLevel] = useState('all');
@@ -168,7 +168,9 @@ export default function HomePage() {
           </div>
         )}
       </div>
-
+    {/* Προσθήκη του FAQ Footer */}
+<FooterFAQ />
+ 
     </div>
   );
 }
