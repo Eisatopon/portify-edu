@@ -1,0 +1,24 @@
+[
+  {
+    "id": "dim-g-istoria",
+    "level": "dimotiko",
+    "grade": "g-taxi",
+    "subject": "history",
+    "title": "Ιστορία Γ' Δημοτικού - Στα αρχαία χρόνια",
+    "version": "multiple",
+    "links": {
+      "pdf": "https://cti.gr"
+    }
+  },
+  {
+    "id": "gym-a-math",
+    "level": "gymnasio",
+    "grade": "a-gym",
+    "subject": "math",
+    "title": "Μαθηματικά Α' Γυμνασίου",
+    "version": "classic",
+    "links": {
+      "pdf": "http://ebooks.edu.gr"
+    }
+  }
+]
