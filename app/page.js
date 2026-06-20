@@ -38,7 +38,7 @@ export default function HomePage() {
       <header className="header">
         <div className="header-inner">
           <a href="/" className="logo">
-            <div className="logo-mark">π</div>
+            <img src="/favicon.svg" width="34" height="34" alt="Portify" style={{ borderRadius: 8 }} />
             <div>
               <div className="logo-name">Portify <span>Βιβλία</span></div>
               <div className="logo-sub">Ψηφιακή βιβλιοθήκη</div>
@@ -59,10 +59,10 @@ export default function HomePage() {
             <button type="submit" className="search-btn">Αναζήτηση</button>
           </form>
           <div className="hero-stats">
-            {[{ n: allBooks.length, l: 'βιβλία' }, { n: '230', l: 'πακέτα' }, { n: '3', l: 'βαθμίδες' }, { n: 'PDF', l: 'δωρεάν' }].map(s => (
-              <div className="hero-stat" key={s.l}><div className="n">{s.n}</div><div className="l">{s.l}</div></div>
-            ))}
-          </div>
+  {[{ n: allBooks.length, l: 'βιβλία' }, { n: '230', l: 'πακέτα' }, { n: '3', l: 'βαθμίδες' }].map(s => (
+    <div className="hero-stat" key={s.l}><div className="n">{s.n}</div><div className="l">{s.l}</div></div>
+  ))}
+</div>
         </div>
       </section>
 
