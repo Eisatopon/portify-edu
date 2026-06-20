@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://portify.gr/sitemap.xml
