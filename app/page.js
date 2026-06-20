@@ -29,19 +29,22 @@ export default function HomePage() {
 
   const currentLevel = LEVELS.find(l => l.key === level);
 
-  return (
-    <>
-      <header className="header">
-        <div className="header-inner">
-          <a href="/" className="logo">
-            <div className="logo-mark">π</div>
-            <div>
-              <div className="logo-name">Portify <span>Βιβλία</span></div>
-              <div className="logo-sub">Ψηφιακή βιβλιοθήκη</div>
-            </div>
-          </a>
-        </div>
-      </header>
+return (
+  <>
+    <div style={{position:'fixed',top:0,right:0,background:'red',color:'white',padding:10,zIndex:9999,fontSize:12}}>
+      level:{level} grade:{String(grade)} subject:{subject} filtered:{filtered.length}
+    </div>
+    <header className="header">
+      <div className="header-inner">
+        <a href="/" className="logo">
+          <div className="logo-mark">π</div>
+          <div>
+            <div className="logo-name">Portify <span>Βιβλία</span></div>
+            <div className="logo-sub">Ψηφιακή βιβλιοθήκη</div>
+          </div>
+        </a>
+      </div>
+    </header>
 
       <section className="hero">
         <div className="hero-inner">
@@ -122,7 +125,7 @@ export default function HomePage() {
                 {filtered.length === 0 ? (
                   <div className="empty-state"><div className="empty-icon">📚</div><h3>Δεν βρέθηκαν βιβλία</h3><p>Δοκίμασε διαφορετικά φίλτρα</p><button className="btn-reset" onClick={clearAll}>Επιστροφή</button></div>
                 ) : (
-                  filtered.map(book => <BookCard key={book.id} book={book} />)
+                  filtered.map((book, i) => <BookCard key={`${book.id}-${i}`} book={book} />)
                 )}
               </div>
             </div>
