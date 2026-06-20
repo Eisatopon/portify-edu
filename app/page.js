@@ -1,12 +1,11 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import BookCard from '@/src/components/BookCard';
 import Filters from '@/src/components/Filters';
 import { useBookFilters } from '@/src/hooks/useBookFilters';
 import allBooks from '@/src/data/books.json';
 
 const TABS = [
-  { key: 'all',      label: 'Όλα',      icon: '⊞' },
   { key: 'dimotiko', label: 'Δημοτικό',  icon: '🏫' },
   { key: 'gymnasio', label: 'Γυμνάσιο', icon: '🏛' },
   { key: 'lykeio',   label: 'Λύκειο',   icon: '🎓' },
@@ -22,7 +21,7 @@ export default function HomePage() {
     setLevel, toggleGrade, toggleSubject,
     submitSearch, clearSearch, clearAll,
     filtered, grades, subjects, hasFilters,
-  } = useBookFilters(allBooks);
+  } = useBookFilters(allBooks, 'dimotiko');
 
   function handleSearch(e) {
     e.preventDefault();
@@ -88,13 +87,11 @@ export default function HomePage() {
           {TABS.map(t => (
             <button
               key={t.key}
-              onClick={() => setLevel(t.key === 'all' ? null : t.key)}
-              className={`ltab${level === (t.key === 'all' ? null : t.key) ? ' active' : ''}`}
+              onClick={() => setLevel(t.key)}
+              className={`ltab${level === t.key ? ' active' : ''}`}
             >
               {t.icon} {t.label}
-              {t.key !== 'all' && (
-                <span className="cnt">{byLevel[t.key]}</span>
-              )}
+              <span className="cnt">{byLevel[t.key]}</span>
             </button>
           ))}
         </div>
