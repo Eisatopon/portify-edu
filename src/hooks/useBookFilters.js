@@ -28,7 +28,7 @@ export function useBookFilters(allBooks, initialLevel = 'dimotiko') {
 
   function submitSearch(val) {
     setQueryRaw(val);
-    setLevelRaw(null);
+    // ΔΕΝ αγγίζουμε το level — παραμένει στο tab που έχει επιλέξει ο χρήστης
     setGradeRaw(null);
     setSubjectRaw(null);
   }
@@ -52,7 +52,7 @@ export function useBookFilters(allBooks, initialLevel = 'dimotiko') {
   );
 
   const grades = useMemo(() => {
-    const src = level ? allBooks.filter(b => b.level === level) : allBooks;
+    const src = allBooks.filter(b => !level || b.level === level);
     const map = {};
     src.forEach(b => {
       map[b.grade] = map[b.grade] || { grade: b.grade, label: b.gradeLabel, count: 0 };
