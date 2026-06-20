@@ -1,4 +1,5 @@
 import './globals.css';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 export const metadata = {
   title: 'Portify — Σχολικά Βιβλία',
@@ -50,6 +51,7 @@ export default function RootLayout({ children }) {
           }}
         />
         {children}
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       </body>
     </html>
   );
