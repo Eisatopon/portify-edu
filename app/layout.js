@@ -1,26 +1,29 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Portify — Σχολικά Βιβλία Δωρεάν PDF',
-  description: 'Όλα τα σχολικά βιβλία Δημοτικού, Γυμνασίου και Λυκείου σε PDF. Δωρεάν πρόσβαση — γρήγορη αναζήτηση ανά τάξη και μάθημα.',
-  keywords: 'σχολικά βιβλία, PDF, δωρεάν, δημοτικό, γυμνάσιο, λύκειο, Μελίσπη, βιβλία μαθητή',
-  icons: { icon: '/favicon.svg' },
+  title: 'Portify — Σχολικά Βιβλία',
+  description: 'Όλα τα σχολικά βιβλία Δημοτικού, Γυμνασίου και Λυκείου σε PDF. Γρήγορη αναζήτηση ανά τάξη και μάθημα.',
+  keywords: 'σχολικά βιβλία, PDF, δημοτικό, γυμνάσιο, λύκειο, Μελίσπη, βιβλία μαθητή',
+  icons: {
+    icon: '/favicon.ico',
+    apple: '/apple-touch-icon.png',
+  },
   metadataBase: new URL('https://portify.gr'),
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Portify — Σχολικά Βιβλία Δωρεάν PDF',
-    description: 'Όλα τα σχολικά βιβλία Δημοτικού, Γυμνασίου και Λυκείου. Βρες και κατέβασε δωρεάν το βιβλίο που χρειάζεσαι.',
+    title: 'Portify — Σχολικά Βιβλία',
+    description: 'Όλα τα σχολικά βιβλία Δημοτικού, Γυμνασίου και Λυκείου. Βρες το βιβλίο που χρειάζεσαι γρήγορα και εύκολα.',
     url: 'https://portify.gr',
     siteName: 'Portify Βιβλία',
     locale: 'el_GR',
     type: 'website',
-    images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Portify — Σχολικά Βιβλία' }],
+    images: [{ url: '/og-image.svg', width: 1200, height: 630, alt: 'Portify — Σχολικά Βιβλία' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Portify — Σχολικά Βιβλία Δωρεάν PDF',
-    description: 'Όλα τα σχολικά βιβλία σε ένα μέρος. Δωρεάν PDF.',
-    images: ['/og-image.png'],
+    title: 'Portify — Σχολικά Βιβλία',
+    description: 'Όλα τα σχολικά βιβλία σε ένα μέρος.',
+    images: ['/og-image.svg'],
   },
 };
 
