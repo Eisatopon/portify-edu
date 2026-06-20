@@ -6,8 +6,8 @@ import allBooks from '@/src/data/books.json';
 
 const LEVELS = [
   { key: 'dimotiko', label: 'Δημοτικό', icon: '🏫', grades: 'Α΄ – ΣΤ΄', color: '#166534', btnColor: '#16a34a', desc: 'Γλώσσα, Μαθηματικά, Ιστορία και άλλα για τις 6 τάξεις' },
-  { key: 'gymnasio', label: 'Γυμνάσιο', icon: '🏛', grades: 'Α΄ – Γ΄', color: '#92400e', btnColor: '#d97706', desc: 'Φυσική, Χημεία, Αρχαία και άλλα για τις 3 τάξεις' },
-  { key: 'lykeio',   label: 'Λύκειο',   icon: '🎓', grades: 'Α΄ – Γ΄', color: '#5b21b6', btnColor: '#7c3aed', desc: 'Άλγεβρα, Βιολογία, Χημεία και άλλα για τις 3 τάξεις' },
+  { key: 'gymnasio', label: 'Γυμνάσιο', icon: '🏛', grades: 'Α΄ – Γ΄',  color: '#92400e', btnColor: '#d97706', desc: 'Φυσική, Χημεία, Αρχαία και άλλα για τις 3 τάξεις' },
+  { key: 'lykeio',   label: 'Λύκειο',   icon: '🎓', grades: 'Α΄ – Γ΄',  color: '#5b21b6', btnColor: '#7c3aed', desc: 'Άλγεβρα, Βιολογία, Χημεία και άλλα για τις 3 τάξεις' },
 ];
 
 const byLevel = { dimotiko: 0, gymnasio: 0, lykeio: 0 };
@@ -29,22 +29,19 @@ export default function HomePage() {
 
   const currentLevel = LEVELS.find(l => l.key === level);
 
-return (
-  <>
-    <div style={{position:'fixed',top:0,right:0,background:'red',color:'white',padding:10,zIndex:9999,fontSize:12}}>
-      level:{level} grade:{String(grade)} subject:{subject} filtered:{filtered.length}
-    </div>
-    <header className="header">
-      <div className="header-inner">
-        <a href="/" className="logo">
-          <div className="logo-mark">π</div>
-          <div>
-            <div className="logo-name">Portify <span>Βιβλία</span></div>
-            <div className="logo-sub">Ψηφιακή βιβλιοθήκη</div>
-          </div>
-        </a>
-      </div>
-    </header>
+  return (
+    <>
+      <header className="header">
+        <div className="header-inner">
+          <a href="/" className="logo">
+            <div className="logo-mark">π</div>
+            <div>
+              <div className="logo-name">Portify <span>Βιβλία</span></div>
+              <div className="logo-sub">Ψηφιακή βιβλιοθήκη</div>
+            </div>
+          </a>
+        </div>
+      </header>
 
       <section className="hero">
         <div className="hero-inner">
@@ -65,7 +62,6 @@ return (
         </div>
       </section>
 
-      {/* LANDING — χωρίς επιλογή */}
       {!level && !query && (
         <div style={{ maxWidth: 960, margin: '0 auto', padding: '48px 20px' }}>
           <p style={{ textAlign: 'center', fontSize: 16, color: 'var(--color-text-secondary)', marginBottom: 36 }}>
@@ -89,7 +85,6 @@ return (
         </div>
       )}
 
-      {/* BOOKS VIEW */}
       {(level || query) && (
         <>
           <div className="level-tabs">
