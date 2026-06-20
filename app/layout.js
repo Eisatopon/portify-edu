@@ -1,23 +1,23 @@
 import './globals.css';
-import PortifyHeader from '../src/ui/components/PortifyHeader';
 
 export const metadata = {
-  title: 'Portify.gr | Ψηφιακή Πύλη Σχολικών Βιβλίων',
-  description: 'Κλασικά και πολλαπλά σχολικά βιβλία όλων των βαθμίδων σε μία πλατφόρμα αστραπιαίας ταχύτητας.',
+  title: 'Portify — Σχολικά Βιβλία',
+  description: 'Όλα τα σχολικά βιβλία Δημοτικού, Γυμνασίου και Λυκείου. Δωρεάν PDF — γρήγορη αναζήτηση ανά τάξη και μάθημα.',
+  keywords: 'σχολικά βιβλία, PDF, δωρεάν, δημοτικό, γυμνάσιο, λύκειο, Μελίσπη',
+  openGraph: {
+    title: 'Portify — Σχολικά Βιβλία δωρεάν',
+    description: 'Βρες το σχολικό βιβλίο που χρειάζεσαι — γρήγορα και εύκολα',
+    url: 'https://portify.gr',
+    siteName: 'Portify',
+    locale: 'el_GR',
+    type: 'website',
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="el">
-      <body className="bg-[#06090e] min-h-screen antialiased selection:bg-amber-500 selection:text-slate-900">
-        {/* Το Navbar εμφανίζεται σταθερά στην κορυφή κάθε σελίδας */}
-        <PortifyHeader />
-        
-        {/* Εδώ φορτώνει η εκάστοτε σελίδα */}
-        <main>
-          {children}
-        </main>
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
