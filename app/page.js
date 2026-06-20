@@ -1,4 +1,5 @@
 'use client';
+import { useState } from 'react';
 import BookCard from '@/src/components/BookCard';
 import Filters from '@/src/components/Filters';
 import { useBookFilters } from '@/src/hooks/useBookFilters';
@@ -14,6 +15,8 @@ const byLevel = { dimotiko: 0, gymnasio: 0, lykeio: 0 };
 allBooks.forEach(b => { if (byLevel[b.level] !== undefined) byLevel[b.level]++; });
 
 export default function HomePage() {
+  const [sheetOpen, setSheetOpen] = useState(false);
+
   const {
     level, grade, subject, query,
     inputValue, setInputValue,
@@ -28,6 +31,7 @@ export default function HomePage() {
   }
 
   const currentLevel = LEVELS.find(l => l.key === level);
+  const activeFiltersCount = (grade ? 1 : 0) + (subject ? 1 : 0);
 
   return (
     <>
@@ -62,6 +66,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* LANDING */}
       {!level && !query && (
         <div style={{ maxWidth: 960, margin: '0 auto', padding: '48px 20px' }}>
           <p style={{ textAlign: 'center', fontSize: 16, color: 'var(--color-text-secondary)', marginBottom: 36 }}>
@@ -70,14 +75,14 @@ export default function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 20 }}>
             {LEVELS.map(l => (
               <button key={l.key} onClick={() => setLevel(l.key)}
-                style={{ background: 'var(--color-background-primary)', border: '0.5px solid var(--color-border-tertiary)', borderTop: `3px solid ${l.btnColor}`, borderRadius: 16, padding: '28px 24px', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', transition: 'transform 0.15s, box-shadow 0.15s' }}
+                style={{ background: 'var(--white)', border: '0.5px solid var(--border)', borderTop: `3px solid ${l.btnColor}`, borderRadius: 16, padding: '28px 24px', cursor: 'pointer', textAlign: 'left', fontFamily: 'inherit', transition: 'transform 0.15s, box-shadow 0.15s' }}
                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = '0 8px 24px rgba(0,0,0,0.1)'; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}
               >
                 <div style={{ fontSize: 36, marginBottom: 12 }}>{l.icon}</div>
                 <div style={{ fontSize: 22, fontWeight: 600, color: l.color, marginBottom: 4 }}>{l.label}</div>
-                <div style={{ fontSize: 12, color: l.btnColor, fontWeight: 600, marginBottom: 10 }}>{l.grades} Τάξη · {byLevel[l.key]} βιβλία</div>
-                <p style={{ fontSize: 13, color: 'var(--color-text-secondary)', marginBottom: 18, lineHeight: 1.5 }}>{l.desc}</p>
+                <div style={{ fontSize: 12, color: l.btnColor, fontWeight: 600, marginBottom: 10 }}>{l.grades} · {byLevel[l.key]} βιβλία</div>
+                <p style={{ fontSize: 13, color: 'var(--text-2)', marginBottom: 18, lineHeight: 1.5 }}>{l.desc}</p>
                 <span style={{ background: l.btnColor, color: '#fff', borderRadius: 8, padding: '7px 16px', fontSize: 13, fontWeight: 600 }}>Δες τα βιβλία →</span>
               </button>
             ))}
@@ -85,11 +90,12 @@ export default function HomePage() {
         </div>
       )}
 
+      {/* BOOKS VIEW */}
       {(level || query) && (
         <>
           <div className="level-tabs">
             <div className="level-tabs-inner">
-              <button onClick={clearAll} className="ltab" style={{ color: 'var(--color-text-tertiary)' }}>← Πίσω</button>
+              <button onClick={clearAll} className="ltab" style={{ color: 'var(--text-3)' }}>← Πίσω</button>
               {LEVELS.map(l => (
                 <button key={l.key} onClick={() => setLevel(l.key)} className={`ltab${level === l.key ? ' active' : ''}`}>
                   {l.icon} {l.label} <span className="cnt">{byLevel[l.key]}</span>
@@ -124,6 +130,54 @@ export default function HomePage() {
                 )}
               </div>
             </div>
+          </div>
+
+          {/* MOBILE FILTER BUTTON */}
+          <button className="mobile-filter-btn" onClick={() => setSheetOpen(true)}>
+            🎛 Φίλτρα {activeFiltersCount > 0 && <span style={{ background: 'rgba(255,255,255,0.3)', borderRadius: 20, padding: '1px 8px', fontSize: 12 }}>{activeFiltersCount}</span>}
+          </button>
+
+          {/* BOTTOM SHEET */}
+          <div className={`bottom-sheet-overlay${sheetOpen ? ' open' : ''}`} onClick={() => setSheetOpen(false)} />
+          <div className={`bottom-sheet${sheetOpen ? ' open' : ''}`}>
+            <div className="bottom-sheet-handle" />
+            <div className="bottom-sheet-header">
+              <h3>Φίλτρα</h3>
+              <button className="bottom-sheet-close" onClick={() => setSheetOpen(false)}>×</button>
+            </div>
+            <div className="bottom-sheet-body">
+              {grades.length > 0 && (
+                <>
+                  <p className="bs-section-title">Τάξη</p>
+                  <div className="bs-grid">
+                    {grades.map(g => (
+                      <button key={g.grade} className={`bs-btn${grade === g.grade ? ' active' : ''}`}
+                        onClick={() => { toggleGrade(g.grade); }}>
+                        <span>{g.label}</span>
+                        <span className="bs-count">{g.count}</span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+              {subjects.length > 0 && (
+                <>
+                  <p className="bs-section-title">Μάθημα</p>
+                  <div className="bs-grid">
+                    {subjects.map(s => (
+                      <button key={s.subject} className={`bs-btn${subject === s.subject ? ' active' : ''}`}
+                        onClick={() => { toggleSubject(s.subject); }}>
+                        <span>{s.subject}</span>
+                        <span className="bs-count">{s.count}</span>
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
+            <button className="bs-apply" onClick={() => setSheetOpen(false)}>
+              Εμφάνισε {filtered.length} βιβλία
+            </button>
           </div>
         </>
       )}
