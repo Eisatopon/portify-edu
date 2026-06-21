@@ -111,7 +111,7 @@ export default function HomePage() {
     submitSearch(book.subject);
   }
 
-  const favBooks = allBooks.filter(b => favs.includes(b.id));
+  const favBooks = allBooks.filter(b => favs.includes(b.pdfUrl));
   const currentLevel = LEVELS.find(l => l.key === level);
   const activeFiltersCount = (grade ? 1 : 0) + (subject ? 1 : 0);
   const showBooks = !!(level || query || showFavs);
@@ -273,7 +273,7 @@ export default function HomePage() {
                     </div>
                   ) : (
                     displayBooks.map((book, i) => (
-                      <BookCard key={`${book.id}-${i}`} book={book} isFav={favs.includes(book.id)} onToggleFav={() => toggleFav(book.id)} />
+                      <BookCard key={`${book.id}-${i}`} book={book} isFav={favs.includes(book.pdfUrl)} onToggleFav={() => toggleFav(book.pdfUrl)} />
                     ))
                   )}
                 </div>
