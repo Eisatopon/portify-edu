@@ -1,13 +1,21 @@
 'use client';
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { filterBooks } from '@/src/lib/search';
 
-export function useBookFilters(allBooks, initialLevel = 'dimotiko') {
+export function useBookFilters(allBooks, initialLevel = null) {
   const [level, setLevelRaw]     = useState(initialLevel);
   const [grade, setGradeRaw]     = useState(null);
   const [subject, setSubjectRaw] = useState(null);
   const [query, setQueryRaw]     = useState('');
   const [inputValue, setInputValue] = useState('');
+
+  // Live search — debounced 300ms
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setQueryRaw(inputValue.trim());
+    }, 300);
+    return () => clearTimeout(timer);
+  }, [inputValue]);
 
   function setLevel(l) {
     setLevelRaw(l);
@@ -28,7 +36,6 @@ export function useBookFilters(allBooks, initialLevel = 'dimotiko') {
 
   function submitSearch(val) {
     setQueryRaw(val);
-    // ΔΕΝ αγγίζουμε το level — παραμένει στο tab που έχει επιλέξει ο χρήστης
     setGradeRaw(null);
     setSubjectRaw(null);
   }
@@ -74,10 +81,18 @@ export function useBookFilters(allBooks, initialLevel = 'dimotiko') {
 
   const hasFilters = !!(grade || subject || query);
 
+  // Show live results dropdown when typing without level selected
+  const showLiveResults = inputValue.trim().length > 1 && !level;
+  const liveResults = useMemo(() => {
+    if (!showLiveResults) return [];
+    return filterBooks(allBooks, { level: null, grade: null, subject: null, query: inputValue.trim() }).slice(0, 6);
+  }, [allBooks, inputValue, showLiveResults]);
+
   return {
     level, grade, subject, query, inputValue, setInputValue,
     setLevel, toggleGrade, toggleSubject,
     submitSearch, clearSearch, clearAll,
     filtered, grades, subjects, hasFilters,
+    liveResults, showLiveResults,
   };
 }

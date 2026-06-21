@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import BookCard from '@/src/components/BookCard';
 import Filters from '@/src/components/Filters';
 import { useBookFilters } from '@/src/hooks/useBookFilters';
+import { LEVEL_BADGE } from '@/src/lib/constants';
 import allBooks from '@/src/data/books.json';
 
 const LEVELS = [
@@ -47,7 +48,9 @@ function SkeletonGrid() {
 export default function HomePage() {
   const [sheetOpen, setSheetOpen] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const count = useCounter(allBooks.length);
+  const searchRef = useRef(null);
 
   const {
     level, grade, subject, query,
@@ -55,11 +58,28 @@ export default function HomePage() {
     setLevel, toggleGrade, toggleSubject,
     submitSearch, clearSearch, clearAll,
     filtered, grades, subjects, hasFilters,
+    liveResults, showLiveResults,
   } = useBookFilters(allBooks, null);
+
+  useEffect(() => {
+    setDropdownOpen(showLiveResults && liveResults.length > 0);
+  }, [showLiveResults, liveResults]);
+
+  // Close dropdown on click outside
+  useEffect(() => {
+    function handleClick(e) {
+      if (searchRef.current && !searchRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
 
   function handleSearch(e) {
     e.preventDefault();
     if (inputValue.trim()) {
+      setDropdownOpen(false);
       setLoading(true);
       setTimeout(() => { submitSearch(inputValue.trim()); setLoading(false); }, 300);
     }
@@ -68,6 +88,12 @@ export default function HomePage() {
   function handleLevelClick(key) {
     setLoading(true);
     setTimeout(() => { setLevel(key); setLoading(false); }, 300);
+  }
+
+  function handleLiveResultClick(book) {
+    setDropdownOpen(false);
+    setInputValue(book.subject);
+    submitSearch(book.subject);
   }
 
   const currentLevel = LEVELS.find(l => l.key === level);
@@ -97,19 +123,64 @@ export default function HomePage() {
           <div className="hero-pill">ΔΗΜΟΤΙΚΟ · ΓΥΜΝΑΣΙΟ · ΛΥΚΕΙΟ</div>
           <h1>Όλα τα σχολικά βιβλία<br /><em>σε ένα μέρος</em></h1>
           <p className="hero-sub">Βρες το σχολικό βιβλίο που χρειάζεσαι — χωρίς περιπλανήσεις</p>
-          <form className="search-wrap" onSubmit={handleSearch}>
-            <span className="search-icon">🔍</span>
-            <input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)} placeholder="π.χ. Μαθηματικά Γ΄ Γυμνασίου, Φυσική, Ιστορία..." />
-            <button type="button" className={`search-clear${inputValue ? ' visible' : ''}`} onClick={clearSearch}>✕</button>
-            <button type="submit" className="search-btn">Αναζήτηση</button>
-          </form>
+
+          <div ref={searchRef} style={{ position: 'relative', maxWidth: 540, margin: '0 auto' }}>
+            <form className="search-wrap" onSubmit={handleSearch} style={{ position: 'relative', maxWidth: '100%', margin: 0 }}>
+              <span className="search-icon">🔍</span>
+              <input
+                type="text"
+                value={inputValue}
+                onChange={e => setInputValue(e.target.value)}
+                onFocus={() => liveResults.length > 0 && setDropdownOpen(true)}
+                placeholder="π.χ. Μαθηματικά Γ΄ Γυμνασίου, Φυσική, Ιστορία..."
+              />
+              <button type="button" className={`search-clear${inputValue ? ' visible' : ''}`} onClick={() => { clearSearch(); setDropdownOpen(false); }}>✕</button>
+              <button type="submit" className="search-btn">Αναζήτηση</button>
+            </form>
+
+            {/* LIVE DROPDOWN */}
+            {dropdownOpen && liveResults.length > 0 && (
+              <div style={{
+                position: 'absolute', top: 'calc(100% + 8px)', left: 0, right: 0,
+                background: '#fff', borderRadius: 12, boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
+                zIndex: 200, overflow: 'hidden', border: '1px solid #e2e8f0',
+              }}>
+                {liveResults.map((book, i) => {
+                  const lc = LEVEL_BADGE[book.level];
+                  return (
+                    <button key={i} onClick={() => handleLiveResultClick(book)}
+                      style={{ display: 'flex', alignItems: 'center', gap: 12, width: '100%', padding: '10px 16px', background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', borderBottom: '1px solid #f1f5f9', fontFamily: 'inherit' }}
+                      onMouseEnter={e => e.currentTarget.style.background = '#f8fafc'}
+                      onMouseLeave={e => e.currentTarget.style.background = 'none'}
+                    >
+                      {book.thumbnail ? (
+                        <img src={book.thumbnail} alt="" style={{ width: 36, height: 48, objectFit: 'cover', borderRadius: 4, flexShrink: 0 }} />
+                      ) : (
+                        <div style={{ width: 36, height: 48, background: '#f1f5f9', borderRadius: 4, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>📖</div>
+                      )}
+                      <div style={{ flex: 1, minWidth: 0 }}>
+                        <div style={{ fontSize: 13, fontWeight: 600, color: '#0f172a', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{book.title}</div>
+                        <div style={{ fontSize: 11, color: '#94a3b8', marginTop: 2 }}>{book.gradeLabel}</div>
+                      </div>
+                      <span style={{ fontSize: 10, fontWeight: 600, padding: '2px 8px', borderRadius: 20, background: lc.bg, color: lc.text, flexShrink: 0 }}>{lc.label}</span>
+                    </button>
+                  );
+                })}
+                <button onClick={handleSearch}
+                  style={{ display: 'block', width: '100%', padding: '10px 16px', background: '#f8fafc', border: 'none', cursor: 'pointer', fontSize: 13, color: '#1a4fa8', fontWeight: 600, fontFamily: 'inherit', textAlign: 'center' }}>
+                  Δες όλα τα αποτελέσματα για «{inputValue}» →
+                </button>
+              </div>
+            )}
+          </div>
+
           <div className="hero-stats">
             <div className="hero-stat">
               <div className="n">{count}</div>
               <div className="l">βιβλία</div>
             </div>
             <div className="hero-stat">
-              <div className="n">Α&prime; Δημοτικού – Γ&prime; Λυκείου</div> 
+              <div className="n" style={{ fontSize: 16, whiteSpace: 'nowrap' }}>Α&prime; Δημοτικού – Γ&prime; Λυκείου</div>
               <div className="l">όλες οι τάξεις</div>
             </div>
           </div>
@@ -146,11 +217,11 @@ export default function HomePage() {
           <div className="level-tabs">
             <div className="level-tabs-inner">
               <button onClick={clearAll} className="ltab" style={{ color: 'var(--text-3)' }}>
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginRight: 4 }}>
-    <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-  </svg>
-  Πίσω
-</button>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginRight: 4 }}>
+                  <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+                Πίσω
+              </button>
               {LEVELS.map(l => (
                 <button key={l.key} onClick={() => handleLevelClick(l.key)} className={`ltab${level === l.key ? ' active' : ''}`}>
                   {l.icon} {l.label} <span className="cnt">{byLevel[l.key]}</span>
