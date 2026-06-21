@@ -145,7 +145,12 @@ export default function HomePage() {
         <>
           <div className="level-tabs">
             <div className="level-tabs-inner">
-              <button onClick={clearAll} className="ltab" style={{ color: 'var(--text-3)' }}>← Πίσω</button>
+              <button onClick={clearAll} className="ltab" style={{ color: 'var(--text-3)' }}>
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginRight: 4 }}>
+    <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+  </svg>
+  Πίσω
+</button>
               {LEVELS.map(l => (
                 <button key={l.key} onClick={() => handleLevelClick(l.key)} className={`ltab${level === l.key ? ' active' : ''}`}>
                   {l.icon} {l.label} <span className="cnt">{byLevel[l.key]}</span>
