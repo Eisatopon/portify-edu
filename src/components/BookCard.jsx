@@ -7,7 +7,13 @@ export default function BookCard({ book }) {
   const [showViewer, setShowViewer] = useState(false);
   const lc = LEVEL_BADGE[book.level];
   const icon = SUBJECT_ICONS[book.subject] || SUBJECT_ICONS.default;
-  const isStudent = book.type === 'Βιβλίο μαθητή';
+  const isStudent = book.type === 'Βιβλίο μαθητή' || book.type === 'Βιβλίο μαθητή/μαθήτριας';
+
+  const typeLabel = book.type
+    .replace('Βιβλίο μαθητή/μαθήτριας', '')
+    .replace('Βιβλίο μαθητή', '')
+    .replace('Τετράδιο εργασιών', 'Τετράδιο')
+    .trim();
 
   return (
     <>
@@ -22,7 +28,7 @@ export default function BookCard({ book }) {
             </div>
           )}
           <span className="level-badge" style={{ background: lc.bg, color: lc.text }}>{lc.label}</span>
-          {!isStudent && <span className="type-badge">{book.type}</span>}
+          {!isStudent && typeLabel && <span className="type-badge">{typeLabel}</span>}
         </div>
         <div className="book-info">
           <p className="book-title">{book.title}</p>
@@ -38,8 +44,8 @@ export default function BookCard({ book }) {
             </a>
           ) : (
             <a href={book.pdfUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary">
-  📖 Διαβάστε
-</a>
+              📖 Διαβάστε
+            </a>
           )}
         </div>
       </div>
@@ -56,7 +62,7 @@ export default function BookCard({ book }) {
             <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
               <a href={book.pdfUrl} target="_blank" rel="noopener noreferrer"
                 style={{ background: '#1a4fa8', color: '#fff', border: 'none', borderRadius: 7, padding: '7px 14px', fontSize: 13, fontWeight: 600, textDecoration: 'none' }}>
-                ⬇ Λήψη
+                📖 Άνοιγμα
               </a>
               <button onClick={() => setShowViewer(false)}
                 style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', borderRadius: 7, padding: '7px 14px', fontSize: 13, cursor: 'pointer' }}>
