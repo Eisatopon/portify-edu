@@ -48,12 +48,27 @@ export default function StarRating({ bookId }) {
         <p style={{ fontSize: 10, color: 'var(--text-3)' }}>
           {voted ? 'Η αξιολόγησή σου:' : 'Αξιολόγησε:'}
         </p>
-        {voted && (
-          <button onClick={() => { setVoted(false); setUserRating(0); localStorage.removeItem(`rating_${bookId}`); }}
-            style={{ fontSize: 10, color: '#1a4fa8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>
-            Αλλαγή
-          </button>
-        )}
+        <div style={{ display: 'flex', gap: 8 }}>
+          {voted && (
+            <button onClick={() => { setVoted(false); setUserRating(0); localStorage.removeItem(`rating_${bookId}`); }}
+              style={{ fontSize: 10, color: '#1a4fa8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>
+              Αλλαγή
+            </button>
+          )}
+          {!voted && (
+            <button onClick={() => {
+              const saved = localStorage.getItem(`rating_${bookId}_prev`);
+              if (saved) {
+                setVoted(true);
+                setUserRating(parseInt(saved));
+                localStorage.setItem(`rating_${bookId}`, saved);
+              }
+            }}
+              style={{ fontSize: 10, color: '#94a3b8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>
+              Ακύρωση
+            </button>
+          )}
+        </div>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
         {[1, 2, 3, 4, 5].map(star => (
