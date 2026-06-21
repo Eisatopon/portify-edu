@@ -43,33 +43,24 @@ export default function StarRating({ bookId }) {
   const displayRating = hovered || userRating || avgRating;
 
   return (
-    <div style={{ padding: '8px 12px 4px', borderTop: '1px solid var(--border)' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+    <div style={{ padding: '8px 12px 6px', borderTop: '1px solid var(--border)' }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
         {[1, 2, 3, 4, 5].map(star => (
-          <button
-            key={star}
-            onClick={() => submitRating(star)}
+          <button key={star} onClick={() => submitRating(star)}
             onMouseEnter={() => !voted && setHovered(star)}
             onMouseLeave={() => !voted && setHovered(0)}
             disabled={voted || loading}
-            style={{
-              background: 'none', border: 'none', cursor: voted ? 'default' : 'pointer',
-              padding: '2px', fontSize: 16, lineHeight: 1,
-              color: star <= displayRating ? '#f59e0b' : '#d1d5db',
-              transition: 'color 0.1s, transform 0.1s',
-              transform: !voted && hovered >= star ? 'scale(1.2)' : 'scale(1)',
-            }}
-          >
+            style={{ background: 'none', border: 'none', cursor: voted ? 'default' : 'pointer', padding: '1px', fontSize: 20, lineHeight: 1, color: star <= displayRating ? '#f59e0b' : '#d1d5db', transition: 'color 0.1s, transform 0.15s', transform: !voted && hovered >= star ? 'scale(1.25)' : 'scale(1)' }}>
             ★
           </button>
         ))}
-        <span style={{ fontSize: 11, color: 'var(--text-3)', marginLeft: 4 }}>
-          {totalRatings > 0 ? `${avgRating.toFixed(1)} (${totalRatings})` : 'Αξιολόγησε'}
+        <span style={{ fontSize: 11, color: 'var(--text-3)', marginLeft: 6 }}>
+          {voted
+            ? <span style={{ color: '#16a34a', fontWeight: 600 }}>✓ Ευχαριστούμε!</span>
+            : totalRatings > 0 ? `${avgRating.toFixed(1)} (${totalRatings})` : 'Αξιολόγησε'
+          }
         </span>
       </div>
-      {voted && (
-        <p style={{ fontSize: 10, color: '#16a34a', marginTop: 2 }}>✓ Ευχαριστούμε!</p>
-      )}
     </div>
   );
 }

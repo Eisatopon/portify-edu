@@ -22,7 +22,7 @@ export default function BookCard({ book, isFav, onToggleFav }) {
   return (
     <>
       <div className="book-card">
-        <div className="book-cover">
+        <div className="book-cover" style={{ position: 'relative' }}>
           {book.thumbnail && !imgError ? (
             <img src={book.thumbnail} alt={book.title} onError={() => setImgError(true)} loading="lazy" />
           ) : (
@@ -33,12 +33,10 @@ export default function BookCard({ book, isFav, onToggleFav }) {
           )}
           <span className="level-badge" style={{ background: lc.bg, color: lc.text }}>{lc.label}</span>
           {!isStudent && typeLabel && <span className="type-badge">{typeLabel}</span>}
-          <button
-            onClick={e => { e.stopPropagation(); onToggleFav && onToggleFav(); }}
-            style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(255,255,255,0.9)', border: 'none', borderRadius: '50%', width: 28, height: 28, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: 14, boxShadow: '0 2px 8px rgba(0,0,0,0.15)', transition: 'transform 0.15s' }}
+          <button onClick={e => { e.stopPropagation(); onToggleFav && onToggleFav(); }}
+            style={{ position: 'absolute', top: 8, left: 8, background: 'rgba(255,255,255,0.92)', border: 'none', borderRadius: '50%', width: 30, height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: 15, boxShadow: '0 2px 8px rgba(0,0,0,0.18)', transition: 'transform 0.15s', zIndex: 2 }}
             onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.2)'}
-            onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-          >
+            onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
             {isFav ? '❤️' : '🤍'}
           </button>
         </div>
@@ -61,9 +59,7 @@ export default function BookCard({ book, isFav, onToggleFav }) {
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', zIndex: 1000, display: 'flex', flexDirection: 'column' }}
           onClick={e => { if (e.target === e.currentTarget) setShowViewer(false); }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 20px', background: '#0f172a', flexShrink: 0 }}>
-            <div style={{ color: '#fff', fontSize: 14, fontWeight: 500, maxWidth: 'calc(100% - 160px)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-              {book.title}
-            </div>
+            <div style={{ color: '#fff', fontSize: 14, fontWeight: 500, maxWidth: 'calc(100% - 200px)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{book.title}</div>
             <div style={{ display: 'flex', gap: 8 }}>
               <button onClick={() => onToggleFav && onToggleFav()}
                 style={{ background: isFav ? '#fff7ed' : 'rgba(255,255,255,0.1)', color: isFav ? '#c2410c' : '#fff', border: 'none', borderRadius: 7, padding: '7px 14px', fontSize: 13, cursor: 'pointer' }}>
@@ -74,9 +70,7 @@ export default function BookCard({ book, isFav, onToggleFav }) {
                 📖 Άνοιγμα
               </a>
               <button onClick={() => setShowViewer(false)}
-                style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', borderRadius: 7, padding: '7px 14px', fontSize: 13, cursor: 'pointer' }}>
-                ✕
-              </button>
+                style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', borderRadius: 7, padding: '7px 14px', fontSize: 13, cursor: 'pointer' }}>✕</button>
             </div>
           </div>
           <iframe src={`${book.pdfUrl}#toolbar=1&view=FitH`} style={{ flex: 1, border: 'none', width: '100%' }} title={book.title} />
