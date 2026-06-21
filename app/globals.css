@@ -141,7 +141,7 @@ body {
   width: 1px;
   background: rgba(255,255,255,0.15);
 }
-.hero-stat .n { font-size: 22px; font-weight: 700; color: #fff; }
+.hero-stat .n { font-size: 16px; font-weight: 700; color: #fff; white-space: nowrap; }
 .hero-stat .l { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 3px; letter-spacing: 0.03em; }
 
 /* ── LEVEL TABS ──────────────────────────── */
