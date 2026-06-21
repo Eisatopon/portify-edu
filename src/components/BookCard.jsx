@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { SUBJECT_ICONS, LEVEL_BADGE } from '@/src/lib/constants';
+import StarRating from '@/src/components/StarRating';
 
 export default function BookCard({ book, isFav, onToggleFav }) {
   const [imgError, setImgError] = useState(false);
@@ -45,6 +46,7 @@ export default function BookCard({ book, isFav, onToggleFav }) {
           <p className="book-title">{book.title}</p>
           <p className="book-publisher">{book.publisher}</p>
         </div>
+        <StarRating bookId={book.pdfUrl} />
         <div className="book-actions">
           <button onClick={handlePDF} className="btn-pdf">📄 PDF</button>
           {book.epubUrl ? (
