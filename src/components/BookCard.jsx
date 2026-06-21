@@ -15,9 +15,8 @@ export default function BookCard({ book, isFav, onToggleFav }) {
   useEffect(() => { setIsMobile(window.innerWidth < 768); }, []);
 
   function handlePDF() {
-    if (isMobile) window.open(book.pdfUrl, '_blank');
-    else setShowViewer(true);
-  }
+  setShowViewer(true);
+}
 
   return (
     <>
@@ -73,7 +72,7 @@ export default function BookCard({ book, isFav, onToggleFav }) {
                 style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', borderRadius: 7, padding: '7px 14px', fontSize: 13, cursor: 'pointer' }}>✕</button>
             </div>
           </div>
-          <iframe src={`${book.pdfUrl}#toolbar=1&view=FitH`} style={{ flex: 1, border: 'none', width: '100%' }} title={book.title} />
+          <iframe src={`/api/pdf?url=${encodeURIComponent(book.pdfUrl)}`} style={{ flex: 1, border: 'none', width: '100%' }} title={book.title} />
         </div>
       )}
     </>

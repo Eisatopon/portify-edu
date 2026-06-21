@@ -75,22 +75,9 @@ export default function StarRating({ bookId }) {
 
   return (
     <div style={{ padding: '8px 12px 6px', borderTop: '1px solid var(--border)' }}>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
-        <p style={{ fontSize: 10, color: 'var(--text-3)' }}>
-          {voted ? 'Η αξιολόγησή σου:' : isChanging ? 'Νέα αξιολόγηση:' : 'Αξιολόγησε:'}
-        </p>
-        <div style={{ display: 'flex', gap: 8 }}>
-          {voted && !isChanging && (
-            <>
-              <button onClick={handleChange} style={{ fontSize: 10, color: '#1a4fa8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>Αλλαγή</button>
-              <button onClick={deleteRating} style={{ fontSize: 10, color: '#dc2626', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>Διαγραφή</button>
-            </>
-          )}
-          {isChanging && (
-            <button onClick={handleCancel} style={{ fontSize: 10, color: '#94a3b8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>Ακύρωση</button>
-          )}
-        </div>
-      </div>
+      <p style={{ fontSize: 10, color: 'var(--text-3)', marginBottom: 4 }}>
+        {voted ? 'Η αξιολόγησή σου:' : isChanging ? 'Νέα αξιολόγηση:' : 'Αξιολόγησε:'}
+      </p>
       <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
         {[1, 2, 3, 4, 5].map(star => (
           <button key={star} onClick={() => submitRating(star)}
@@ -108,6 +95,17 @@ export default function StarRating({ bookId }) {
           }
         </span>
       </div>
+      {voted && !isChanging && (
+        <div style={{ display: 'flex', gap: 8, marginTop: 4 }}>
+          <button onClick={handleChange} style={{ fontSize: 10, color: '#1a4fa8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>Αλλαγή</button>
+          <button onClick={deleteRating} style={{ fontSize: 10, color: '#dc2626', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>Διαγραφή</button>
+        </div>
+      )}
+      {isChanging && (
+        <div style={{ marginTop: 4 }}>
+          <button onClick={handleCancel} style={{ fontSize: 10, color: '#94a3b8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>Ακύρωση</button>
+        </div>
+      )}
     </div>
   );
 }
