@@ -188,9 +188,9 @@ export default function HomePage() {
           </div>
 
           <div className="hero-stats">
-            <div className="hero-stat"><div className="n">{count}</div><div className="l">βιβλία</div></div>
-            <div className="hero-stat"><div className="n" style={{ fontSize: 16, whiteSpace: 'nowrap' }}>Α&prime; Δημοτικού – Γ&prime; Λυκείου</div><div className="l">όλες οι τάξεις</div></div>
-          </div>
+  <div className="hero-stat"><div className="n">{count}</div><div className="l">βιβλία</div></div>
+  <div className="hero-stat"><div className="n" style={{ fontSize: 15, whiteSpace: 'nowrap' }}>Το πολλαπλό βιβλίο</div><div className="l">στην εκπαίδευση</div></div>
+</div>
         </div>
       </section>
 
