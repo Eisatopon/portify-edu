@@ -6,16 +6,10 @@ import StarRating from '@/src/components/StarRating';
 export default function BookCard({ book, isFav, onToggleFav }) {
   const [imgError, setImgError] = useState(false);
   const [showViewer, setShowViewer] = useState(false);
-  const [pdfLoaded, setPdfLoaded] = useState(false);
   const lc = LEVEL_BADGE[book.level];
   const icon = SUBJECT_ICONS[book.subject] || SUBJECT_ICONS.default;
   const isStudent = book.type === 'Vivlio mathiti' || book.type === 'Vivlio mathiti/mathitrias';
   const typeLabel = book.type.replace('Vivlio mathiti/mathitrias','').replace('Vivlio mathiti','').replace('Tetradio ergasion','Tetradio').trim();
-
-  function handlePDF() {
-    setPdfLoaded(false);
-    setShowViewer(true);
-  }
 
   return (
     <>
@@ -44,7 +38,7 @@ export default function BookCard({ book, isFav, onToggleFav }) {
         </div>
         <StarRating bookId={book.pdfUrl} />
         <div className="book-actions">
-          <button onClick={handlePDF} className="btn-pdf">PDF</button>
+          <button onClick={() => setShowViewer(true)} className="btn-pdf">PDF</button>
         </div>
       </div>
 
@@ -66,26 +60,13 @@ export default function BookCard({ book, isFav, onToggleFav }) {
                 style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', borderRadius: 7, padding: '7px 14px', fontSize: 13, cursor: 'pointer' }}>X</button>
             </div>
           </div>
-          <div style={{ flex: 1, position: 'relative' }}>
-            {!pdfLoaded && (
-              <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#0f172a', zIndex: 1 }}>
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ width: 48, height: 48, border: '4px solid rgba(255,255,255,0.1)', borderTop: '4px solid #6366f1', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 16px' }} />
-                  <p style={{ color: '#94a3b8', fontSize: 13 }}>Loading PDF...</p>
-                </div>
-              </div>
-            )}
-            <iframe
-              src={'/api/pdf?url=' + encodeURIComponent(book.pdfUrl)}
-              style={{ width: '100%', height: '100%', border: 'none' }}
-              title={book.title}
-              onLoad={() => setPdfLoaded(true)}
-            />
-          </div>
+          <iframe
+            src={book.pdfUrl}
+            style={{ flex: 1, border: 'none', width: '100%' }}
+            title={book.title}
+          />
         </div>
       )}
-
-      <style>{'@keyframes spin { to { transform: rotate(360deg); } }'}</style>
     </>
   );
 }
