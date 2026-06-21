@@ -32,7 +32,11 @@ export default function StarRating({ bookId }) {
       .from('ratings')
       .select('stars')
       .eq('book_id', bookId);
-    if (error || !data.length) return;
+    if (error || !data || !data.length) {
+      setAvgRating(0);
+      setTotalRatings(0);
+      return;
+    }
     const avg = data.reduce((sum, r) => sum + r.stars, 0) / data.length;
     setAvgRating(avg);
     setTotalRatings(data.length);
