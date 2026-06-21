@@ -109,8 +109,8 @@ export default function HomePage() {
               <div className="l">βιβλία</div>
             </div>
             <div className="hero-stat">
-              <div className="n">Α&prime; Δημοτικού</div>
-              <div className="l">έως Γ&prime; Λυκείου</div>
+              <div className="n">Α&prime; Δημοτικού – Γ&prime; Λυκείου</div> 
+              <div className="l">όλες οι τάξεις</div>
             </div>
           </div>
         </div>
