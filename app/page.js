@@ -30,6 +30,21 @@ function useCounter(target, duration = 1500) {
   return count;
 }
 
+function useFavorites() {
+  const [favs, setFavs] = useState([]);
+  useEffect(() => {
+    try { setFavs(JSON.parse(localStorage.getItem('portify_favs') || '[]')); } catch {}
+  }, []);
+  function toggle(id) {
+    setFavs(prev => {
+      const next = prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id];
+      localStorage.setItem('portify_favs', JSON.stringify(next));
+      return next;
+    });
+  }
+  return { favs, toggle };
+}
+
 function SkeletonGrid() {
   return (
     <div className="books-grid">
@@ -49,8 +64,10 @@ export default function HomePage() {
   const [sheetOpen, setSheetOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [showFavs, setShowFavs] = useState(false);
   const count = useCounter(allBooks.length);
   const searchRef = useRef(null);
+  const { favs, toggle: toggleFav } = useFavorites();
 
   const {
     level, grade, subject, query,
@@ -65,12 +82,9 @@ export default function HomePage() {
     setDropdownOpen(showLiveResults && liveResults.length > 0);
   }, [showLiveResults, liveResults]);
 
-  // Close dropdown on click outside
   useEffect(() => {
     function handleClick(e) {
-      if (searchRef.current && !searchRef.current.contains(e.target)) {
-        setDropdownOpen(false);
-      }
+      if (searchRef.current && !searchRef.current.contains(e.target)) setDropdownOpen(false);
     }
     document.addEventListener('mousedown', handleClick);
     return () => document.removeEventListener('mousedown', handleClick);
@@ -86,6 +100,7 @@ export default function HomePage() {
   }
 
   function handleLevelClick(key) {
+    setShowFavs(false);
     setLoading(true);
     setTimeout(() => { setLevel(key); setLoading(false); }, 300);
   }
@@ -96,8 +111,11 @@ export default function HomePage() {
     submitSearch(book.subject);
   }
 
+  const favBooks = allBooks.filter(b => favs.includes(b.id));
   const currentLevel = LEVELS.find(l => l.key === level);
   const activeFiltersCount = (grade ? 1 : 0) + (subject ? 1 : 0);
+  const showBooks = !!(level || query || showFavs);
+  const displayBooks = showFavs ? favBooks : filtered;
 
   return (
     <>
@@ -115,6 +133,10 @@ export default function HomePage() {
               <div className="logo-sub">Ψηφιακή βιβλιοθήκη</div>
             </div>
           </a>
+          <button onClick={() => { setShowFavs(true); clearAll(); }}
+            style={{ display: 'flex', alignItems: 'center', gap: 6, background: favs.length > 0 ? '#fff7ed' : 'none', border: favs.length > 0 ? '1px solid #fed7aa' : '1px solid var(--border)', borderRadius: 8, padding: '6px 14px', cursor: 'pointer', fontSize: 13, fontWeight: 500, color: favs.length > 0 ? '#c2410c' : 'var(--text-2)', fontFamily: 'inherit' }}>
+            {favs.length > 0 ? '❤️' : '🤍'} Αγαπημένα {favs.length > 0 && <span style={{ background: '#c2410c', color: '#fff', borderRadius: 20, padding: '0 6px', fontSize: 11 }}>{favs.length}</span>}
+          </button>
         </div>
       </header>
 
@@ -127,24 +149,15 @@ export default function HomePage() {
           <div ref={searchRef} style={{ position: 'relative', maxWidth: 540, margin: '0 auto' }}>
             <form className="search-wrap" onSubmit={handleSearch} style={{ position: 'relative', maxWidth: '100%', margin: 0 }}>
               <span className="search-icon">🔍</span>
-              <input
-                type="text"
-                value={inputValue}
-                onChange={e => setInputValue(e.target.value)}
+              <input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)}
                 onFocus={() => liveResults.length > 0 && setDropdownOpen(true)}
-                placeholder="π.χ. Μαθηματικά Γ΄ Γυμνασίου, Φυσική, Ιστορία..."
-              />
+                placeholder="π.χ. Μαθηματικά Γ΄ Γυμνασίου, Φυσική, Ιστορία..." />
               <button type="button" className={`search-clear${inputValue ? ' visible' : ''}`} onClick={() => { clearSearch(); setDropdownOpen(false); }}>✕</button>
               <button type="submit" className="search-btn">Αναζήτηση</button>
             </form>
 
-            {/* LIVE DROPDOWN */}
             {dropdownOpen && liveResults.length > 0 && (
-              <div style={{
-                position: 'absolute', top: 'calc(100% + 8px)', left: 0, right: 0,
-                background: '#fff', borderRadius: 12, boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
-                zIndex: 200, overflow: 'hidden', border: '1px solid #e2e8f0',
-              }}>
+              <div style={{ position: 'absolute', top: 'calc(100% + 8px)', left: 0, right: 0, background: '#fff', borderRadius: 12, boxShadow: '0 8px 32px rgba(0,0,0,0.18)', zIndex: 200, overflow: 'hidden', border: '1px solid #e2e8f0' }}>
                 {liveResults.map((book, i) => {
                   const lc = LEVEL_BADGE[book.level];
                   return (
@@ -175,20 +188,14 @@ export default function HomePage() {
           </div>
 
           <div className="hero-stats">
-            <div className="hero-stat">
-              <div className="n">{count}</div>
-              <div className="l">βιβλία</div>
-            </div>
-            <div className="hero-stat">
-              <div className="n" style={{ fontSize: 16, whiteSpace: 'nowrap' }}>Α&prime; Δημοτικού – Γ&prime; Λυκείου</div>
-              <div className="l">όλες οι τάξεις</div>
-            </div>
+            <div className="hero-stat"><div className="n">{count}</div><div className="l">βιβλία</div></div>
+            <div className="hero-stat"><div className="n" style={{ fontSize: 16, whiteSpace: 'nowrap' }}>Α&prime; Δημοτικού – Γ&prime; Λυκείου</div><div className="l">όλες οι τάξεις</div></div>
           </div>
         </div>
       </section>
 
       {/* LANDING */}
-      {!level && !query && (
+      {!showBooks && (
         <div style={{ maxWidth: 960, margin: '0 auto', padding: '48px 20px' }}>
           <p style={{ textAlign: 'center', fontSize: 16, color: 'var(--color-text-secondary)', marginBottom: 36 }}>
             Επέλεξε βαθμίδα για να δεις τα βιβλία
@@ -212,28 +219,31 @@ export default function HomePage() {
       )}
 
       {/* BOOKS VIEW */}
-      {(level || query) && (
+      {showBooks && (
         <>
           <div className="level-tabs">
             <div className="level-tabs-inner">
-              <button onClick={clearAll} className="ltab" style={{ color: 'var(--text-3)' }}>
+              <button onClick={() => { clearAll(); setShowFavs(false); }} className="ltab" style={{ color: 'var(--text-3)' }}>
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ marginRight: 4 }}>
                   <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                 </svg>
                 Πίσω
               </button>
               {LEVELS.map(l => (
-                <button key={l.key} onClick={() => handleLevelClick(l.key)} className={`ltab${level === l.key ? ' active' : ''}`}>
+                <button key={l.key} onClick={() => handleLevelClick(l.key)} className={`ltab${level === l.key && !showFavs ? ' active' : ''}`}>
                   {l.icon} {l.label} <span className="cnt">{byLevel[l.key]}</span>
                 </button>
               ))}
+              <button onClick={() => { setShowFavs(true); clearAll(); }} className={`ltab${showFavs ? ' active' : ''}`} style={{ color: showFavs ? '#c2410c' : undefined }}>
+                ❤️ Αγαπημένα <span className="cnt">{favs.length}</span>
+              </button>
             </div>
           </div>
 
           <div className="page-main">
-            <Filters grades={grades} subjects={subjects} activeGrade={grade} activeSubject={subject} onGrade={toggleGrade} onSubject={toggleSubject} />
+            {!showFavs && <Filters grades={grades} subjects={subjects} activeGrade={grade} activeSubject={subject} onGrade={toggleGrade} onSubject={toggleSubject} />}
             <div className="content">
-              {hasFilters && (
+              {!showFavs && hasFilters && (
                 <div className="chips-bar">
                   <span className="chips-label">Φίλτρα:</span>
                   {grade && <span className="chip">{grades.find(g => g.grade === grade)?.label}<button onClick={() => toggleGrade(grade)}>×</button></span>}
@@ -243,17 +253,28 @@ export default function HomePage() {
                 </div>
               )}
               <p className="results-info">
-                <strong>{filtered.length}</strong> βιβλία
-                {currentLevel && <> · <strong style={{ color: currentLevel.color }}>{currentLevel.label}</strong></>}
-                {subject && <> · <strong>{subject}</strong></>}
-                {grade && <> · <strong>{grades.find(g => g.grade === grade)?.label}</strong></>}
+                {showFavs ? (
+                  <><strong>{favBooks.length}</strong> αγαπημένα βιβλία</>
+                ) : (
+                  <><strong>{filtered.length}</strong> βιβλία
+                  {currentLevel && <> · <strong style={{ color: currentLevel.color }}>{currentLevel.label}</strong></>}
+                  {subject && <> · <strong>{subject}</strong></>}
+                  {grade && <> · <strong>{grades.find(g => g.grade === grade)?.label}</strong></>}</>
+                )}
               </p>
               {loading ? <SkeletonGrid /> : (
                 <div className="books-grid">
-                  {filtered.length === 0 ? (
-                    <div className="empty-state"><div className="empty-icon">📚</div><h3>Δεν βρέθηκαν βιβλία</h3><p>Δοκίμασε διαφορετικά φίλτρα</p><button className="btn-reset" onClick={clearAll}>Επιστροφή</button></div>
+                  {displayBooks.length === 0 ? (
+                    <div className="empty-state">
+                      <div className="empty-icon">{showFavs ? '🤍' : '📚'}</div>
+                      <h3>{showFavs ? 'Δεν έχεις αγαπημένα ακόμα' : 'Δεν βρέθηκαν βιβλία'}</h3>
+                      <p>{showFavs ? 'Πάτα ❤️ σε ένα βιβλίο για να το αποθηκεύσεις' : 'Δοκίμασε διαφορετικά φίλτρα'}</p>
+                      <button className="btn-reset" onClick={() => { clearAll(); setShowFavs(false); }}>Επιστροφή</button>
+                    </div>
                   ) : (
-                    filtered.map((book, i) => <BookCard key={`${book.id}-${i}`} book={book} />)
+                    displayBooks.map((book, i) => (
+                      <BookCard key={`${book.id}-${i}`} book={book} isFav={favs.includes(book.id)} onToggleFav={() => toggleFav(book.id)} />
+                    ))
                   )}
                 </div>
               )}
@@ -278,8 +299,7 @@ export default function HomePage() {
                   <div className="bs-grid">
                     {grades.map(g => (
                       <button key={g.grade} className={`bs-btn${grade === g.grade ? ' active' : ''}`} onClick={() => toggleGrade(g.grade)}>
-                        <span>{g.label}</span>
-                        <span className="bs-count">{g.count}</span>
+                        <span>{g.label}</span><span className="bs-count">{g.count}</span>
                       </button>
                     ))}
                   </div>
@@ -291,8 +311,7 @@ export default function HomePage() {
                   <div className="bs-grid">
                     {subjects.map(s => (
                       <button key={s.subject} className={`bs-btn${subject === s.subject ? ' active' : ''}`} onClick={() => toggleSubject(s.subject)}>
-                        <span>{s.subject}</span>
-                        <span className="bs-count">{s.count}</span>
+                        <span>{s.subject}</span><span className="bs-count">{s.count}</span>
                       </button>
                     ))}
                   </div>
