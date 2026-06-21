@@ -44,6 +44,9 @@ export default function StarRating({ bookId }) {
 
   return (
     <div style={{ padding: '8px 12px 6px', borderTop: '1px solid var(--border)' }}>
+      {!voted && (
+        <p style={{ fontSize: 10, color: 'var(--text-3)', marginBottom: 4 }}>Αξιολόγησε:</p>
+      )}
       <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
         {[1, 2, 3, 4, 5].map(star => (
           <button key={star} onClick={() => submitRating(star)}
@@ -54,10 +57,10 @@ export default function StarRating({ bookId }) {
             ★
           </button>
         ))}
-        <span style={{ fontSize: 11, color: 'var(--text-3)', marginLeft: 6 }}>
+        <span style={{ fontSize: 11, marginLeft: 6 }}>
           {voted
-            ? <span style={{ color: '#16a34a', fontWeight: 600 }}>✓ Ευχαριστούμε!</span>
-            : totalRatings > 0 ? `${avgRating.toFixed(1)} (${totalRatings})` : 'Rate'
+            ? <span style={{ color: '#16a34a', fontWeight: 600 }}>✓ {avgRating.toFixed(1)} ({totalRatings})</span>
+            : totalRatings > 0 ? <span style={{ color: 'var(--text-3)' }}>{avgRating.toFixed(1)} ({totalRatings})</span> : null
           }
         </span>
       </div>
