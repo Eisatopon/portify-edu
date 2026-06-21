@@ -37,9 +37,9 @@ export default function BookCard({ book }) {
               📱 ePUB
             </a>
           ) : (
-            <a href={book.pdfUrl} download target="_blank" rel="noopener noreferrer" className="btn-secondary">
-              ⬇ Λήψη
-            </a>
+            <a href={book.pdfUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary">
+  📖 Διαβάστε
+</a>
           )}
         </div>
       </div>
@@ -54,7 +54,7 @@ export default function BookCard({ book }) {
               {book.title}
             </div>
             <div style={{ display: 'flex', gap: 8, flexShrink: 0 }}>
-              <a href={book.pdfUrl} download target="_blank" rel="noopener noreferrer"
+              <a href={book.pdfUrl} target="_blank" rel="noopener noreferrer"
                 style={{ background: '#1a4fa8', color: '#fff', border: 'none', borderRadius: 7, padding: '7px 14px', fontSize: 13, fontWeight: 600, textDecoration: 'none' }}>
                 ⬇ Λήψη
               </a>

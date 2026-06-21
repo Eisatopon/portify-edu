@@ -63,9 +63,10 @@ export default function HomePage() {
             <button type="button" className={`search-clear${inputValue ? ' visible' : ''}`} onClick={clearSearch}>✕</button>
             <button type="submit" className="search-btn">Αναζήτηση</button>
           </form>
-          <div className="hero-stats">
-  {[{ n: allBooks.length, l: 'βιβλία' }, { n: '230', l: 'πακέτα' }, { n: '3', l: 'βαθμίδες' }].map(s => (
-    <div className="hero-stat" key={s.l}><div className="n">{s.n}</div><div className="l">{s.l}</div></div>
+        <div className="hero-stats">
+  <div className="hero-stat"><div className="n">437</div><div className="l">βιβλία</div></div>
+  <div className="hero-stat"><div className="n">Α΄ Δημοτικού</div><div className="l">έως Γ΄ Λυκείου</div></div>
+</div>
   ))}
 </div>
         </div>
