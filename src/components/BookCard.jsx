@@ -46,12 +46,7 @@ export default function BookCard({ book, isFav, onToggleFav }) {
         <StarRating bookId={book.pdfUrl} />
         <div className="book-actions">
           <button onClick={handlePDF} className="btn-pdf">📄 PDF</button>
-          {book.epubUrl ? (
-            <a href={book.epubUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary">📱 ePUB</a>
-          ) : (
-            <a href={book.pdfUrl} target="_blank" rel="noopener noreferrer" className="btn-secondary">📖 Διαβάστε</a>
-          )}
-        </div>
+         </div>
       </div>
 
       {showViewer && (
