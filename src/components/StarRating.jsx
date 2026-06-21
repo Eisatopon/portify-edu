@@ -57,7 +57,7 @@ export default function StarRating({ bookId }) {
         <span style={{ fontSize: 11, color: 'var(--text-3)', marginLeft: 6 }}>
           {voted
             ? <span style={{ color: '#16a34a', fontWeight: 600 }}>✓ Ευχαριστούμε!</span>
-            : totalRatings > 0 ? `${avgRating.toFixed(1)} (${totalRatings})` : 'Αξιολόγησε'
+            : totalRatings > 0 ? `${avgRating.toFixed(1)} (${totalRatings})` : 'Rate'
           }
         </span>
       </div>

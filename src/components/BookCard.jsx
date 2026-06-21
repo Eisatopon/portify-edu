@@ -34,7 +34,7 @@ export default function BookCard({ book, isFav, onToggleFav }) {
           <span className="level-badge" style={{ background: lc.bg, color: lc.text }}>{lc.label}</span>
           {!isStudent && typeLabel && <span className="type-badge">{typeLabel}</span>}
           <button onClick={e => { e.stopPropagation(); onToggleFav && onToggleFav(); }}
-            style={{ position: 'absolute', top: 8, left: 8, background: 'rgba(255,255,255,0.92)', border: 'none', borderRadius: '50%', width: 30, height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: 15, boxShadow: '0 2px 8px rgba(0,0,0,0.18)', transition: 'transform 0.15s', zIndex: 2 }}
+            style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(255,255,255,0.92)', border: 'none', borderRadius: '50%', width: 30, height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: 15, boxShadow: '0 2px 8px rgba(0,0,0,0.18)', transition: 'transform 0.15s', zIndex: 2 }}
             onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.2)'}
             onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
             {isFav ? '❤️' : '🤍'}
