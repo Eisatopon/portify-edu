@@ -9,6 +9,7 @@ export default function StarRating({ bookId }) {
   const [hovered, setHovered] = useState(0);
   const [loading, setLoading] = useState(false);
   const [voted, setVoted] = useState(false);
+  const [isChanging, setIsChanging] = useState(false);
 
   useEffect(() => {
     const saved = localStorage.getItem(`rating_${bookId}`);
@@ -28,16 +29,28 @@ export default function StarRating({ bookId }) {
   }
 
   async function submitRating(stars) {
-    if (voted || loading) return;
+    if (loading) return;
     setLoading(true);
     const { error } = await supabase.from('ratings').insert({ book_id: bookId, stars });
     if (!error) {
       localStorage.setItem(`rating_${bookId}`, stars);
       setVoted(true);
+      setIsChanging(false);
       setUserRating(stars);
       await fetchRatings();
     }
     setLoading(false);
+  }
+
+  function handleChange() {
+    setIsChanging(true);
+    setVoted(false);
+  }
+
+  function handleCancel() {
+    setIsChanging(false);
+    setVoted(true);
+    setUserRating(parseInt(localStorage.getItem(`rating_${bookId}`) || '0'));
   }
 
   const displayRating = hovered || userRating || avgRating;
@@ -46,24 +59,17 @@ export default function StarRating({ bookId }) {
     <div style={{ padding: '8px 12px 6px', borderTop: '1px solid var(--border)' }}>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
         <p style={{ fontSize: 10, color: 'var(--text-3)' }}>
-          {voted ? 'Η αξιολόγησή σου:' : 'Αξιολόγησε:'}
+          {voted ? 'Η αξιολόγησή σου:' : isChanging ? 'Νέα αξιολόγηση:' : 'Αξιολόγησε:'}
         </p>
         <div style={{ display: 'flex', gap: 8 }}>
-          {voted && (
-            <button onClick={() => { setVoted(false); setUserRating(0); localStorage.removeItem(`rating_${bookId}`); }}
+          {voted && !isChanging && (
+            <button onClick={handleChange}
               style={{ fontSize: 10, color: '#1a4fa8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>
               Αλλαγή
             </button>
           )}
-          {!voted && (
-            <button onClick={() => {
-              const saved = localStorage.getItem(`rating_${bookId}_prev`);
-              if (saved) {
-                setVoted(true);
-                setUserRating(parseInt(saved));
-                localStorage.setItem(`rating_${bookId}`, saved);
-              }
-            }}
+          {isChanging && (
+            <button onClick={handleCancel}
               style={{ fontSize: 10, color: '#94a3b8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>
               Ακύρωση
             </button>
