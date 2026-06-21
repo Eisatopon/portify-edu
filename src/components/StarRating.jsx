@@ -31,15 +31,33 @@ export default function StarRating({ bookId }) {
   async function submitRating(stars) {
     if (loading) return;
     setLoading(true);
-    const { error } = await supabase.from('ratings').insert({ book_id: bookId, stars });
-    if (!error) {
+    const { data, error } = await supabase
+      .from('ratings')
+      .insert({ book_id: bookId, stars })
+      .select();
+    if (!error && data[0]) {
       localStorage.setItem(`rating_${bookId}`, stars);
+      localStorage.setItem(`rating_id_${bookId}`, data[0].id);
       setVoted(true);
       setIsChanging(false);
       setUserRating(stars);
       await fetchRatings();
     }
     setLoading(false);
+  }
+
+  async function deleteRating() {
+    const id = localStorage.getItem(`rating_id_${bookId}`);
+    if (id) {
+      await supabase.from('ratings').delete().eq('id', id);
+      localStorage.removeItem(`rating_id_${bookId}`);
+    }
+    localStorage.removeItem(`rating_${bookId}`);
+    setVoted(false);
+    setIsChanging(false);
+    setUserRating(0);
+    setHovered(0);
+    await fetchRatings();
   }
 
   function handleChange() {
@@ -63,10 +81,16 @@ export default function StarRating({ bookId }) {
         </p>
         <div style={{ display: 'flex', gap: 8 }}>
           {voted && !isChanging && (
-            <button onClick={handleChange}
-              style={{ fontSize: 10, color: '#1a4fa8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>
-              Αλλαγή
-            </button>
+            <>
+              <button onClick={handleChange}
+                style={{ fontSize: 10, color: '#1a4fa8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>
+                Αλλαγή
+              </button>
+              <button onClick={deleteRating}
+                style={{ fontSize: 10, color: '#dc2626', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>
+                Διαγραφή
+              </button>
+            </>
           )}
           {isChanging && (
             <button onClick={handleCancel}
