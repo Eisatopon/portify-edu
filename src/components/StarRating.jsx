@@ -44,9 +44,17 @@ export default function StarRating({ bookId }) {
 
   return (
     <div style={{ padding: '8px 12px 6px', borderTop: '1px solid var(--border)' }}>
-      {!voted && (
-        <p style={{ fontSize: 10, color: 'var(--text-3)', marginBottom: 4 }}>Αξιολόγησε:</p>
-      )}
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+        <p style={{ fontSize: 10, color: 'var(--text-3)' }}>
+          {voted ? 'Η αξιολόγησή σου:' : 'Αξιολόγησε:'}
+        </p>
+        {voted && (
+          <button onClick={() => { setVoted(false); setUserRating(0); localStorage.removeItem(`rating_${bookId}`); }}
+            style={{ fontSize: 10, color: '#1a4fa8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>
+            Αλλαγή
+          </button>
+        )}
+      </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
         {[1, 2, 3, 4, 5].map(star => (
           <button key={star} onClick={() => submitRating(star)}
