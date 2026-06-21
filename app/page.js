@@ -52,25 +52,23 @@ export default function HomePage() {
         </div>
       </header>
 
-      <section className="hero">
-        <div className="hero-inner">
-          <div className="hero-pill">ΔΗΜΟΤΙΚΟ · ΓΥΜΝΑΣΙΟ · ΛΥΚΕΙΟ</div>
-          <h1>Όλα τα σχολικά βιβλία<br /><em>σε ένα μέρος</em></h1>
-          <p className="hero-sub">Βρες και κατέβασε δωρεάν το σχολικό βιβλίο που χρειάζεσαι — χωρίς περιπλανήσεις</p>
-          <form className="search-wrap" onSubmit={handleSearch}>
-            <span className="search-icon">🔍</span>
-            <input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)} placeholder="π.χ. Μαθηματικά Γ΄ Γυμνασίου, Φυσική, Ιστορία..." />
-            <button type="button" className={`search-clear${inputValue ? ' visible' : ''}`} onClick={clearSearch}>✕</button>
-            <button type="submit" className="search-btn">Αναζήτηση</button>
-          </form>
-        <div className="hero-stats">
-  <div className="hero-stat"><div className="n">437</div><div className="l">βιβλία</div></div>
-  <div className="hero-stat"><div className="n">Α΄ Δημοτικού</div><div className="l">έως Γ΄ Λυκείου</div></div>
-</div>
-  ))}
-</div>
-        </div>
-      </section>
+     <section className="hero">
+  <div className="hero-inner">
+    <div className="hero-pill">ΔΗΜΟΤΙΚΟ · ΓΥΜΝΑΣΙΟ · ΛΥΚΕΙΟ</div>
+    <h1>Όλα τα σχολικά βιβλία<br /><em>σε ένα μέρος</em></h1>
+    <p className="hero-sub">Βρες και κατέβασε δωρεάν το σχολικό βιβλίο που χρειάζεσαι — χωρίς περιπλανήσεις</p>
+    <form className="search-wrap" onSubmit={handleSearch}>
+      <span className="search-icon">🔍</span>
+      <input type="text" value={inputValue} onChange={e => setInputValue(e.target.value)} placeholder="π.χ. Μαθηματικά Γ΄ Γυμνασίου, Φυσική, Ιστορία..." />
+      <button type="button" className={`search-clear${inputValue ? ' visible' : ''}`} onClick={clearSearch}>✕</button>
+      <button type="submit" className="search-btn">Αναζήτηση</button>
+    </form>
+    <div className="hero-stats">
+      <div className="hero-stat"><div className="n">437</div><div className="l">βιβλία</div></div>
+      <div className="hero-stat"><div className="n">Α&prime; Δημοτικού &mdash; Γ&prime; Λυκείου</div><div className="l">όλες οι τάξεις</div></div>
+    </div>
+  </div>
+</section>
 
       {/* LANDING */}
       {!level && !query && (
