@@ -2,6 +2,15 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/src/lib/supabase';
 
+function getSessionId() {
+  let id = localStorage.getItem('portify_session');
+  if (!id) {
+    id = Math.random().toString(36).slice(2) + Date.now().toString(36);
+    localStorage.setItem('portify_session', id);
+  }
+  return id;
+}
+
 export default function StarRating({ bookId }) {
   const [avgRating, setAvgRating] = useState(0);
   const [totalRatings, setTotalRatings] = useState(0);
@@ -10,6 +19,7 @@ export default function StarRating({ bookId }) {
   const [loading, setLoading] = useState(false);
   const [voted, setVoted] = useState(false);
   const [isChanging, setIsChanging] = useState(false);
+  const sessionId = getSessionId();
 
   useEffect(() => {
     const saved = localStorage.getItem(`rating_${bookId}`);
@@ -31,13 +41,11 @@ export default function StarRating({ bookId }) {
   async function submitRating(stars) {
     if (loading) return;
     setLoading(true);
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('ratings')
-      .insert({ book_id: bookId, stars })
-      .select();
-    if (!error && data[0]) {
+      .upsert({ book_id: bookId, stars, session_id: sessionId }, { onConflict: 'book_id,session_id' });
+    if (!error) {
       localStorage.setItem(`rating_${bookId}`, stars);
-      localStorage.setItem(`rating_id_${bookId}`, data[0].id);
       setVoted(true);
       setIsChanging(false);
       setUserRating(stars);
@@ -47,11 +55,7 @@ export default function StarRating({ bookId }) {
   }
 
   async function deleteRating() {
-    const id = localStorage.getItem(`rating_id_${bookId}`);
-    if (id) {
-      await supabase.from('ratings').delete().eq('id', id);
-      localStorage.removeItem(`rating_id_${bookId}`);
-    }
+    await supabase.from('ratings').delete().eq('book_id', bookId).eq('session_id', sessionId);
     localStorage.removeItem(`rating_${bookId}`);
     setVoted(false);
     setIsChanging(false);
@@ -60,16 +64,8 @@ export default function StarRating({ bookId }) {
     await fetchRatings();
   }
 
-  function handleChange() {
-    setIsChanging(true);
-    setVoted(false);
-  }
-
-  function handleCancel() {
-    setIsChanging(false);
-    setVoted(true);
-    setUserRating(parseInt(localStorage.getItem(`rating_${bookId}`) || '0'));
-  }
+  function handleChange() { setIsChanging(true); setVoted(false); }
+  function handleCancel() { setIsChanging(false); setVoted(true); setUserRating(parseInt(localStorage.getItem(`rating_${bookId}`) || '0')); }
 
   const displayRating = hovered || userRating || avgRating;
 
@@ -82,21 +78,12 @@ export default function StarRating({ bookId }) {
         <div style={{ display: 'flex', gap: 8 }}>
           {voted && !isChanging && (
             <>
-              <button onClick={handleChange}
-                style={{ fontSize: 10, color: '#1a4fa8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>
-                Αλλαγή
-              </button>
-              <button onClick={deleteRating}
-                style={{ fontSize: 10, color: '#dc2626', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>
-                Διαγραφή
-              </button>
+              <button onClick={handleChange} style={{ fontSize: 10, color: '#1a4fa8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>Αλλαγή</button>
+              <button onClick={deleteRating} style={{ fontSize: 10, color: '#dc2626', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>Διαγραφή</button>
             </>
           )}
           {isChanging && (
-            <button onClick={handleCancel}
-              style={{ fontSize: 10, color: '#94a3b8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>
-              Ακύρωση
-            </button>
+            <button onClick={handleCancel} style={{ fontSize: 10, color: '#94a3b8', background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', fontFamily: 'inherit' }}>Ακύρωση</button>
           )}
         </div>
       </div>
