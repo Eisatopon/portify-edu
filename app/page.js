@@ -39,11 +39,10 @@ export default function HomePage() {
         <div className="header-inner">
           <a href="/" className="logo">
             <svg width="34" height="34" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
-  <svg width="34" height="34" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0 }}>
   <rect width="32" height="32" rx="6" fill="#1a4fa8"/>
   <rect x="8" y="6" width="16" height="20" rx="2" fill="white"/>
   <rect x="8" y="6" width="8" height="20" rx="2" fill="#93c5fd"/>
-  <line x1="16" y1="6" x2="16" y2="26" stroke="#1a4fa8" stroke-width="1.5"/>
+  <line x1="16" y1="6" x2="16" y2="26" stroke="#1a4fa8" strokeWidth="1.5"/>
 </svg>
             <div>
               <div className="logo-name">Portify <span>Βιβλία</span></div>
