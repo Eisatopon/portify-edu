@@ -8,11 +8,11 @@
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        model: 'llama3-70b-8192',
+        model: 'llama-3.3-70b-versatile',
         messages: [
           {
             role: 'system',
-            content: 'Εισαι ενας φιλικος βοηθος για μαθητες στην Ελλαδα. Απαντας παντα στα ελληνικα. Ο μαθητης διαβαζει το βιβλιο: ' + bookTitle + ' (' + bookLevel + ' - ' + bookSubject + '). Εξηγεις απλα και κατανοητα.'
+            content: 'Εισαι ενας φιλικος βοηθος για μαθητες στην Ελλαδα. Απαντας παντα στα ελληνικα. Ο μαθητης διαβαζει το βιβλιο: ' + bookTitle + ' (' + bookLevel + ' - ' + bookSubject + '). Εξηγεις απλα και κατανοητα. Οταν γραφεις μαθηματικους τυπους χρησιμοποιεις παντα LaTeX: inline με $τυπος$ και display mode με $$τυπος$$.'
           },
           { role: 'user', content: question }
         ],
@@ -20,10 +20,19 @@
         max_tokens: 1024,
       }),
     });
+
     const data = await res.json();
+
+    if (!res.ok) {
+      console.error('Groq error:', data);
+      return Response.json({ error: data.error?.message || 'Groq error' }, { status: 500 });
+    }
+
     const answer = data.choices[0].message.content;
     return Response.json({ answer });
+
   } catch (error) {
-    return Response.json({ error: 'Κατι πηγε στραβα' }, { status: 500 });
+    console.error('AI Chat error:', error);
+    return Response.json({ error: error.message }, { status: 500 });
   }
 }

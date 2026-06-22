@@ -5,6 +5,7 @@ import Filters from '@/src/components/Filters';
 import { useBookFilters } from '@/src/hooks/useBookFilters';
 import { LEVEL_BADGE } from '@/src/lib/constants';
 import allBooks from '@/src/data/books.json';
+import AiChatPanel from '@/src/components/AiChatPanel';
 
 const LEVELS = [
   { key: 'dimotiko', label: 'Δημοτικό', icon: '🏫', grades: 'Α΄ – ΣΤ΄', color: '#166534', btnColor: '#16a34a', desc: 'Γλώσσα, Μαθηματικά, Ιστορία και άλλα για τις 6 τάξεις' },
@@ -65,6 +66,7 @@ export default function HomePage() {
   const [loading, setLoading] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showFavs, setShowFavs] = useState(false);
+  const [aiBook, setAiBook] = useState(null);
   const count = useCounter(allBooks.length);
   const searchRef = useRef(null);
   const { favs, toggle: toggleFav } = useFavorites();
@@ -188,9 +190,9 @@ export default function HomePage() {
           </div>
 
           <div className="hero-stats">
-  <div className="hero-stat"><div className="n">{count}</div><div className="l">βιβλία</div></div>
-  <div className="hero-stat"><div className="n" style={{ fontSize: 15, whiteSpace: 'nowrap' }}>Το πολλαπλό βιβλίο</div><div className="l">στην εκπαίδευση</div></div>
-</div>
+            <div className="hero-stat"><div className="n">{count}</div><div className="l">βιβλία</div></div>
+            <div className="hero-stat"><div className="n" style={{ fontSize: 15, whiteSpace: 'nowrap' }}>Το πολλαπλό βιβλίο</div><div className="l">στην εκπαίδευση</div></div>
+          </div>
         </div>
       </section>
 
@@ -273,7 +275,7 @@ export default function HomePage() {
                     </div>
                   ) : (
                     displayBooks.map((book, i) => (
-                      <BookCard key={`${book.id}-${i}`} book={book} isFav={favs.includes(book.pdfUrl)} onToggleFav={() => toggleFav(book.pdfUrl)} />
+                      <BookCard key={`${book.id}-${i}`} book={book} isFav={favs.includes(book.pdfUrl)} onToggleFav={() => toggleFav(book.pdfUrl)} onAiClick={setAiBook} />
                     ))
                   )}
                 </div>
@@ -323,6 +325,16 @@ export default function HomePage() {
             </button>
           </div>
         </>
+      )}
+
+      {aiBook && (
+        <AiChatPanel
+          key={aiBook.pdfUrl}
+          bookTitle={aiBook.title}
+          bookSubject={aiBook.subject}
+          bookLevel={aiBook.level}
+          onClose={() => setAiBook(null)}
+        />
       )}
 
       <footer className="footer">

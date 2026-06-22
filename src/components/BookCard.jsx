@@ -1,10 +1,9 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { SUBJECT_ICONS, LEVEL_BADGE } from '@/src/lib/constants';
 import StarRating from '@/src/components/StarRating';
-import AiChatPanel from '@/src/components/AiChatPanel';
 
-export default function BookCard({ book, isFav, onToggleFav }) {
+export default function BookCard({ book, isFav, onToggleFav, onAiClick }) {
   const [imgError, setImgError] = useState(false);
   const [showViewer, setShowViewer] = useState(false);
   const [pdfLoaded, setPdfLoaded] = useState(false);
@@ -33,10 +32,10 @@ export default function BookCard({ book, isFav, onToggleFav }) {
           <span className="level-badge" style={{ background: lc.bg, color: lc.text }}>{lc.label}</span>
           {!isStudent && typeLabel && <span className="type-badge">{typeLabel}</span>}
           <button onClick={e => { e.stopPropagation(); onToggleFav && onToggleFav(); }}
-            style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(255,255,255,0.92)', border: 'none', borderRadius: '50%', width: 30, height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: 15, boxShadow: '0 2px 8px rgba(0,0,0,0.18)', transition: 'transform 0.15s', zIndex: 2 }}
+            style={{ position: 'absolute', top: 8, right: 8, background: 'rgba(255,255,255,0.92)', border: 'none', borderRadius: '50%', width: 30, height: 30, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: 17, boxShadow: '0 2px 8px rgba(0,0,0,0.18)', transition: 'transform 0.15s', zIndex: 2 }}
             onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.2)'}
             onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
-            {isFav ? 'fav' : 'unfav'}
+            {isFav ? '❤️' : '🤍'}
           </button>
         </div>
         <div className="book-info">
@@ -44,8 +43,12 @@ export default function BookCard({ book, isFav, onToggleFav }) {
           <p className="book-publisher">{book.publisher}</p>
         </div>
         <StarRating bookId={book.pdfUrl} />
-        <div className="book-actions">
-          <button onClick={handlePDF} className="btn-pdf">PDF</button>
+        <div className="book-actions" style={{ display: 'flex', gap: 6 }}>
+          <button onClick={handlePDF} className="btn-pdf" style={{ flex: 1 }}>PDF</button>
+          <button onClick={() => onAiClick && onAiClick(book)}
+            style={{ width: 36, background: '#f0f4ff', color: '#1a4fa8', border: '1px solid #c7d7f5', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>
+            AI
+          </button>
         </div>
       </div>
 
@@ -57,14 +60,14 @@ export default function BookCard({ book, isFav, onToggleFav }) {
             <div style={{ display: 'flex', gap: 8 }}>
               <button onClick={() => onToggleFav && onToggleFav()}
                 style={{ background: isFav ? '#fff7ed' : 'rgba(255,255,255,0.1)', color: isFav ? '#c2410c' : '#fff', border: 'none', borderRadius: 7, padding: '7px 14px', fontSize: 13, cursor: 'pointer' }}>
-                {isFav ? 'Saved' : 'Save'}
+                {isFav ? '❤️ Saved' : '🤍 Save'}
               </button>
               <a href={book.pdfUrl} target="_blank" rel="noopener noreferrer"
                 style={{ background: '#1a4fa8', color: '#fff', borderRadius: 7, padding: '7px 14px', fontSize: 13, fontWeight: 600, textDecoration: 'none' }}>
                 Open
               </a>
               <button onClick={() => setShowViewer(false)}
-                style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', borderRadius: 7, padding: '7px 14px', fontSize: 13, cursor: 'pointer' }}>X</button>
+                style={{ background: 'rgba(255,255,255,0.1)', color: '#fff', border: 'none', borderRadius: 7, padding: '7px 14px', fontSize: 13, cursor: 'pointer' }}>✕</button>
             </div>
           </div>
           <div style={{ flex: 1, position: 'relative' }}>
@@ -85,9 +88,7 @@ export default function BookCard({ book, isFav, onToggleFav }) {
           </div>
         </div>
       )}
-
       <style>{'@keyframes spin { to { transform: rotate(360deg); } }'}</style>
-    <AiChatPanel bookTitle={book.title} bookSubject={book.subject} bookLevel={book.level} />
     </>
   );
 }
