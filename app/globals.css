@@ -73,7 +73,7 @@ body {
   margin-bottom: 22px;
 }
 .hero h1 {
-  font-size: clamp(26px, 5vw, 42px);
+  font-size: 32px;
   font-weight: 700;
   color: #fff;
   line-height: 1.15;
@@ -339,9 +339,13 @@ body {
   .books-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 }
 @media (min-width: 1024px) {
-  .hero h1 { font-size: 48px; }
+  .hero h1 { font-size: 50px; }
   .hero-sub { font-size: 18px; }
   .hero { padding: 56px 20px 48px; }
+  .level-cards-grid { gap: 28px; }
+  .level-cards-grid button { padding: 36px 32px; }
+  .level-cards-grid button div:nth-child(1) { font-size: 48px; }
+  .level-cards-grid button div:nth-child(2) { font-size: 26px; }
 }
 
 /* ── MOBILE FILTER BUTTON ────────────────── */
