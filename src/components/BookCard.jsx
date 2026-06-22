@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { SUBJECT_ICONS, LEVEL_BADGE } from '@/src/lib/constants';
 import StarRating from '@/src/components/StarRating';
+import AiChatPanel from '@/src/components/AiChatPanel';
 
 export default function BookCard({ book, isFav, onToggleFav }) {
   const [imgError, setImgError] = useState(false);
@@ -86,6 +87,7 @@ export default function BookCard({ book, isFav, onToggleFav }) {
       )}
 
       <style>{'@keyframes spin { to { transform: rotate(360deg); } }'}</style>
+    <AiChatPanel bookTitle={book.title} bookSubject={book.subject} bookLevel={book.level} />
     </>
   );
 }
