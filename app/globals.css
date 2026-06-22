@@ -338,6 +338,11 @@ body {
   .hero-stats { gap: 20px; }
   .books-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
 }
+@media (min-width: 1024px) {
+  .hero h1 { font-size: 48px; }
+  .hero-sub { font-size: 18px; }
+  .hero { padding: 56px 20px 48px; }
+}
 
 /* ── MOBILE FILTER BUTTON ────────────────── */
 .mobile-filter-btn {
