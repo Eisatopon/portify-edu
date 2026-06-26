@@ -101,7 +101,6 @@ export default function BookCard({ book, isFav, onToggleFav, onAiClick }) {
               src={'/api/pdf?url=' + encodeURIComponent(book.pdfUrl)}
               style={{ width: '100%', height: '100%', border: 'none' }}
               title={book.title}
-              sandbox="allow-scripts allow-same-origin allow-downloads"
               onLoad={() => setPdfLoaded(true)}
             />
           </div>
