@@ -1,15 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import { supabase } from '@/src/lib/supabase';
-
-function getSessionId() {
-  let id = localStorage.getItem('portify_session');
-  if (!id) {
-    id = Math.random().toString(36).slice(2) + Date.now().toString(36);
-    localStorage.setItem('portify_session', id);
-  }
-  return id;
-}
+import { getSupabase, getSessionId } from '@/src/lib/supabase';
 
 export default function StarRating({ bookId }) {
   const [avgRating, setAvgRating] = useState(0);
@@ -19,37 +10,39 @@ export default function StarRating({ bookId }) {
   const [loading, setLoading] = useState(false);
   const [voted, setVoted] = useState(false);
   const [isChanging, setIsChanging] = useState(false);
-  const sessionId = getSessionId();
 
   useEffect(() => {
-    const saved = localStorage.getItem(`rating_${bookId}`);
-    if (saved) { setVoted(true); setUserRating(parseInt(saved)); }
+    try {
+      const saved = localStorage.getItem(`rating_${bookId}`);
+      if (saved) { setVoted(true); setUserRating(parseInt(saved, 10)); }
+    } catch {}
     fetchRatings();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [bookId]);
 
   async function fetchRatings() {
-    const { data, error } = await supabase
-      .from('ratings')
-      .select('stars')
-      .eq('book_id', bookId);
-    if (error || !data || !data.length) {
-      setAvgRating(0);
-      setTotalRatings(0);
-      return;
-    }
-    const avg = data.reduce((sum, r) => sum + r.stars, 0) / data.length;
+    const sb = getSupabase();
+    if (!sb) return;
+    const { data, error } = await sb.from('ratings').select('stars').eq('book_id', bookId);
+    if (error || !data?.length) { setAvgRating(0); setTotalRatings(0); return; }
+    const avg = data.reduce((s, r) => s + r.stars, 0) / data.length;
     setAvgRating(avg);
     setTotalRatings(data.length);
   }
 
   async function submitRating(stars) {
     if (loading) return;
+    const sb = getSupabase();
+    if (!sb) return;
     setLoading(true);
-    const { error } = await supabase
+    const { error } = await sb
       .from('ratings')
-      .upsert({ book_id: bookId, stars, session_id: sessionId }, { onConflict: 'book_id,session_id' });
+      .upsert(
+        { book_id: bookId, stars, session_id: getSessionId() },
+        { onConflict: 'book_id,session_id' }
+      );
     if (!error) {
-      localStorage.setItem(`rating_${bookId}`, stars);
+      try { localStorage.setItem(`rating_${bookId}`, String(stars)); } catch {}
       setVoted(true);
       setIsChanging(false);
       setUserRating(stars);
@@ -59,17 +52,19 @@ export default function StarRating({ bookId }) {
   }
 
   async function deleteRating() {
-    await supabase.from('ratings').delete().eq('book_id', bookId).eq('session_id', sessionId);
-    localStorage.removeItem(`rating_${bookId}`);
-    setVoted(false);
-    setIsChanging(false);
-    setUserRating(0);
-    setHovered(0);
+    const sb = getSupabase();
+    if (!sb) return;
+    await sb.from('ratings').delete().eq('book_id', bookId).eq('session_id', getSessionId());
+    try { localStorage.removeItem(`rating_${bookId}`); } catch {}
+    setVoted(false); setIsChanging(false); setUserRating(0); setHovered(0);
     await fetchRatings();
   }
 
   function handleChange() { setIsChanging(true); setVoted(false); }
-  function handleCancel() { setIsChanging(false); setVoted(true); setUserRating(parseInt(localStorage.getItem(`rating_${bookId}`) || '0')); }
+  function handleCancel() {
+    setIsChanging(false); setVoted(true);
+    try { setUserRating(parseInt(localStorage.getItem(`rating_${bookId}`) || '0', 10)); } catch {}
+  }
 
   const displayRating = hovered || userRating || avgRating;
 
@@ -78,9 +73,15 @@ export default function StarRating({ bookId }) {
       <p style={{ fontSize: 10, color: 'var(--text-3)', marginBottom: 4 }}>
         {voted ? 'Η αξιολόγησή σου:' : isChanging ? 'Νέα αξιολόγηση:' : 'Αξιολόγησε:'}
       </p>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 3 }} role="radiogroup" aria-label="Αξιολόγηση βιβλίου σε 5 αστέρια">
         {[1, 2, 3, 4, 5].map(star => (
-          <button key={star} onClick={() => submitRating(star)}
+          <button
+            key={star}
+            type="button"
+            role="radio"
+            aria-checked={userRating === star}
+            aria-label={`${star} αστέρι${star > 1 ? 'α' : ''}`}
+            onClick={() => submitRating(star)}
             onMouseEnter={() => !voted && setHovered(star)}
             onMouseLeave={() => !voted && setHovered(0)}
             disabled={voted || loading}
