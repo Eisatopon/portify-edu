@@ -31,15 +31,24 @@ function useCounter(target, duration = 1500) {
   return count;
 }
 
-function useFavorites() {
+function useFavorites(allBooks) {
   const [favs, setFavs] = useState([]);
   useEffect(() => {
-    try { setFavs(JSON.parse(localStorage.getItem('portify_favs') || '[]')); } catch {}
-  }, []);
+    try {
+      const v2 = localStorage.getItem('portify_favs_v2');
+      if (v2) { setFavs(JSON.parse(v2)); return; }
+      // Migrate v1 (pdfUrl) -> v2 (book.id) once
+      const v1 = JSON.parse(localStorage.getItem('portify_favs') || '[]');
+      const urlToId = new Map(allBooks.map(b => [b.pdfUrl, b.id]));
+      const migrated = v1.map(url => urlToId.get(url)).filter(Boolean);
+      localStorage.setItem('portify_favs_v2', JSON.stringify(migrated));
+      setFavs(migrated);
+    } catch {}
+  }, [allBooks]);
   function toggle(id) {
     setFavs(prev => {
       const next = prev.includes(id) ? prev.filter(f => f !== id) : [...prev, id];
-      localStorage.setItem('portify_favs', JSON.stringify(next));
+      try { localStorage.setItem('portify_favs_v2', JSON.stringify(next)); } catch {}
       return next;
     });
   }
@@ -69,7 +78,7 @@ export default function HomePage() {
   const [aiBook, setAiBook] = useState(null);
   const count = useCounter(allBooks.length);
   const searchRef = useRef(null);
-  const { favs, toggle: toggleFav } = useFavorites();
+  const { favs, toggle: toggleFav } = useFavorites(allBooks);
 
   const {
     level, grade, subject, query,
@@ -113,7 +122,7 @@ export default function HomePage() {
     submitSearch(book.subject);
   }
 
-  const favBooks = allBooks.filter(b => favs.includes(b.pdfUrl));
+  const favBooks = allBooks.filter(b => favs.includes(b.id));
   const currentLevel = LEVELS.find(l => l.key === level);
   const activeFiltersCount = (grade ? 1 : 0) + (subject ? 1 : 0);
   const showBooks = !!(level || query || showFavs);
@@ -275,7 +284,7 @@ export default function HomePage() {
                     </div>
                   ) : (
                     displayBooks.map((book, i) => (
-                      <BookCard key={`${book.id}-${i}`} book={book} isFav={favs.includes(book.pdfUrl)} onToggleFav={() => toggleFav(book.pdfUrl)} onAiClick={setAiBook} />
+                      <BookCard key={`${book.id}-${i}`} book={book} isFav={favs.includes(book.id)} onToggleFav={() => toggleFav(book.id)} onAiClick={setAiBook} />
                     ))
                   )}
                 </div>
