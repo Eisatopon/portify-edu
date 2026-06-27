@@ -102,6 +102,22 @@ function HomePageInner() {
   }, [searchParams]);
 
   useEffect(() => {
+    const lvl = searchParams.get('level');
+    if (lvl && ['dimotiko','gymnasio','lykeio'].includes(lvl)) {
+      setLevel(lvl);
+      setShowFavs(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+
+  function openRandomBook() {
+    const pool = level ? allBooks.filter(b => b.level === level) : allBooks;
+    if (!pool.length) return;
+    const book = pool[Math.floor(Math.random() * pool.length)];
+    router.push(`/book/${bookSlug(book)}`);
+  }
+
+  useEffect(() => {
     setDropdownOpen(showLiveResults && liveResults.length > 0);
   }, [showLiveResults, liveResults]);
 
@@ -216,6 +232,17 @@ function HomePageInner() {
           </div>
         </div>
       </section>
+
+      {/* RECENTLY VIEWED + RANDOM BOOK */}
+      {!showBooks && (
+        <div style={{ maxWidth: 1100, margin: '24px auto 0', padding: '0 20px', textAlign: 'center' }}>
+          <button onClick={openRandomBook}
+            style={{ background: '#fff', border: '2px dashed #cbd5e1', color: '#1a4fa8', padding: '10px 22px', borderRadius: 30, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
+            🎲 Τυχαίο βιβλίο
+          </button>
+        </div>
+      )}
+      {!showBooks && <RecentlyViewed allBooks={allBooks} />}
 
       {/* LANDING */}
       {!showBooks && (
@@ -358,12 +385,25 @@ function HomePageInner() {
         />
       )}
 
+      <InstallPWA />
+
       <footer className="footer">
         <p>Τα βιβλία προέρχονται από τη <a href="https://ebooksdl.cti.gr" target="_blank" rel="noopener noreferrer">Ψηφιακή Βιβλιοθήκη Μελίσπη</a> του ΙΤΥΕ Διόφαντος.</p>
       </footer>
     </>
   );
 }
+
+function HomePageInner() {
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  return (
+    <Suspense fallback={null}>
+      <HomePageInner />
+    </Suspense>
+  );
+}
+
 
 export default function HomePage() {
   return (
