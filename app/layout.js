@@ -1,6 +1,7 @@
 // app/layout.js — Manrope brand font + everything από πριν
 import { Manrope } from 'next/font/google';
 import './globals.css';
+import HotKeys from '@/src/components/HotKeys';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 const manrope = Manrope({
@@ -8,6 +9,8 @@ const manrope = Manrope({
   display: 'swap',
   variable: '--font-manrope',
 });
+
+const themeInit = `(function(){try{var s=localStorage.getItem('portify_theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;var t=s||(m?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`;
 
 const SITE_URL = 'https://portify.gr';
 
@@ -64,7 +67,9 @@ export default function RootLayout({ children }) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
   return (
     <html lang="el" className={manrope.variable}>
-      <body style={{ fontFamily: 'var(--font-manrope), system-ui, -apple-system, sans-serif' }}>
+      <body suppressHydrationWarning style={{ fontFamily: 'var(--font-manrope), system-ui, -apple-system, sans-serif' }}>
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+        <HotKeys />
         <a href="#main" style={{ position: 'absolute', left: -9999 }} className="skip-link">Μετάβαση στο περιεχόμενο</a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD_SITE) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD_ORG) }} />

@@ -8,6 +8,7 @@ import { LEVEL_BADGE } from '@/src/lib/constants';
 import allBooks from '@/src/data/books.json';
 import AiChatPanel from '@/src/components/AiChatPanel';
 import InstallPWA from '@/src/components/InstallPWA';
+import ThemeToggle from '@/src/components/ThemeToggle';
 import RecentlyViewed from '@/src/components/RecentlyViewed';
 import { bookSlug } from '@/src/lib/slug';
 
@@ -183,10 +184,13 @@ function HomePageInner() {
               <div className="logo-sub">Ψηφιακή βιβλιοθήκη</div>
             </div>
           </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <ThemeToggle />
           <button onClick={() => { setShowFavs(true); clearAll(); }}
             style={{ display: 'flex', alignItems: 'center', gap: 6, background: favs.length > 0 ? '#fff7ed' : 'none', border: favs.length > 0 ? '1px solid #fed7aa' : '1px solid var(--border)', borderRadius: 8, padding: '6px 14px', cursor: 'pointer', fontSize: 13, fontWeight: 500, color: favs.length > 0 ? '#c2410c' : 'var(--text-2)', fontFamily: 'inherit' }}>
             {favs.length > 0 ? '❤️' : '🤍'} Αγαπημένα {favs.length > 0 && <span style={{ background: '#c2410c', color: '#fff', borderRadius: 20, padding: '0 6px', fontSize: 11 }}>{favs.length}</span>}
           </button>
+          </div>
         </div>
       </header>
 
