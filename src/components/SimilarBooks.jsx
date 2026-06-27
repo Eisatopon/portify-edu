@@ -4,27 +4,21 @@ import { bookSlug } from '@/src/lib/slug';
 import { LEVEL_BADGE } from '@/src/lib/constants';
 
 export default function SimilarBooks({ currentBook, allBooks, max = 6 }) {
-  // Priority: same level + same subject + different publisher → other versions of same book
-  // Fallback: same level + same grade
-  const sameSubject = allBooks.filter(b =>
-    b.id !== currentBook.id &&
-    b.level === currentBook.level &&
-    b.subject === currentBook.subject
-  );
-  const sameGrade = allBooks.filter(b =>
-    b.id !== currentBook.id &&
-    b.level === currentBook.level &&
-    b.gradeLabel === currentBook.gradeLabel &&
-    !sameSubject.find(s => s.id === b.id)
-  );
+  // ONLY same subject + same level. No subject mixing.
+  const pool = allBooks
+    .filter(b =>
+      b.id !== currentBook.id &&
+      b.level === currentBook.level &&
+      b.subject === currentBook.subject
+    )
+    .slice(0, max);
 
-  const pool = [...sameSubject, ...sameGrade].slice(0, max);
   if (!pool.length) return null;
 
   return (
-    <section style={{ marginTop: 32, paddingTop: 24, borderTop: '1px solid var(--border)' }} aria-label="Παρόμοια βιβλία">
+    <section style={{ marginTop: 32, paddingTop: 24, borderTop: '1px solid var(--border)' }} aria-label="Άλλες εκδόσεις">
       <h2 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text)', marginBottom: 14 }}>
-        📚 Παρόμοια βιβλία{sameSubject.length > 0 ? ` — ${currentBook.subject}` : ''}
+        📚 Άλλες εκδόσεις — {currentBook.subject}
       </h2>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))', gap: 12 }}>
         {pool.map(book => {
