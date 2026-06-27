@@ -1,8 +1,9 @@
-// app/layout.js — Manrope brand font + everything από πριν
+// app/layout.js — Manrope brand font + SEO + compact hero override
 import { Manrope } from 'next/font/google';
 import './globals.css';
 import HotKeys from '@/src/components/HotKeys';
 import ServiceWorkerRegister from '@/src/components/ServiceWorkerRegister';
+import IntroSplash from '@/src/components/IntroSplash';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 const manrope = Manrope({
@@ -13,7 +14,25 @@ const manrope = Manrope({
 
 const themeInit = `(function(){try{var s=localStorage.getItem('portify_theme');var m=window.matchMedia('(prefers-color-scheme: dark)').matches;var t=s||(m?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();`;
 
-const SITE_URL = 'https://portify.gr';
+// Compact hero CSS — fits search bar + level cards above the fold
+const heroCompactCSS = `
+.hero { min-height: auto !important; padding: 56px 20px 44px !important; }
+.hero-inner { max-width: 760px; margin: 0 auto; }
+.hero h1 { font-size: clamp(28px, 5vw, 44px) !important; line-height: 1.15 !important; margin-bottom: 10px !important; }
+.hero-pill { margin-bottom: 14px !important; }
+.hero-sub { font-size: 15px !important; margin-bottom: 22px !important; }
+.hero-stats { margin-top: 20px !important; gap: 28px !important; }
+.hero-stat .n { font-size: 28px !important; }
+@media (max-width: 640px) {
+  .hero { padding: 36px 16px 32px !important; }
+  .hero h1 { font-size: 26px !important; line-height: 1.18 !important; }
+  .hero-sub { font-size: 14px !important; margin-bottom: 16px !important; }
+  .hero-stats { margin-top: 14px !important; gap: 20px !important; }
+}
+`;
+
+// IMPORTANT: canonical/SEO base must match the served domain (www.portify.gr)
+const SITE_URL = 'https://www.portify.gr';
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -70,8 +89,10 @@ export default function RootLayout({ children }) {
     <html lang="el" className={manrope.variable}>
       <body suppressHydrationWarning style={{ fontFamily: 'var(--font-manrope), system-ui, -apple-system, sans-serif' }}>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+        <style dangerouslySetInnerHTML={{ __html: heroCompactCSS }} />
         <HotKeys />
         <ServiceWorkerRegister />
+        <IntroSplash />
         <a href="#main" style={{ position: 'absolute', left: -9999 }} className="skip-link">Μετάβαση στο περιεχόμενο</a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD_SITE) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD_ORG) }} />
