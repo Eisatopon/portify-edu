@@ -70,7 +70,7 @@ export default function TermsPage() {
 
       <h2 style={{ fontSize: 20, fontWeight: 600, marginTop: 24, marginBottom: 10 }}>10. Επαφή</h2>
       <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--text-2)' }}>
-        Ερωτήσεις: <a href="mailto:info@portify.gr" style={{ color: 'var(--blue)' }}>info@portify.gr</a>
+        Ερωτήσεις: <a href="mailto:eisatoponai@gmail.com" style={{ color: 'var(--blue)' }}>eisatoponai@gmail.com</a>
       </p>
     </main>
   );

@@ -20,7 +20,7 @@ export default function ContactPage() {
       <div style={{ background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 12, padding: 24, marginBottom: 24 }}>
         <div style={{ marginBottom: 18 }}>
           <div style={{ fontSize: 12, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>Email</div>
-          <a href="mailto:info@portify.gr" style={{ fontSize: 18, color: 'var(--blue)', textDecoration: 'none', fontWeight: 600 }}>info@portify.gr</a>
+          <a href="mailto:eisatoponai@gmail.com" style={{ fontSize: 18, color: 'var(--blue)', textDecoration: 'none', fontWeight: 600 }}>eisatoponai@gmail.com</a>
         </div>
         <div>
           <div style={{ fontSize: 12, color: 'var(--text-3)', textTransform: 'uppercase', letterSpacing: 0.5, marginBottom: 4 }}>Χρόνος απόκρισης</div>

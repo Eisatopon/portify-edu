@@ -58,7 +58,7 @@ export default function PrivacyPage() {
       <ul style={{ fontSize: 15, lineHeight: 1.8, color: 'var(--text-2)', paddingLeft: 22 }}>
         <li>Διαγράψεις όλα τα τοπικά δεδομένα: στις ρυθμίσεις του browser → Clear site data</li>
         <li>Διαγράψεις τις αξιολογήσεις σου: Κουμπί "Διαγραφή" δίπλα σε κάθε αξιολόγηση</li>
-        <li>Ζητήσεις πλήρη διαγραφή: <a href="mailto:info@portify.gr" style={{ color: 'var(--blue)' }}>info@portify.gr</a></li>
+        <li>Ζητήσεις πλήρη διαγραφή: <a href="mailto:eisatoponai@gmail.com" style={{ color: 'var(--blue)' }}>eisatoponai@gmail.com</a></li>
       </ul>
 
       <h2 style={{ fontSize: 20, fontWeight: 600, marginTop: 28, marginBottom: 10 }}>6. Παιδιά</h2>
@@ -68,7 +68,7 @@ export default function PrivacyPage() {
 
       <h2 style={{ fontSize: 20, fontWeight: 600, marginTop: 28, marginBottom: 10 }}>7. Επαφή</h2>
       <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--text-2)' }}>
-        Για οποιοδήποτε ερώτημα σχετικά με το απόρρητο: <a href="mailto:info@portify.gr" style={{ color: 'var(--blue)' }}>info@portify.gr</a>
+        Για οποιοδήποτε ερώτημα σχετικά με το απόρρητο: <a href="mailto:eisatoponai@gmail.com" style={{ color: 'var(--blue)' }}>eisatoponai@gmail.com</a>
       </p>
     </main>
   );
