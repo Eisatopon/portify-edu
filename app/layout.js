@@ -2,6 +2,7 @@
 import { Manrope } from 'next/font/google';
 import './globals.css';
 import HotKeys from '@/src/components/HotKeys';
+import ServiceWorkerRegister from '@/src/components/ServiceWorkerRegister';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 const manrope = Manrope({
@@ -70,6 +71,7 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning style={{ fontFamily: 'var(--font-manrope), system-ui, -apple-system, sans-serif' }}>
         <script dangerouslySetInnerHTML={{ __html: themeInit }} />
         <HotKeys />
+        <ServiceWorkerRegister />
         <a href="#main" style={{ position: 'absolute', left: -9999 }} className="skip-link">Μετάβαση στο περιεχόμενο</a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD_SITE) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD_ORG) }} />
