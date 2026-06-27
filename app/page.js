@@ -1,12 +1,15 @@
 'use client';
 import { useState, useEffect, useRef, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import BookCard from '@/src/components/BookCard';
 import Filters from '@/src/components/Filters';
 import { useBookFilters } from '@/src/hooks/useBookFilters';
 import { LEVEL_BADGE } from '@/src/lib/constants';
 import allBooks from '@/src/data/books.json';
 import AiChatPanel from '@/src/components/AiChatPanel';
+import InstallPWA from '@/src/components/InstallPWA';
+import RecentlyViewed from '@/src/components/RecentlyViewed';
+import { bookSlug } from '@/src/lib/slug';
 
 const LEVELS = [
   { key: 'dimotiko', label: 'Δημοτικό', icon: '🏫', grades: 'Α΄ – ΣΤ΄', color: '#166534', btnColor: '#16a34a', desc: 'Γλώσσα, Μαθηματικά, Ιστορία και άλλα για τις 6 τάξεις' },
@@ -73,6 +76,7 @@ function SkeletonGrid() {
 
 function HomePageInner() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const [sheetOpen, setSheetOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -90,6 +94,13 @@ function HomePageInner() {
     filtered, grades, subjects, hasFilters,
     liveResults, showLiveResults,
   } = useBookFilters(allBooks, null);
+
+  function openRandomBook() {
+    const pool = level ? allBooks.filter(b => b.level === level) : allBooks;
+    if (!pool.length) return;
+    const book = pool[Math.floor(Math.random() * pool.length)];
+    router.push(`/book/${bookSlug(book)}`);
+  }
 
   // Read ?level= query param from URL on first mount and pre-select level
   useEffect(() => {
@@ -244,6 +255,17 @@ function HomePageInner() {
       )}
       {!showBooks && <RecentlyViewed allBooks={allBooks} />}
 
+      {/* RANDOM BOOK + RECENTLY VIEWED */}
+      {!showBooks && (
+        <div style={{ maxWidth: 1100, margin: '24px auto 0', padding: '0 20px', textAlign: 'center' }}>
+          <button onClick={openRandomBook}
+            style={{ background: '#fff', border: '2px dashed #cbd5e1', color: '#1a4fa8', padding: '10px 22px', borderRadius: 30, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
+            🎲 Τυχαίο βιβλίο
+          </button>
+        </div>
+      )}
+      {!showBooks && <RecentlyViewed allBooks={allBooks} />}
+
       {/* LANDING */}
       {!showBooks && (
         <div style={{ maxWidth: 960, margin: '0 auto', padding: '48px 20px' }}>
@@ -387,23 +409,14 @@ function HomePageInner() {
 
       <InstallPWA />
 
+      <InstallPWA />
+
       <footer className="footer">
         <p>Τα βιβλία προέρχονται από τη <a href="https://ebooksdl.cti.gr" target="_blank" rel="noopener noreferrer">Ψηφιακή Βιβλιοθήκη Μελίσπη</a> του ΙΤΥΕ Διόφαντος.</p>
       </footer>
     </>
   );
 }
-
-function HomePageInner() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
-  return (
-    <Suspense fallback={null}>
-      <HomePageInner />
-    </Suspense>
-  );
-}
-
 
 export default function HomePage() {
   return (
