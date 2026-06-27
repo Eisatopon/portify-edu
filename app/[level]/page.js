@@ -20,7 +20,7 @@ export async function generateMetadata({ params }) {
     title,
     description,
     alternates: { canonical: `/${level}` },
-    openGraph: { title, description, url: `https://portify.gr/${level}`, images: ['/og-image.png'] },
+    openGraph: { title, description, url: `https://www.portify.gr/${level}`, images: ['/og-image.png'] },
   };
 }
 

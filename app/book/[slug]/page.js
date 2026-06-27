@@ -4,7 +4,7 @@ import { LEVEL_BADGE } from '@/src/lib/constants';
 import { notFound } from 'next/navigation';
 import BookViewerClient from './BookViewerClient';
 
-const SITE_URL = 'https://portify.gr';
+const SITE_URL = 'https://www.portify.gr';
 
 export async function generateStaticParams() {
   return allBooks.map(b => ({ slug: bookSlug(b) }));
