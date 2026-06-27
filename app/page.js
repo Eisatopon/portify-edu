@@ -1,5 +1,6 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
 import BookCard from '@/src/components/BookCard';
 import Filters from '@/src/components/Filters';
 import { useBookFilters } from '@/src/hooks/useBookFilters';
@@ -70,7 +71,8 @@ function SkeletonGrid() {
   );
 }
 
-export default function HomePage() {
+function HomePageInner() {
+  const searchParams = useSearchParams();
   const [sheetOpen, setSheetOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -88,6 +90,16 @@ export default function HomePage() {
     filtered, grades, subjects, hasFilters,
     liveResults, showLiveResults,
   } = useBookFilters(allBooks, null);
+
+  // Read ?level= query param from URL on first mount and pre-select level
+  useEffect(() => {
+    const lvl = searchParams.get('level');
+    if (lvl && ['dimotiko','gymnasio','lykeio'].includes(lvl)) {
+      setLevel(lvl);
+      setShowFavs(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   useEffect(() => {
     setDropdownOpen(showLiveResults && liveResults.length > 0);
@@ -350,5 +362,13 @@ export default function HomePage() {
         <p>Τα βιβλία προέρχονται από τη <a href="https://ebooksdl.cti.gr" target="_blank" rel="noopener noreferrer">Ψηφιακή Βιβλιοθήκη Μελίσπη</a> του ΙΤΥΕ Διόφαντος.</p>
       </footer>
     </>
+  );
+}
+
+export default function HomePage() {
+  return (
+    <Suspense fallback={null}>
+      <HomePageInner />
+    </Suspense>
   );
 }
