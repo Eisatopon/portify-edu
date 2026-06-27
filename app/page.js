@@ -9,6 +9,7 @@ import allBooks from '@/src/data/books.json';
 import AiChatPanel from '@/src/components/AiChatPanel';
 import InstallPWA from '@/src/components/InstallPWA';
 import ThemeToggle from '@/src/components/ThemeToggle';
+import MobileNav from '@/src/components/MobileNav';
 import RecentlyViewed from '@/src/components/RecentlyViewed';
 import TrendingBooks from '@/src/components/TrendingBooks';
 import { bookSlug } from '@/src/lib/slug';
@@ -111,6 +112,9 @@ function HomePageInner() {
       setLevel(lvl);
       setShowFavs(false);
     }
+    if (searchParams.get('favs') === '1') {
+      setShowFavs(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
@@ -119,6 +123,9 @@ function HomePageInner() {
     if (lvl && ['dimotiko','gymnasio','lykeio'].includes(lvl)) {
       setLevel(lvl);
       setShowFavs(false);
+    }
+    if (searchParams.get('favs') === '1') {
+      setShowFavs(true);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
@@ -404,6 +411,7 @@ function HomePageInner() {
         />
       )}
 
+      <MobileNav />
       <InstallPWA />
 
       <footer className="footer">
