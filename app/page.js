@@ -10,6 +10,7 @@ import AiChatPanel from '@/src/components/AiChatPanel';
 import InstallPWA from '@/src/components/InstallPWA';
 import ThemeToggle from '@/src/components/ThemeToggle';
 import RecentlyViewed from '@/src/components/RecentlyViewed';
+import TrendingBooks from '@/src/components/TrendingBooks';
 import { bookSlug } from '@/src/lib/slug';
 
 const LEVELS = [
@@ -281,6 +282,7 @@ function HomePageInner() {
               🎲 Τυχαίο βιβλίο
             </button>
           </div>
+          <TrendingBooks allBooks={allBooks} />
           <RecentlyViewed allBooks={allBooks} />
         </>
       )}
@@ -405,7 +407,18 @@ function HomePageInner() {
       <InstallPWA />
 
       <footer className="footer">
-        <p>Τα βιβλία προέρχονται από τη <a href="https://ebooksdl.cti.gr" target="_blank" rel="noopener noreferrer">Ψηφιακή Βιβλιοθήκη Μελίσπη</a> του ΙΤΥΕ Διόφαντος.</p>
+        <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 20px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, justifyContent: 'center', marginBottom: 16 }}>
+            <a href="/about" style={{ color: 'var(--text-2)', textDecoration: 'none', fontSize: 13 }}>Σχετικά</a>
+            <a href="/epikoinonia" style={{ color: 'var(--text-2)', textDecoration: 'none', fontSize: 13 }}>Επικοινωνία</a>
+            <a href="/privacy" style={{ color: 'var(--text-2)', textDecoration: 'none', fontSize: 13 }}>Πολιτική Απορρήτου</a>
+            <a href="/terms" style={{ color: 'var(--text-2)', textDecoration: 'none', fontSize: 13 }}>Όροι Χρήσης</a>
+          </div>
+          <p style={{ fontSize: 13, textAlign: 'center' }}>
+            Τα βιβλία προέρχονται από τη <a href="https://ebooksdl.cti.gr" target="_blank" rel="noopener noreferrer">Ψηφιακή Βιβλιοθήκη Μελίσπη</a> του ΙΤΥΕ Διόφαντος.
+          </p>
+          <p style={{ fontSize: 11, textAlign: 'center', color: 'var(--text-3)', marginTop: 8 }}>© {new Date().getFullYear()} Portify · Δωρεάν εκπαιδευτική υπηρεσία</p>
+        </div>
       </footer>
     </>
   );
