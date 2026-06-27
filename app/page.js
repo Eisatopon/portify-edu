@@ -244,28 +244,6 @@ function HomePageInner() {
         </div>
       </section>
 
-      {/* RECENTLY VIEWED + RANDOM BOOK */}
-      {!showBooks && (
-        <div style={{ maxWidth: 1100, margin: '24px auto 0', padding: '0 20px', textAlign: 'center' }}>
-          <button onClick={openRandomBook}
-            style={{ background: '#fff', border: '2px dashed #cbd5e1', color: '#1a4fa8', padding: '10px 22px', borderRadius: 30, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
-            🎲 Τυχαίο βιβλίο
-          </button>
-        </div>
-      )}
-      {!showBooks && <RecentlyViewed allBooks={allBooks} />}
-
-      {/* RANDOM BOOK + RECENTLY VIEWED */}
-      {!showBooks && (
-        <div style={{ maxWidth: 1100, margin: '24px auto 0', padding: '0 20px', textAlign: 'center' }}>
-          <button onClick={openRandomBook}
-            style={{ background: '#fff', border: '2px dashed #cbd5e1', color: '#1a4fa8', padding: '10px 22px', borderRadius: 30, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
-            🎲 Τυχαίο βιβλίο
-          </button>
-        </div>
-      )}
-      {!showBooks && <RecentlyViewed allBooks={allBooks} />}
-
       {/* LANDING */}
       {!showBooks && (
         <div style={{ maxWidth: 960, margin: '0 auto', padding: '48px 20px' }}>
@@ -288,6 +266,19 @@ function HomePageInner() {
             ))}
           </div>
         </div>
+      )}
+
+      {/* Below the 3 level cards: Random book + Recently viewed */}
+      {!showBooks && (
+        <>
+          <div style={{ maxWidth: 1100, margin: '32px auto 0', padding: '0 20px', textAlign: 'center' }}>
+            <button onClick={openRandomBook}
+              style={{ background: '#fff', border: '2px dashed #cbd5e1', color: '#1a4fa8', padding: '10px 22px', borderRadius: 30, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
+              🎲 Τυχαίο βιβλίο
+            </button>
+          </div>
+          <RecentlyViewed allBooks={allBooks} />
+        </>
       )}
 
       {/* BOOKS VIEW */}
@@ -406,8 +397,6 @@ function HomePageInner() {
           onClose={() => setAiBook(null)}
         />
       )}
-
-      <InstallPWA />
 
       <InstallPWA />
 
