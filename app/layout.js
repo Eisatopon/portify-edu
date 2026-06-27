@@ -1,5 +1,13 @@
+// app/layout.js — Manrope brand font + everything από πριν
+import { Manrope } from 'next/font/google';
 import './globals.css';
 import { GoogleAnalytics } from '@next/third-parties/google';
+
+const manrope = Manrope({
+  subsets: ['greek', 'latin'],
+  display: 'swap',
+  variable: '--font-manrope',
+});
 
 const SITE_URL = 'https://portify.gr';
 
@@ -11,10 +19,7 @@ export const metadata = {
   authors: [{ name: 'Portify' }],
   applicationName: 'Portify',
   formatDetection: { telephone: false, email: false, address: false },
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
-  },
+  icons: { icon: '/favicon.ico', apple: '/apple-touch-icon.png' },
   manifest: '/site.webmanifest',
   alternates: { canonical: '/' },
   openGraph: {
@@ -43,34 +48,23 @@ export const viewport = {
 };
 
 const JSON_LD_SITE = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'Portify',
-  alternateName: 'Portify Βιβλία',
-  url: SITE_URL,
-  description: 'Ψηφιακή βιβλιοθήκη σχολικών βιβλίων — Δημοτικό, Γυμνάσιο, Λύκειο',
-  inLanguage: 'el',
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: `${SITE_URL}/?q={search_term_string}`,
-    'query-input': 'required name=search_term_string',
-  },
+  '@context': 'https://schema.org', '@type': 'WebSite',
+  name: 'Portify', alternateName: 'Portify Βιβλία', url: SITE_URL,
+  description: 'Ψηφιακή βιβλιοθήκη σχολικών βιβλίων — Δημοτικό, Γυμνάσιο, Λύκειο', inLanguage: 'el',
+  potentialAction: { '@type': 'SearchAction', target: `${SITE_URL}/?q={search_term_string}`, 'query-input': 'required name=search_term_string' },
 };
 
 const JSON_LD_ORG = {
-  '@context': 'https://schema.org',
-  '@type': 'EducationalOrganization',
-  name: 'Portify',
-  url: SITE_URL,
-  logo: `${SITE_URL}/og-image.png`,
+  '@context': 'https://schema.org', '@type': 'EducationalOrganization',
+  name: 'Portify', url: SITE_URL, logo: `${SITE_URL}/og-image.png`,
   description: 'Δωρεάν ψηφιακή βιβλιοθήκη ελληνικών σχολικών βιβλίων.',
 };
 
 export default function RootLayout({ children }) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
   return (
-    <html lang="el">
-      <body>
+    <html lang="el" className={manrope.variable}>
+      <body style={{ fontFamily: 'var(--font-manrope), system-ui, -apple-system, sans-serif' }}>
         <a href="#main" style={{ position: 'absolute', left: -9999 }} className="skip-link">Μετάβαση στο περιεχόμενο</a>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD_SITE) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD_ORG) }} />

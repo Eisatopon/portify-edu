@@ -18,6 +18,15 @@ export default function BookViewerClient({ book }) {
     } catch {}
   }, [book.id]);
 
+  // Save to "Recently viewed" history (latest 12)
+  useEffect(() => {
+    try {
+      const prev = JSON.parse(localStorage.getItem('portify_recent_v1') || '[]');
+      const next = [book.id, ...prev.filter(i => i !== book.id)].slice(0, 12);
+      localStorage.setItem('portify_recent_v1', JSON.stringify(next));
+    } catch {}
+  }, [book.id]);
+
   function toggleFav() {
     try {
       const favs = JSON.parse(localStorage.getItem('portify_favs_v2') || '[]');
