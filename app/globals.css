@@ -732,3 +732,65 @@ html[data-theme="dark"] .theme-toggle .icon.moon { opacity: 1; transform: rotate
   padding: 2px 6px; font-size: 11px; font-family: ui-monospace, monospace;
 }
 
+/* ── DARK MODE POLISH ──────────────────────────
+   Διορθώνει το χαμηλό contrast στον hero τίτλο.
+   Add at the very end of globals.css. */
+
+html[data-theme="dark"] .hero h1 {
+  color: #f1f5f9;
+}
+html[data-theme="dark"] .hero h1 em {
+  color: #93c5fd;
+  font-style: normal;
+}
+html[data-theme="dark"] .hero-pill {
+  background: rgba(110, 168, 255, 0.12);
+  color: #93c5fd;
+  border: 1px solid rgba(110, 168, 255, 0.25);
+}
+html[data-theme="dark"] .hero-sub {
+  color: #cbd5e1;
+}
+html[data-theme="dark"] .hero-stats {
+  background: rgba(19, 26, 43, 0.6);
+  border: 1px solid #243049;
+  backdrop-filter: blur(8px);
+}
+html[data-theme="dark"] .hero-stat .n {
+  color: #f1f5f9;
+}
+html[data-theme="dark"] .hero-stat .l {
+  color: #94a3b8;
+}
+html[data-theme="dark"] .results-info {
+  color: #94a3b8;
+}
+html[data-theme="dark"] .results-info strong {
+  color: #f1f5f9;
+}
+html[data-theme="dark"] .book-title {
+  color: #f1f5f9;
+}
+html[data-theme="dark"] .book-publisher {
+  color: #94a3b8;
+}
+html[data-theme="dark"] .empty-state h3 { color: #e2e8f0; }
+html[data-theme="dark"] .empty-state p  { color: #94a3b8; }
+html[data-theme="dark"] .bs-section-title { color: #94a3b8; }
+html[data-theme="dark"] .bs-btn { background: #1a2540; color: #e2e8f0; border-color: #243049; }
+html[data-theme="dark"] .bs-btn.active { background: #1e3a6e; color: #93c5fd; border-color: #6ea8ff; }
+html[data-theme="dark"] .bs-count { background: #243049; color: #94a3b8; }
+html[data-theme="dark"] .level-tabs { background: rgba(19, 26, 43, 0.92); }
+html[data-theme="dark"] .search-clear { color: #94a3b8; }
+html[data-theme="dark"] .search-clear:hover { color: #f1f5f9; }
+html[data-theme="dark"] .search-icon { color: #6ea8ff; }
+html[data-theme="dark"] .mobile-filter-btn {
+  background: #1e3a6e;
+  color: #dbe7ff;
+}
+html[data-theme="dark"] .type-badge {
+  background: rgba(0, 0, 0, 0.7);
+  color: #f1f5f9;
+  backdrop-filter: blur(4px);
+}
+
