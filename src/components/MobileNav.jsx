@@ -1,8 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import allBooks from '@/src/data/books.json';
-import { bookSlug } from '@/src/lib/slug';
 
 export default function MobileNav() {
   const router = useRouter();
@@ -22,18 +20,21 @@ export default function MobileNav() {
     setTimeout(() => document.documentElement.classList.remove('theme-transition'), 320);
   }
 
-  function openRandom() {
-    const b = allBooks[Math.floor(Math.random() * allBooks.length)];
-    router.push(`/book/${bookSlug(b)}`);
+  function openFilters() {
+    // If we're on the homepage, dispatch a custom event so page.js can open the bottom sheet.
+    // Otherwise navigate to homepage with ?openFilters=1 query param.
+    if (pathname === '/') {
+      try { window.dispatchEvent(new CustomEvent('portify:open-filters')); } catch {}
+    } else {
+      router.push('/?openFilters=1');
+    }
   }
 
   function goFavs() {
-    // Trigger favorites view on homepage
     router.push('/?favs=1');
   }
 
   const isHome = pathname === '/';
-  const isBook = pathname?.startsWith('/book/');
 
   return (
     <nav className="mobile-nav" aria-label="Κάτω πλοήγηση κινητού">
@@ -45,9 +46,9 @@ export default function MobileNav() {
         <span className="mn-icon" aria-hidden="true">❤️</span>
         <span className="mn-label">Αγαπημένα</span>
       </button>
-      <button onClick={openRandom} aria-label="Τυχαίο βιβλίο">
-        <span className="mn-icon" aria-hidden="true">🎲</span>
-        <span className="mn-label">Τυχαίο</span>
+      <button onClick={openFilters} aria-label="Φίλτρα">
+        <span className="mn-icon" aria-hidden="true">🎛</span>
+        <span className="mn-label">Φίλτρα</span>
       </button>
       <button onClick={toggleTheme} aria-label={theme === 'dark' ? 'Φωτεινό θέμα' : 'Σκούρο θέμα'}>
         <span className="mn-icon" aria-hidden="true">{theme === 'dark' ? '☀️' : '🌙'}</span>

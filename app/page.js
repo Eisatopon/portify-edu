@@ -6,7 +6,6 @@ import Filters from '@/src/components/Filters';
 import { useBookFilters } from '@/src/hooks/useBookFilters';
 import { LEVEL_BADGE } from '@/src/lib/constants';
 import allBooks from '@/src/data/books.json';
-import AiChatPanel from '@/src/components/AiChatPanel';
 import InstallPWA from '@/src/components/InstallPWA';
 import ThemeToggle from '@/src/components/ThemeToggle';
 import MobileNav from '@/src/components/MobileNav';
@@ -84,7 +83,6 @@ function HomePageInner() {
   const [loading, setLoading] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showFavs, setShowFavs] = useState(false);
-  const [aiBook, setAiBook] = useState(null);
   const count = useCounter(allBooks.length);
   const searchRef = useRef(null);
   const { favs, toggle: toggleFav } = useFavorites(allBooks);
@@ -98,13 +96,6 @@ function HomePageInner() {
     liveResults, showLiveResults,
   } = useBookFilters(allBooks, null);
 
-  function openRandomBook() {
-    const pool = level ? allBooks.filter(b => b.level === level) : allBooks;
-    if (!pool.length) return;
-    const book = pool[Math.floor(Math.random() * pool.length)];
-    router.push(`/book/${bookSlug(book)}`);
-  }
-
   // Read ?level= query param from URL on first mount and pre-select level
   useEffect(() => {
     const lvl = searchParams.get('level');
@@ -115,6 +106,11 @@ function HomePageInner() {
     if (searchParams.get('favs') === '1') {
       setShowFavs(true);
     }
+    if (searchParams.get('openFilters') === '1') {
+      // Auto-pick first level if none, then open the bottom sheet
+      if (!lvl) setLevel('dimotiko');
+      setSheetOpen(true);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
@@ -130,12 +126,16 @@ function HomePageInner() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
-  function openRandomBook() {
-    const pool = level ? allBooks.filter(b => b.level === level) : allBooks;
-    if (!pool.length) return;
-    const book = pool[Math.floor(Math.random() * pool.length)];
-    router.push(`/book/${bookSlug(book)}`);
-  }
+  // Listen for custom event from MobileNav to open the filters bottom sheet
+  useEffect(() => {
+    function handleOpen() {
+      if (!level) setLevel('dimotiko');
+      setSheetOpen(true);
+    }
+    window.addEventListener('portify:open-filters', handleOpen);
+    return () => window.removeEventListener('portify:open-filters', handleOpen);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [level]);
 
   useEffect(() => {
     setDropdownOpen(showLiveResults && liveResults.length > 0);
@@ -280,15 +280,9 @@ function HomePageInner() {
         </div>
       )}
 
-      {/* Below the 3 level cards: Random book + Recently viewed */}
+      {/* Below the 3 level cards: Trending + Recently viewed */}
       {!showBooks && (
         <>
-          <div style={{ maxWidth: 1100, margin: '32px auto 0', padding: '0 20px', textAlign: 'center' }}>
-            <button onClick={openRandomBook}
-              style={{ background: '#fff', border: '2px dashed #cbd5e1', color: '#1a4fa8', padding: '10px 22px', borderRadius: 30, fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'inherit' }}>
-              🎲 Τυχαίο βιβλίο
-            </button>
-          </div>
           <TrendingBooks allBooks={allBooks} />
           <RecentlyViewed allBooks={allBooks} />
         </>
@@ -349,7 +343,7 @@ function HomePageInner() {
                     </div>
                   ) : (
                     displayBooks.map((book, i) => (
-                      <BookCard key={`${book.id}-${i}`} book={book} isFav={favs.includes(book.id)} onToggleFav={() => toggleFav(book.id)} onAiClick={setAiBook} />
+                      <BookCard key={`${book.id}-${i}`} book={book} isFav={favs.includes(book.id)} onToggleFav={() => toggleFav(book.id)} />
                     ))
                   )}
                 </div>
@@ -399,16 +393,6 @@ function HomePageInner() {
             </button>
           </div>
         </>
-      )}
-
-      {aiBook && (
-        <AiChatPanel
-          key={aiBook.pdfUrl}
-          bookTitle={aiBook.title}
-          bookSubject={aiBook.subject}
-          bookLevel={aiBook.level}
-          onClose={() => setAiBook(null)}
-        />
       )}
 
       <MobileNav />

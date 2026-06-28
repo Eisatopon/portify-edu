@@ -6,7 +6,7 @@ import { isStudentBook, shortTypeLabel } from '@/src/lib/bookType';
 import { bookSlug } from '@/src/lib/slug';
 import StarRating from '@/src/components/StarRating';
 
-export default function BookCard({ book, isFav, onToggleFav, onAiClick }) {
+export default function BookCard({ book, isFav, onToggleFav }) {
   const [imgError, setImgError] = useState(false);
   const lc = LEVEL_BADGE[book.level];
   const icon = SUBJECT_ICONS[book.subject] || SUBJECT_ICONS.default;
@@ -44,19 +44,15 @@ export default function BookCard({ book, isFav, onToggleFav, onAiClick }) {
         <p className="book-publisher">{book.publisher}</p>
       </div>
       <StarRating bookId={book.id} />
-      <div className="book-actions" style={{ display: 'flex', gap: 6 }}>
+      <div className="book-actions">
         <Link
           href={`/book/${slug}`}
           className="btn-pdf"
-          style={{ flex: 1, textDecoration: 'none', textAlign: 'center', display: 'block' }}
+          style={{ width: '100%', textDecoration: 'none', textAlign: 'center', display: 'block' }}
           aria-label={`Άνοιγμα: ${book.title}`}
         >
           Άνοιξε
         </Link>
-        <button onClick={() => onAiClick && onAiClick(book)} aria-label="Άνοιγμα AI βοηθού"
-          style={{ width: 36, background: '#f0f4ff', color: '#1a4fa8', border: '1px solid #c7d7f5', borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: 'pointer' }}>
-          AI
-        </button>
       </div>
     </div>
   );
