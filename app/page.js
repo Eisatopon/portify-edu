@@ -206,7 +206,7 @@ function HomePageInner() {
         <div className="hero-inner">
           <div className="hero-pill">ΔΗΜΟΤΙΚΟ · ΓΥΜΝΑΣΙΟ · ΛΥΚΕΙΟ</div>
           <h1>Όλα τα σχολικά βιβλία<br /><em>σε ένα μέρος</em></h1>
-          <p className="hero-sub">Βρες το σχολικό βιβλίο που χρειάζεσαι — χωρίς περιπλανήσεις</p>
+          <p className="hero-sub">Βιβλία <strong>και χιλιάδες Ψηφιακά Μαθησιακά Αντικείμενα</strong> — βίντεο, ασκήσεις &amp; διαδραστικό υλικό, όλα σε ένα μέρος</p>
 
           <div ref={searchRef} style={{ position: 'relative', maxWidth: 540, margin: '0 auto' }}>
             <form className="search-wrap" onSubmit={handleSearch} style={{ position: 'relative', maxWidth: '100%', margin: 0 }}>
@@ -251,7 +251,7 @@ function HomePageInner() {
 
           <div className="hero-stats">
             <div className="hero-stat"><div className="n">{count}</div><div className="l">βιβλία</div></div>
-            <div className="hero-stat"><div className="n" style={{ fontSize: 15, whiteSpace: 'nowrap' }}>Το πολλαπλό βιβλίο</div><div className="l">στην εκπαίδευση</div></div>
+            <div className="hero-stat"><div className="n">22.000+</div><div className="l">ψηφιακά αντικείμενα</div></div>
           </div>
         </div>
       </section>
@@ -407,7 +407,7 @@ function HomePageInner() {
             <a href="/terms" style={{ color: 'var(--text-2)', textDecoration: 'none', fontSize: 13 }}>Όροι Χρήσης</a>
           </div>
           <p style={{ fontSize: 13, textAlign: 'center' }}>
-            Τα βιβλία προέρχονται από τη <a href="https://ebooksdl.cti.gr" target="_blank" rel="noopener noreferrer">Ψηφιακή Βιβλιοθήκη Μελίσπη</a> του ΙΤΥΕ Διόφαντος.
+            Εκτός από τα σχολικά βιβλία, το Portify περιλαμβάνει πλέον και <strong>χιλιάδες Ψηφιακά Μαθησιακά Αντικείμενα (ΨΜΑ)</strong> — διαδραστικό υλικό, βίντεο, εικόνες και ασκήσεις. Βιβλία και ΨΜΑ προέρχονται από τη <a href="https://ebooksdl.cti.gr" target="_blank" rel="noopener noreferrer">Ψηφιακή Βιβλιοθήκη Μελίσπη</a> του ΙΤΥΕ Διόφαντος.
           </p>
           <p style={{ fontSize: 11, textAlign: 'center', color: 'var(--text-3)', marginTop: 8 }}>© {new Date().getFullYear()} Portify · Δωρεάν εκπαιδευτική υπηρεσία</p>
         </div>
