@@ -1,5 +1,5 @@
 'use client';
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useDeferredValue } from 'react';
 import { filterBooks } from '@/src/lib/search';
 
 export function useBookFilters(allBooks, initialLevel = null) {
@@ -81,12 +81,16 @@ export function useBookFilters(allBooks, initialLevel = null) {
 
   const hasFilters = !!(grade || subject || query);
 
-  // Show live results dropdown when typing without level selected
-  const showLiveResults = inputValue.trim().length > 1 && !level;
+  // Show live results dropdown when typing without level selected.
+  // Use a deferred value so the heavy filterBooks call is computed at a lower
+  // priority and never blocks keystrokes (fixes typing lag) while keeping the
+  // dropdown instant-feeling.
+  const deferredInput = useDeferredValue(inputValue);
+  const showLiveResults = deferredInput.trim().length > 1 && !level;
   const liveResults = useMemo(() => {
     if (!showLiveResults) return [];
-    return filterBooks(allBooks, { level: null, grade: null, subject: null, query: inputValue.trim() }).slice(0, 6);
-  }, [allBooks, inputValue, showLiveResults]);
+    return filterBooks(allBooks, { level: null, grade: null, subject: null, query: deferredInput.trim() }).slice(0, 6);
+  }, [allBooks, deferredInput, showLiveResults]);
 
   return {
     level, grade, subject, query, inputValue, setInputValue,

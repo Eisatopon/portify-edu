@@ -1,24 +1,9 @@
 'use client';
-import { useEffect, useState } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 
 export default function MobileNav() {
   const router = useRouter();
   const pathname = usePathname();
-  const [theme, setTheme] = useState('light');
-
-  useEffect(() => {
-    setTheme(document.documentElement.getAttribute('data-theme') || 'light');
-  }, []);
-
-  function toggleTheme() {
-    const next = theme === 'dark' ? 'light' : 'dark';
-    document.documentElement.classList.add('theme-transition');
-    document.documentElement.setAttribute('data-theme', next);
-    try { localStorage.setItem('portify_theme', next); } catch {}
-    setTheme(next);
-    setTimeout(() => document.documentElement.classList.remove('theme-transition'), 320);
-  }
 
   function openFilters() {
     // If we're on the homepage, dispatch a custom event so page.js can open the bottom sheet.
@@ -49,10 +34,6 @@ export default function MobileNav() {
       <button onClick={openFilters} aria-label="Φίλτρα">
         <span className="mn-icon" aria-hidden="true">🎛</span>
         <span className="mn-label">Φίλτρα</span>
-      </button>
-      <button onClick={toggleTheme} aria-label={theme === 'dark' ? 'Φωτεινό θέμα' : 'Σκούρο θέμα'}>
-        <span className="mn-icon" aria-hidden="true">{theme === 'dark' ? '☀️' : '🌙'}</span>
-        <span className="mn-label">Θέμα</span>
       </button>
 
       <style jsx>{`

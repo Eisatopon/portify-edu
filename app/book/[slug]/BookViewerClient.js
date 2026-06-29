@@ -16,7 +16,10 @@ export default function BookViewerClient({ book, psma = [] }) {
   const [stats, setStats] = useState(null);
   const [streakInfo, setStreakInfo] = useState(null);
   const lc = LEVEL_BADGE[book.level];
-  const pdfSrc = '/api/pdf?url=' + encodeURIComponent(book.pdfUrl);
+  // Load the PDF directly from the source (supports HTTP Range / progressive
+  // loading). The /api/pdf proxy can't cache these large files (41MB+) on
+  // Vercel's Data Cache, so it just added a slow extra hop — direct is faster.
+  const pdfSrc = book.pdfUrl;
 
   useEffect(() => {
     try {

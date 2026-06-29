@@ -40,7 +40,7 @@ export default function TrendingBooks({ allBooks }) {
         <h2 style={{ fontSize: 20, fontWeight: 700, color: 'var(--text)' }}>🔥 Τα πιο δημοφιλή</h2>
         <span style={{ fontSize: 12, color: 'var(--text-3)' }}>Με βάση τις αξιολογήσεις των χρηστών</span>
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 14 }}>
+      <div className="trending-grid">
         {books.map((book, i) => {
           const lc = LEVEL_BADGE[book.level];
           return (
@@ -64,6 +64,19 @@ export default function TrendingBooks({ allBooks }) {
           );
         })}
       </div>
+
+      <style jsx>{`
+        .trending-grid {
+          display: grid;
+          gap: 14px;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        @media (min-width: 560px) {
+          .trending-grid {
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+          }
+        }
+      `}</style>
     </section>
   );
 }

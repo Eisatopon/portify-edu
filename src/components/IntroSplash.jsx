@@ -27,11 +27,6 @@ export default function IntroSplash() {
     } catch {}
   }, []);
 
-  function handleSkip() {
-    setClosing(true);
-    setTimeout(() => setShow(false), 280);
-  }
-
   if (!show) return null;
 
   return (
@@ -41,16 +36,6 @@ export default function IntroSplash() {
       aria-label="Καλωσήρθες στο Portify"
       data-testid="intro-splash"
     >
-      <button
-        type="button"
-        className="pi-skip"
-        onClick={handleSkip}
-        aria-label="Παράλειψη intro"
-        data-testid="intro-skip-btn"
-      >
-        Παράλειψη <span aria-hidden="true">→</span>
-      </button>
-
       <div className="pi-stage">
         <div className="pi-text">
           <div className="pi-welcome">Καλώς ήρθες!</div>
