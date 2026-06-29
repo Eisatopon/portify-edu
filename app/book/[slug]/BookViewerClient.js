@@ -5,6 +5,8 @@ import AiChatPanel from '@/src/components/AiChatPanel';
 import SimilarBooks from '@/src/components/SimilarBooks';
 import PackageSiblings from '@/src/components/PackageSiblings';
 import SupplementaryMaterial from '@/src/components/SupplementaryMaterial';
+import BookReader from '@/src/components/BookReader';
+import { getBitstreamId } from '@/src/lib/psma';
 import { recordVisit, getBookStats, timeAgoGreek } from '@/src/lib/readingHistory';
 import allBooks from '@/src/data/books.json';
 import Link from 'next/link';
@@ -12,14 +14,11 @@ import Link from 'next/link';
 export default function BookViewerClient({ book, psma = [] }) {
   const [aiOpen, setAiOpen] = useState(false);
   const [fav, setFav] = useState(false);
-  const [pdfLoaded, setPdfLoaded] = useState(false);
   const [stats, setStats] = useState(null);
   const [streakInfo, setStreakInfo] = useState(null);
   const lc = LEVEL_BADGE[book.level];
-  // Load the PDF directly from the source (supports HTTP Range / progressive
-  // loading). The /api/pdf proxy can't cache these large files (41MB+) on
-  // Vercel's Data Cache, so it just added a slow extra hop — direct is faster.
-  const pdfSrc = book.pdfUrl;
+  const bsid = getBitstreamId(book.pdfUrl);
+  const previewSrc = bsid ? `/previews/${bsid}.jpg` : null;
 
   useEffect(() => {
     try {
@@ -126,23 +125,8 @@ export default function BookViewerClient({ book, psma = [] }) {
         </div>
       )}
 
-      {/* Embedded PDF viewer */}
-      <div style={{ position: 'relative', width: '100%', height: 'calc(100vh - 240px)', minHeight: 500, background: '#1e293b', borderRadius: 8, overflow: 'hidden' }}>
-        {!pdfLoaded && (
-          <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1 }} role="status">
-            <div style={{ textAlign: 'center' }}>
-              <div style={{ width: 44, height: 44, border: '4px solid rgba(255,255,255,0.1)', borderTop: '4px solid #6366f1', borderRadius: '50%', animation: 'spin 0.8s linear infinite', margin: '0 auto 14px' }} aria-hidden="true" />
-              <p style={{ color: '#94a3b8', fontSize: 13 }}>Φόρτωση PDF…</p>
-            </div>
-          </div>
-        )}
-        <iframe
-          src={pdfSrc}
-          style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
-          title={book.title}
-          onLoad={() => setPdfLoaded(true)}
-        />
-      </div>
+      {/* Instant page-1 preview; full PDF (PdfViewer) loads on tap */}
+      <BookReader pdfUrl={book.pdfUrl} title={book.title} previewSrc={previewSrc} />
 
       <SupplementaryMaterial items={psma} />
 
