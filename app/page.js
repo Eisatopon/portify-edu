@@ -189,7 +189,7 @@ function HomePageInner() {
             </svg>
             <div>
               <div className="logo-name">Portify <span>Βιβλία</span></div>
-              <div className="logo-sub">Πολλαπλό βιβλίο &amp; Ψηφιακά Μαθησιακά Αντικείμενα</div>
+              <div className="logo-sub">Ψηφιακά Μαθησιακά Αντικείμενα</div>
             </div>
           </a>
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
