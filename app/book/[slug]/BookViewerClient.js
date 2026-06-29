@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { LEVEL_BADGE } from '@/src/lib/constants';
 import AiChatPanel from '@/src/components/AiChatPanel';
 import SimilarBooks from '@/src/components/SimilarBooks';
+import PackageSiblings from '@/src/components/PackageSiblings';
 import { recordVisit, getBookStats, timeAgoGreek } from '@/src/lib/readingHistory';
 import allBooks from '@/src/data/books.json';
 import Link from 'next/link';
@@ -138,6 +139,8 @@ export default function BookViewerClient({ book }) {
           onLoad={() => setPdfLoaded(true)}
         />
       </div>
+
+      <PackageSiblings book={book} allBooks={allBooks} />
 
       <SimilarBooks currentBook={book} allBooks={allBooks} />
 

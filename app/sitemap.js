@@ -1,7 +1,8 @@
+// app/sitemap.js — XML sitemap (www canonical)
 import allBooks from '@/src/data/books.json';
 import { bookSlug } from '@/src/lib/slug';
 
-const BASE = 'https://portify.gr';
+const BASE = 'https://www.portify.gr';
 
 export default function sitemap() {
   const now = new Date();
@@ -10,6 +11,10 @@ export default function sitemap() {
     { url: `${BASE}/dimotiko`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/gymnasio`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/lykeio`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
+    { url: `${BASE}/about`, lastModified: now, changeFrequency: 'yearly', priority: 0.5 },
+    { url: `${BASE}/epikoinonia`, lastModified: now, changeFrequency: 'yearly', priority: 0.4 },
+    { url: `${BASE}/privacy`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
+    { url: `${BASE}/terms`, lastModified: now, changeFrequency: 'yearly', priority: 0.3 },
   ];
   const bookRoutes = allBooks.map(b => ({
     url: `${BASE}/book/${bookSlug(b)}`,
