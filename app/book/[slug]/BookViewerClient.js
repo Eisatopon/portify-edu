@@ -4,11 +4,12 @@ import { LEVEL_BADGE } from '@/src/lib/constants';
 import AiChatPanel from '@/src/components/AiChatPanel';
 import SimilarBooks from '@/src/components/SimilarBooks';
 import PackageSiblings from '@/src/components/PackageSiblings';
+import SupplementaryMaterial from '@/src/components/SupplementaryMaterial';
 import { recordVisit, getBookStats, timeAgoGreek } from '@/src/lib/readingHistory';
 import allBooks from '@/src/data/books.json';
 import Link from 'next/link';
 
-export default function BookViewerClient({ book }) {
+export default function BookViewerClient({ book, psma = [] }) {
   const [aiOpen, setAiOpen] = useState(false);
   const [fav, setFav] = useState(false);
   const [pdfLoaded, setPdfLoaded] = useState(false);
@@ -139,6 +140,8 @@ export default function BookViewerClient({ book }) {
           onLoad={() => setPdfLoaded(true)}
         />
       </div>
+
+      <SupplementaryMaterial items={psma} />
 
       <PackageSiblings book={book} allBooks={allBooks} />
 

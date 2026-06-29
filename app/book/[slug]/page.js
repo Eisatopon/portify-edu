@@ -1,6 +1,7 @@
 import allBooks from '@/src/data/books.json';
 import { bookSlug, findBookBySlug } from '@/src/lib/slug';
 import { LEVEL_BADGE } from '@/src/lib/constants';
+import { getPsmaForBook } from '@/src/lib/psma';
 import { notFound } from 'next/navigation';
 import BookViewerClient from './BookViewerClient';
 
@@ -57,6 +58,7 @@ export default async function BookPage({ params }) {
   if (!book) notFound();
 
   const ratings = await fetchRatings(book.id);
+  const psma = getPsmaForBook(book);
   const lvlLabel = LEVEL_BADGE[book.level]?.label || book.level;
 
   const bookJsonLd = {
@@ -99,7 +101,7 @@ export default async function BookPage({ params }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(bookJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <BookViewerClient book={book} />
+      <BookViewerClient book={book} psma={psma} />
     </>
   );
 }
