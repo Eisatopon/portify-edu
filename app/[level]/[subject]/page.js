@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import allBooks from '@/src/data/books.json';
 import { GRADE_LABELS } from '@/src/lib/constants';
 import { bookSlug, subjectSlug } from '@/src/lib/slug';
+import FaqSection from '@/src/components/FaqSection';
 
 const SITE_URL = 'https://www.portify.gr';
 
@@ -83,6 +84,21 @@ export default async function SubjectPage({ params }) {
     ],
   };
 
+  const faqItems = [
+    {
+      q: `Πού θα βρω τα βιβλία ${subjName} ${cfg.genitive};`,
+      a: `Σε αυτή τη σελίδα του Portify υπάρχουν ${books.length} ${books.length === 1 ? 'βιβλίο' : 'βιβλία'} για ${subjName} ${cfg.genitive}, οργανωμένα ανά τάξη. Ανοίγουν online ή κατεβαίνουν σε PDF, δωρεάν.`,
+    },
+    {
+      q: `Είναι δωρεάν τα βιβλία ${subjName};`,
+      a: `Ναι, όλα είναι εντελώς δωρεάν. Προέρχονται από την επίσημη Ψηφιακή Βιβλιοθήκη «Μελίσπη» του ΙΤΥΕ Διόφαντος.`,
+    },
+    {
+      q: `Μπορώ να διαβάσω το βιβλίο ${subjName} online ή να το κατεβάσω σε PDF;`,
+      a: `Και τα δύο. Κάθε βιβλίο ανοίγει απευθείας στον browser σε υπολογιστή ή κινητό, και υπάρχει επιλογή λήψης σε PDF για offline μελέτη.`,
+    },
+  ];
+
   return (
     <>
       <div style={{ borderBottom: '1px solid var(--border, #e5e7eb)', background: 'var(--card, #fff)' }}>
@@ -141,6 +157,8 @@ export default async function SubjectPage({ params }) {
             </ul>
           </section>
         ))}
+
+        <FaqSection items={faqItems} accent={cfg.accent} />
       </main>
     </>
   );

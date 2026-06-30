@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import allBooks from '@/src/data/books.json';
 import { GRADE_LABELS } from '@/src/lib/constants';
 import { bookSlug, subjectSlug } from '@/src/lib/slug';
+import FaqSection from '@/src/components/FaqSection';
 const SITE_URL = 'https://www.portify.gr';
 
 const LEVELS = {
@@ -51,6 +52,25 @@ export default async function LevelPage({ params }) {
     subjectMap.get(s).count++;
   }
   const subjects = [...subjectMap.values()].sort((a, b) => a.name.localeCompare(b.name, 'el'));
+
+  const faqItems = [
+    {
+      q: `Πού μπορώ να βρω όλα τα σχολικά βιβλία ${cfg.genitive} σε PDF;`,
+      a: `Στο Portify θα βρεις ${books.length} σχολικά βιβλία ${cfg.genitive}, οργανωμένα ανά τάξη και μάθημα. Κάθε βιβλίο ανοίγει online ή κατεβαίνει σε PDF, εντελώς δωρεάν.`,
+    },
+    {
+      q: `Είναι δωρεάν τα σχολικά βιβλία ${cfg.genitive};`,
+      a: `Ναι, όλα τα βιβλία είναι εντελώς δωρεάν. Προέρχονται από την επίσημη Ψηφιακή Βιβλιοθήκη «Μελίσπη» του ΙΤΥΕ Διόφαντος.`,
+    },
+    {
+      q: `Μπορώ να διαβάσω τα βιβλία online χωρίς να τα κατεβάσω;`,
+      a: `Ναι. Κάθε βιβλίο ανοίγει απευθείας στον browser σου, σε υπολογιστή ή κινητό. Αν θέλεις, μπορείς και να το κατεβάσεις σε PDF για offline μελέτη.`,
+    },
+    {
+      q: `Τι είναι τα Ψηφιακά Μαθησιακά Αντικείμενα (ΨΜΑ);`,
+      a: `Είναι διαδραστικό εκπαιδευτικό υλικό — βίντεο, ασκήσεις, εικόνες και προσομοιώσεις — συνδεδεμένο με τα κεφάλαια των βιβλίων. Στο Portify υπάρχουν χιλιάδες ΨΜΑ για ${cfg.genitive}.`,
+    },
+  ];
 
   const itemListJsonLd = {
     '@context': 'https://schema.org',
@@ -167,6 +187,8 @@ export default async function LevelPage({ params }) {
           </ul>
         </section>
       ))}
+
+      <FaqSection items={faqItems} accent={cfg.accent} />
     </main>
     </>
   );
