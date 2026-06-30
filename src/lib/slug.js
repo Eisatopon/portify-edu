@@ -23,3 +23,9 @@ export function bookSlug(book) {
 export function findBookBySlug(books, slug) {
   return books.find(b => bookSlug(b) === slug) || null;
 }
+
+export function subjectSlug(subject) {
+  return greeklish(String(subject || ''))
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}

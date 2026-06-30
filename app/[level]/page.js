@@ -3,8 +3,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import allBooks from '@/src/data/books.json';
 import { GRADE_LABELS } from '@/src/lib/constants';
-import { bookSlug } from '@/src/lib/slug';
-
+import { bookSlug, subjectSlug } from '@/src/lib/slug';
 const SITE_URL = 'https://www.portify.gr';
 
 const LEVELS = {
@@ -42,6 +41,16 @@ export default async function LevelPage({ params }) {
   const byGrade = cfg.grades
     .map((g) => ({ grade: g, label: GRADE_LABELS[g], books: books.filter((b) => b.grade === g) }))
     .filter((x) => x.books.length > 0);
+
+  // Unique subjects (for internal linking to subject pages)
+  const subjectMap = new Map();
+  for (const b of books) {
+    const s = subjectSlug(b.subject);
+    if (!s) continue;
+    if (!subjectMap.has(s)) subjectMap.set(s, { name: b.subject, slug: s, count: 0 });
+    subjectMap.get(s).count++;
+  }
+  const subjects = [...subjectMap.values()].sort((a, b) => a.name.localeCompare(b.name, 'el'));
 
   const itemListJsonLd = {
     '@context': 'https://schema.org',
@@ -104,6 +113,29 @@ export default async function LevelPage({ params }) {
           Αναζήτηση με φίλτρα →
         </Link>
       </header>
+
+      {subjects.length > 0 && (
+        <section style={{ marginBottom: 36 }}>
+          <h2 style={{ fontSize: 20, margin: '0 0 14px', color: 'var(--text-1)', borderLeft: `3px solid ${cfg.accent}`, paddingLeft: 10 }}>
+            Μαθήματα
+          </h2>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+            {subjects.map((s) => (
+              <Link
+                key={s.slug}
+                href={`/${level}/${s.slug}`}
+                data-testid={`level-subject-link-${s.slug}`}
+                style={{
+                  padding: '8px 14px', borderRadius: 999, border: '1px solid var(--border, #e5e7eb)',
+                  textDecoration: 'none', fontSize: 14, fontWeight: 500, color: 'var(--text-1)', background: 'var(--card, #fff)',
+                }}
+              >
+                {s.name} <span style={{ color: 'var(--text-3)', fontWeight: 400 }}>({s.count})</span>
+              </Link>
+            ))}
+          </div>
+        </section>
+      )}
 
       {byGrade.map(({ grade, label, books: gradeBooks }) => (
         <section key={grade} style={{ marginBottom: 36 }}>
