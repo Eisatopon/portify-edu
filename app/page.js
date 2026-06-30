@@ -160,8 +160,7 @@ function HomePageInner() {
 
   function handleLevelClick(key) {
     setShowFavs(false);
-    setLoading(true);
-    setTimeout(() => { setLevel(key); setLoading(false); }, 300);
+    setLevel(key);
   }
 
   function handleLiveResultClick(book) {
