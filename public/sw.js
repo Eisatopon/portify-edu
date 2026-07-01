@@ -4,9 +4,9 @@
 //   - JS/CSS/images: stale-while-revalidate (instant load, updates in background)
 //   - API/PDFs: bypassed (handled by Vercel Edge cache)
 
-const VERSION = 'v3';
+const VERSION = 'v4';
 const CACHE_NAME = `portify-${VERSION}`;
-const PRECACHE = ['/', '/offline'];
+const PRECACHE = ['/'];
 
 self.addEventListener('install', (event) => {
   // Do NOT skipWaiting automatically — wait for user confirmation

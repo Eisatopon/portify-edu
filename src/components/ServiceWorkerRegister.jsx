@@ -10,8 +10,11 @@ export default function ServiceWorkerRegister() {
     if (process.env.NODE_ENV !== 'production' && !window.location.host.includes('portify.gr')) return;
 
     let refreshing = false;
+    // Only reload when an EXISTING controller is replaced (a real update),
+    // never on first install — first-install reloads can loop inside Android WebAPKs.
+    const hadControllerAtStart = !!navigator.serviceWorker.controller;
     function onControllerChange() {
-      if (refreshing) return;
+      if (refreshing || !hadControllerAtStart) return;
       refreshing = true;
       window.location.reload();
     }
