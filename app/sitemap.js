@@ -8,6 +8,9 @@ export default function sitemap() {
   const now = new Date();
   const staticRoutes = [
     { url: `${BASE}/`, lastModified: now, changeFrequency: 'weekly', priority: 1.0 },
+    { url: `${BASE}/pollaplo-vivlio`, lastModified: now, changeFrequency: 'weekly', priority: 0.9 },
+    { url: `${BASE}/pollaplo-vivlio/epilogi-didaktikon-vivlion`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${BASE}/pollaplo-vivlio/psifiaka-scholika-vivlia-pdf`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${BASE}/dimotiko`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/gymnasio`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${BASE}/lykeio`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },

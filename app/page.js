@@ -400,6 +400,7 @@ function HomePageInner() {
       <footer className="footer">
         <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 20px' }}>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 24, justifyContent: 'center', marginBottom: 16 }}>
+            <a href="/pollaplo-vivlio" style={{ color: 'var(--text-2)', textDecoration: 'none', fontSize: 13 }} data-testid="footer-link-pollaplo">Πολλαπλό Βιβλίο</a>
             <a href="/dimotiko" style={{ color: 'var(--text-2)', textDecoration: 'none', fontSize: 13 }} data-testid="footer-link-dimotiko">Βιβλία Δημοτικού</a>
             <a href="/gymnasio" style={{ color: 'var(--text-2)', textDecoration: 'none', fontSize: 13 }} data-testid="footer-link-gymnasio">Βιβλία Γυμνασίου</a>
             <a href="/lykeio" style={{ color: 'var(--text-2)', textDecoration: 'none', fontSize: 13 }} data-testid="footer-link-lykeio">Βιβλία Λυκείου</a>
