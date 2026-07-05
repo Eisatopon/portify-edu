@@ -175,6 +175,14 @@ function HomePageInner() {
   const showBooks = !!(level || query || showFavs);
   const displayBooks = showFavs ? favBooks : filtered;
 
+  // Paginate the grid so selecting a level renders instantly (no 200+ cards at once)
+  const PAGE_SIZE = 24;
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [level, grade, subject, query, showFavs]);
+  const visibleBooks = displayBooks.slice(0, visibleCount);
+
   return (
     <>
       <header className="header">
@@ -341,10 +349,21 @@ function HomePageInner() {
                       <button className="btn-reset" onClick={() => { clearAll(); setShowFavs(false); }}>Επιστροφή</button>
                     </div>
                   ) : (
-                    displayBooks.map((book, i) => (
+                    visibleBooks.map((book, i) => (
                       <BookCard key={`${book.id}-${i}`} book={book} isFav={favs.includes(book.id)} onToggleFav={() => toggleFav(book.id)} />
                     ))
                   )}
+                </div>
+              )}
+              {!loading && displayBooks.length > visibleCount && (
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
+                  <button
+                    className="btn-reset"
+                    data-testid="load-more-books-btn"
+                    onClick={() => setVisibleCount(c => c + PAGE_SIZE)}
+                  >
+                    Δείξε περισσότερα ({displayBooks.length - visibleCount})
+                  </button>
                 </div>
               )}
             </div>
