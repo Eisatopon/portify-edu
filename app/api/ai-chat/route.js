@@ -10,6 +10,17 @@ function bad(msg, status = 400, extra = {}) {
   return Response.json({ error: msg }, { status, headers: extra });
 }
 
+// Safety net: strip any URLs the model may still emit inside the answer body.
+function stripUrls(text) {
+  if (!text) return text;
+  return String(text)
+    .replace(/\s*[—–-]?\s*https?:\/\/\S+/gi, '') // "— https://..." or bare URLs
+    .replace(/\(\s*\)/g, '') // leftover empty parentheses
+    .replace(/[ \t]{2,}/g, ' ')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim();
+}
+
 // Build a RAG context block from the book's official Digital Learning Objects (ΨΜΑ).
 function buildPsmaContext(bitstreamId, question) {
   const list = (bitstreamId && psmaData[String(bitstreamId)]) || [];
@@ -22,12 +33,21 @@ function buildPsmaContext(bitstreamId, question) {
   const lines = sources
     .map((s, i) => `${i + 1}. "${s.title}"${s.page ? ` (σελ. ${s.page})` : ''} — ${s.url}`)
     .join('\n');
-  const contextText = `\n\nΕΠΙΣΗΜΟ ΨΗΦΙΑΚΟ ΥΛΙΚΟ (Ψηφιακά Μαθησιακά Αντικείμενα) που συνοδεύει αυτό το βιβλίο και σχετίζεται με την ερώτηση:\n${lines}\n\nΌταν κάποιο από αυτά βοηθά την απάντηση, ανάφερέ το με τον τίτλο και δώσε τον σύνδεσμό του, ώστε ο μαθητής να το ανοίξει.`;
+  const contextText = `\n\nΕΠΙΣΗΜΟ ΨΗΦΙΑΚΟ ΥΛΙΚΟ (Ψηφιακά Μαθησιακά Αντικείμενα) που συνοδεύει αυτό το βιβλίο και σχετίζεται με την ερώτηση:\n${lines}\n\nΌταν κάποιο από αυτά βοηθά την απάντηση, ανάφερέ το ΜΟΝΟ με τον τίτλο του μέσα σε εισαγωγικά (π.χ. «δες το υλικό "…"»). ΜΗΝ γράφεις ΠΟΤΕ διευθύνσεις URL ή συνδέσμους μέσα στην απάντηση — οι σύνδεσμοι εμφανίζονται αυτόματα ξεχωριστά κάτω από την απάντηση.`;
   return { contextText, sources };
 }
 
 function buildSystemPrompt({ bookSubject, bookTitle, bookLevel, contextText }) {
-  return `Είσαι ένας εκπαιδευτικός βοηθός για μαθητές στην Ελλάδα. Απαντάς βασιζόμενος στις γνώσεις σου για το μάθημα: ${bookSubject || 'γενικό'}. Το βιβλίο του μαθητή είναι: ${bookTitle || ''} (${bookLevel || ''}). Απαντάς πάντα στα ελληνικά, απλά και κατανοητά, με σωστούς τόνους. Αν ρωτηθείς για κάτι εκτός του μαθήματος, εξηγείς φιλικά ότι μπορείς να βοηθήσεις μόνο για αυτό. Όταν γράφεις μαθηματικούς τύπους χρησιμοποίησε LaTeX: inline $τύπος$ ή display $$τύπος$$.${contextText}`;
+  return `Είσαι ένας φιλικός εκπαιδευτικός βοηθός για μαθητές στην Ελλάδα. Απαντάς βασιζόμενος στις γνώσεις σου για το μάθημα: ${bookSubject || 'γενικό'}. Το βιβλίο του μαθητή είναι: ${bookTitle || ''} (${bookLevel || ''}).
+
+ΚΑΝΟΝΕΣ ΜΟΡΦΟΠΟΙΗΣΗΣ (πολύ σημαντικοί):
+- Γράφε πάντα στα ελληνικά, απλά και καθαρά, με σωστούς τόνους, σαν να εξηγείς σε τετράδιο μαθητή.
+- Χώρισε την απάντηση σε σύντομες παραγράφους με κενή γραμμή ανάμεσά τους.
+- Για λίστες χρησιμοποίησε παύλα «- » στην αρχή κάθε γραμμής (μία ιδέα ανά γραμμή).
+- Χρησιμοποίησε **έντονα** μόνο για 1-2 λέξεις-κλειδιά, με φειδώ.
+- ΜΗΝ γράφεις ΠΟΤΕ διευθύνσεις URL, links ή «https://…» μέσα στο κείμενο.
+- Για μαθηματικούς τύπους χρησιμοποίησε LaTeX: inline $τύπος$ ή display $$τύπος$$.
+- Αν ρωτηθείς για κάτι εκτός του μαθήματος, εξήγησε φιλικά ότι μπορείς να βοηθήσεις μόνο για αυτό.${contextText}`;
 }
 
 async function callGroq(systemPrompt, question) {
@@ -108,7 +128,7 @@ export async function POST(req) {
     let result = await callGroq(systemPrompt, q);
     if (!result.ok) result = await callGemini(systemPrompt, q);
     if (!result.ok) return bad('Ο βοηθός είναι προσωρινά απασχολημένος.', 502);
-    return Response.json({ answer: result.answer, sources }, { headers: { 'Cache-Control': 'no-store' } });
+    return Response.json({ answer: stripUrls(result.answer), sources }, { headers: { 'Cache-Control': 'no-store' } });
   } catch (err) {
     console.error('AI chat fatal:', err);
     return bad('Σφάλμα δικτύου. Δοκίμασε ξανά.', 500);

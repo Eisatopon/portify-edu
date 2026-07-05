@@ -1,60 +1,85 @@
 'use client';
 import { useState, useRef, useEffect, useCallback } from 'react';
 
-function renderWithKatex(text) {
-  if (typeof window === 'undefined' || !window.katex) return null;
-  const segments = [];
-  const displayRegex = /\$\$([\s\S]+?)\$\$/g;
-  let lastIndex = 0;
-  let match;
-  while ((match = displayRegex.exec(text)) !== null) {
-    if (match.index > lastIndex) segments.push({ type: 'text', content: text.slice(lastIndex, match.index) });
-    segments.push({ type: 'display', content: match[1] });
-    lastIndex = match.index + match[0].length;
+function katexNode(content, display, key) {
+  if (typeof window !== 'undefined' && window.katex) {
+    try {
+      const html = window.katex.renderToString(content, { throwOnError: false, trust: false, displayMode: display });
+      return display
+        ? <div key={key} style={{ overflowX: 'auto', margin: '6px 0' }} dangerouslySetInnerHTML={{ __html: html }} />
+        : <span key={key} dangerouslySetInnerHTML={{ __html: html }} />;
+    } catch { /* fall through */ }
   }
-  if (lastIndex < text.length) segments.push({ type: 'text', content: text.slice(lastIndex) });
-  const katexOptions = { throwOnError: false, trust: false };
-  return segments.map((seg, si) => {
-    if (seg.type === 'display') {
-      try {
-        return <div key={si} style={{ overflowX: 'auto', margin: '6px 0' }}
-          dangerouslySetInnerHTML={{ __html: window.katex.renderToString(seg.content, { ...katexOptions, displayMode: true }) }} />;
-      } catch { return <span key={si}>{seg.content}</span>; }
-    }
-    const inlineParts = [];
-    const inlineRegex = /\$([\s\S]+?)\$/g;
-    let li = 0;
-    let im;
-    while ((im = inlineRegex.exec(seg.content)) !== null) {
-      if (im.index > li) inlineParts.push(seg.content.slice(li, im.index));
-      try {
-        inlineParts.push(<span key={li} dangerouslySetInnerHTML={{ __html: window.katex.renderToString(im[1], katexOptions) }} />);
-      } catch { inlineParts.push(im[1]); }
-      li = im.index + im[0].length;
-    }
-    if (li < seg.content.length) inlineParts.push(seg.content.slice(li));
-    return <span key={si}>{inlineParts}</span>;
+  return display ? <div key={key}>{content}</div> : <span key={key}>{content}</span>;
+}
+
+// Inline parser: handles $$display$$, $inline$ math and **bold**.
+function parseInline(str) {
+  const nodes = [];
+  const re = /(\$\$[\s\S]+?\$\$)|(\$[^$\n]+?\$)|(\*\*[^*\n]+?\*\*)/g;
+  let last = 0, m, key = 0;
+  while ((m = re.exec(str)) !== null) {
+    if (m.index > last) nodes.push(str.slice(last, m.index));
+    const tok = m[0];
+    if (tok.startsWith('$$')) nodes.push(katexNode(tok.slice(2, -2), true, 'd' + key++));
+    else if (tok.startsWith('$')) nodes.push(katexNode(tok.slice(1, -1), false, 'i' + key++));
+    else nodes.push(<strong key={'b' + key++}>{tok.slice(2, -2)}</strong>);
+    last = m.index + tok.length;
+  }
+  if (last < str.length) nodes.push(str.slice(last));
+  return nodes;
+}
+
+// Block parser: paragraphs + bullet / numbered lists.
+function renderRich(text) {
+  const lines = String(text || '').split('\n');
+  const blocks = [];
+  let list = null;
+  const flush = () => { if (list) { blocks.push(list); list = null; } };
+  for (const raw of lines) {
+    const line = raw.replace(/\s+$/, '');
+    if (!line.trim()) { flush(); continue; }
+    const ul = line.match(/^\s*[-•]\s+(.*)$/);
+    const ol = line.match(/^\s*\d+[.)]\s+(.*)$/);
+    if (ul) { if (!list || list.type !== 'ul') { flush(); list = { type: 'ul', items: [] }; } list.items.push(ul[1]); }
+    else if (ol) { if (!list || list.type !== 'ol') { flush(); list = { type: 'ol', items: [] }; } list.items.push(ol[1]); }
+    else { flush(); blocks.push({ type: 'p', text: line.trim() }); }
+  }
+  flush();
+  return blocks.map((b, i) => {
+    if (b.type === 'p') return <p key={i} style={{ margin: '0 0 10px' }}>{parseInline(b.text)}</p>;
+    const Tag = b.type === 'ul' ? 'ul' : 'ol';
+    return (
+      <Tag key={i} style={{ margin: '0 0 10px', paddingLeft: 20 }}>
+        {b.items.map((it, j) => <li key={j} style={{ margin: '0 0 5px' }}>{parseInline(it)}</li>)}
+      </Tag>
+    );
   });
 }
 
 function Message({ m, katexReady }) {
-  const [rendered, setRendered] = useState(null);
+  const [rich, setRich] = useState(null);
   useEffect(() => {
     if (m.role !== 'assistant') return;
-    const result = renderWithKatex(m.text);
-    if (result) setRendered(result);
+    setRich(renderRich(m.text));
   }, [m.text, m.role, katexReady]);
+
+  const isUser = m.role === 'user';
+  const bubble = isUser
+    ? { maxWidth: '85%', padding: '9px 13px', borderRadius: '16px 16px 4px 16px', background: '#1a4fa8', color: 'white', fontSize: 13.5, lineHeight: 1.6 }
+    : { maxWidth: '88%', padding: '12px 14px 12px 16px', borderRadius: '4px 16px 16px 16px', background: '#fffdf5', color: '#2b2b2b', fontSize: 14, lineHeight: 1.75, border: '1px solid #efe6cf', borderLeft: '3px solid #e07a7a', boxShadow: '0 1px 2px rgba(0,0,0,0.04)' };
+
   return (
-    <div style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start' }}>
-      <div style={{ maxWidth: '85%', padding: '9px 13px', borderRadius: m.role === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px', background: m.role === 'user' ? '#1a4fa8' : 'white', color: m.role === 'user' ? 'white' : '#1e293b', fontSize: 13, lineHeight: 1.6, border: m.role === 'assistant' ? '1px solid #e2e8f0' : 'none' }}>
-        {rendered || m.text}
-        {m.role === 'assistant' && Array.isArray(m.sources) && m.sources.length > 0 && (
-          <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px dashed #e2e8f0' }} data-testid="ai-sources">
-            <div style={{ fontSize: 11, fontWeight: 600, color: '#64748b', marginBottom: 6 }}>📎 Επίσημο ψηφιακό υλικό</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+    <div style={{ display: 'flex', justifyContent: isUser ? 'flex-end' : 'flex-start' }}>
+      <div style={bubble} data-testid={isUser ? 'ai-msg-user' : 'ai-msg-assistant'}>
+        {isUser ? m.text : (rich || m.text)}
+        {!isUser && Array.isArray(m.sources) && m.sources.length > 0 && (
+          <div style={{ marginTop: 10, paddingTop: 10, borderTop: '1px dashed #e0d6bd' }} data-testid="ai-sources">
+            <div style={{ fontSize: 11, fontWeight: 700, color: '#8a7a52', marginBottom: 6, letterSpacing: 0.3 }}>📎 ΕΠΙΣΗΜΟ ΨΗΦΙΑΚΟ ΥΛΙΚΟ</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {m.sources.map((s, i) => (
                 <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" data-testid={`ai-source-link-${i}`}
-                  style={{ fontSize: 12, color: '#1a4fa8', textDecoration: 'none', lineHeight: 1.4 }}>
+                  style={{ fontSize: 12.5, color: '#1a4fa8', textDecoration: 'none', lineHeight: 1.4, fontWeight: 500 }}>
                   → {s.title}{s.page ? ` (σελ. ${s.page})` : ''}
                 </a>
               ))}
