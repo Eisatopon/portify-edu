@@ -2,6 +2,7 @@ import allBooks from '@/src/data/books.json';
 import { bookSlug, findBookBySlug } from '@/src/lib/slug';
 import { LEVEL_BADGE } from '@/src/lib/constants';
 import { getPsmaForBook } from '@/src/lib/psma';
+import bookTagsData from '@/src/data/bookTags.json';
 import { notFound } from 'next/navigation';
 import BookViewerClient from './BookViewerClient';
 
@@ -101,7 +102,7 @@ export default async function BookPage({ params }) {
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(bookJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
-      <BookViewerClient book={book} psma={psma} />
+      <BookViewerClient book={book} psma={psma} tags={bookTagsData[book.id] || []} />
     </>
   );
 }

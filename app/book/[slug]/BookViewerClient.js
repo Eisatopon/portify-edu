@@ -11,7 +11,7 @@ import { recordVisit, getBookStats, timeAgoGreek } from '@/src/lib/readingHistor
 import allBooks from '@/src/data/books.json';
 import Link from 'next/link';
 
-export default function BookViewerClient({ book, psma = [] }) {
+export default function BookViewerClient({ book, psma = [], tags = [] }) {
   const [aiOpen, setAiOpen] = useState(false);
   const [fav, setFav] = useState(false);
   const [stats, setStats] = useState(null);
@@ -129,6 +129,20 @@ export default function BookViewerClient({ book, psma = [] }) {
       <BookReader pdfUrl={book.pdfUrl} title={book.title} previewSrc={previewSrc} />
 
       <SupplementaryMaterial items={psma} />
+
+      {tags.length > 0 && (
+        <div style={{ margin: '18px 0' }} data-testid="book-tags">
+          <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--text-2)', marginBottom: 10 }}>🏷️ Σχετικές ετικέτες</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+            {tags.map((t) => (
+              <Link key={t.slug} href={`/tag/${t.slug}`} data-testid={`book-tag-${t.slug}`}
+                style={{ padding: '6px 13px', borderRadius: 999, border: '1px solid var(--border, #e5e7eb)', background: 'var(--card, #fff)', color: 'var(--blue, #1a4fa8)', textDecoration: 'none', fontSize: 13, fontWeight: 500 }}>
+                #{t.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       <PackageSiblings book={book} allBooks={allBooks} />
 

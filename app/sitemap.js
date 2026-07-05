@@ -1,6 +1,7 @@
 // app/sitemap.js — XML sitemap (www canonical)
 import allBooks from '@/src/data/books.json';
 import { bookSlug, subjectSlug } from '@/src/lib/slug';
+import tags from '@/src/data/tags.json';
 
 const BASE = 'https://www.portify.gr';
 
@@ -37,5 +38,11 @@ export default function sitemap() {
     changeFrequency: 'yearly',
     priority: 0.7,
   }));
-  return [...staticRoutes, ...subjectRoutes, ...bookRoutes];
+  const tagRoutes = Object.keys(tags).map((slug) => ({
+    url: `${BASE}/tag/${slug}`,
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.6,
+  }));
+  return [...staticRoutes, ...subjectRoutes, ...bookRoutes, ...tagRoutes];
 }
