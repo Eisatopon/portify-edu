@@ -48,12 +48,25 @@ function Message({ m, katexReady }) {
     <div style={{ display: 'flex', justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start' }}>
       <div style={{ maxWidth: '85%', padding: '9px 13px', borderRadius: m.role === 'user' ? '16px 16px 4px 16px' : '16px 16px 16px 4px', background: m.role === 'user' ? '#1a4fa8' : 'white', color: m.role === 'user' ? 'white' : '#1e293b', fontSize: 13, lineHeight: 1.6, border: m.role === 'assistant' ? '1px solid #e2e8f0' : 'none' }}>
         {rendered || m.text}
+        {m.role === 'assistant' && Array.isArray(m.sources) && m.sources.length > 0 && (
+          <div style={{ marginTop: 8, paddingTop: 8, borderTop: '1px dashed #e2e8f0' }} data-testid="ai-sources">
+            <div style={{ fontSize: 11, fontWeight: 600, color: '#64748b', marginBottom: 6 }}>📎 Επίσημο ψηφιακό υλικό</div>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
+              {m.sources.map((s, i) => (
+                <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" data-testid={`ai-source-link-${i}`}
+                  style={{ fontSize: 12, color: '#1a4fa8', textDecoration: 'none', lineHeight: 1.4 }}>
+                  → {s.title}{s.page ? ` (σελ. ${s.page})` : ''}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
 }
 
-export default function AiChatPanel({ bookTitle, bookSubject, bookLevel, onClose }) {
+export default function AiChatPanel({ bookTitle, bookSubject, bookLevel, bitstreamId, onClose }) {
   const [isOpen, setIsOpen] = useState(true);
   const safeTitle = (bookTitle || '').replace(/"/g, '\u201C');
   const [messages, setMessages] = useState([
@@ -101,7 +114,7 @@ export default function AiChatPanel({ bookTitle, bookSubject, bookLevel, onClose
       const res = await fetch('/api/ai-chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: userMsg, bookTitle, bookSubject, bookLevel }),
+        body: JSON.stringify({ question: userMsg, bookTitle, bookSubject, bookLevel, bitstreamId }),
       });
       const data = await res.json().catch(() => ({}));
       if (res.status === 429) {
@@ -109,14 +122,14 @@ export default function AiChatPanel({ bookTitle, bookSubject, bookLevel, onClose
       } else if (!res.ok) {
         setMessages(prev => [...prev, { id: msgIdRef.current++, role: 'assistant', text: data.error || 'Κάτι πήγε στραβά. Δοκίμασε ξανά.' }]);
       } else {
-        setMessages(prev => [...prev, { id: msgIdRef.current++, role: 'assistant', text: data.answer }]);
+        setMessages(prev => [...prev, { id: msgIdRef.current++, role: 'assistant', text: data.answer, sources: data.sources || [] }]);
       }
     } catch {
       setMessages(prev => [...prev, { id: msgIdRef.current++, role: 'assistant', text: 'Σφάλμα δικτύου. Δοκίμασε ξανά.' }]);
     } finally {
       setLoading(false);
     }
-  }, [input, loading, bookTitle, bookSubject, bookLevel]);
+  }, [input, loading, bookTitle, bookSubject, bookLevel, bitstreamId]);
 
   const panelStyle = {
     position: 'fixed', bottom: 0, right: 0, width: '100%', maxWidth: 420,

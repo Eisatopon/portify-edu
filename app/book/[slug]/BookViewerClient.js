@@ -143,6 +143,7 @@ export default function BookViewerClient({ book, psma = [] }) {
           bookTitle={book.title}
           bookSubject={book.subject}
           bookLevel={book.level}
+          bitstreamId={bsid}
           onClose={() => setAiOpen(false)}
         />
       )}
