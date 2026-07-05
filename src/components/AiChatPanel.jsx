@@ -1,6 +1,13 @@
 'use client';
 import { useState, useRef, useEffect, useCallback } from 'react';
 
+const QUICK_PROMPTS = [
+  { label: '📝 Ασκήσεις', text: 'Δώσε μου μερικές ασκήσεις για εξάσκηση πάνω σε αυτό το κεφάλαιο' },
+  { label: '💡 Εξήγησέ μου', text: 'Εξήγησέ μου απλά και κατανοητά το βασικό περιεχόμενο του κεφαλαίου' },
+  { label: '📄 Περίληψη', text: 'Κάνε μου μια σύντομη περίληψη' },
+  { label: '❓ Ερωτήσεις', text: 'Γράψε μου ερωτήσεις για να εξασκηθώ' },
+];
+
 function katexNode(content, display, key) {
   if (typeof window !== 'undefined' && window.katex) {
     try {
@@ -47,11 +54,18 @@ function renderRich(text) {
   }
   flush();
   return blocks.map((b, i) => {
-    if (b.type === 'p') return <p key={i} style={{ margin: '0 0 10px' }}>{parseInline(b.text)}</p>;
+    if (b.type === 'p') {
+      // A paragraph that is entirely bold becomes an underlined "notebook" heading.
+      const headingMatch = b.text.match(/^\*\*([^*]+)\*\*$/);
+      if (headingMatch) {
+        return <p key={i} style={{ margin: '0 0 14px', fontWeight: 700, color: '#1a4fa8', borderBottom: '2px solid #cfe0f5', paddingBottom: 3, display: 'inline-block' }}>{headingMatch[1]}</p>;
+      }
+      return <p key={i} style={{ margin: '0 0 12px' }}>{parseInline(b.text)}</p>;
+    }
     const Tag = b.type === 'ul' ? 'ul' : 'ol';
     return (
-      <Tag key={i} style={{ margin: '0 0 10px', paddingLeft: 20 }}>
-        {b.items.map((it, j) => <li key={j} style={{ margin: '0 0 5px' }}>{parseInline(it)}</li>)}
+      <Tag key={i} style={{ margin: '0 0 12px', paddingLeft: 22 }}>
+        {b.items.map((it, j) => <li key={j} style={{ margin: '0 0 6px' }}>{parseInline(it)}</li>)}
       </Tag>
     );
   });
@@ -59,15 +73,30 @@ function renderRich(text) {
 
 function Message({ m, katexReady }) {
   const [rich, setRich] = useState(null);
+  const [copied, setCopied] = useState(false);
   useEffect(() => {
     if (m.role !== 'assistant') return;
     setRich(renderRich(m.text));
   }, [m.text, m.role, katexReady]);
 
+  const copy = useCallback(() => {
+    try {
+      navigator.clipboard.writeText(String(m.text || ''));
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {}
+  }, [m.text]);
+
   const isUser = m.role === 'user';
   const bubble = isUser
     ? { maxWidth: '85%', padding: '9px 13px', borderRadius: '16px 16px 4px 16px', background: '#1a4fa8', color: 'white', fontSize: 13.5, lineHeight: 1.6 }
-    : { maxWidth: '88%', padding: '12px 14px 12px 16px', borderRadius: '4px 16px 16px 16px', background: '#fffdf5', color: '#2b2b2b', fontSize: 14, lineHeight: 1.75, border: '1px solid #efe6cf', borderLeft: '3px solid #e07a7a', boxShadow: '0 1px 2px rgba(0,0,0,0.04)' };
+    : {
+        maxWidth: '88%', padding: '14px 16px 12px', borderRadius: '4px 16px 16px 16px', color: '#2b2b2b',
+        fontSize: 14, lineHeight: '28px', border: '1px solid #efe6cf', borderLeft: '3px solid #e07a7a',
+        boxShadow: '0 1px 2px rgba(0,0,0,0.04)', position: 'relative',
+        background: 'repeating-linear-gradient(#fffdf5, #fffdf5 27px, #eaf1fb 28px)',
+        backgroundAttachment: 'local',
+      };
 
   return (
     <div style={{ display: 'flex', justifyContent: isUser ? 'flex-end' : 'flex-start' }}>
@@ -75,7 +104,7 @@ function Message({ m, katexReady }) {
         {isUser ? m.text : (rich || m.text)}
         {!isUser && Array.isArray(m.sources) && m.sources.length > 0 && (
           <div style={{ marginTop: 10, paddingTop: 10, borderTop: '1px dashed #e0d6bd' }} data-testid="ai-sources">
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#8a7a52', marginBottom: 6, letterSpacing: 0.3 }}>📎 ΕΠΙΣΗΜΟ ΨΗΦΙΑΚΟ ΥΛΙΚΟ</div>
+            <div style={{ fontSize: 11, fontWeight: 700, color: '#8a7a52', marginBottom: 6, letterSpacing: 0.3, lineHeight: 1.5 }}>📎 ΕΠΙΣΗΜΟ ΨΗΦΙΑΚΟ ΥΛΙΚΟ</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {m.sources.map((s, i) => (
                 <a key={i} href={s.url} target="_blank" rel="noopener noreferrer" data-testid={`ai-source-link-${i}`}
@@ -84,6 +113,14 @@ function Message({ m, katexReady }) {
                 </a>
               ))}
             </div>
+          </div>
+        )}
+        {!isUser && (
+          <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 8 }}>
+            <button onClick={copy} aria-label="Αντιγραφή" data-testid="ai-copy-btn"
+              style={{ background: copied ? '#dcfce7' : 'transparent', border: '1px solid ' + (copied ? '#bbf7d0' : '#e5ddc6'), borderRadius: 8, padding: '3px 9px', fontSize: 11, cursor: 'pointer', color: copied ? '#166534' : '#94886a', lineHeight: 1.5, fontFamily: 'inherit' }}>
+              {copied ? '✓ Αντιγράφηκε' : '📋 Αντιγραφή'}
+            </button>
           </div>
         )}
       </div>
@@ -129,9 +166,10 @@ export default function AiChatPanel({ bookTitle, bookSubject, bookLevel, bitstre
     return () => window.removeEventListener('keydown', onKey);
   }, [handleClose]);
 
-  const sendMessage = useCallback(async () => {
-    if (!input.trim() || loading) return;
-    const userMsg = input.trim().slice(0, 600);
+  const sendMessage = useCallback(async (textArg) => {
+    const raw = (typeof textArg === 'string' ? textArg : input).trim();
+    if (!raw || loading) return;
+    const userMsg = raw.slice(0, 600);
     setInput('');
     setMessages(prev => [...prev, { id: msgIdRef.current++, role: 'user', text: userMsg }]);
     setLoading(true);
@@ -186,22 +224,32 @@ export default function AiChatPanel({ bookTitle, bookSubject, bookLevel, bitstre
           <div ref={messagesEndRef} />
         </div>
 
-        <div style={{ padding: '10px 14px', background: 'white', borderTop: '1px solid #e2e8f0', display: 'flex', gap: 8, flexShrink: 0 }}>
-          <label htmlFor="ai-input" style={{ position: 'absolute', left: -9999 }}>Ερώτηση</label>
-          <input
-            id="ai-input"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && !loading && sendMessage()}
-            disabled={loading}
-            maxLength={600}
-            placeholder="Γράψε την ερώτησή σου…"
-            style={{ flex: 1, border: '1px solid #cbd5e1', borderRadius: 12, padding: '9px 13px', fontSize: 13, outline: 'none', opacity: loading ? 0.6 : 1 }}
-          />
-          <button onClick={sendMessage} disabled={loading || !input.trim()} aria-label="Αποστολή"
-            style={{ width: 36, height: 36, borderRadius: 10, background: input.trim() && !loading ? '#1a4fa8' : '#e2e8f0', color: input.trim() && !loading ? 'white' : '#94a3b8', border: 'none', cursor: input.trim() && !loading ? 'pointer' : 'default', fontSize: 18, flexShrink: 0 }}>
-            ›
-          </button>
+        <div style={{ padding: '10px 14px', background: 'white', borderTop: '1px solid #e2e8f0', flexShrink: 0 }}>
+          <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 8, WebkitOverflowScrolling: 'touch' }} data-testid="ai-quick-prompts">
+            {QUICK_PROMPTS.map((qp, i) => (
+              <button key={i} onClick={() => sendMessage(qp.text)} disabled={loading} data-testid={`ai-quick-prompt-${i}`}
+                style={{ flexShrink: 0, whiteSpace: 'nowrap', background: '#f1f5f9', border: '1px solid #e2e8f0', borderRadius: 999, padding: '6px 12px', fontSize: 12, color: '#334155', cursor: loading ? 'default' : 'pointer', fontFamily: 'inherit', opacity: loading ? 0.5 : 1 }}>
+                {qp.label}
+              </button>
+            ))}
+          </div>
+          <div style={{ display: 'flex', gap: 8 }}>
+            <label htmlFor="ai-input" style={{ position: 'absolute', left: -9999 }}>Ερώτηση</label>
+            <input
+              id="ai-input"
+              value={input}
+              onChange={e => setInput(e.target.value)}
+              onKeyDown={e => e.key === 'Enter' && !loading && sendMessage()}
+              disabled={loading}
+              maxLength={600}
+              placeholder="Γράψε την ερώτησή σου…"
+              style={{ flex: 1, border: '1px solid #cbd5e1', borderRadius: 12, padding: '9px 13px', fontSize: 13, outline: 'none', opacity: loading ? 0.6 : 1 }}
+            />
+            <button onClick={() => sendMessage()} disabled={loading || !input.trim()} aria-label="Αποστολή"
+              style={{ width: 36, height: 36, borderRadius: 10, background: input.trim() && !loading ? '#1a4fa8' : '#e2e8f0', color: input.trim() && !loading ? 'white' : '#94a3b8', border: 'none', cursor: input.trim() && !loading ? 'pointer' : 'default', fontSize: 18, flexShrink: 0 }}>
+              ›
+            </button>
+          </div>
         </div>
       </div>
     </>
