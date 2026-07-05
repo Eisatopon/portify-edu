@@ -502,21 +502,31 @@ body {
   to   { opacity: 1; transform: scale(1); }
 }
 
-/* Hero animations */
-.hero-pill    { animation: fadeInUp 0.5s ease both; }
-.hero h1      { animation: fadeInUp 0.5s ease 0.1s both; }
-.hero-sub     { animation: fadeInUp 0.5s ease 0.2s both; }
-.search-wrap  { animation: fadeInUp 0.5s ease 0.3s both; }
-.hero-stats   { animation: fadeInUp 0.5s ease 0.4s both; }
+/* Hero animations — LCP-friendly: title paints immediately, subtle stagger for the rest */
+.hero-pill    { animation: fadeInUp 0.4s ease both; }
+.hero h1      { animation: none; }
+.hero-sub     { animation: fadeInUp 0.4s ease 0.05s both; }
+.search-wrap  { animation: fadeInUp 0.4s ease 0.1s both; }
+.hero-stats   { animation: fadeInUp 0.4s ease 0.15s both; }
 
 /* Level cards stagger */
-.level-cards-grid > *:nth-child(1) { animation: fadeInUp 0.5s ease 0.1s both; }
-.level-cards-grid > *:nth-child(2) { animation: fadeInUp 0.5s ease 0.2s both; }
-.level-cards-grid > *:nth-child(3) { animation: fadeInUp 0.5s ease 0.3s both; }
+.level-cards-grid > *:nth-child(1) { animation: fadeInUp 0.4s ease 0.05s both; }
+.level-cards-grid > *:nth-child(2) { animation: fadeInUp 0.4s ease 0.1s both; }
+.level-cards-grid > *:nth-child(3) { animation: fadeInUp 0.4s ease 0.15s both; }
 
 /* Book cards */
 .books-grid { animation: fadeIn 0.3s ease both; }
 .book-card  { animation: scaleIn 0.25s ease both; }
+
+/* Accessibility + performance: respect reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
 
 /* Enhanced book card hover */
 .book-card {

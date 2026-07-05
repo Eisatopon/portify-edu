@@ -4,8 +4,8 @@
 import { useEffect, useState } from 'react';
 
 const STORAGE_KEY = 'portify_intro_v3';
-const AUTO_DISMISS_MS = 3000;
-const FADE_OUT_MS = 700;
+const AUTO_DISMISS_MS = 1800;
+const FADE_OUT_MS = 500;
 
 export default function IntroSplash() {
   const [show, setShow] = useState(false);
