@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect, useRef, useMemo, Suspense } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import BookCard from '@/src/components/BookCard';
 import Filters from '@/src/components/Filters';
 import { useBookFilters } from '@/src/hooks/useBookFilters';
@@ -74,9 +74,25 @@ function SkeletonGrid() {
   );
 }
 
-function HomePageInner() {
+function QueryParamSync({ setLevel, setShowFavs, setSheetOpen }) {
   const searchParams = useSearchParams();
-  const router = useRouter();
+  useEffect(() => {
+    const lvl = searchParams.get('level');
+    if (lvl && ['dimotiko','gymnasio','lykeio'].includes(lvl)) {
+      setLevel(lvl);
+      setShowFavs(false);
+    }
+    if (searchParams.get('favs') === '1') setShowFavs(true);
+    if (searchParams.get('openFilters') === '1') {
+      if (!lvl) setLevel('dimotiko');
+      setSheetOpen(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
+  return null;
+}
+
+function HomePageInner() {
   const [sheetOpen, setSheetOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -103,36 +119,6 @@ function HomePageInner() {
     filtered, grades, subjects, hasFilters,
     liveResults, showLiveResults,
   } = useBookFilters(allBooks, null);
-
-  // Read ?level= query param from URL on first mount and pre-select level
-  useEffect(() => {
-    const lvl = searchParams.get('level');
-    if (lvl && ['dimotiko','gymnasio','lykeio'].includes(lvl)) {
-      setLevel(lvl);
-      setShowFavs(false);
-    }
-    if (searchParams.get('favs') === '1') {
-      setShowFavs(true);
-    }
-    if (searchParams.get('openFilters') === '1') {
-      // Auto-pick first level if none, then open the bottom sheet
-      if (!lvl) setLevel('dimotiko');
-      setSheetOpen(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
-
-  useEffect(() => {
-    const lvl = searchParams.get('level');
-    if (lvl && ['dimotiko','gymnasio','lykeio'].includes(lvl)) {
-      setLevel(lvl);
-      setShowFavs(false);
-    }
-    if (searchParams.get('favs') === '1') {
-      setShowFavs(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
 
   // Listen for custom event from MobileNav to open the filters bottom sheet
   useEffect(() => {
@@ -193,6 +179,9 @@ function HomePageInner() {
 
   return (
     <>
+      <Suspense fallback={null}>
+        <QueryParamSync setLevel={setLevel} setShowFavs={setShowFavs} setSheetOpen={setSheetOpen} />
+      </Suspense>
       <header className="header">
         <div className="header-inner">
           <a href="/" className="logo">
@@ -449,9 +438,5 @@ function HomePageInner() {
 }
 
 export default function HomePage() {
-  return (
-    <Suspense fallback={null}>
-      <HomePageInner />
-    </Suspense>
-  );
+  return <HomePageInner />;
 }

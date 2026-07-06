@@ -4,8 +4,8 @@
 import { useEffect, useState } from 'react';
 
 const STORAGE_KEY = 'portify_intro_v3';
-const AUTO_DISMISS_MS = 1800;
-const FADE_OUT_MS = 500;
+const AUTO_DISMISS_MS = 900;
+const FADE_OUT_MS = 300;
 
 export default function IntroSplash() {
   const [show, setShow] = useState(false);
@@ -130,7 +130,7 @@ export default function IntroSplash() {
           transform: rotate(-3deg);
           display: inline-block;
           opacity: 0;
-          animation: piWelcomeIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
+          animation: piWelcomeIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) 0.02s forwards;
         }
         @keyframes piWelcomeIn {
           from { opacity: 0; transform: rotate(-3deg) translateY(-12px) scale(0.9); }
@@ -146,7 +146,7 @@ export default function IntroSplash() {
           margin-bottom: 12px;
           opacity: 0;
           transform: translateX(-20px);
-          animation: piBrandIn 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.6s forwards;
+          animation: piBrandIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.12s forwards;
         }
         @keyframes piBrandIn { to { opacity: 1; transform: translateX(0); } }
 
@@ -157,7 +157,7 @@ export default function IntroSplash() {
           letter-spacing: -0.01em;
           opacity: 0;
           transform: translateY(8px);
-          animation: piTagIn 0.5s ease-out 1.0s forwards;
+          animation: piTagIn 0.3s ease-out 0.3s forwards;
         }
         @keyframes piTagIn { to { opacity: 1; transform: translateY(0); } }
 
@@ -166,7 +166,7 @@ export default function IntroSplash() {
           width: clamp(160px, 30vw, 280px);
           height: 14px;
           opacity: 0;
-          animation: piSquiggleIn 0.6s ease-out 1.3s forwards;
+          animation: piSquiggleIn 0.4s ease-out 0.45s forwards;
         }
         .pi-squiggle path {
           stroke: #0a1f3d;
@@ -185,8 +185,8 @@ export default function IntroSplash() {
           height: auto;
           opacity: 0;
           transform: translateX(60px) rotate(8deg);
-          animation: piMascotIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards,
-                     piMascotBob 2s ease-in-out infinite 1.5s;
+          animation: piMascotIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.08s forwards,
+                     piMascotBob 2s ease-in-out infinite 0.7s;
           transform-origin: bottom center;
         }
         @keyframes piMascotIn {
