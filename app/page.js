@@ -1,11 +1,10 @@
 'use client';
-import { useState, useEffect, useRef, Suspense } from 'react';
+import { useState, useEffect, useRef, useMemo, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import BookCard from '@/src/components/BookCard';
 import Filters from '@/src/components/Filters';
 import { useBookFilters } from '@/src/hooks/useBookFilters';
 import { LEVEL_BADGE } from '@/src/lib/constants';
-import allBooks from '@/src/data/books.json';
 import InstallPWA from '@/src/components/InstallPWA';
 import ThemeToggle from '@/src/components/ThemeToggle';
 import MobileNav from '@/src/components/MobileNav';
@@ -18,9 +17,6 @@ const LEVELS = [
   { key: 'gymnasio', label: 'Γυμνάσιο', icon: '🏛', grades: 'Α΄ – Γ΄',  color: '#92400e', btnColor: '#d97706', desc: 'Φυσική, Χημεία, Αρχαία και άλλα για τις 3 τάξεις' },
   { key: 'lykeio',   label: 'Λύκειο',   icon: '🎓', grades: 'Α΄ – Γ΄',  color: '#5b21b6', btnColor: '#7c3aed', desc: 'Άλγεβρα, Βιολογία, Χημεία και άλλα για τις 3 τάξεις' },
 ];
-
-const byLevel = { dimotiko: 0, gymnasio: 0, lykeio: 0 };
-allBooks.forEach(b => { if (byLevel[b.level] !== undefined) byLevel[b.level]++; });
 
 function useCounter(target, duration = 1500) {
   const [count, setCount] = useState(0);
@@ -43,6 +39,8 @@ function useFavorites(allBooks) {
     try {
       const v2 = localStorage.getItem('portify_favs_v2');
       if (v2) { setFavs(JSON.parse(v2)); return; }
+      // Wait until books are loaded before migrating (avoids wiping v1 favs)
+      if (!allBooks.length) return;
       // Migrate v1 (pdfUrl) -> v2 (book.id) once
       const v1 = JSON.parse(localStorage.getItem('portify_favs') || '[]');
       const urlToId = new Map(allBooks.map(b => [b.pdfUrl, b.id]));
@@ -83,6 +81,16 @@ function HomePageInner() {
   const [loading, setLoading] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [showFavs, setShowFavs] = useState(false);
+  const [allBooks, setAllBooks] = useState([]);
+  const [booksLoading, setBooksLoading] = useState(true);
+  useEffect(() => {
+    import('@/src/data/books.json').then(m => { setAllBooks(m.default); setBooksLoading(false); });
+  }, []);
+  const byLevel = useMemo(() => {
+    const acc = { dimotiko: 0, gymnasio: 0, lykeio: 0 };
+    allBooks.forEach(b => { if (acc[b.level] !== undefined) acc[b.level]++; });
+    return acc;
+  }, [allBooks]);
   const count = useCounter(allBooks.length);
   const searchRef = useRef(null);
   const { favs, toggle: toggleFav } = useFavorites(allBooks);
@@ -339,7 +347,7 @@ function HomePageInner() {
                   {grade && <> · <strong>{grades.find(g => g.grade === grade)?.label}</strong></>}</>
                 )}
               </p>
-              {loading ? <SkeletonGrid /> : (
+              {(loading || booksLoading) ? <SkeletonGrid /> : (
                 <div className="books-grid">
                   {displayBooks.length === 0 ? (
                     <div className="empty-state">
@@ -355,7 +363,7 @@ function HomePageInner() {
                   )}
                 </div>
               )}
-              {!loading && displayBooks.length > visibleCount && (
+              {!loading && !booksLoading && displayBooks.length > visibleCount && (
                 <div style={{ display: 'flex', justifyContent: 'center', marginTop: 24 }}>
                   <button
                     className="btn-reset"
