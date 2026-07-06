@@ -76,8 +76,6 @@ export default function IntroSplash() {
       </div>
 
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap');
-
         .portify-intro {
           position: fixed; inset: 0; z-index: 9999;
           background: #2870e8;
