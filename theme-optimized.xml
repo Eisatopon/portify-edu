@@ -1720,7 +1720,31 @@ window.MathJax = {
 };
 //]]>
 </script>
-<script async='async' id='mathjax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js'/>
+<script async='async' id='mathjax-script' onerror='this.onerror=null;var s=document.createElement(&quot;script&quot;);s.async=true;s.src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js&quot;;document.head.appendChild(s);' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js'/>
+<!-- Εγγύηση render: ξανα-typeset όποτε εμφανιστεί raw LaTeX (αργό CDN, language toggle, lazy content) -->
+<script>
+//<![CDATA[
+(function(){
+  function hasRaw(el){ try{ return /\\\(|\\\[|\$\$/.test((el||document.body).innerText||''); }catch(e){ return false; } }
+  function retypeset(){ if(window.MathJax &amp;&amp; window.MathJax.typesetPromise){ window.MathJax.typesetPromise().catch(function(){}); } }
+  function watch(){
+    var b = document.querySelector('.post-body') || document.querySelector('.post') || document.body;
+    if(!b) return;
+    if(hasRaw(b)) retypeset();
+    try{
+      var t;
+      var obs = new MutationObserver(function(){
+        clearTimeout(t);
+        t = setTimeout(function(){ if(hasRaw(b)) retypeset(); }, 400);
+      });
+      obs.observe(b, {childList:true, subtree:true, attributes:true, attributeFilter:['style','class','hidden']});
+    }catch(e){}
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', watch); } else { watch(); }
+  window.addEventListener('load', function(){ setTimeout(function(){ if(hasRaw()) retypeset(); }, 600); });
+})();
+//]]>
+</script>
 </b:if>
 
 
