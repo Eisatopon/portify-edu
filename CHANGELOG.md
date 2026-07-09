@@ -1,63 +1,64 @@
-# Changelog — theme-optimized.xml (EisatoponAI Blogger Template)
+# Changelog — theme-optimized.xml (EisatoponAI / eisatopon.blogspot.com)
 
-> Βάση: `theme-7136655045781905113.xml`
-> Στόχος: καθαρότερο CSS, ταχύτητα (ειδικά mobile), δυνατότερο SEO, accessibility — **χωρίς οπτικές αλλαγές στο τελικό render**.
-> Το αρχείο επαληθεύτηκε ως **well-formed XML** και το JSON-LD δοκιμάστηκε σε **8 σενάρια** (όλα έγκυρα).
+> Το theme αφορά το blog **eisatopon.blogspot.com** (blog ID 7136655045781905113).
+> (Το www.eisatopon.gr είναι ΞΕΧΩΡΙΣΤΟ blog με άλλο, σκούρο theme — δεν έχει πειραχτεί.)
+
+---
+
+## ⚠️ Πριν το upload — Backup
+Blogger → **Theme → ⋮ → Δημιουργία αντιγράφου ασφαλείας (Download)**, μετά → **Επαναφορά (Restore) → Upload** το `theme-optimized.xml`.
 
 ---
 
-## ⚠️ Πριν το upload — Backup (safety net)
-Blogger → **Theme → ⋮ (menu) → Backup / Restore → Download** (κράτα το τρέχον `.xml`).
-Μετά: **Upload** το `theme-optimized.xml`.
+# 🆕 Έκδοση 2 (νέες βελτιώσεις εμφάνισης/λειτουργικότητας)
+
+## A. Διόρθωση «σπασμένων» μαθηματικών στις κάρτες/λίστες
+- Πρόβλημα: στην αρχική & στις λίστες τα μαθηματικά εμφανίζονταν ως raw LaTeX
+  (π.χ. τίτλος «... \(5\times10\times10\)»), επειδή το MathJax τρέχει μόνο μέσα στα άρθρα.
+- Λύση: ελαφρύ script (μόνο σε non-article σελίδες) που μετατρέπει τα σύμβολα σε καθαρό Unicode:
+  - `\(5\times10\times10\)` → **5×10×10**
+  - `$x^2+1=0$` → **x²+1=0**
+  - `\frac{a}{b}` → **a/b**, `\sqrt{2}` → **√2**, `\pi` → **π**, εκθέτες → ⁰¹²³…
+  - Τα απλά κείμενα μένουν ανέγγιχτα. **Χωρίς φόρτωση MathJax στην αρχική** (μηδέν κόστος ταχύτητας).
+
+## B. Νέα branded εικόνα κοινοποίησης (og-image)
+- Πρόβλημα: η παλιά `https://www.eisatopon.gr/img/og-default.jpg` επέστρεφε **404**
+  (σπασμένα previews σε Facebook/X/WhatsApp) **και γινόταν preload σε κάθε σελίδα** (σπατάλη + error).
+- Λύση:
+  - Δημιουργήθηκε νέα επαγγελματική εικόνα **1264×848** (EisatoponAI, μαθηματικό theme) → `og-eisatopon.png`.
+  - Ενημερώθηκαν όλες οι αναφορές `og:image` / `twitter:image` (homepage + pages) στη νέα εικόνα.
+  - Ενημερώθηκαν `og:image:width/height` → 1264/848.
+  - **Αφαιρέθηκε το άχρηστο/σπασμένο `<link rel="preload">`** της og-image.
+
+> ℹ️ Η νέα εικόνα δείχνει προσωρινά σε emergent CDN URL. Για μέγιστη μονιμότητα, ανέβασέ την στο δικό σου hosting/Blogger και άλλαξε το URL (μία γραμμή) — οδηγίες στο chat.
 
 ---
+
+# Έκδοση 1 (βάση — καθαρισμός/ταχύτητα/SEO/a11y)
 
 ## 1) CSS Cleanup & Consolidation
-- **Ένωση 33 → 5 `<style>` blocks** μέσα στο `<head>` (Ενότητες 5.1–5.17 + 7.x + MathJax container + header).
-  - Η **σειρά των κανόνων διατηρήθηκε ακριβώς** → ίδιο cascade → **μηδέν οπτική αλλαγή**.
-  - Τα ενδιάμεσα SEO/JSON-LD/script blocks (`<b:if>`) και το widget-CDATA CSS **δεν πειράχτηκαν**.
-  - Τα section labels (`5.2 — Share bar` κ.λπ.) διατηρήθηκαν ως CSS comments για μελλοντική επεξεργασία.
-- **Fix σπασμένου CSS comment**: το `===== ΑΦΑΙΡΕΣΗ JUSTIFY ΣΤΟΙΧΙΣΗΣ ===== */` ήταν χωρίς άνοιγμα `/*`,
-  πράγμα που **ακύρωνε** τον επόμενο κανόνα (`text-align:left` στο `.post-body`). Διορθώθηκε σε έγκυρο σχόλιο.
-  *(Η προεπιλεγμένη στοίχιση ήταν ήδη left, οπότε καμία ορατή διαφορά — απλώς ο κανόνας πλέον εφαρμόζεται σωστά.)*
+- Ένωση **33 → 5 `<style>` blocks** στο `<head>` με **ακριβώς ίδια σειρά** (ίδιο cascade → μηδέν οπτική αλλαγή).
+- Fix σπασμένου CSS comment («ΑΦΑΙΡΕΣΗ JUSTIFY» — έλειπε το `/*`, ακύρωνε τον επόμενο κανόνα).
 
 ## 2) Speed / Performance
-- **Google Fonts → non-render-blocking**: το stylesheet φορτώνει πλέον με
-  `rel="preload" as="style" onload="this.rel='stylesheet'"` + `<noscript>` fallback.
-  Αφαιρεί ένα render-blocking request (σημαντικό mobile PageSpeed win). Το `display=swap` ήταν ήδη ενεργό.
-- **Preconnect/preload**: επιβεβαιώθηκαν (`fonts.googleapis.com`, `fonts.gstatic.com` crossorigin, `blogger.googleusercontent.com`, preload og-image). Χωρίς αλλαγή.
-- **Lazy-loading**: επιβεβαιώθηκε IntersectionObserver + native `loading="lazy"`/`decoding="async"` σε όλες τις εικόνες, με εξαίρεση το LCP hero thumbnail (`fetchpriority="high"`, `loading="eager"`). Χωρίς αλλαγή.
-- **Scripts**: τα custom scripts τρέχουν ήδη σε `DOMContentLoaded`/`window.load` (ουσιαστικά deferred)· MathJax φορτώνει `async`· GTM φορτώνει delayed on `load`.
-- **Καθαρισμός duplicate/dead scripts**:
-  - Αφαιρέθηκε **διπλότυπο** `setActiveMenu` script (έτρεχε 2 φορές — πλέον 1).
-  - Αφαιρέθηκε άδειο placeholder script (`/* toggleSearch: defined above */`).
+- **Google Fonts → non-render-blocking** (`preload` + swap + `<noscript>` fallback).
+- Επιβεβαίωση lazy-loading (IntersectionObserver + native), preconnects.
+- Αφαίρεση **διπλότυπου** `setActiveMenu` script + άδειου placeholder script.
 
 ## 3) SEO Hardening
-- **JSON-LD** ελέγχθηκε (WebSite + Sitelinks Search, Organization, BlogPosting, BreadcrumbList).
-- **BlogPosting ενισχύθηκε** (απαιτήσεις Google για Article rich results):
-  - `publisher.logo` (ImageObject) — ήταν required και έλειπε.
-  - `dateModified` (από `lastUpdated`, με fallback στο `datePublished`).
-  - `image` (από `firstImageUrl`, fallback `thumbnailUrl`).
-- **Canonical / robots**: επιβεβαιώθηκαν — `noindex,follow` σε archive/search/label, `index,follow,max-image-preview:large` αλλού, canonical σε όλες τις σελίδες. Χωρίς αλλαγή.
-- **OpenGraph / Twitter**: επιβεβαιώθηκαν για homepage/pages/single-item. Χωρίς αλλαγή.
-- **Auto alt-tags**: το υπάρχον JS που γεμίζει alt όπου λείπει διατηρήθηκε.
+- Ενίσχυση **BlogPosting** JSON-LD: `publisher.logo` (required), `dateModified`, `image`.
+- Επιβεβαίωση canonical / robots (noindex σε archive/search/label) / OpenGraph.
 
-## 4) Accessibility (bonus, χωρίς ρίσκο)
-- **Focus states (`:focus-visible`)** για πλήκτρα/links πλοήγησης: `View more labels`, pager buttons, CTA, μενού, share buttons, scroll-to-top, search. Εμφανίζονται **μόνο σε keyboard navigation** → καμία αλλαγή για χρήστες ποντικιού.
-- **`aria-expanded`** στο κουμπί «View more labels» (toggle true/false).
-- **`alt`** προστέθηκε: author photo (`data:post.author.name`), + `alt=""` σε 2 διακοσμητικά system icons (comment favicon, delete icon).
+## 4) Accessibility
+- `:focus-visible` σε κουμπιά/links, `aria-expanded` στο «View more», `alt` όπου έλειπε.
 
-## 5) MathJax
-- **Δεν πειράχτηκε** (config, delimiters, SVG). Δεν εντοπίστηκε πρόβλημα με hero/snippets.
+## 5) MathJax (μέσα σε άρθρα)
+- Ανέγγιχτο.
 
 ---
 
 ## Επαλήθευση
-- `well-formed XML`: ✅
-- `BlogPosting JSON-LD`: ✅ έγκυρο και στα 8 σενάρια (lastUpdated × firstImage × thumbnail)
-- Μέγεθος: ~177 KB → ~176 KB (καθαρισμός duplicates)
-- `<style>` tags στο head: **33 → 5**
-
-## Ανοιχτά σημεία (προαιρετικά, για μελλοντικά)
-- Το non-blocking font load προκαλεί ελάχιστο FOUT κατά τη φόρτωση (fallback → swap). Είναι το standard PageSpeed pattern· αν το προτιμάς αλλιώς, μπορεί να επανέλθει σε μία γραμμή.
-- Μελλοντικά: interactive μαθηματικό εργαλείο/quiz, dark mode, Core Web Vitals tuning με πραγματικά δεδομένα.
+- ✅ well-formed XML
+- ✅ BlogPosting JSON-LD έγκυρο (8/8 σενάρια)
+- ✅ Math cleanup δοκιμασμένο σε 6 παραδείγματα
+- ✅ `<style>` tags head: 33 → 5 · og-default 404 → νέα εικόνα · broken preload removed

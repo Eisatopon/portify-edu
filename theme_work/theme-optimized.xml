@@ -87,9 +87,9 @@ window.addEventListener(&#39;load&#39;, function() {
   <b:elseif cond='data:blog.description'/>
     <meta expr:content='data:blog.description' property='og:description'/>
   </b:if>
-  <meta content='https://www.eisatopon.gr/img/og-default.jpg' property='og:image'/>
-  <meta content='1200' property='og:image:width'/>
-  <meta content='630' property='og:image:height'/>
+  <meta content='https://static.prod-images.emergentagent.com/jobs/89eb88ae-653b-4a6d-88b2-b24aee066228/images/b20045395739439f61f73a894f7bd09922a11ee7e8bc5b3d8d8701f600d87f1b.png' property='og:image'/>
+  <meta content='1264' property='og:image:width'/>
+  <meta content='848' property='og:image:height'/>
   <meta content='EisatoponAI logo' property='og:image:alt'/>
 
   <!-- Twitter -->
@@ -100,7 +100,7 @@ window.addEventListener(&#39;load&#39;, function() {
   <b:elseif cond='data:blog.description'/>
     <meta expr:content='data:blog.description' name='twitter:description'/>
   </b:if>
-  <meta content='https://www.eisatopon.gr/img/og-default.jpg' name='twitter:image'/>
+  <meta content='https://static.prod-images.emergentagent.com/jobs/89eb88ae-653b-4a6d-88b2-b24aee066228/images/b20045395739439f61f73a894f7bd09922a11ee7e8bc5b3d8d8701f600d87f1b.png' name='twitter:image'/>
 
   <!-- JSON-LD: WebSite + Sitelinks Search Box -->
   <script type='application/ld+json'>
@@ -150,11 +150,11 @@ window.addEventListener(&#39;load&#39;, function() {
   <b:if cond='data:blog.pageImageUrl'>
     <meta expr:content='data:blog.pageImageUrl' property='og:image'/>
   <b:else/>
-    <meta content='https://www.eisatopon.gr/img/og-default.jpg' property='og:image'/>
+    <meta content='https://static.prod-images.emergentagent.com/jobs/89eb88ae-653b-4a6d-88b2-b24aee066228/images/b20045395739439f61f73a894f7bd09922a11ee7e8bc5b3d8d8701f600d87f1b.png' property='og:image'/>
   </b:if>
 
-  <meta content='1200' property='og:image:width'/>
-  <meta content='630' property='og:image:height'/>
+  <meta content='1264' property='og:image:width'/>
+  <meta content='848' property='og:image:height'/>
   <meta content='EisatoponAI' property='og:site_name'/>
 
   <!-- Twitter -->
@@ -168,7 +168,7 @@ window.addEventListener(&#39;load&#39;, function() {
   <b:if cond='data:blog.pageImageUrl'>
     <meta expr:content='data:blog.pageImageUrl' name='twitter:image'/>
   <b:else/>
-    <meta content='https://www.eisatopon.gr/img/og-default.jpg' name='twitter:image'/>
+    <meta content='https://static.prod-images.emergentagent.com/jobs/89eb88ae-653b-4a6d-88b2-b24aee066228/images/b20045395739439f61f73a894f7bd09922a11ee7e8bc5b3d8d8701f600d87f1b.png' name='twitter:image'/>
   </b:if>
 </b:if>
 
@@ -1995,7 +1995,6 @@ h1.title a {
 </style>
 
 <!-- Performance hints -->
-<link as='image' href='https://www.eisatopon.gr/img/og-default.jpg' rel='preload'/>
 <meta content='#ffffff' name='theme-color'/>
 
 <!-- ==================================================================== -->
@@ -3962,6 +3961,48 @@ document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
   if (btn) btn.addEventListener(&quot;click&quot;, toggleSearch);
 });
 </script>
+
+<!-- ── Καθαρισμός LaTeX σε τίτλους/snippets λιστών (το MathJax τρέχει μόνο μέσα σε άρθρα) ── -->
+<b:if cond='not data:view.isSingleItem'>
+<script>
+//<![CDATA[
+(function(){
+  var MAP = {
+    '\\times':'×','\\cdot':'·','\\div':'÷','\\pm':'±','\\mp':'∓',
+    '\\leq':'≤','\\le':'≤','\\geq':'≥','\\ge':'≥','\\neq':'≠','\\ne':'≠',
+    '\\approx':'≈','\\equiv':'≡','\\infty':'∞','\\sqrt':'√','\\sum':'∑','\\int':'∫',
+    '\\alpha':'α','\\beta':'β','\\gamma':'γ','\\delta':'δ','\\theta':'θ',
+    '\\lambda':'λ','\\mu':'μ','\\pi':'π','\\sigma':'σ','\\phi':'φ','\\omega':'ω',
+    '\\rightarrow':'→','\\to':'→','\\leftarrow':'←','\\Rightarrow':'⇒',
+    '\\ldots':'…','\\dots':'…','\\cdots':'⋯'
+  };
+  var SUP = {'0':'⁰','1':'¹','2':'²','3':'³','4':'⁴','5':'⁵','6':'⁶','7':'⁷','8':'⁸','9':'⁹','n':'ⁿ','+':'⁺','-':'⁻'};
+  function clean(t){
+    if(!t) return t;
+    if(t.indexOf('\\')===-1 && t.indexOf('$')===-1) return t;
+    t = t.replace(/\$\$?/g,'').replace(/\\[\(\)\[\]]/g,'');
+    t = t.replace(/\\frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}/g,'$1/$2');
+    t = t.replace(/\^\{([^{}]+)\}/g, function(_,g){ return g.replace(/./g, function(c){ return SUP[c]||('^'+c); }); });
+    t = t.replace(/\^([0-9n+\-])/g, function(_,c){ return SUP[c]||('^'+c); });
+    t = t.replace(/\\[a-zA-Z]+/g, function(m){ return (MAP[m]!==undefined)?MAP[m]:''; });
+    t = t.replace(/[{}]/g,'');
+    return t.replace(/\s{2,}/g,' ').trim();
+  }
+  function fix(el){
+    if(el.children.length===0){ var c=clean(el.textContent); if(c!==el.textContent) el.textContent=c; return; }
+    Array.prototype.forEach.call(el.childNodes, function(n){
+      if(n.nodeType===3){ var c=clean(n.nodeValue); if(c!==n.nodeValue) n.nodeValue=c; }
+    });
+  }
+  function run(){
+    var sel = '.newsit-card .meta h3 a, .newsit-card .meta h3, .newsit-card .snippet, .post-title a, .post-title, .post-snippet';
+    document.querySelectorAll(sel).forEach(fix);
+  }
+  if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', run); } else { run(); }
+})();
+//]]>
+</script>
+</b:if>
 
 <!-- &#9472;&#9472; 14.1 &#8212; Image ALT auto-fill + lazy loading &#9472;&#9472; -->
 <script type='text/javascript'>
