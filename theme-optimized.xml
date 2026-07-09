@@ -87,7 +87,7 @@ window.addEventListener(&#39;load&#39;, function() {
   <b:elseif cond='data:blog.description'/>
     <meta expr:content='data:blog.description' property='og:description'/>
   </b:if>
-  <meta content='https://static.prod-images.emergentagent.com/jobs/89eb88ae-653b-4a6d-88b2-b24aee066228/images/b20045395739439f61f73a894f7bd09922a11ee7e8bc5b3d8d8701f600d87f1b.png' property='og:image'/>
+  <meta content='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxdLQPh5kJbO-r19hnc5im21oCyT_F8WavANyJ-lcW5Oahxdw3XZhNhXSjIExuXiey2RpFvyNhlCkf8s9A5v2BJQyyD0gs8bWdTi5CPZ2SAofJkxNRwsbls5J3b8ZRBo0nbfIYpElmz9HIFR9Ay73XKTpjsCTwWiu3N1Od_GCYdbEp2_-2cKpFUnfAbGY/s1264/og-eisatopon.png' property='og:image'/>
   <meta content='1264' property='og:image:width'/>
   <meta content='848' property='og:image:height'/>
   <meta content='EisatoponAI logo' property='og:image:alt'/>
@@ -100,7 +100,7 @@ window.addEventListener(&#39;load&#39;, function() {
   <b:elseif cond='data:blog.description'/>
     <meta expr:content='data:blog.description' name='twitter:description'/>
   </b:if>
-  <meta content='https://static.prod-images.emergentagent.com/jobs/89eb88ae-653b-4a6d-88b2-b24aee066228/images/b20045395739439f61f73a894f7bd09922a11ee7e8bc5b3d8d8701f600d87f1b.png' name='twitter:image'/>
+  <meta content='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxdLQPh5kJbO-r19hnc5im21oCyT_F8WavANyJ-lcW5Oahxdw3XZhNhXSjIExuXiey2RpFvyNhlCkf8s9A5v2BJQyyD0gs8bWdTi5CPZ2SAofJkxNRwsbls5J3b8ZRBo0nbfIYpElmz9HIFR9Ay73XKTpjsCTwWiu3N1Od_GCYdbEp2_-2cKpFUnfAbGY/s1264/og-eisatopon.png' name='twitter:image'/>
 
   <!-- JSON-LD: WebSite + Sitelinks Search Box -->
   <script type='application/ld+json'>
@@ -150,7 +150,7 @@ window.addEventListener(&#39;load&#39;, function() {
   <b:if cond='data:blog.pageImageUrl'>
     <meta expr:content='data:blog.pageImageUrl' property='og:image'/>
   <b:else/>
-    <meta content='https://static.prod-images.emergentagent.com/jobs/89eb88ae-653b-4a6d-88b2-b24aee066228/images/b20045395739439f61f73a894f7bd09922a11ee7e8bc5b3d8d8701f600d87f1b.png' property='og:image'/>
+    <meta content='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxdLQPh5kJbO-r19hnc5im21oCyT_F8WavANyJ-lcW5Oahxdw3XZhNhXSjIExuXiey2RpFvyNhlCkf8s9A5v2BJQyyD0gs8bWdTi5CPZ2SAofJkxNRwsbls5J3b8ZRBo0nbfIYpElmz9HIFR9Ay73XKTpjsCTwWiu3N1Od_GCYdbEp2_-2cKpFUnfAbGY/s1264/og-eisatopon.png' property='og:image'/>
   </b:if>
 
   <meta content='1264' property='og:image:width'/>
@@ -168,7 +168,7 @@ window.addEventListener(&#39;load&#39;, function() {
   <b:if cond='data:blog.pageImageUrl'>
     <meta expr:content='data:blog.pageImageUrl' name='twitter:image'/>
   <b:else/>
-    <meta content='https://static.prod-images.emergentagent.com/jobs/89eb88ae-653b-4a6d-88b2-b24aee066228/images/b20045395739439f61f73a894f7bd09922a11ee7e8bc5b3d8d8701f600d87f1b.png' name='twitter:image'/>
+    <meta content='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgxdLQPh5kJbO-r19hnc5im21oCyT_F8WavANyJ-lcW5Oahxdw3XZhNhXSjIExuXiey2RpFvyNhlCkf8s9A5v2BJQyyD0gs8bWdTi5CPZ2SAofJkxNRwsbls5J3b8ZRBo0nbfIYpElmz9HIFR9Ay73XKTpjsCTwWiu3N1Od_GCYdbEp2_-2cKpFUnfAbGY/s1264/og-eisatopon.png' name='twitter:image'/>
   </b:if>
 </b:if>
 
