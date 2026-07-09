@@ -1690,6 +1690,9 @@ svg[aria-label*=&quot;mail&quot;],
 <!-- ==-  MathJax v3 (SVG). Delimiters: $...$ και $$...$$                ==- -->
 <!-- ==================================================================== -->
 <b:if cond='data:view.isSingleItem'>
+<!-- MathJax: γρήγορη φόρτωση (μειώνει το flash του raw LaTeX) -->
+<link crossorigin='anonymous' href='https://cdn.jsdelivr.net' rel='preconnect'/>
+<link as='script' crossorigin='anonymous' href='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js' rel='preload'/>
 <style type='text/css'>
 /* ===== SINGLE ITEM PAGE FIXES ===== */
 .blog-posts, .Blog, .post-wrapper { margin-top: 0 !important; }
