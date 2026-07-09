@@ -1,0 +1,5168 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<!-- ==================================================================== --><!-- ===  EISATOPON.GR &#8212; BLOGGER TEMPLATE                              === --><!-- ==-  Οργανωμένο σε ενότητες για εύκολη επεξεργασία                ==- --><!-- ==================================================================== --><html b:defaultmobile='false' b:version='2' class='v2' expr:dir='data:blog.languageDirection' expr:lang='data:blog.locale ? data:blog.locale : &quot;el&quot;' xmlns='http://www.w3.org/1999/xhtml' xmlns:b='http://www.google.com/2005/gml/b' xmlns:data='http://www.google.com/2005/gml/data' xmlns:expr='http://www.google.com/2005/gml/expr'>
+  
+<head>
+<link href='https://fonts.googleapis.com' rel='preconnect'/>
+<link crossorigin='anonymous' href='https://fonts.gstatic.com' rel='preconnect'/>
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 1: ΜΕΤΑ-ΕΤΙΚΕΤΕΣ + ANALYTICS                         === -->
+<!-- ==-  Google Tag Manager, viewport, preconnects                    ==- -->
+<!-- ==================================================================== -->
+<link href='https://blogger.googleusercontent.com' rel='preconnect'/>
+    
+<!-- Google Tag Manager (delayed) -->
+<script>
+window.addEventListener(&#39;load&#39;, function() {
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({&#39;gtm.start&#39;: new Date().getTime(),event:&#39;gtm.js&#39;});
+  var f=d.getElementsByTagName(s)[0], j=d.createElement(s),
+      dl = l!=&#39;dataLayer&#39; ? &#39;&amp;l=&#39;+l : &#39;&#39;;
+  j.async = true;
+  j.src = &#39;https://www.googletagmanager.com/gtm.js?id=&#39;+i+dl;
+  f.parentNode.insertBefore(j,f);
+  })(window,document,&#39;script&#39;,&#39;dataLayer&#39;,&#39;GTM-M5Q7KNN8&#39;);
+});
+</script>
+<!-- End Google Tag Manager -->
+
+
+<meta content='width=device-width, initial-scale=1' name='viewport'/>
+
+    <b:include data='blog' name='all-head-content'/>
+  
+
+<!-- &#9472;&#9472; Google Fonts &#8212; φορτώνεται μία φορά εδώ &#9472;&#9472; -->
+  <!-- Google Fonts -->
+  <!-- Google Fonts preconnect: see head above -->
+  <link href='https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&amp;family=Montserrat:wght@700;800&amp;display=swap' rel='stylesheet'/>
+  
+<!-- &#9472;&#9472; Τίτλος σελίδας (αρχική vs άρθρα) &#9472;&#9472; -->
+<!-- ====== TITLES ====== -->
+<b:if cond='data:view.isHomepage'>
+  <!-- Πλούσιος τίτλος ΜΟΝΟ για την αρχική -->
+  <title>EisatoponAI &#8212; Challenging Recreational Mathematics, Math Puzzles, Algebra &amp; Geometry</title>
+  <meta content='EisatoponAI — Challenging Recreational Mathematics, Math Puzzles, Algebra &amp; Geometry' name='description'/>
+<b:else/>
+  <!-- Για άρθρα/σελίδες κράτα τον τίτλο του Blogger -->
+  <title><data:blog.pageTitle/></title>
+  <b:if cond='data:blog.metaDescription'>
+    <meta expr:content='data:blog.metaDescription' name='description'/>
+  </b:if>
+</b:if>
+
+<!-- &#9472;&#9472; Canonical URL &#9472;&#9472; -->
+<!-- ====== CANONICAL (για όλες τις σελίδες) ====== -->
+<b:if cond='data:blog.canonicalUrl'>
+  <link expr:href='data:blog.canonicalUrl' rel='canonical'/>
+</b:if>
+
+
+<!-- &#9472;&#9472; Robots meta (ένα block) &#9472;&#9472; -->
+<b:if cond='data:blog.pageType == &quot;archive&quot; or data:blog.searchLabel'>
+  <meta content='noindex,follow' name='robots'/>
+<b:else/>
+  <meta content='index,follow,max-image-preview:large' name='robots'/>
+</b:if>
+
+
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 2: SEO &#8212; OPEN GRAPH + JSON-LD                        === -->
+<!-- ==-  Αρχική / Άρθρα / Στατικές σελίδες / Single item              ==- -->
+<!-- ==================================================================== -->
+<!-- ====== HOMEPAGE SEO ====== -->
+<b:if cond='data:view.isHomepage'>
+  <!-- Meta Description: handled by Blogger automatically -->
+
+  <!-- Open Graph -->
+  <meta content='website' property='og:type'/>
+  <meta content='EisatoponAI — Challenging Recreational Mathematics, Math Puzzles, Algebra &amp; Geometry' property='og:title'/>
+  <meta expr:content='data:blog.homepageUrl.canonical' property='og:url'/>
+  <b:if cond='data:blog.metaDescription'>
+    <meta expr:content='data:blog.metaDescription' property='og:description'/>
+  <b:elseif cond='data:blog.description'/>
+    <meta expr:content='data:blog.description' property='og:description'/>
+  </b:if>
+  <meta content='https://www.eisatopon.gr/img/og-default.jpg' property='og:image'/>
+  <meta content='1200' property='og:image:width'/>
+  <meta content='630' property='og:image:height'/>
+  <meta content='EisatoponAI logo' property='og:image:alt'/>
+
+  <!-- Twitter -->
+  <meta content='summary_large_image' name='twitter:card'/>
+  <meta content='EisatoponAI — Challenging Recreational Mathematics, Math Puzzles, Algebra &amp; Geometry' name='twitter:title'/>
+  <b:if cond='data:blog.metaDescription'>
+    <meta expr:content='data:blog.metaDescription' name='twitter:description'/>
+  <b:elseif cond='data:blog.description'/>
+    <meta expr:content='data:blog.description' name='twitter:description'/>
+  </b:if>
+  <meta content='https://www.eisatopon.gr/img/og-default.jpg' name='twitter:image'/>
+
+  <!-- JSON-LD: WebSite + Sitelinks Search Box -->
+  <script type='application/ld+json'>
+  {
+    &quot;@context&quot;: &quot;https://schema.org&quot;,
+    &quot;@type&quot;: &quot;WebSite&quot;,
+    &quot;name&quot;: &quot;<data:blog.title.jsonEscaped/>&quot;,
+    &quot;url&quot;: &quot;<data:blog.homepageUrl.canonical/>&quot;,
+    &quot;potentialAction&quot;: {
+      &quot;@type&quot;: &quot;SearchAction&quot;,
+      &quot;target&quot;: {
+        &quot;@type&quot;: &quot;EntryPoint&quot;,
+        &quot;urlTemplate&quot;: &quot;<data:blog.homepageUrl.canonical/>search?q={search_term_string}&quot;
+      },
+      &quot;query-input&quot;: &quot;required name=search_term_string&quot;
+    }
+  }
+  </script>
+
+  <!-- JSON-LD: Organization -->
+  <script type='application/ld+json'>
+  {
+    &quot;@context&quot;: &quot;https://schema.org&quot;,
+    &quot;@type&quot;: &quot;Organization&quot;,
+    &quot;name&quot;: &quot;EisatoponAI&quot;,
+    &quot;url&quot;: &quot;https://www.eisatopon.gr/&quot;,
+    &quot;logo&quot;: {
+      &quot;@type&quot;: &quot;ImageObject&quot;,
+      &quot;url&quot;: &quot;https://www.eisatopon.gr/img/logo-512.png&quot;
+    }
+  }
+  </script>
+</b:if>
+
+<!-- ====== STATIC PAGES SEO ====== -->
+<b:if cond='data:view.isPage'>
+  <!-- Open Graph -->
+  <meta content='website' property='og:type'/>
+  <meta expr:content='data:blog.pageTitle' property='og:title'/>
+  <meta expr:content='data:blog.canonicalUrl' property='og:url'/>
+
+  <b:if cond='data:blog.metaDescription'>
+    <meta expr:content='data:blog.metaDescription' property='og:description'/>
+  </b:if>
+
+  <!-- Καλύτερη εικόνα OG (αν υπάρχει thumbnail στο post) -->
+  <b:if cond='data:blog.pageImageUrl'>
+    <meta expr:content='data:blog.pageImageUrl' property='og:image'/>
+  <b:else/>
+    <meta content='https://www.eisatopon.gr/img/og-default.jpg' property='og:image'/>
+  </b:if>
+
+  <meta content='1200' property='og:image:width'/>
+  <meta content='630' property='og:image:height'/>
+  <meta content='EisatoponAI' property='og:site_name'/>
+
+  <!-- Twitter -->
+  <meta content='summary_large_image' name='twitter:card'/>
+  <meta expr:content='data:blog.pageTitle' name='twitter:title'/>
+
+  <b:if cond='data:blog.metaDescription'>
+    <meta expr:content='data:blog.metaDescription' name='twitter:description'/>
+  </b:if>
+
+  <b:if cond='data:blog.pageImageUrl'>
+    <meta expr:content='data:blog.pageImageUrl' name='twitter:image'/>
+  <b:else/>
+    <meta content='https://www.eisatopon.gr/img/og-default.jpg' name='twitter:image'/>
+  </b:if>
+</b:if>
+
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 3: ΚΥΡΙΟ CSS (b:skin)                                === -->
+<!-- ==-  Χρώματα, fonts, layout &#8212; κύρια επεξεργασία εδώ               ==- -->
+<!-- ==================================================================== -->
+  <b:skin><![CDATA[/*
+-----------------------------------------------
+Blogger Template Style
+Name:     Simple
+Designer: Blogger
+URL:      www.blogger.com
+----------------------------------------------- */
+
+/* ===== DESIGN SYSTEM ===== */
+:root {
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 40px;
+  --space-xl: 60px;
+  --color-red: #e60000;
+  --color-black: #000;
+  --font-body: "Noto Sans", system-ui, -apple-system, sans-serif;
+  --font-heading: "Montserrat", sans-serif;
+}
+
+/* ===== TYPOGRAPHY SYSTEM ===== */
+body {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+}
+
+h1 { font-size: 36px; line-height: 1.2; }
+h2 { font-size: 28px; line-height: 1.3; }
+h3 { font-size: 20px; line-height: 1.35; }
+
+.post-body,
+.post-body p,
+.post-body li {
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 28px; }
+  h2 { font-size: 22px; }
+  h3 { font-size: 18px; }
+  .post-body,
+  .post-body p,
+  .post-body li { font-size: 16px; }
+}
+
+/* ====== Βασικό στυλ ====== */
+body {
+  font: $(body.font);
+  color: $(body.text.color);
+  background: $(body.background);
+  padding: 0 $(content.shadow.spread) $(content.shadow.spread) $(content.shadow.spread);
+  $(body.background.override)
+}
+
+html body $(page.width.selector) {
+  min-width: 0;
+  max-width: 100%;
+  width: $(page.width);
+}
+
+h2 { font-size: 22px; }
+
+a:link { text-decoration:none; color: $(link.color); }
+a:visited { text-decoration:none; color: $(link.visited.color); }
+a:hover { text-decoration:underline; color: $(link.hover.color); }
+
+/* ====== Navbar (hide deprecated Google bar) ====== */
+#navbar, #navbar-iframe-container, .navbar-iframe-container { display: none !important; height: 0 !important; }
+
+/* ====== Header ====== */
+.header-outer {
+  background: none !important;
+  _background-image: none;
+}
+
+.Header h1 { 
+  font: $(header.font); 
+  color: $(header.text.color); 
+  font-size: 70px !important; 
+}
+
+.Header .description { 
+  font-size: $(description.text.size); 
+  color: $(description.text.color); 
+}
+
+.header-inner .Header .titlewrapper { 
+  padding: 22px $(header.padding); 
+}
+
+.header-inner .Header .descriptionwrapper { 
+  padding: 0 $(header.padding); 
+}
+
+/* ====== Μενού (τύπου Newsit) ====== */
+
+/* Μαύρη γραμμή ακριβώς κάτω από το λογότυπο */
+#HTML1 {
+  border-bottom: 3px solid #000000 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* ===== ΜΕΝΟΥ ΠΛΟΗΓΗΣΗΣ (mobile-first με horizontal scroll) ===== */
+#HTML8, #HTML8 .widget-content { 
+  margin-top: 0 !important; 
+  padding-top: 0 !important; 
+}
+
+.newsit-like-menu {
+  background: #f5f6f7 !important;
+  border-top: 1.7px solid #000;
+  border-bottom: 1px solid #000;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.newsit-like-menu::-webkit-scrollbar { display: none; }
+
+.newsit-like-menu ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  min-width: max-content;
+}
+
+.newsit-like-menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-shrink: 0;
+}
+
+.newsit-like-menu a {
+  display: block;
+  padding: 10px 12px;
+  text-decoration: none;
+  font-weight: 700;
+  color: #000 !important;
+  background: transparent !important;
+  border: none !important;
+  transition: color .2s ease;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.newsit-like-menu a:hover,
+.newsit-like-menu a.active { 
+  color: #e60000 !important; 
+}
+.newsit-like-menu a.active { 
+  border-bottom: 2px solid #e60000; 
+}
+
+/* Desktop: κεντράρισμα και μεγαλύτερο font */
+@media (min-width: 769px) {
+  .newsit-like-menu ul { 
+    justify-content: center; 
+    min-width: 0; 
+  }
+  .newsit-like-menu a { 
+    font-size: 15px; 
+    padding: 12px 16px; 
+  }
+}
+
+/* Τίτλοι αναρτήσεων */
+.post-title, .post-title a {
+  font-size: 28px;   
+  font-weight: bold;
+  line-height: 1.3;
+}
+
+/* Να μην “φουσκώνουν” τα γράμματα στο iOS Safari */
+html { 
+  -webkit-text-size-adjust: 100%; 
+}
+
+/* Z-Translate Flags */
+.z-translate {
+  display: flex;
+  gap: 8px;
+  margin: 8px 0 14px;
+  align-items: center;
+}
+
+.z-translate img {
+  width: 30px;
+  height: auto;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.z-translate a:hover img {
+  transform: scale(1.12);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 4: TEMPLATE SKIN (πλάτη στηλών)                      === -->
+<!-- ==-  content.width=1250px | right=0px | left=0px                  ==- -->
+<!-- ==================================================================== -->
+    
+/* Mobile labels: handled in dedicated CSS block */
+
+/* ===== MOBILE SECTION TITLES ===== */
+@media (max-width: 768px) {
+  .eisa-section-title { font-size: 24px !important; }
+  .eisa-more-btn { font-size: 12px !important; padding: 4px 10px !important; }
+  .banks-title { font-size: 15px !important; line-height: 1.4 !important; }
+}
+
+/* mobile font: see design system */
+
+/* ===== ΜΕΙΩΣΗ ΚΕΝΟΥ ΜΕΤΑΞΥ POSTS ΚΑΙ LABELS ===== */
+.blog-posts .post-outer:last-child,
+.blog-posts article:last-child,
+#Blog1 .blog-posts .post-outer:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.blog-posts .post-outer:last-child .post,
+.blog-posts article:last-child .post {
+  border-bottom: none !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+.blog-posts .post-outer:last-child .post::after,
+.blog-posts article:last-child .post::after {
+  display: none !important;
+}
+
+/* Pager spacing (μικρό, όχι μηδέν) */
+.blog-pager, 
+#blog-pager {
+  margin: 12px 0 !important;
+  padding: 0 !important;
+}
+
+/* Main container */
+.main-inner, 
+.main-outer {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Sidebar */
+#sidebar-right .widget, 
+#sidebar-right-1 .widget, 
+.sidebar .widget {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Labels section (ΣΩΣΤΟ spacing — όχι αρνητικά margins) */
+#Label1 {
+  margin-top: 12px !important;
+  margin-bottom: 10px !important;
+  padding-top: 0 !important;
+}
+
+/* Menu scroll fade hint (mobile only) */
+@media (max-width: 768px) {
+  .newsit-like-menu {
+    -webkit-mask-image: linear-gradient(to right, black 95%, transparent 100%);
+    mask-image: linear-gradient(to right, black 80%, transparent 100%);
+  }
+}
+
+/* ===== MOBILE LAYOUT ===== */
+@media (max-width: 800px) {
+
+  .newsit-feature {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+  }
+
+  /* Center πρώτο */
+  .newsit-feature .newsit-card.center {
+    order: -1;
+    transform: none;
+  }
+
+  .newsit-feature .newsit-card {
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .newsit-feature .newsit-card .meta {
+    padding: 10px 12px 14px;
+  }
+
+  .newsit-feature .newsit-card.center h3 {
+    font-size: 20px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .newsit-wrap { padding: 8px !important; }
+
+  /* ── Grid 2 στήλες για υπόλοιπα posts ── */
+  .newsit-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    background: transparent !important;
+    border-top: 1px solid #eee !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+  }
+
+  .newsit-grid .newsit-card {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: #fff !important;
+  }
+
+  .newsit-grid .newsit-card .thumb {
+    aspect-ratio: 4/3 !important;
+    border-radius: 0 !important;
+  }
+
+  .newsit-grid .newsit-card .meta h3 {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+  }
+
+  .newsit-grid .newsit-card .snippet { display: none !important; }
+
+  .newsit-grid .newsit-card .date {
+    font-size: 10px !important;
+    color: #e60000 !important;
+    font-weight: 600 !important;
+    text-transform: uppercase !important;
+  }
+
+  .newsit-grid .newsit-card .meta {
+    padding: 8px 8px 10px !important;
+  }
+}
+
+/* Πολύ μικρές οθόνες (<400px): 1 στήλη στο grid */
+@media (max-width: 400px) {
+  .newsit-grid { grid-template-columns: 1fr !important; background: #fff !important; }
+  .newsit-grid .newsit-card { border-bottom: 1px solid #eee !important; }
+}
+
+===== ΑΦΑΙΡΕΣΗ JUSTIFY ΣΤΟΙΧΙΣΗΣ ===== */
+.post-body, .post-body p, .entry-content, .entry-content p {
+text-align: left !important;
+-webkit-hyphens: none !important;
+hyphens: none !important;
+}
+
+/* Label hide class */
+.cloud-label-widget-content > span.lbl-hidden {
+  display: none !important;
+}/* ===== EXAM HERO — Premium Ad Style ===== */
+.exam-hero-link {
+  text-decoration: none;
+  display: block;
+  margin: 10px auto 0 !important;
+  max-width: 1200px;
+}.exam-hero {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #0f172a 100%);
+  padding: 0;
+  margin: 0 auto;
+  color: white;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}.exam-hero:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35), 0 4px 12px rgba(0,0,0,0.25);
+}.exam-hero::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(239, 68, 68, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}.exam-hero::after {
+  content: '∑ ∫ √ π';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-15deg);
+  font-size: 120px;
+  font-weight: 900;
+  opacity: 0.04;
+  color: white;
+  pointer-events: none;
+  font-family: 'Times New Roman', serif;
+  line-height: 1;
+}.hero-flex {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 32px;
+  position: relative;
+  z-index: 1;
+}.hero-text { flex: 1; }.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(90deg, #ef4444, #f87171);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 800;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+  animation: badgePulse 2s ease-in-out infinite;
+}@keyframes badgePulse {
+  0%, 100% { box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4); }
+  50% { box-shadow: 0 4px 25px rgba(239, 68, 68, 0.7); }
+}.lightning {
+  font-size: 14px;
+  animation: lightningFlash 1.5s ease-in-out infinite;
+}@keyframes lightningFlash {
+  0%, 90%, 100% { opacity: 1; }
+  95% { opacity: 0.3; }
+}.hero-text h2 {
+  font-size: 26px;
+  margin: 0 0 10px;
+  font-weight: 800;
+  line-height: 1.2;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  letter-spacing: -0.3px;
+  color: #fff !important;
+  font-family: var(--font-heading), sans-serif;
+}.hero-text p {
+  font-size: 15px;
+  margin: 0;
+  opacity: 0.85;
+  line-height: 1.5;
+  max-width: 90%;
+}.hero-cta {
+  display: flex;
+  align-items: center;
+}.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}.cta-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(59, 130, 246, 0.5);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}.cta-btn:hover::before { left: 100%; }.cta-btn::after { content: none; }
+
+
+
+/* ===== HARD GAP RESET (ΑΥΤΟ ΚΑΘΑΡΙΖΕΙ ΤΑ ΠΑΝΤΑ) ===== */
+/*
+#main-wrapper,
+#main-wrapper * {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+*/
+
+@media (max-width: 768px) {
+  .exam-hero { border-radius: 12px; margin: 0 8px; }
+  .hero-flex { grid-template-columns: 1fr; text-align: center; padding: 20px 24px; gap: 16px; }
+  .hero-text h2 { font-size: 20px; }
+  .hero-text p { font-size: 13px; max-width: 100%; }
+  .hero-cta { justify-content: center; }
+  .cta-btn { padding: 12px 24px; font-size: 14px; width: 100%; justify-content: center; }
+  .exam-hero::after { display: none; }
+}
+
+@media (max-width: 480px) {
+  .hero-flex { padding: 16px 20px; }
+  .hero-text h2 { font-size: 18px; }
+  .badge { font-size: 10px; padding: 5px 10px; }
+}
+
+
+/* ============================= */
+/* 🔥 FINAL SPACING FIX (MASTER) */
+/* ============================= */
+
+/* 1. POSTS spacing */
+.post {
+  margin-bottom: 25px !important;
+  padding-bottom: 15px !important;
+}
+
+/* 2. PAGER */
+.blog-pager,
+#blog-pager {
+  display: flex !important;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0 !important;
+  padding: 0 !important;
+}
+
+/* 3. LABELS */
+#Label1 {
+  margin: 15px 0 10px 0 !important;
+  padding-top: 0 !important;
+}
+
+/* 4. REMOVE τελευταίο κενό post */
+.blog-posts .post-outer:last-child,
+.blog-posts article:last-child {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 5. FIX exam hero */
+.exam-hero-link {
+  margin: 25px auto 0 !important;
+}
+
+/* 6. EXTRA */
+#Blog1,
+#Blog1 .blog-posts {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* 7. HTML14 empty widget + newsit-wrap bottom */
+#HTML14,
+#HTML14 .widget-content {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.newsit-wrap {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.eisa-pager {
+  margin-top: 15px !important;
+  margin-bottom: 0 !important;
+}
+
+/* ============================= */
+/* 🔥 SINGLE POST PAGE FIX       */
+/* ============================= */
+
+.item-page .post,
+.item-page .post-outer,
+.item-page #Blog1,
+.single-item .post,
+.single-item .post-outer {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Μείωση κενού πάνω από τον τίτλο του άρθρου */
+.post-header,
+.post-title-link,
+h1.post-title,
+h2.post-title,
+h3.post-title {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Επιπλέον καθαρισμός για άρθρα */
+.post-body {
+  margin-top: 10px !important;
+}
+
+/* ============================= */
+/* 🔥 FOOTER GAP FIX             */
+/* ============================= */
+.footer-cap-top,
+.footer-cap-top.cap-top,
+.main-cap-bottom,
+.main-cap-bottom.cap-bottom {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.footer-outer {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.footer-inner,
+.region-inner.footer-inner {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Kill ALL fauxborder spacers around footer */
+.footer-fauxborder-left,
+.footer-fauxborder-right,
+.fauxborder-left.footer-fauxborder-left {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+/* Kill tabs structural caps */
+.tabs-cap-bottom,
+.tabs-cap-bottom.cap-bottom,
+.main-cap-top,
+.main-cap-top.cap-top {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Kill the gap between main and footer at body level */
+footer {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* Kill bottom padding of main section wrappers */
+.main-outer,
+.main-inner,
+#main-wrapper {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Kill the clear:both div gap */
+.columns > div[style*="clear"] {
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
+}
+
+]]></b:skin>
+  
+    <b:template-skin>
+      <b:variable default='960px' name='content.width' type='length' value='1250px'/>
+      <b:variable default='0' name='main.column.left.width' type='length' value='0px'/>
+      <b:variable default='310px' name='main.column.right.width' type='length' value='0px'/>
+
+      <![CDATA[
+      body {
+        min-width: $(content.width);
+      }
+
+      /* FIX: Σε mobile δεν θέλουμε min-width — αλλιώς το browser κάνει zoom out */
+      @media (max-width: 768px) {
+        html, body {
+          min-width: 0 !important;
+          max-width: 100% !important;
+          overflow-x: hidden !important;
+          width: 100% !important;
+        }
+        .content-outer, .content-fauxcolumn-outer, .region-inner,
+        .main-outer, .main-inner, .column-center-outer, .column-center-inner,
+        .blog-posts, .post-outer, .post, .post-body, .entry-content {
+          min-width: 0 !important;
+          max-width: 100% !important;
+          width: 100% !important;
+          overflow-x: hidden !important;
+          box-sizing: border-box !important;
+        }
+        mjx-container, .MathJax, .MathJax_Display {
+          max-width: 100% !important;
+          overflow-x: auto !important;
+          overflow-y: hidden !important;
+        }
+        table {
+          max-width: 100% !important;
+          overflow-x: auto !important;
+          display: block !important;
+        }
+        pre, code {
+          max-width: 100% !important;
+          overflow-x: auto !important;
+          white-space: pre-wrap !important;
+          word-break: break-word !important;
+        }
+        img {
+          max-width: 100% !important;
+          height: auto !important;
+        }
+      }
+
+      .content-outer, .content-fauxcolumn-outer, .region-inner {
+        min-width: $(content.width);
+        max-width: $(content.width);
+        _width: $(content.width);
+      }
+
+      .main-inner .columns {
+        padding-left: $(main.column.left.width);
+        padding-right: $(main.column.right.width);
+      }
+
+      .main-inner .fauxcolumn-center-outer {
+        left: $(main.column.left.width);
+        right: $(main.column.right.width);
+        /* IE6 does not respect left and right together */
+        _width: expression(this.parentNode.offsetWidth -
+            parseInt("$(main.column.left.width)") -
+            parseInt("$(main.column.right.width)") + 'px');
+      }
+
+      .main-inner .fauxcolumn-left-outer {
+        width: $(main.column.left.width);
+      }
+
+      .main-inner .fauxcolumn-right-outer {
+        width: $(main.column.right.width);
+      }
+
+      .main-inner .column-left-outer {
+        width: $(main.column.left.width);
+        right: 100%;
+        margin-left: -$(main.column.left.width);
+      }
+
+      .main-inner .column-right-outer {
+        width: $(main.column.right.width);
+        margin-right: -$(main.column.right.width);
+      }
+
+      #layout {
+        min-width: 0;
+      }
+
+      #layout .content-outer {
+        min-width: 0;
+        width: 800px;
+      }
+
+      #layout .region-inner {
+        min-width: 0;
+        width: auto;
+      }
+
+      body#layout div.add_widget {
+        padding: 8px;
+      }
+
+      body#layout div.add_widget a {
+        margin-left: 32px;
+      }
+      ]]>
+    </b:template-skin>
+
+    <b:if cond='data:skin.vars.body_background.image.isResizable'>
+      <b:include cond='not data:view.isPreview' data='{                          image: data:skin.vars.body_background.image,                          selector: &quot;body&quot;                        }' name='responsiveImageStyle'/>
+    </b:if>
+
+    <b:include data='blog' name='google-analytics'/> 
+
+
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 5: EXTRA CSS BLOCKS                                  === -->
+<!-- ==-  Πρόσθετα στυλ &#8212; επεξεργάσου το σχετικό sub-block             ==- -->
+<!-- ==================================================================== -->
+
+<!-- &#9472;&#9472; 5.1 &#8212; Boxed highlight (.boxed) &#9472;&#9472; -->
+<style type='text/css'>
+.boxed {
+  background: #fff6d5;
+  border-left: 6px solid #e0a800;
+  padding: 14px 16px;
+  margin: 18px 0;
+  border-radius: 8px;
+  color: #111;
+  box-shadow: 0 4px 10px rgba(0,0,0,.25);
+}
+</style>
+  
+
+<!-- &#9472;&#9472; 5.2 &#8212; Share bar (.sharebar, .sharebtn) &#9472;&#9472; -->
+<style type='text/css'>
+.sharebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  margin: 14px 0;
+  justify-content: flex-start;
+}
+
+.sharebtn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  text-decoration: none;
+  box-shadow: 0 2px 6px rgba(0,0,0,.18);
+  transition: transform .12s ease, box-shadow .12s ease;
+  color: #fff;
+}
+
+.sharebtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,.25);
+}
+
+.sharebtn svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+/* Brand χρώματα */
+.fb { background:#1877F2; }
+.x  { background:#111; }
+.li { background:#0A66C2; }
+.pi { background:#BD081C; }
+.wa { background:#25D366; }
+.ig { background:#E4405F; }
+.cp { background:#6F42C1; }
+</style>
+
+<!-- &#9472;&#9472; 5.3 &#8212; Menu spacing &#9472;&#9472; -->
+<style>
+/* Αφαιρεί το κενό ανάμεσα στο header και το μενού */
+#main-outer, .main-outer {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+.newsit-like-menu {
+  margin-top: -2px;  /* αν χρειάζεται να το &#8220;τραβήξει&#8221; λίγο επάνω */
+}
+</style>
+
+<style>
+/* Καλύτερη κύλιση/περιθώρια στα display math */
+mjx-container { overflow-x: auto; overflow-y: hidden; }
+mjx-container[display=&quot;true&quot;] { margin: 1rem 0; }
+</style>
+
+
+<!-- &#9472;&#9472; 5.4 &#8212; Newsit feature flex + offcanvas CSS &#9472;&#9472; -->
+
+  
+<style>
+.limit-3 .newsit-card:nth-child(n+4){ display:none; }
+</style>
+
+
+
+<style>
+.section-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  margin: 30px 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #000;
+}
+
+.section-title span {
+  width: 180px;         /* μήκος παύλας */
+  height: 5px;          /* πάχος παύλας */
+  background: #e60000;  /* κόκκινο */
+  display: inline-block;
+}
+</style>
+  
+<style>
+  .dot-alert {
+    width: 12px;
+    height: 12px;
+    background: #e60000;
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulse 1.5s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.6); opacity: 0.6; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+</style>
+  
+
+<!-- &#9472;&#9472; 5.5 &#8212; Z-Translate flags (.z-translate) &#9472;&#9472; -->
+<style>
+.site-search{display:flex;align-items:center;gap:8px}
+.site-search input[type=&quot;text&quot;]{
+  width:0;opacity:0;pointer-events:none;
+  transition:width .25s ease,opacity .2s ease;
+  border:1px solid #ccc;padding:6px 10px;border-radius:6px
+}
+.site-search.open input[type=&quot;text&quot;]{width:220px;opacity:1;pointer-events:auto}
+.site-search button{background:transparent;border:0;cursor:pointer}
+</style>
+
+
+<!-- &#9472;&#9472; 5.6 &#8212; Newsit grid layout + limit-3 &#9472;&#9472; -->
+<style>
+/* Force LCP image to load eagerly on mobile */
+/* loading=&quot;eager&quot; είναι HTML attribute, όχι CSS - αφαιρέθηκε */
+</style>
+    
+    
+<b:if cond='data:view.isSingleItem'>
+  <!-- Open Graph -->
+  <meta content='article' property='og:type'/>
+  <meta expr:content='data:post.title' property='og:title'/>
+  <meta expr:content='data:post.canonicalUrl' property='og:url'/>
+  <meta expr:content='data:blog.title' property='og:site_name'/>
+
+  <b:if cond='data:post.firstImageUrl'>
+    <meta expr:content='data:post.firstImageUrl' property='og:image'/>
+  <b:else/>
+    <b:if cond='data:post.thumbnailUrl'>
+      <meta expr:content='data:post.thumbnailUrl' property='og:image'/>
+    </b:if>
+  </b:if>
+
+  <meta expr:content='data:post.snippet' name='description'/>
+  <meta expr:content='data:post.date.iso8601' property='article:published_time'/>
+
+  <b:if cond='data:post.lastUpdated'>
+    <meta expr:content='data:post.lastUpdated.iso8601' property='article:modified_time'/>
+  </b:if>
+
+  <!-- Twitter -->
+  <meta content='summary_large_image' name='twitter:card'/>
+  <meta expr:content='data:post.title' name='twitter:title'/>
+  <meta expr:content='data:post.snippet' name='twitter:description'/>
+
+  <b:if cond='data:post.firstImageUrl'>
+    <meta expr:content='data:post.firstImageUrl' name='twitter:image'/>
+  <b:else/>
+    <b:if cond='data:post.thumbnailUrl'>
+      <meta expr:content='data:post.thumbnailUrl' name='twitter:image'/>
+    </b:if>
+  </b:if>
+</b:if>
+
+<b:if cond='data:view.isSingleItem'>
+<script type='application/ld+json'>
+{
+  &quot;@context&quot;: &quot;https://schema.org&quot;,
+  &quot;@type&quot;: &quot;BlogPosting&quot;,
+  &quot;mainEntityOfPage&quot;: {
+    &quot;@type&quot;: &quot;WebPage&quot;,
+    &quot;@id&quot;: &quot;<data:post.canonicalUrl/>&quot;
+  },
+  &quot;headline&quot;: &quot;<data:post.title.jsonEscaped/>&quot;,
+  &quot;description&quot;: &quot;<data:post.snippet.jsonEscaped/>&quot;,
+  &quot;author&quot;: {
+    &quot;@type&quot;: &quot;Person&quot;,
+    &quot;name&quot;: &quot;<data:post.author.name.jsonEscaped/>&quot;
+  },
+  &quot;publisher&quot;: {
+    &quot;@type&quot;: &quot;Organization&quot;,
+    &quot;name&quot;: &quot;<data:blog.title.jsonEscaped/>&quot;
+  },
+  &quot;datePublished&quot;: &quot;<data:post.date.iso8601/>&quot;,
+  &quot;about&quot;: {
+    &quot;@type&quot;: &quot;Thing&quot;,
+    &quot;name&quot;: &quot;Mathematics&quot;
+  },
+  &quot;educationalLevel&quot;: &quot;High School&quot;,
+  &quot;inLanguage&quot;: &quot;el&quot;,
+  &quot;isPartOf&quot;: {
+    &quot;@type&quot;: &quot;Blog&quot;,
+    &quot;name&quot;: &quot;<data:blog.title.jsonEscaped/>&quot;,
+    &quot;url&quot;: &quot;<data:blog.homepageUrl.canonical/>&quot;
+  }
+}
+</script>
+</b:if>
+<b:if cond='data:view.isSingleItem'>
+  <script type='text/javascript'>
+  //<![CDATA[
+  document.addEventListener('DOMContentLoaded', function() {
+  (function () {
+    // 1) Παίρνουμε τις ετικέτες του post σε JS array (παράγεται server-side με <b:loop>)
+    var labels = [
+      <b:loop values='data:post.labels' var='label'>
+        {"name":"<data:label.name.jsonEscaped/>","url":"<data:label.url.canonical/>"}<b:if cond='data:label.hasNext'>,</b:if>
+      </b:loop>
+    ];
+
+    // 2) Στήνουμε το BreadcrumbList
+    var ld = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "<data:blog.title.jsonEscaped/>",
+          "item": "<data:blog.homepageUrl.canonical/>"
+        }
+      ]
+    };
+
+    // 3) Προσθέτουμε όλες τις ετικέτες με σωστές θέσεις (2, 3, 4, ...)
+    for (var i = 0; i < labels.length; i++) {
+      ld.itemListElement.push({
+        "@type": "ListItem",
+        "position": i + 2,
+        "name": labels[i].name,
+        "item": labels[i].url
+      });
+    }
+
+    // 4) Τέλος ο τίτλος του post (labels.length + 2)
+    ld.itemListElement.push({
+      "@type": "ListItem",
+      "position": labels.length + 2,
+      "name": "<data:post.title.jsonEscaped/>",
+      "item": "<data:post.canonicalUrl/>"
+    });
+
+    // 5) Εισαγωγή έγκυρου JSON-LD στο <head>
+    var s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.text = JSON.stringify(ld);
+    document.head.appendChild(s);
+  })();
+  }); // end DOMContentLoaded
+  //]]>
+  </script>
+</b:if>
+
+<!-- &#9472;&#9472; 5.7 &#8212; Labels cloud (χρώματα chips) &#9472;&#9472; -->
+<style>
+/* ===== Σχόλια (σε σελίδες άρθρου) ===== */
+#comments { 
+  margin-top: 32px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Τίτλος ενότητας σχολίων */
+#comments h4 {
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 14px;
+}
+
+/* Το block με τα σχόλια */
+#comments #comments-block {
+  margin: 0;
+  padding: 0;
+}
+
+/* Γραμμή &quot;συγγραφέας σχολίου&quot; (dt) */
+#comments dt.comment-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px 0 6px;
+  font-weight: 600;
+  color: #000;
+}
+
+/* Το &#171;κουτί&#187; του σχολίου (dd) */
+#comments dd.comment-body {
+  background: #fff;
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin: 0 0 16px;
+  border: 1px solid #e0e0e0; /* διακριτικό γκρι */
+  color: #333;
+  line-height: 1.55;
+  font-size: 15px;
+}
+
+/* Footer κάθε σχολίου (ημερομηνία/links) */
+#comments dd.comment-footer {
+  margin: 6px 0 20px;
+  font-size: 12.5px;
+  color: #777;
+}
+
+/* ===== Φόρμα σχολίων ===== */
+.comment-form {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 18px;
+  margin-top: 24px;
+}
+
+.comment-form h4#comment-post-message,
+.comment-form #comment-post-message {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  color: #000;
+}
+
+.comment-form iframe#comment-editor {
+  width: 100% !important;
+  border: 0;
+  background: #fff;
+  border-radius: 8px;
+  min-height: 260px;
+  box-shadow: inset 0 0 0 1px #eee;
+}
+</style>
+
+<!-- Meta description: handled in SEO blocks above -->
+
+<style>
+.blog-pager, #blog-pager { display:flex !important; justify-content:center; gap:12px; margin:10px 0 !important; padding:0 !important; }
+.blog-pager a { display:inline-block; padding:8px 12px; border:1px solid #ddd; border-radius:6px; text-decoration:none; }
+.blog-pager a:hover { background:#f5f5f5; }
+/* ===== PAGINATION ===== */
+.eisa-pager { display:flex; justify-content:center; align-items:center; gap:10px; margin:8px 12px; flex-wrap:wrap; }
+.eisa-pager-btn { display:inline-block; padding:10px 22px; background:#fff; border:2px solid #e60000; border-radius:25px; color:#e60000 !important; font-weight:700; font-size:14px; text-decoration:none !important; transition:all .2s ease; white-space:nowrap; }
+.eisa-pager-btn:hover { background:#e60000; color:#fff !important; }
+.eisa-pager-home { display:inline-block; padding:10px 16px; color:#666 !important; font-size:13px; text-decoration:none !important; border-radius:25px; border:1px solid #ddd; white-space:nowrap; }
+.eisa-pager-home:hover { background:#f5f5f5; }
+@media (max-width:480px) { .eisa-pager { gap:8px; margin:20px 8px; } .eisa-pager-btn { padding:10px 16px; font-size:13px; } }
+</style>
+
+<style>
+/* Απόσταση/χώρισμα μεταξύ αναρτήσεων στη λίστα */
+.post{margin-bottom:25px!important;padding-bottom:15px!important;}
+/* Λίγος αέρας πάνω από τίτλους */
+h3.post-title{margin-top:0!important;}
+/* Pager σιγουράκι */
+.blog-pager,#blog-pager{display:flex!important;justify-content:center;gap:12px;margin:10px 0!important;padding:0!important;}
+.blog-pager a{display:inline-block;padding:8px 12px;border:1px solid #ddd;border-radius:6px;text-decoration:none;}
+.blog-pager a:hover{background:#f5f5f5;}
+</style>
+
+
+<!-- &#9472;&#9472; 5.8 &#8212; Comments styling &#9472;&#9472; -->
+<style>
+.post::after {
+  content: &quot;&quot;;
+  display: block;
+  height: 6px;
+  margin-top: 10px;
+  background: url(&#39;https://i.imgur.com/FpC1ZyS.png&#39;) repeat-x center;
+  background-size: 30px 6px;
+  opacity: 0.25;
+}
+</style>
+
+
+<!-- &#9472;&#9472; 5.9 &#8212; Blog pager &#9472;&#9472; -->
+<style>
+/* Ενεργή κατηγορία στο μενού */
+.tabs a.active {
+  color: #e60000 !important;
+  font-weight: bold;
+  border-bottom: 2px solid #e60000;
+}
+
+.tabs a:hover {
+  color: #b50000;
+}
+</style>
+
+ <style>
+/* Κάνε τον σύνδεσμο σχολίων να φαίνεται σαν κόκκινο badge */
+.post-comment-link a,
+.comment-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  background: #ff2b2b;
+  color: #fff !important;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none !important;
+  box-shadow: 0 3px 10px rgba(0,0,0,.18);
+}
+.post-comment-link a:hover,
+.comment-link:hover { filter: brightness(1.1); }
+
+/* μικρό &#8220;μπιμπίκι&#8221; πριν από τον αριθμό */
+.post-comment-link a::before,
+.comment-link::before {
+  content: &quot;&quot;;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #fff; opacity: .9;
+}
+</style>
+   <style>
+/* ===== 2-στήλες ροή αναρτήσεων σε κινητά ===== */
+@media (max-width: 768px) {
+  #Blog1 .blog-posts,
+  .home #Blog1 .blog-posts,
+  .index #Blog1 .blog-posts,
+  .blog-posts.hfeed {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    align-items: stretch;
+  }
+
+  #Blog1 .blog-posts .post-outer,
+  #Blog1 .blog-posts article,
+  .blog-posts .post-outer {
+    margin: 0 !important;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: var(--card-bg, #fff);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  }
+
+  #Blog1 .blog-posts .post-outer img,
+  .blog-posts img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  #Blog1 .blog-posts .post-outer .post,
+  .blog-posts .post {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  #Blog1 .blog-posts .post-outer .post-title,
+  .blog-posts .post-title {
+    font-size: 15px;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  #Blog1 .blog-posts .post-outer .post-snippet,
+  .blog-posts .post-snippet {
+    font-size: 13px;
+    line-height: 1.35;
+    color: #555;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  #Blog1 .blog-posts .post-outer .post-footer,
+  .blog-posts .post-footer {
+    margin-top: auto;
+    font-size: 12px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+
+@media (max-width: 360px) {
+  #Blog1 .blog-posts,
+  .home #Blog1 .blog-posts,
+  .index #Blog1 .blog-posts,
+  .blog-posts.hfeed {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  #Blog1 .blog-posts,
+  .home #Blog1 .blog-posts,
+  .index #Blog1 .blog-posts,
+  .blog-posts.hfeed {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+}
+</style>
+
+  
+
+<!-- &#9472;&#9472; 5.10 &#8212; Post separator + 2-στήλες mobile grid &#9472;&#9472; -->
+<style>
+/* ===== EISATOPON LABELS - Card Style with Progress Bar ===== */
+
+#Label1 {
+  margin: 10px 0 !important;
+  padding-top: 0 !important;
+}
+
+#Label1 h2, #Label1 h3 {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 800;
+  color: #333;
+  margin: 0 0 16px 0;
+  text-transform: none;
+  letter-spacing: 0;
+  text-align: left !important;
+  border: none !important;
+}
+
+/* Grid container */
+.cloud-label-widget-content {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  gap: 8px !important;
+  flex-wrap: unset !important;
+  align-items: unset !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Card per label - target outer span */
+.cloud-label-widget-content &gt; span {
+  display: block !important;
+  background: #fff !important;
+  border: 1.5px solid #e2e8f0 !important;
+  border-radius: 10px !important;
+  padding: 14px 16px 12px !important;
+  transition: all 0.2s ease !important;
+  cursor: pointer !important;
+}
+
+.cloud-label-widget-content &gt; span:hover {
+  border-color: #d0d0d0 !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Link = label name */
+.cloud-label-widget-content &gt; span &gt; a {
+  display: block !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 0 6px 0 !important;
+  line-height: 1.3 !important;
+  border-radius: 0 !important;
+}
+
+/* Progress bar */
+/* Progress bar: added by JS */
+
+/* Count */
+.cloud-label-widget-content &gt; span &gt; .label-count {
+  display: block !important;
+  font-size: 11px !important;
+  font-weight: 400 !important;
+  color: #aaa !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+
+/* Colors + bar widths by rank */
+.cloud-label-widget-content &gt; span:nth-child(1) &gt; a { color: #2563eb !important; }
+.cloud-label-widget-content &gt; span:nth-child(2) &gt; a { color: #059669 !important; }
+.cloud-label-widget-content &gt; span:nth-child(3) &gt; a { color: #d97706 !important; }
+.cloud-label-widget-content &gt; span:nth-child(4) &gt; a { color: #7c3aed !important; }
+.cloud-label-widget-content &gt; span:nth-child(5) &gt; a { color: #e11d48 !important; }
+.cloud-label-widget-content &gt; span:nth-child(6) &gt; a { color: #16a34a !important; }
+.cloud-label-widget-content &gt; span:nth-child(7) &gt; a { color: #ea580c !important; }
+.cloud-label-widget-content &gt; span:nth-child(n+8) &gt; a { color: #475569 !important; }
+
+/* Μαθηματικά κατεύθυνσης Γ Λυκείου &#8594; εμφανίζεται ως &quot;Μαθηματικά Γ&#39; Λυκείου&quot; */
+.cloud-label-widget-content a[href*=&quot;%CE%BA%CE%B1%CF%84%CE%B5%CF%8D%CE%B8%CF%85%CE%BD%CF%83%CE%B7%CF%82&quot;] {
+  font-size: 0 !important;
+}
+.cloud-label-widget-content a[href*=&quot;%CE%BA%CE%B1%CF%84%CE%B5%CF%8D%CE%B8%CF%85%CE%BD%CF%83%CE%B7%CF%82&quot;]::before {
+  content: &quot;Μαθηματικά Γ&#39; Λυκείου&quot;;
+  font-size: 17px !important;
+  color: #e11d48;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  #Label1 { padding: 0 5px; }
+  .cloud-label-widget-content {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
+  .cloud-label-widget-content &gt; span &gt; a { font-size: 12px !important; }
+  
+}
+</style>
+
+
+<!-- &#9472;&#9472; 5.13 &#8212; Quickedit + email hide &#9472;&#9472; -->
+<!-- Labels: handled by HTML8 widget CSS -->
+<!-- font script αφαιρέθηκε - χρησιμοποιούμε responsive CSS -->
+
+ 
+
+<!-- &#9472;&#9472; 5.14 &#8212; Mobile font overrides (χρησιμοποιεί px αντί rem για ασφάλεια) &#9472;&#9472; -->
+<style>
+/* 640px font: see design system */
+</style>
+
+
+<!-- &#9472;&#9472; 5.15 &#8212; Banks section (.banks-section, .bank-card) &#9472;&#9472; -->
+
+
+
+<!-- &#9472;&#9472; 5.16 &#8212; Section title (.section-title) &#9472;&#9472; -->
+<style>
+/* 1) Σύγχρονες μεγάλες εικόνες &#8211; κεντραρισμένες */
+.post-body img {
+  display: block;
+  margin: 12px auto;      /* ήταν 25px auto */
+  max-width: 85%;
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,.1);
+  transition: transform .2s ease;
+}
+
+.post-body img + p {
+  margin-top: 6px;
+}
+
+.post-body img:hover {
+  transform: translateY(-4px);
+}
+
+.post-body img[style*=&quot;float:left&quot;],
+.post-body img[style*=&quot;float: left&quot;],
+.post-body img[align=&quot;left&quot;],
+.post-body img.icon-left,
+.post-body img[width=&quot;60&quot;],
+.post-body img[width=&quot;80&quot;],
+.post-body img[width=&quot;90&quot;],
+.post-body img[width=&quot;100&quot;],
+.post-body img[width=&quot;110&quot;],
+.post-body img[width=&quot;120&quot;],
+.post-body img[width=&quot;130&quot;],
+.post-body img[width=&quot;140&quot;],
+.post-body img[width=&quot;150&quot;] {
+  float: left !important;
+  margin: 10px 15px 10px 0 !important;
+  max-width: none !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 6px !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+
+/* 3) Mobile: όλα κεντραρισμένα για καθαρή ροή */
+@media (max-width: 768px) {
+  .post-body img { max-width: 100% !important; }
+  .post-body img[style*=&quot;float:left&quot;],
+  .post-body img[style*=&quot;float: left&quot;],
+  .post-body img[align=&quot;left&quot;],
+  .post-body img.icon-left,
+  .post-body img[width=&quot;60&quot;],
+  .post-body img[width=&quot;80&quot;],
+  .post-body img[width=&quot;90&quot;],
+  .post-body img[width=&quot;100&quot;],
+  .post-body img[width=&quot;110&quot;],
+  .post-body img[width=&quot;120&quot;],
+  .post-body img[width=&quot;130&quot;],
+  .post-body img[width=&quot;140&quot;],
+  .post-body img[width=&quot;150&quot;] {
+    float: none !important;
+    display: block !important;
+    margin: 15px auto !important;
+  }
+}
+
+</style>
+ 
+
+<!-- &#9472;&#9472; 5.17 &#8212; Active menu link + menu spacing &#9472;&#9472; -->
+<style>
+/* Πάνω-πάνω: Για το μολυβάκι (quickedit) - πάντα ίδιο μέγεθος */
+.item-control, .quickedit, a.quickedit {
+  display: inline-block !important;
+  visibility: visible !important;
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+  width: 24px !important;
+  height: 24px !important;
+  opacity: 0.6 !important;
+  touch-action: manipulation;
+  transition: opacity 0.3s;
+}
+
+.quickedit:hover,
+.item-control:hover,
+a.quickedit:hover {
+  opacity: 1 !important;
+}
+
+.quickedit svg, .quickedit img {
+  width: 20px !important;
+  height: 20px !important;
+  vertical-align: middle !important;
+}
+
+/* Κρύψε τα mail icons/links - πιο κάτω! */
+a[href^=&quot;mailto:&quot;],
+.email-post-link,
+#EmailThis,
+.share-button.email,
+.post-footer .email-post-link,
+img[src*=&quot;mail&quot;],
+svg[class*=&quot;mail&quot;],
+svg[id*=&quot;mail&quot;],
+svg[aria-label*=&quot;mail&quot;],
+[class*=&quot;mail&quot;]:not(.quickedit):not(.item-control),
+[id*=&quot;mail&quot;]:not(.quickedit):not(.item-control) {
+  display: none !important;
+}
+</style>
+
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 6: MATHJAX v3                                        === -->
+<!-- ==-  MathJax v3 (SVG). Delimiters: $...$ και $$...$$                ==- -->
+<!-- ==================================================================== -->
+<b:if cond='data:view.isSingleItem'>
+<style>
+/* ===== SINGLE ITEM PAGE FIXES ===== */
+.blog-posts, .Blog, .post-wrapper { margin-top: 0 !important; }
+.main-outer, .main-inner, .column-center-outer, .column-center-inner { padding-top: 0 !important; margin-top: 0 !important; }
+.region-inner.main-inner { padding-top: 0 !important; }
+.post::after { display: none !important; content: none !important; height: 0 !important; margin: 0 !important; opacity: 0 !important; }
+.post { border-bottom: none !important; }
+#Attribution1, .Attribution, .widget.Attribution { display: none !important; }
+</style>
+<!-- MathJax v3 config -->
+<script>
+//<![CDATA[
+window.MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    tags: 'ams'
+  },
+  options: {
+    skipHtmlTags: ['script','noscript','style','textarea','pre','code','a'],
+    ignoreHtmlClass: 'tex2jax_ignore'
+  },
+  svg: { fontCache: 'global' }
+};
+//]]>
+</script>
+<script async='async' id='mathjax-script' src='https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js'/>
+</b:if>
+
+
+<!-- &#9472;&#9472; MathJax SVG container styles &#9472;&#9472; -->
+<style>
+mjx-container[jax=&quot;SVG&quot;] {
+  font-size: 110%;
+  margin: 0.8em 0;
+  text-align: center;
+}
+</style>
+
+    
+    
+    
+  <style>
+/* EisatoponAI &#8212; Bold Geometric Header */
+#header-inner h1, 
+#header-inner h1 a,
+#header h1,
+.Header h1,
+.header h1,
+h1.title,
+h1.title a {
+    font-family: &#39;Montserrat&#39;, sans-serif !important;
+    font-weight: 800 !important;
+    font-size: 48px !important;
+    letter-spacing: -1px;
+    color: #000000 !important;
+    line-height: 1.05;
+}
+
+.ai-red {
+    color: #e60000 !important;
+    font-weight: 900 !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    #header-inner h1, 
+    #header-inner h1 a,
+    #header h1,
+    .Header h1,
+    .header h1,
+    h1.title,
+    h1.title a {
+        font-size: 34px !important;
+        letter-spacing: -0.8px;
+    }
+}
+</style>
+    
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 7: EXTRA CSS &#8212; HEADER, LINKS, IMAGES                 === -->
+<!-- ==-  Header font (Montserrat 800), link colors, post images       ==- -->
+<!-- ==================================================================== -->
+<style>
+  /* Γενικό στιλ για links: να ξεχωρίζουν και να έχουν καλό contrast */
+  a,
+  .post a {
+    color: #0044cc;
+    text-decoration: underline;
+  }
+
+  a:hover,
+  .post a:hover {
+    color: #002266;
+    text-decoration: underline;
+  }
+
+  /* Links πάνω σε σκούρο φόντο (π.χ. footer / header) */
+  .footer a,
+  .footer a:visited,
+  .header a,
+  .header a:visited {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+</style>
+ 
+<style>
+@media (max-width: 768px){
+  #eisatopon-more-box { display:none !important; }
+}
+</style>
+ 
+<style>
+/* Labels εμφανίζονται σε όλες τις συσκευές */
+</style>
+
+
+<!-- &#9472;&#9472; 7.0 &#8212; Section headers (eisa-section-header) &#9472;&#9472; -->
+<style>
+/* Banks title: μικρότερο σε mobile */
+@media (max-width: 600px) {
+  .banks-title {
+    font-size: 16px !important;
+    line-height: 1.4;
+  }
+  .eisa-section-title { font-size: 24px; }
+}
+</style>
+
+<!-- &#9472;&#9472; 7.1 &#8212; Newsit core CSS (wrap, card, grid) &#9472;&#9472; -->
+<style>
+/* === NEWSIT WRAP === */
+.newsit-wrap { margin-inline: auto; max-width: 1200px; padding: 0 12px 0; contain: layout style; }
+
+/* === NEWSIT CARD === */
+.newsit-card {
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,.06);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.newsit-card .thumb { position: relative; aspect-ratio: 16/9; overflow: hidden; }
+.newsit-card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .3s ease; }
+.newsit-card:hover .thumb img { transform: scale(1.03); }
+.newsit-card .meta { padding: 12px 14px; }
+.newsit-card .meta h3 { margin: 0 0 6px; font-size: clamp(15px,1.9vw,22px); line-height: 1.25; position: relative; z-index: 2; }
+.newsit-card .meta h3 a { text-decoration: none; color: inherit; }
+.newsit-card .snippet { color: #444; font-size: 14px; line-height: 1.45; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.newsit-card .date { opacity: .65; font-size: 12px; margin-top: 8px; }
+.newsit-card .card-cover-link { position: absolute; inset: 0; z-index: 5; display: block; text-indent: -9999px; }
+.newsit-card.center h3 { font-size: clamp(18px,2.4vw,26px); }
+.newsit-card.center .snippet { -webkit-line-clamp: 4; }
+
+/* === NEWSIT GRID (3 στήλες desktop) === */
+.newsit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.newsit-grid .newsit-card .meta h3 { font-size: clamp(14px,1.6vw,19px); }
+
+/* limit-3: κρύβει από την 4η κάρτα και μετά */
+.limit-3 .newsit-card:nth-child(n+4) { display: none; }
+
+/* Label badge - κόκκινο πάνω δεξιά */
+.newsit-card .label-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #e60000;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: 20px;
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  pointer-events: none;
+  white-space: nowrap;
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Responsive grid */
+@media (max-width: 980px) {
+  .newsit-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 580px) {
+  .newsit-grid { grid-template-columns: 1fr; }
+}
+
+/* === MOBILE MENU HORIZONTAL SCROLL === */
+@media (max-width: 768px) {
+  .newsit-like-menu ul {
+    justify-content: flex-start !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+  }
+  .newsit-like-menu ul::-webkit-scrollbar { display: none; }
+  .newsit-like-menu li { flex-shrink: 0; }
+  .newsit-like-menu a { white-space: nowrap; padding: 10px 12px; font-size: 14px; }
+}
+</style>
+
+<!-- &#9472;&#9472; 7.2 &#8212; Newsit feature flex (κεντρική + πλάγιες κάρτες) &#9472;&#9472; -->
+<style>
+/* === FEATURED PRO LAYOUT === */
+.newsit-feature {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  gap: 24px;
+  margin: 0;
+  align-items: stretch;
+}
+
+/* Center hero */
+.newsit-feature .newsit-card.center {
+  transform: translateY(-4px);
+}
+
+/* Όλες οι κάρτες */
+.newsit-feature .newsit-card {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+/* Hover effect */
+.newsit-feature .newsit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0,0,0,.15);
+}
+
+/* Εικόνες */
+.newsit-feature .newsit-card .thumb {
+  aspect-ratio: 16/9;
+}
+
+/* Τίτλος center */
+.newsit-feature .newsit-card.center h3 {
+  font-size: clamp(22px, 2.6vw, 32px);
+  font-weight: 800;
+}
+
+/* Τίτλοι πλαϊνά */
+.newsit-feature .newsit-card:not(.center) h3 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* Snippet */
+.newsit-feature .snippet {
+  font-size: 14px;
+  color: #444;
+}
+
+/* Date */
+.newsit-feature .date {
+  font-size: 12px;
+  color: #e60000;
+  font-weight: 600;
+}
+</style>
+
+<!-- &#9472;&#9472; Extra CSS από body: menu spacing + floating buttons &#9472;&#9472; -->
+<style>
+.blog-posts, .Blog, .post-wrapper { margin-top: 0 !important; padding-top: 0 !important; }
+@media (max-width: 768px) {
+  .newsit-wrap { margin-top: 0 !important; }
+  .blog-posts, .Blog, .post-wrapper { margin-top: 0 !important; }
+  .newsit-feature { margin-top: 0 !important; }
+}
+</style>
+
+<!-- math float buttons CSS removed (dead code) -->
+
+<!-- &#9472;&#9472; CSS Section Headers + Banks Title (mobile fixes) &#9472;&#9472; -->
+<style>
+/* Mobile menu scroll: handled in b:skin */
+.eisa-section-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0 15px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  color: #000;
+  overflow: hidden;
+}
+.eisa-section-title {
+  font-size: 28px;
+  flex: 1;
+  min-width: 0;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.eisa-redbar {
+  width: 60px;
+  height: 5px;
+  background: #e60000;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.eisa-more-btn {
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background-color: #d40000;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .banks-title {
+    font-size: 15px !important;
+    line-height: 1.4 !important;
+  }
+  .banks-title-en { display: none; }
+  .eisa-section-title { font-size: 24px; }
+}
+</style>
+
+<!-- Performance hints -->
+<link as='image' href='https://www.eisatopon.gr/img/og-default.jpg' rel='preload'/>
+<meta content='#ffffff' name='theme-color'/>
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 8: ΑΡΧΗ BODY                                         === -->
+<!-- ==================================================================== -->
+
+<!-- Mobile: αφαίρεση κενού πάνω από άρθρο -->
+<style>
+@media (max-width: 768px) {
+  .main-outer, 
+  .main-inner, 
+  .region-inner.main-inner,
+  .column-center-outer,
+  .column-center-inner,
+  #Blog1, 
+  .blog-posts {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+
+  .post-outer:first-child, 
+  .hfeed .post-outer:first-child {
+    margin-top: 0 !important;
+  }
+
+  h3.post-title {
+    margin-top: 0 !important;
+  }
+}
+</style>
+
+
+<style>
+.newsit-feature .newsit-card.center h3 a {
+  color: #000;
+}
+.newsit-feature .newsit-card.center h3 a:hover {
+  color: #e60000;
+}
+</style>
+</head>
+
+<body expr:class='&quot;loading&quot; + data:blog.mobileClass'>
+   
+  <!-- Google Tag Manager (noscript) -->
+  <noscript>
+    <iframe height='0' src='https://www.googletagmanager.com/ns.html?id=GTM-M5Q7KNN8' style='display:none;visibility:hidden' width='0'/>
+  </noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 9: NAVBAR                                            === -->
+<!-- ==-  Blogger system bar &#8212; συνήθως δεν χρειάζεται επεξεργασία      ==- -->
+<!-- ==================================================================== -->
+  <b:section class='navbar' id='navbar' maxwidgets='1' name='Navbar' showaddelement='no'>
+    <b:widget id='Navbar1' locked='false' title='Navbar' type='Navbar' version='1'>
+      <b:includable id='main'>&lt;script type=&quot;text/javascript&quot;&gt;
+    function setAttributeOnload(object, attribute, val) {
+      if(window.addEventListener) {
+        window.addEventListener(&#39;load&#39;,
+          function(){ object[attribute] = val; }, false);
+      } else {
+        window.attachEvent(&#39;onload&#39;, function(){ object[attribute] = val; });
+      }
+    }
+  &lt;/script&gt;
+&lt;div id=&quot;navbar-iframe-container&quot;&gt;&lt;/div&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://apis.google.com/js/platform.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+      gapi.load(&quot;gapi.iframes:gapi.iframes.style.bubble&quot;, function() {
+        if (gapi.iframes &amp;&amp; gapi.iframes.getContext) {
+          gapi.iframes.getContext().openChild({
+              url: &#39;https://www.blogger.com/navbar/7136655045781905113?origin\x3dhttps://www.blogger.com&#39;,
+              where: document.getElementById(&quot;navbar-iframe-container&quot;),
+              id: &quot;navbar-iframe&quot;
+          });
+        }
+      });
+    &lt;/script&gt;&lt;script type=&quot;text/javascript&quot;&gt;
+(function() {
+var script = document.createElement(&#39;script&#39;);
+script.type = &#39;text/javascript&#39;;
+script.src = &#39;//pagead2.googlesyndication.com/pagead/js/google_top_exp.js&#39;;
+var head = document.getElementsByTagName(&#39;head&#39;)[0];
+if (head) {
+head.appendChild(script);
+}})();
+&lt;/script&gt;
+</b:includable>
+    </b:widget>
+  </b:section>
+
+<b:if cond='data:blog.pageType == &quot;index&quot;'>
+  <div itemscope='itemscope' itemtype='https://schema.org/Blog' style='display:none'>
+    <meta expr:content='data:blog.title' itemprop='name'/>
+  </div>
+</b:if>
+
+
+  <div class='body-fauxcolumns'>
+    <div class='fauxcolumn-outer body-fauxcolumn-outer'>
+    <div class='cap-top'>
+      <div class='cap-left'/>
+      <div class='cap-right'/>
+    </div>
+    <div class='fauxborder-left'>
+    <div class='fauxborder-right'/>
+    <div class='fauxcolumn-inner'>
+    </div>
+    </div>
+    <div class='cap-bottom'>
+      <div class='cap-left'/>
+      <div class='cap-right'/>
+    </div>
+    </div>
+  </div>
+
+  <div class='content'>
+  <div class='content-fauxcolumns'>
+    <div class='fauxcolumn-outer content-fauxcolumn-outer'>
+    <div class='cap-top'>
+      <div class='cap-left'/>
+      <div class='cap-right'/>
+    </div>
+    <div class='fauxborder-left'>
+    <div class='fauxborder-right'/>
+    <div class='fauxcolumn-inner'>
+    </div>
+    </div>
+    <div class='cap-bottom'>
+      <div class='cap-left'/>
+      <div class='cap-right'/>
+    </div>
+    </div>
+  </div>
+
+  <div class='content-outer'>
+  <div class='content-cap-top cap-top'>
+    <div class='cap-left'/>
+    <div class='cap-right'/>
+  </div>
+  <div class='fauxborder-left content-fauxborder-left'>
+  <div class='fauxborder-right content-fauxborder-right'/>
+  <div class='content-inner'>
+
+    <header>
+    </header>
+
+   <div class='tabs-outer'>
+    <div class='tabs-cap-top cap-top'>
+      <div class='cap-left'/>
+      <div class='cap-right'/>
+    </div>
+    <div class='fauxborder-left tabs-fauxborder-left'>
+    <div class='fauxborder-right tabs-fauxborder-right'/>
+    <div class='region-inner tabs-inner'>
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 10: HEADER (HTML1)                                   === -->
+<!-- ==-  Logo, counter ημερών, tagline, κουμπί αναζήτησης             ==- -->
+<!-- ==-      &#9658; Αλλαγή λογότυπου/tagline: βρες το <h1> μέσα στο widget ==- -->
+<!-- ==================================================================== -->
+  <b:section class='tabs' id='crosscol' maxwidgets='1' name='Cross-Column' showaddelement='yes'>
+    <b:widget id='HTML1' locked='false' title='' type='HTML' version='1'>
+      <b:widget-settings>
+        <b:widget-setting name='content'><![CDATA[<style>.eisa-header {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  min-height: 80px;
+  gap: 12px;
+}
+.eisa-counter {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.6;
+  min-width: 130px;
+  flex-shrink: 0;
+}
+.eisa-logo {
+  text-align: center;
+  flex: 1;
+  padding: 0 10px;
+  min-width: 0;
+}
+.eisa-logo h1 {
+  font-family: 'Arial Black', Impact, sans-serif;
+  font-size: 50px;
+  font-weight: 900;
+  margin: 0;
+  line-height: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.eisa-logo p {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000;
+  margin: 4px 0 0;
+  letter-spacing: .5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.eisa-search {
+  position: relative;
+  flex-shrink: 0;
+}
+.eisa-search-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 28px;
+  color: #000;
+  padding: 0;
+  line-height: 1;
+}/* ===== MOBILE FIXES ===== */
+@media (max-width: 768px) {
+  .eisa-header {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+  .eisa-counter {
+    display: none;
+  }
+  .eisa-search {
+    display: none;
+  }
+  .eisa-logo {
+    padding: 0;
+    text-align: center;
+    min-width: 0;
+  }
+  .eisa-logo h1 { font-size: 32px !important; }
+  .eisa-logo p { font-size: 13px !important; }
+}@media (max-width: 480px) {
+  .eisa-header {
+    flex-wrap: wrap;
+    padding: 8px 10px;
+    min-height: auto;
+  }
+  .eisa-logo {
+    flex: 1 1 100%;
+    order: -1;
+    text-align: center;
+    padding: 4px 0;
+  }
+  .eisa-logo h1 { font-size: 26px !important; }
+  .eisa-logo p { font-size: 11px !important; }
+  .eisa-search {
+    order: 2;
+    margin-left: auto;
+  }
+  .eisa-search-btn { font-size: 22px; }
+}
+</style><div class="eisa-header">  <!-- Counter (αριστερά - κρύβεται σε mobile) -->
+  <div class="eisa-counter">
+    <div id="counter" style="font-weight:700;"></div>
+    <hr style="border:0; border-top:1px solid #ccc; margin:6px 0;"/>
+    <div id="today"></div>
+  </div>
+
+ <!-- Logo & tagline (κέντρο) -->
+<div class="eisa-logo" style="text-align:center;">
+  <h1 style="margin-bottom:4px;">
+    <a href="/" style="text-decoration:none;">
+      <span style="color:#000000;">Eisatopon</span><span style="color:#E60000;">AI</span>
+    </a>
+  </h1>
+  <p style="margin-top:12px; font-size:13.5px; color:#777; letter-spacing:0.3px; opacity:0.9;">
+    Your Daily Experience of Math Adventures
+  </p>
+</div>
+
+  <!-- Search (δεξιά) -->
+  <div class="eisa-search">
+    <button type="button" class="eisa-search-btn" aria-label="Αναζήτηση">
+      
+</button>
+<form action="/search" method="get" role="search" id="searchBox"
+      style="display:none; position:absolute; right:0; top:100%; margin-top:8px; z-index:9999;">
+  <input name="q" placeholder="Αναζήτηση..." type="text"
+         style="padding:8px 12px; font-size:16px; border:1px solid #ccc; border-radius:4px; width:220px;"/>
+  <input type="hidden" name="max-results" value="50"/>
+</form>  </div>
+
+</div>
+
+<script>
+const startDate = new Date("2010-12-29");
+const today = new Date();
+const diffTime = today - startDate;
+const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)) + 1;
+const years = Math.floor(diffDays / 365) + 1;
+document.getElementById("counter").innerHTML = years + "ος χρόνος<br>ημέρα " + diffDays + "η";
+const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+let formattedDate = new Intl.DateTimeFormat('el-GR', options).format(today);
+formattedDate = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+document.getElementById("today").innerHTML = formattedDate;
+</script>]]></b:widget-setting>
+      </b:widget-settings>
+      <b:includable id='main'>  <!-- only display title if it's non-empty -->  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+  <b:include name='quickedit'/>
+</b:includable>
+    </b:widget>
+  </b:section>
+
+
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 11: ΜΕΝΟΥ (HTML8) + OFFCANVAS (HTML10)               === -->
+<!-- ==-  HTML8 = nav links | HTML10 = offcanvas panel + JS            ==- -->
+<!-- ==-      &#9658; Νέα κατηγορία: πρόσθεσε <li><a href=...> στο HTML8     ==- -->
+<!-- ==================================================================== -->
+      <b:section class='tabs' id='crosscol-overflow' name='Cross-Column 2' showaddelement='no'>
+        <b:widget id='HTML8' locked='false' title='' type='HTML'>
+          <b:widget-settings>
+            <b:widget-setting name='content'><![CDATA[<style>
+/* ===== LABELS CARD GRID OVERRIDE ===== */
+.cloud-label-widget-content {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  gap: 8px !important;
+}
+.cloud-label-widget-content > span {
+  display: block !important;
+  background: #fff !important;
+  border: 1px solid #ebebeb !important;
+  border-radius: 10px !important;
+  padding: 12px 14px 10px !important;
+}
+.cloud-label-widget-content > span > a {
+  display: block !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  padding: 0 0 6px 0 !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  line-height: 1.4 !important;
+  word-break: break-word !important;
+}
+.cloud-label-widget-content > span > a::after {
+  content: '';
+  display: block;
+  height: 3px;
+  border-radius: 3px;
+  background: currentColor;
+  opacity: 0.35;
+  margin-top: 8px;
+}
+.cloud-label-widget-content > span > .label-count {
+  display: block !important;
+  font-size: 11px !important;
+  color: #aaa !important;
+  padding: 0 !important;
+  margin: 2px 0 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+}
+.cloud-label-widget-content > span:nth-child(1) > a { color: #2563eb !important; }
+.cloud-label-widget-content > span:nth-child(2) > a { color: #059669 !important; }
+.cloud-label-widget-content > span:nth-child(3) > a { color: #d97706 !important; }
+.cloud-label-widget-content > span:nth-child(4) > a { color: #7c3aed !important; }
+.cloud-label-widget-content > span:nth-child(5) > a { color: #e11d48 !important; }
+.cloud-label-widget-content > span:nth-child(6) > a { color: #16a34a !important; }
+.cloud-label-widget-content > span:nth-child(7) > a { color: #ea580c !important; }
+.cloud-label-widget-content > span:nth-child(n+8) > a { color: #475569 !important; }
+
+/* Μαθηματικά κατεύθυνσης Γ Λυκείου → εμφανίζεται ως "Μαθηματικά Γ' Λυκείου" */
+.cloud-label-widget-content a[href*="%CE%BA%CE%B1%CF%84%CE%B5%CF%8D%CE%B8%CF%85%CE%BD%CF%83%CE%B7%CF%82"] {
+  font-size: 0 !important;
+}
+.cloud-label-widget-content a[href*="%CE%BA%CE%B1%CF%84%CE%B5%CF%8D%CE%B8%CF%85%CE%BD%CF%83%CE%B7%CF%82"]::before {
+  content: "Μαθηματικά Γ' Λυκείου";
+  font-size: 17px !important;
+  color: #e11d48;
+}
+@media (max-width: 768px) {
+  .cloud-label-widget-content {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 6px !important;
+  }
+}
+
+/* ===== SECTION HEADERS ===== */
+.eisa-section-header {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 28px 0 18px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+  color: #000;
+  overflow: hidden;
+}
+
+.eisa-section-title {
+  font-size: 28px;
+  flex: 1;
+  min-width: 0;
+  word-break: keep-all;
+}
+
+.eisa-redbar {
+  width: 60px;
+  height: 5px;
+  background: #e60000;
+  flex-shrink: 0;
+}
+
+.eisa-more-btn {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: #d40000;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-size: 13.5px;
+  font-weight: 600;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .eisa-section-title {
+    font-size: 24px;
+  }
+  .eisa-more-btn {
+    padding: 5px 12px;
+    font-size: 13px;
+  }
+}
+/* ===== BOOKS GRID 1 COL MOBILE ===== */
+@media (max-width: 768px) {
+  .banks-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .banks-section { padding: 20px 12px !important; }
+}
+
+/* ===== MOBILE MENU FIX - Ενσωματωμένο στο widget ===== */
+.newsit-like-menu {
+  background: #f5f6f7 !important;
+  border-top: 1.7px solid #000000;
+  border-bottom: 1px solid #000000;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  -webkit-overflow-scrolling: touch !important;
+  scrollbar-width: none !important;
+  display: block !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  position: relative;
+}
+.newsit-like-menu::-webkit-scrollbar { display: none !important; }
+.newsit-like-menu ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+  min-width: max-content !important;
+  width: auto !important;
+}
+.newsit-like-menu li {
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+}
+.newsit-like-menu li:last-child { padding-right: 20px !important; }
+.newsit-like-menu a {
+  display: block !important;
+  padding: 10px 12px !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  color: #000000 !important;
+  background: transparent !important;
+  border: none !important;
+  white-space: nowrap !important;
+  font-size: 13px !important;
+}
+.newsit-like-menu a.active,
+.newsit-like-menu a:hover { color: #e60000 !important; }
+
+@media (min-width: 769px) {
+  .newsit-like-menu ul { justify-content: center !important; }
+  .newsit-like-menu a { padding: 12px 16px !important; font-size: 15px !important; }
+}
+
+@media (max-width: 768px) {
+  .newsit-like-menu {
+    -webkit-mask-image: linear-gradient(to right, black 90%, transparent 100%);
+    mask-image: linear-gradient(to right, black 90%, transparent 100%);
+  }
+}
+
+@media (max-width: 400px) {
+  .newsit-like-menu a { padding: 8px 10px !important; font-size: 12px !important; }
+}
+
+/* ===== MOBILE LAYOUT ===== */
+@media (max-width: 800px) {
+
+  .newsit-feature {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    align-items: center;
+  }
+
+  .newsit-feature .newsit-card.center {
+    order: -1;
+    transform: none;
+  }
+
+  .newsit-feature .newsit-card {
+    border-radius: 0;
+    box-shadow: none;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .newsit-feature .newsit-card .meta {
+    padding: 10px 12px 14px;
+  }
+
+  .newsit-feature .newsit-card.center h3 {
+    font-size: 20px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .newsit-wrap { padding: 8px !important; }
+
+  .newsit-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 8px !important;
+    background: transparent !important;
+    border-top: 1px solid #eee !important;
+    max-width: 600px !important;
+    margin: 0 auto !important;
+  }
+  .newsit-grid .newsit-card { border-radius: 0 !important; box-shadow: none !important; background: #fff !important; }
+  .newsit-grid .newsit-card .thumb { aspect-ratio: 4/3 !important; border-radius: 0 !important; }
+  .newsit-grid .newsit-card .meta { padding: 8px 8px 10px !important; }
+  .newsit-grid .newsit-card .meta h3 { font-size: 13px !important; font-weight: 700 !important; line-height: 1.3 !important; }
+  .newsit-grid .newsit-card .snippet { display: none !important; }
+  .newsit-grid .newsit-card .date { font-size: 10px !important; color: #e60000 !important; font-weight: 600 !important; text-transform: uppercase !important; }
+}
+
+@media (max-width: 400px) {
+  .newsit-grid { grid-template-columns: 1fr !important; background: #fff !important; }
+  .newsit-grid .newsit-card { border-bottom: 1px solid #eee !important; }
+}
+</style>
+
+<nav class="newsit-like-menu" aria-label="Main navigation">
+  <ul>    
+    <li>
+      <a href="https://www.eisatopon.gr/lab/math-chaser/">
+  🧠 Math Chaser PRO
+  </a>
+    </li>
+    <li>
+      <a href="https://www.eisatopon.gr/banks/panelladikes/">
+        <svg width="18" height="18" viewbox="0 0 24 24" fill="none" style="vertical-align:middle;margin-right:5px">
+          <rect x="3" y="3" width="18" height="18" rx="3" fill="#1a73e8"/>
+          <path d="M7 12h10M7 8h6M7 16h8" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </path></rect></svg>
+        Τράπεζα Πανελλαδικών Εξετάσεων
+      </a>
+    </li>
+    <li>
+      <a href="https://www.eisatopon.gr/banks/eme/">
+        <svg width="18" height="18" viewbox="0 0 24 24" fill="none" style="vertical-align:middle;margin-right:5px">
+          <circle cx="12" cy="12" r="9" fill="#e8a000"/>
+          <path d="M12 7v5l3 3" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+        </path></circle></svg>
+        Τράπεζα Διαγωνισμών ΕΜΕ
+      </a>
+    </li>
+    <li>
+      <a href="https://www.eisatopon.gr/banks/imo/">
+        <svg width="18" height="18" viewbox="0 0 24 24" fill="none" style="vertihttps://www.eisatopon.gr/banks/imo/cal-align:middle;margin-right:5px">
+          <polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9" fill="#e60000"/>
+        </polygon></svg>
+        IMO Problem Bank
+      </a>
+    </li>
+    <li>
+      <a href="https://www.eisatopon.gr/lab/rubik-cube/">
+        🧊 Rubik Cube
+      </a>
+    </li>
+  </ul>
+</nav>]]></b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+        </b:widget>
+        <b:widget id='HTML4' locked='false' title='Banner' type='HTML' version='1'>
+          <b:widget-settings>
+            <b:widget-setting name='content'><![CDATA[<a href="https://www.eisatopon.gr/p/box-sizing-border-box-margin-0-padding_6.html">
+  <div class="exam-hero">
+    <div class="hero-flex">
+
+      <div class="hero-text">
+        <span class="badge">
+          <span class="lightning">⚡</span> ΝΕΟ
+        </span>
+        <div style="font-size:26px;font-weight:800;line-height:1.2;color:#fff;margin:0 0 10px;letter-spacing:-0.3px;text-shadow:0 2px 4px rgba(0,0,0,0.3);">Γράψε 20 στις Πανελλαδικές</div>
+        <p>Διαδραστικά τεστ με άμεσο feedback • Προσομοίωση εξετάσεων </p>
+      </div>
+
+      <div class="hero-cta">
+        <button class="cta-btn">Ξεκίνα τώρα &rarr;</button>
+      </div>
+
+    </div>
+  </div>
+</a>]]></b:widget-setting>
+          </b:widget-settings>
+          <b:includable id='main'>
+  <b:if cond='data:blog.url == data:blog.homepageUrl'>
+  <b:if cond='data:title != &quot;&quot;'>
+<h2 class='title'>
+  <a expr:href='data:blog.homepageUrl'><data:title/></a>
+</h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+  <b:include name='quickedit'/>
+  </b:if>
+</b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+    </div>
+    <div class='tabs-cap-bottom cap-bottom'>
+      <div class='cap-left'/>
+      <div class='cap-right'/>
+    </div>
+    </div>
+
+    <div class='main-outer'>
+    <div class='main-cap-top cap-top'>
+      <div class='cap-left'/>
+      <div class='cap-right'/>
+    </div>
+
+    <div class='fauxborder-left main-fauxborder-left'>
+    <div class='fauxborder-right main-fauxborder-right'/>
+    <div class='region-inner main-inner'>
+
+      <div class='columns fauxcolumns'>
+
+        <div class='fauxcolumn-outer fauxcolumn-center-outer'>
+        <div class='cap-top'>
+          <div class='cap-left'/>
+          <div class='cap-right'/>
+        </div>
+        <div class='fauxborder-left'>
+        <div class='fauxborder-right'/>
+        <div class='fauxcolumn-inner'>
+        </div>
+        </div>
+        <div class='cap-bottom'>
+          <div class='cap-left'/>
+          <div class='cap-right'/>
+        </div>
+        </div>
+
+        <div class='fauxcolumn-outer fauxcolumn-left-outer'>
+        <div class='cap-top'>
+          <div class='cap-left'/>
+          <div class='cap-right'/>
+        </div>
+        <div class='fauxborder-left'>
+        <div class='fauxborder-right'/>
+        <div class='fauxcolumn-inner'>
+        </div>
+        </div>
+        <div class='cap-bottom'>
+          <div class='cap-left'/>
+          <div class='cap-right'/>
+        </div>
+        </div>
+
+        <div class='fauxcolumn-outer fauxcolumn-right-outer'>
+        <div class='cap-top'>
+          <div class='cap-left'/>
+          <div class='cap-right'/>
+        </div>
+        <div class='fauxborder-left'>
+        <div class='fauxborder-right'/>
+        <div class='fauxcolumn-inner'>
+        </div>
+        </div>
+        <div class='cap-bottom'>
+          <div class='cap-left'/>
+          <div class='cap-right'/>
+        </div>
+        </div>
+
+        <!-- corrects IE6 width calculation -->
+        <div class='columns-inner'>
+
+        <div class='column-center-outer'>
+        <div class='column-center-inner'>
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 12: BLOG WIDGET (Blog1)                              === -->
+<!-- ==-  Αρχική: featured 3 + grid 9 = 12 πρόσφατες                 ==- -->
+<!-- ==-      Αναζήτηση: grid αποτελεσμάτων | Άρθρο: full post view    ==- -->
+<!-- ==================================================================== -->
+          <b:section class='main' id='main' name='Main' showaddelement='no'>
+            <b:widget id='Blog1' locked='false' title='Αναρτήσεις ιστολογίου' type='Blog' version='1'>
+              <b:widget-settings>
+                <b:widget-setting name='showDateHeader'>true</b:widget-setting>
+                <b:widget-setting name='style.textcolor'>#ffffff</b:widget-setting>
+                <b:widget-setting name='showShareButtons'>true</b:widget-setting>
+                <b:widget-setting name='showCommentLink'>true</b:widget-setting>
+                <b:widget-setting name='style.urlcolor'>#ffffff</b:widget-setting>
+                <b:widget-setting name='showAuthor'>true</b:widget-setting>
+                <b:widget-setting name='style.linkcolor'>#ffffff</b:widget-setting>
+                <b:widget-setting name='style.unittype'>TextAndImage</b:widget-setting>
+                <b:widget-setting name='style.bgcolor'>#ffffff</b:widget-setting>
+                <b:widget-setting name='reactionsLabel'/>
+                <b:widget-setting name='showAuthorProfile'>false</b:widget-setting>
+                <b:widget-setting name='style.layout'>1x1</b:widget-setting>
+                <b:widget-setting name='showLabels'>true</b:widget-setting>
+                <b:widget-setting name='showLocation'>false</b:widget-setting>
+                <b:widget-setting name='showTimestamp'>true</b:widget-setting>
+                <b:widget-setting name='postsPerAd'>1</b:widget-setting>
+                <b:widget-setting name='showBacklinks'>false</b:widget-setting>
+                <b:widget-setting name='style.bordercolor'>#ffffff</b:widget-setting>
+                <b:widget-setting name='showInlineAds'>false</b:widget-setting>
+                <b:widget-setting name='showReactions'>false</b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main' var='top'>               
+ 
+  <!-- MOBILE + DESKTOP: ίδιο layout, responsive CSS χειρίζεται τη διαφορά -->
+  <b:if cond='data:blog.url == data:blog.homepageUrl or data:blog.pageType == &quot;search&quot;'>
+
+    <div class='newsit-wrap'>
+
+      <!-- Τίτλος για Search Results -->
+      <b:if cond='data:blog.pageType == &quot;search&quot;'>
+        <h2 style='font-family: Arial, Helvetica, sans-serif; font-size: 30px; font-weight: 700; margin:20px 0; color:#000;'>
+          Αποτελέσματα Αναζήτησης για: &quot;<data:blog.searchQuery/>&quot;
+        </h2>
+      </b:if>
+
+      <!-- Έλεγχος αν υπάρχουν αποτελέσματα -->
+      <b:if cond='data:posts.length == 0'>
+        <div style='padding: 60px 20px; text-align: center; font-size: 18px; color: #666;'>
+          <p style='font-size: 24px; margin-bottom: 10px;'>😕 Δεν βρέθηκαν αποτελέσματα</p>
+          <p>Δοκιμάστε με άλλους όρους αναζήτησης.</p>
+        </div>
+      <b:else/>
+
+      <!-- ΓΙΑ SEARCH: Απλό grid με όλα τα αποτελέσματα -->
+        <b:if cond='data:blog.pageType == &quot;search&quot;'>
+          
+          <div class='newsit-grid'>
+            <b:loop values='data:posts' var='post'>
+              <article class='newsit-card'>
+                <a class='thumb' expr:href='data:post.url'>
+                  <img expr:alt='data:post.title' expr:src='data:post.firstImageUrl' height='450' width='800'/>
+                </a>
+                <div class='meta'>
+                  <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
+                  <div class='snippet'><data:post.snippet/></div>
+                  <div class='date'><data:post.dateHeader/></div>
+                </div>
+              </article>
+            </b:loop>
+          </div>
+
+<!-- ΓΙΑ INDEX: Το κανονικό layout με featured + sections -->
+<b:else/>
+
+  <div class='newsit-feature'>
+
+    <!-- Αριστερά: 2η πιο πρόσφατη -->
+    <b:loop index='i' values='data:posts' var='post'>
+      <b:if cond='data:i == 1'>
+        <article class='newsit-card'>
+          <a class='thumb' expr:href='data:post.url'>
+            <img expr:alt='data:post.title' expr:src='data:post.firstImageUrl' height='450' loading='lazy' width='800'/>
+          </a>
+          <b:if cond='data:post.labels'>
+            <b:loop index='li' values='data:post.labels' var='label'>
+              <b:if cond='data:li == 0'>
+                <span class='post-label-data' style='display:none'><data:label.name/></span>
+              </b:if>
+            </b:loop>
+          </b:if>
+          <div class='meta'>
+            <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
+            <div class='snippet'><data:post.snippet/></div>
+            <div class='date'><data:post.dateHeader/></div>
+          </div>
+        </article>
+      </b:if>
+    </b:loop>
+
+    <!-- Κέντρο: πιο πρόσφατη -->
+    <b:loop index='i' values='data:posts' var='post'>
+      <b:if cond='data:i == 0'>
+        <article class='newsit-card center'>
+          <a class='thumb' expr:href='data:post.url'>
+            <img expr:alt='data:post.title' expr:src='data:post.firstImageUrl' fetchpriority='high' height='450' loading='eager' width='800'/>
+          </a>
+          <b:if cond='data:post.labels'>
+            <b:loop index='li' values='data:post.labels' var='label'>
+              <b:if cond='data:li == 0'>
+                <span class='post-label-data' style='display:none'><data:label.name/></span>
+              </b:if>
+            </b:loop>
+          </b:if>
+          <div class='meta'>
+            <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
+            <div class='snippet'><data:post.snippet/></div>
+            <div class='date'><data:post.dateHeader/></div>
+          </div>
+        </article>
+      </b:if>
+    </b:loop>
+
+   <!-- Δεξιά: 3η πιο πρόσφατη -->
+    <b:loop index='i' values='data:posts' var='post'>
+      <b:if cond='data:i == 2'>
+        <article class='newsit-card'>
+          <a class='thumb' expr:href='data:post.url'>
+            <img expr:alt='data:post.title' expr:src='data:post.firstImageUrl' height='450' loading='lazy' width='800'/>
+          </a>
+          <b:if cond='data:post.labels'>
+            <b:loop index='li' values='data:post.labels' var='label'>
+              <b:if cond='data:li == 0'>
+                <span class='post-label-data' style='display:none'><data:label.name/></span>
+              </b:if>
+            </b:loop>
+          </b:if>
+          <div class='meta'>
+            <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
+            <div class='snippet'><data:post.snippet/></div>
+            <div class='date'><data:post.dateHeader/></div>
+          </div>
+        </article>
+      </b:if>
+    </b:loop>
+
+  </div>
+<b:if cond='data:blog.url == data:blog.homepageUrl'>
+
+<!-- Κάτω πλέγμα 3&#215;3: δείξε i=3..11 (9 αναρτήσεις) -->
+<div class='newsit-grid'>
+  <b:loop index='i' values='data:posts' var='post'>
+    <b:if cond='data:i &gt;= 3 and data:i &lt;= 11'>
+      <article class='newsit-card'>
+        <a class='thumb' expr:href='data:post.url'>
+          <img expr:alt='data:post.title' expr:src='data:post.firstImageUrl' height='450' loading='lazy' width='800'/>
+        </a>
+        <b:if cond='data:post.labels'>
+            <b:loop index='li' values='data:post.labels' var='label'>
+              <b:if cond='data:li == 0'>
+                <span class='post-label-data' style='display:none'><data:label.name/></span>
+              </b:if>
+            </b:loop>
+          </b:if>
+        <div class='meta'>
+          <h3><a expr:href='data:post.url'><data:post.title/></a></h3>
+          <div class='snippet'><data:post.snippet/></div>
+          <div class='date'><data:post.dateHeader/></div>
+        </div>
+      </article>
+    </b:if>
+  </b:loop>
+</div>
+
+        </b:if>
+
+        <!-- Pagination αρχικής σελίδας -->
+        <b:include name='nextprev'/>
+
+      </b:if>
+
+  </b:if>
+
+    </div>
+
+
+    <!-- Pagination για search results -->
+    <b:if cond='data:blog.pageType == &quot;search&quot;'>
+      <b:include name='nextprev'/>
+    </b:if>
+    
+  <!-- ΟΤΙΔΗΠΟΤΕ ΑΛΛΟ (post σελίδες, labels κτλ): κανονικό πλήρες post -->
+  <b:else/>
+    <div class='blog-posts hfeed'>
+      <b:include data='top' name='status-message'/>
+      <b:loop values='data:posts' var='post'>
+        <b:include data='post' name='post'/>
+      </b:loop>
+    </div>
+    <b:include name='nextprev'/>
+  </b:if>
+</b:includable>
+              <b:includable id='backlinkDeleteIcon' var='backlink'/>
+              <b:includable id='backlinks' var='post'/>
+              <b:includable id='comment-form' var='post'>
+  <div class='comment-form'>
+    <a name='comment-form'/>
+    <b:if cond='data:mobile'>
+      <h4 id='comment-post-message'>
+        <a expr:id='data:widget.instanceId + &quot;_comment-editor-toggle-link&quot;' href='javascript:void(0)'><data:postCommentMsg/></a></h4>
+      <p><data:blogCommentMessage/></p>
+      <data:blogTeamBlogMessage/>
+      <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
+      <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' expr:height='data:cmtIframeInitialHeight' frameborder='0' id='comment-editor' name='comment-editor' src='' style='display: none' width='100%'/>
+    <b:else/>
+      <h4 id='comment-post-message'><data:postCommentMsg/></h4>
+      <p><data:blogCommentMessage/></p>
+      <data:blogTeamBlogMessage/>
+      <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
+      <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' expr:height='data:cmtIframeInitialHeight' frameborder='0' id='comment-editor' name='comment-editor' src='' width='100%'/>
+    </b:if>
+    <data:post.cmtfpIframe/>
+    <script type='text/javascript'>
+      BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
+    </script>
+  </div>
+</b:includable>
+              <b:includable id='commentDeleteIcon' var='comment'>
+  <span expr:class='&quot;item-control &quot; + data:comment.adminClass'>
+    <b:if cond='data:showCmtPopup'>
+      <div class='goog-toggle-button'>
+        <div class='goog-inline-block comment-action-icon'/>
+      </div>
+    <b:else/>
+      <a class='comment-delete' expr:href='data:comment.deleteUrl' expr:title='data:top.deleteCommentMsg'>
+        <img src='https://resources.blogblog.com/img/icon_delete13.gif'/>
+      </a>
+    </b:if>
+  </span>
+</b:includable>
+              <b:includable id='comment_count_picker' var='post'>
+  <a class='comment-link' expr:href='data:post.addCommentUrl' expr:onclick='data:post.addCommentOnclick'>
+    <data:post.commentLabelFull/>:
+  </a>
+</b:includable>
+              <b:includable id='comment_picker' var='post'>
+  <b:if cond='data:post.showThreadedComments'>
+    <b:include data='post' name='threaded_comments'/>
+  <b:else/>
+    <b:include data='post' name='comments'/>
+  </b:if>
+</b:includable>
+              <b:includable id='comments' var='post'>
+  <div class='comments' id='comments'>
+    <a name='comments'/>
+    <b:if cond='data:post.allowComments'>
+      <h4><data:post.commentLabelFull/>:</h4>
+
+      <b:if cond='data:post.commentPagingRequired'>
+        <span class='paging-control-container'>
+          <b:if cond='data:post.hasOlderLinks'>
+            <a expr:class='data:post.oldLinkClass' expr:href='data:post.oldestLinkUrl'><data:post.oldestLinkText/></a>
+              &#160;
+            <a expr:class='data:post.oldLinkClass' expr:href='data:post.olderLinkUrl'><data:post.olderLinkText/></a>
+              &#160;
+          </b:if>
+
+          <data:post.commentRangeText/>
+
+          <b:if cond='data:post.hasNewerLinks'>
+            &#160;
+            <a expr:class='data:post.newLinkClass' expr:href='data:post.newerLinkUrl'><data:post.newerLinkText/></a>
+            &#160;
+            <a expr:class='data:post.newLinkClass' expr:href='data:post.newestLinkUrl'><data:post.newestLinkText/></a>
+          </b:if>
+        </span>
+      </b:if>
+
+      <div expr:id='data:widget.instanceId + &quot;_comments-block-wrapper&quot;'>
+        <dl expr:class='data:post.avatarIndentClass' id='comments-block'>
+          <b:loop values='data:post.comments' var='comment'>
+            <dt expr:class='&quot;comment-author &quot; + data:comment.authorClass' expr:id='data:comment.anchorName'>
+              <b:if cond='data:comment.favicon'>
+                <img expr:src='data:comment.favicon' height='16px' style='margin-bottom:-2px;' width='16px'/>
+              </b:if>
+              <a expr:name='data:comment.anchorName'/>
+              <b:if cond='data:blog.enabledCommentProfileImages'>
+                <data:comment.authorAvatarImage/>
+              </b:if>
+              <b:if cond='data:comment.authorUrl'>
+                <a expr:href='data:comment.authorUrl' rel='nofollow'><data:comment.author/></a>
+              <b:else/>
+                <data:comment.author/>
+              </b:if>
+              <data:commentPostedByMsg/>
+            </dt>
+            <dd class='comment-body' expr:id='data:widget.instanceId + data:comment.cmtBodyIdPostfix'>
+              <b:if cond='data:comment.isDeleted'>
+                <span class='deleted-comment'><data:comment.body/></span>
+              <b:else/>
+                <p>
+                  <data:comment.body/>
+                </p>
+              </b:if>
+            </dd>
+            <dd class='comment-footer'>
+              <span class='comment-timestamp'>
+                <a expr:href='data:comment.url' title='comment permalink'>
+                  <data:comment.timestamp/>
+                </a>
+                <b:include data='comment' name='commentDeleteIcon'/>
+              </span>
+            </dd>
+          </b:loop>
+        </dl>
+      </div>
+
+      <b:if cond='data:post.commentPagingRequired'>
+        <span class='paging-control-container'>
+          <a expr:class='data:post.oldLinkClass' expr:href='data:post.oldestLinkUrl'>
+            <data:post.oldestLinkText/>
+          </a>
+          <a expr:class='data:post.oldLinkClass' expr:href='data:post.olderLinkUrl'>
+            <data:post.olderLinkText/>
+          </a>
+          &#160;
+          <data:post.commentRangeText/>
+          &#160;
+          <a expr:class='data:post.newLinkClass' expr:href='data:post.newerLinkUrl'>
+            <data:post.newerLinkText/>
+          </a>
+          <a expr:class='data:post.newLinkClass' expr:href='data:post.newestLinkUrl'>
+            <data:post.newestLinkText/>
+          </a>
+        </span>
+      </b:if>
+
+      <p class='comment-footer'>
+        <b:if cond='data:post.embedCommentForm'>
+          <b:if cond='data:post.allowNewComments'>
+            <b:include data='post' name='comment-form'/>
+          <b:else/>
+            <data:post.noNewCommentsText/>
+          </b:if>
+        <b:elseif cond='data:post.allowComments'/>
+          <a expr:href='data:post.addCommentUrl' expr:onclick='data:post.addCommentOnclick'><data:postCommentMsg/></a>
+        </b:if>
+      </p>
+    </b:if>
+    <b:if cond='data:showCmtPopup'>
+      <div id='comment-popup'>
+        <iframe allowtransparency='true' frameborder='0' id='comment-actions' name='comment-actions' scrolling='no'>
+        </iframe>
+      </div>
+    </b:if>
+
+  </div>
+</b:includable>
+              <b:includable id='feedLinks'>
+  <b:if cond='data:blog.pageType != &quot;item&quot;'> <!-- Blog feed links -->
+    <b:if cond='data:feedLinks'>
+      <div class='blog-feeds'>
+        <b:include data='feedLinks' name='feedLinksBody'/>
+      </div>
+    </b:if>
+
+  <b:else/> <!--Post feed links -->
+    <div class='post-feeds'>
+      <b:loop values='data:posts' var='post'>
+        <b:include cond='data:post.allowComments and data:post.feedLinks' data='post.feedLinks' name='feedLinksBody'/>
+      </b:loop>
+    </div>
+  </b:if>
+</b:includable>
+              <b:includable id='feedLinksBody' var='links'>
+  <div class='feed-links'>
+  <data:feedLinksMsg/>
+  <b:loop values='data:links' var='f'>
+     <a class='feed-link' expr:href='data:f.url' expr:type='data:f.mimeType' target='_blank'><data:f.name/> (<data:f.feedType/>)</a>
+  </b:loop>
+  </div>
+</b:includable>
+              <b:includable id='iframe_comments' var='post'>
+  <!-- G+ comments, no longer available. The includable is retained for backwards-compatibility. -->
+</b:includable>
+              <b:includable id='mobile-index-post' var='post'>
+  <div class='mobile-date-outer date-outer'>
+    <b:if cond='data:post.dateHeader'>
+      <div class='date-header'>
+        <span><data:post.dateHeader/></span>
+      </div>
+    </b:if>
+
+    <div class='mobile-post-outer'>
+      <a expr:href='data:post.url'>
+        <h3 class='mobile-index-title entry-title' itemprop='name'>
+          <data:post.title/>
+        </h3>
+
+        <div class='mobile-index-arrow'>&amp;rsaquo;</div>
+
+       <div class='mobile-index-contents'>
+  <b:if cond='data:post.thumbnailUrl'>
+    <div class='mobile-index-thumbnail'>
+      <div class='Image'>
+        <img decoding='async' expr:alt='data:post.title + &quot; thumbnail&quot;' expr:src='data:post.thumbnailUrl' height='250' loading='lazy' width='400'/>
+      </div>
+    </div>
+          </b:if>
+
+          <div class='post-body'>            
+            <b:if cond='data:post.snippet'><data:post.snippet/></b:if>
+          </div>          
+        </div>
+
+        <div style='clear: both;'/>
+      </a>
+
+      <div class='mobile-index-comment'>
+        <b:include cond='data:blog.pageType != &quot;static_page&quot;                          and data:post.allowComments                          and data:post.numComments != 0' data='post' name='comment_count_picker'/>
+      </div>
+    </div>
+  </div>
+</b:includable>
+              <b:includable id='mobile-main' var='top'>
+    <!-- posts -->
+    <div class='blog-posts hfeed'>
+
+      <b:include data='top' name='status-message'/>
+
+      <b:if cond='data:blog.pageType == &quot;index&quot;'>
+        <b:loop values='data:posts' var='post'>
+          <b:include data='post' name='mobile-index-post'/>
+        </b:loop>
+      <b:else/>
+        <b:loop values='data:posts' var='post'>
+          <b:include data='post' name='mobile-post'/>
+        </b:loop>
+      </b:if>
+    </div>
+
+   <b:include name='mobile-nextprev'/>
+</b:includable>
+              <b:includable id='mobile-nextprev'>
+  <div class='blog-pager' id='blog-pager'>
+    <b:if cond='data:newerPageUrl'>
+      <div class='mobile-link-button' id='blog-pager-newer-link'>
+      <a class='blog-pager-newer-link' expr:href='data:newerPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-newer-link&quot;' expr:title='data:newerPageTitle'>&amp;lsaquo;</a>
+      </div>
+    </b:if>
+
+    <b:if cond='data:olderPageUrl'>
+      <div class='mobile-link-button' id='blog-pager-older-link'>
+      <a class='blog-pager-older-link' expr:href='data:olderPageUrl' expr:id='data:widget.instanceId + &quot;_blog-pager-older-link&quot;' expr:title='data:olderPageTitle'>&amp;rsaquo;</a>
+      </div>
+    </b:if>
+
+    <div class='mobile-link-button' id='blog-pager-home-link'>
+    <a class='home-link' expr:href='data:blog.homepageUrl'><data:homeMsg/></a>
+    </div>
+
+    <div class='mobile-desktop-link'>
+      <a class='home-link' expr:href='data:desktopLinkUrl'><data:desktopLinkMsg/></a>
+    </div>
+
+  </div>
+  <div class='clear'/>
+</b:includable>
+              <b:includable id='mobile-post' var='post'>
+  <div class='date-outer'>
+    <b:if cond='data:post.dateHeader'>
+      <h2 class='date-header'><span><data:post.dateHeader/></span></h2>
+    </b:if>
+    <div class='date-posts'>
+      <div class='post-outer'>
+
+        <div class='post hentry uncustomized-post-template' itemscope='itemscope' itemtype='http://schema.org/BlogPosting'>
+
+         <!-- Card cover link για index pages -->
+<b:if cond='data:blog.pageType == &quot;index&quot;'>
+  <a class='card-cover-link' expr:aria-label='&quot;Άνοιγμα άρθρου: &quot; + data:post.title' expr:href='data:post.url' rel='bookmark'/>
+</b:if>
+
+
+          <b:if cond='data:post.thumbnailUrl'>
+            <meta expr:content='data:post.thumbnailUrl' itemprop='image_url'/>
+          </b:if>
+          <meta expr:content='data:blog.blogId' itemprop='blogId'/>
+          <meta expr:content='data:post.id' itemprop='postId'/>
+
+          <a expr:name='data:post.id'/>
+          <b:if cond='data:post.title'>
+            <h3 class='post-title entry-title' itemprop='name'>
+              <b:if cond='data:post.link'>
+                <a expr:href='data:post.link'><data:post.title/></a>
+              <b:elseif cond='data:post.url and data:blog.url != data:post.url'/>
+                <a expr:href='data:post.url'><data:post.title/></a>
+              <b:else/>
+                <data:post.title/>
+              </b:if>
+            </h3>
+          </b:if>
+
+          <div class='post-header'>
+            <div class='post-header-line-1'/>
+          </div>
+
+          <div class='post-body entry-content' expr:id='&quot;post-body-&quot; + data:post.id' itemprop='articleBody'>
+            <data:post.body/>
+
+           
+            <div style='clear: both;'/> <!-- clear for photos floats -->
+<!-- &#9660;&#9660;&#9660; Ανακαλύψτε κι άλλα άρθρα από το EisatoponAI &#9660;&#9660;&#9660; -->
+<div class='eisatoponai-more-wrapper' style='margin:1.2rem 0 0;text-align:center'>
+  <a expr:href='&quot;https://eisatopon.blogspot.com/search/label/EisatoponAI&quot;' onclick='if(event &amp;&amp; event.stopPropagation){event.stopPropagation();}' rel='nofollow' style='display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:.6rem;padding:.9rem 1.2rem;margin:0;background:linear-gradient(135deg,#f9fafb,#f3f4f6);border:1px solid #e5e7eb;border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.05);text-decoration:none;text-align:center;width:100%;box-sizing:border-box'>
+    <span style='font-size:1.4em;line-height:1'>&#10133;</span>
+    <span style='font-weight:600;color:#111827;font-size:16px'>Ανακαλύψτε κι άλλα άρθρα από το <strong>EisatoponAI</strong></span>
+    <span style='display:block;width:100%;font-size:13px;color:#6b7280;margin-top:.2rem'>Δες και άλλες σχετικές δημοσιεύσεις</span>
+  </a>
+</div>
+     
+<!-- &#9650;&#9650;&#9650; Τέλος προσθήκης &#9650;&#9650;&#9650; -->
+
+            <div class='post-footer-line post-footer-line-1'>
+              <span class='post-author vcard'>
+                <b:if cond='data:top.showAuthor'>
+                  <b:if cond='data:post.authorProfileUrl'>
+                    <span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+                      <meta expr:content='data:post.authorProfileUrl' itemprop='url'/>
+                      <a expr:href='data:post.authorProfileUrl' rel='author' title='author profile'>
+                        <span itemprop='name'><data:post.author/></span>
+                      </a>
+                    </span>
+                  <b:else/>
+                    <span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+                      <span itemprop='name'><data:post.author/></span>
+                    </span>
+                  </b:if>
+                </b:if>
+              </span>
+
+              <span class='post-timestamp'>
+                <b:if cond='data:top.showTimestamp'>
+                  <data:top.timestampLabel/>
+                  <b:if cond='data:post.url'>
+                    <meta expr:content='data:post.url.canonical' itemprop='url'/>
+                    <a class='timestamp-link' expr:href='data:post.url' rel='bookmark' title='permanent link'><abbr class='published' expr:title='data:post.timestampISO8601' itemprop='datePublished'><data:post.timestamp/></abbr></a>
+                  </b:if>
+                </b:if>
+              </span>
+
+              <span class='post-comment-link'>
+                <b:include cond='data:blog.pageType not in {&quot;item&quot;,&quot;static_page&quot;}                                  and data:post.allowComments' data='post' name='comment_count_picker'/>
+              </span>
+            </div>
+
+            <div class='post-footer-line post-footer-line-2'>
+              <b:if cond='data:top.showMobileShare'>
+                <div class='mobile-link-button goog-inline-block' id='mobile-share-button'>
+                  <a href='javascript:void(0);'><data:shareMsg/></a>
+                </div>
+              </b:if>
+            </div>
+
+          </div>
+        </div>
+
+        <b:include cond='data:blog.pageType in {&quot;static_page&quot;,&quot;item&quot;}' data='post' name='comment_picker'/>
+      </div>
+    </div>
+  </div>
+</b:includable>
+              <b:includable id='nextprev'>
+  <b:if cond='data:blog.pageType != &quot;item&quot; and data:blog.pageType != &quot;static_page&quot;'>
+  <div class='eisa-pager'>
+    <b:if cond='data:newerPageUrl'>
+      <a class='eisa-pager-btn' expr:href='data:newerPageUrl'>&#8592; Νεότερες</a>
+    </b:if>
+    <a class='eisa-pager-home' expr:href='data:blog.homepageUrl'>Αρχική</a>
+    <b:if cond='data:olderPageUrl'>
+      <a class='eisa-pager-btn' expr:href='data:olderPageUrl'>Παλαιότερες &#8594;</a>
+    </b:if>
+  </div>
+  </b:if>
+</b:includable>
+              <b:includable id='post' var='post'>
+  <div class='post hentry uncustomized-post-template' expr:onclick='data:blog.pageType == &quot;index&quot; ? &quot;location.href=\x27&quot; + data:post.url + &quot;\x27&quot; : &quot;&quot;' itemprop='blogPost' itemscope='itemscope' itemtype='http://schema.org/BlogPosting' style='cursor:pointer'>
+
+  <b:if cond='data:post.firstImageUrl'>
+  <meta expr:content='data:post.firstImageUrl' itemprop='image_url'/>
+</b:if>
+
+
+
+    <meta expr:content='data:blog.blogId' itemprop='blogId'/>
+    <meta expr:content='data:post.id' itemprop='postId'/>
+
+
+    <a expr:name='data:post.id'/>
+    <b:if cond='data:post.title'>
+      <h3 class='post-title entry-title' itemprop='name'>
+      <b:if cond='data:post.link or (data:post.url and data:blog.url != data:post.url)'>
+        <a expr:href='data:post.link ? data:post.link : data:post.url'><data:post.title/></a>
+      <b:else/>
+        <data:post.title/>
+      </b:if>
+      </h3>
+    </b:if>
+<b:if cond='data:view.isPost'>
+  <div class='z-translate desktop-only'>
+    <a expr:href='&quot;https://translate.google.com/translate?sl=el&amp;tl=en&amp;u=&quot; + data:post.canonicalUrl' target='_blank'>
+      <img alt='English' src='https://flagcdn.com/w40/gb.png'/>
+    </a>
+    <a expr:href='&quot;https://translate.google.com/translate?sl=el&amp;tl=fr&amp;u=&quot; + data:post.canonicalUrl' target='_blank'>
+      <img alt='French' src='https://flagcdn.com/w40/fr.png'/>
+    </a>
+    <a expr:href='&quot;https://translate.google.com/translate?sl=el&amp;tl=de&amp;u=&quot; + data:post.canonicalUrl' target='_blank'>
+      <img alt='German' src='https://flagcdn.com/w40/de.png'/>
+    </a>
+    <a expr:href='&quot;https://translate.google.com/translate?sl=el&amp;tl=es&amp;u=&quot; + data:post.canonicalUrl' target='_blank'>
+      <img alt='Spanish' src='https://flagcdn.com/w40/es.png'/>
+    </a>
+    <a expr:href='&quot;https://translate.google.com/translate?sl=el&amp;tl=it&amp;u=&quot; + data:post.canonicalUrl' target='_blank'>
+      <img alt='Italian' src='https://flagcdn.com/w40/it.png'/>
+    </a>
+    <a expr:href='&quot;https://translate.google.com/translate?sl=el&amp;tl=zh-CN&amp;u=&quot; + data:post.canonicalUrl' target='_blank'>
+      <img alt='Chinese' src='https://flagcdn.com/w40/cn.png'/>
+    </a>
+    <a expr:href='&quot;https://translate.google.com/translate?sl=el&amp;tl=ja&amp;u=&quot; + data:post.canonicalUrl' target='_blank'>
+      <img alt='Japanese' src='https://flagcdn.com/w40/jp.png'/>
+    </a>
+    <a expr:href='&quot;https://translate.google.com/translate?sl=el&amp;tl=vi&amp;u=&quot; + data:post.canonicalUrl' target='_blank'>
+      <img alt='Vietnamese' src='https://flagcdn.com/w40/vn.png'/>
+    </a>
+    <a expr:href='&quot;https://translate.google.com/translate?sl=el&amp;tl=tr&amp;u=&quot; + data:post.canonicalUrl' target='_blank'>
+      <img alt='Turkish' src='https://flagcdn.com/w40/tr.png'/>
+    </a>
+    <a expr:href='&quot;https://translate.google.com/translate?sl=el&amp;tl=hi&amp;u=&quot; + data:post.canonicalUrl' target='_blank'>
+      <img alt='Hindi' src='https://flagcdn.com/w40/in.png'/>
+    </a>
+  </div>
+</b:if>
+
+
+    
+    <div class='post-header'>
+    <div class='post-header-line-1'/>
+    </div>
+
+    <!-- Then use the post body as the schema.org description, for good G+/FB snippeting. -->
+    <div class='post-body entry-content' expr:id='&quot;post-body-&quot; + data:post.id' expr:itemprop='(data:blog.metaDescription ? &quot;&quot; : &quot;description &quot;) + &quot;articleBody&quot;'>
+      <data:post.body/>
+      <div style='clear: both;'/> <!-- clear for photos floats -->
+    </div>
+
+    <b:if cond='data:post.hasJumpLink'>
+      <div class='jump-link'>
+        <a expr:href='data:post.url + &quot;#more&quot;' expr:title='data:post.title'><data:post.jumpText/></a>
+      </div>
+    </b:if>
+
+    <div class='post-footer'>
+    <div class='post-footer-line post-footer-line-1'>
+      <span class='post-author vcard'>
+        <b:if cond='data:top.showAuthor'>
+          <data:top.authorLabel/>
+            <b:if cond='data:post.authorProfileUrl'>
+              <span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+                <meta expr:content='data:post.authorProfileUrl' itemprop='url'/>
+                <a class='g-profile' expr:href='data:post.authorProfileUrl' rel='author' title='author profile'>
+                  <span itemprop='name'><data:post.author/></span>
+                </a>
+              </span>
+            <b:else/>
+              <span class='fn' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+                <span itemprop='name'><data:post.author/></span>
+              </span>
+            </b:if>
+        </b:if>
+      </span>
+
+      <span class='post-timestamp'>
+        <b:if cond='data:top.showTimestamp'>
+          <data:top.timestampLabel/>
+          <b:if cond='data:post.url'>
+            <meta expr:content='data:post.url.canonical' itemprop='url'/>
+            <a class='timestamp-link' expr:href='data:post.url' rel='bookmark' title='permanent link'><abbr class='published' expr:title='data:post.timestampISO8601' itemprop='datePublished'><data:post.timestamp/></abbr></a>
+          </b:if>
+        </b:if>
+      </span>
+
+      <span class='post-comment-link'>
+        <b:include cond='data:blog.pageType not in {&quot;item&quot;,&quot;static_page&quot;}                          and data:post.allowComments' data='post' name='comment_count_picker'/>
+      </span>
+
+      <span class='post-icons'>
+        <!-- email post links -->
+        <b:if cond='data:post.emailPostUrl'>
+          <span class='item-action'>
+          <a expr:href='data:post.emailPostUrl' expr:title='data:top.emailPostMsg'>
+            <img alt='' class='icon-action' height='13' src='https://resources.blogblog.com/img/icon18_email.gif' width='18'/>
+          </a>
+          </span>
+        </b:if>
+
+        <!-- quickedit pencil -->
+        <b:include data='post' name='postQuickEdit'/>
+      </span>
+
+      <!-- share buttons -->
+      <div class='post-share-buttons goog-inline-block'>
+        <b:include cond='data:post.sharePostUrl' data='post' name='shareButtons'/>
+      </div>
+
+      </div>
+
+      <div class='post-footer-line post-footer-line-2'>
+      <span class='post-labels'>
+        <b:if cond='data:top.showPostLabels and data:post.labels'>
+          <data:postLabelsLabel/>
+          <b:loop values='data:post.labels' var='label'>
+            <a expr:href='data:label.url' rel='tag'><data:label.name/></a><b:if cond='not data:label.isLast'>,</b:if>
+          </b:loop>
+        </b:if>
+      </span>
+      </div>
+
+      <div class='post-footer-line post-footer-line-3'>
+      <span class='post-location'>
+        <b:if cond='data:top.showLocation and data:post.location'>
+          <data:postLocationLabel/>
+          <a expr:href='data:post.location.mapsUrl' target='_blank'><data:post.location.name/></a>
+        </b:if>
+      </span>
+      </div>
+      <b:if cond='data:post.authorAboutMe'>
+        <div class='author-profile' itemprop='author' itemscope='itemscope' itemtype='http://schema.org/Person'>
+          <b:if cond='data:post.authorPhoto.url'>
+            <img expr:src='data:post.authorPhoto.url' itemprop='image' width='50px'/>
+          </b:if>
+          <div>
+            <a class='g-profile' expr:href='data:post.authorProfileUrl' itemprop='url' rel='author' title='author profile'>
+              <span itemprop='name'><data:post.author/></span>
+            </a>
+          </div>
+          <span itemprop='description'><data:post.authorAboutMe/></span>
+        </div>
+      </b:if>
+    </div>
+  
+
+  
+ <!-- ΕΔΩ ΒΑΖΟΥΜΕ ΤΑ ΣΧΟΛΙΑ -->
+    <b:if cond='data:blog.pageType in {&quot;item&quot;,&quot;static_page&quot;}'>
+      <div class='post-comments-wrapper'>
+        <b:include data='post' name='comment_picker'/>
+      </div>
+    </b:if>
+  
+    <!-- ΤΕΛΟΣ ΣΧΟΛΙΩΝ -->
+ </div>
+</b:includable>
+              <b:includable id='postQuickEdit' var='post'>
+  <b:if cond='data:post.editUrl'>
+    <span expr:class='&quot;item-control &quot; + data:post.adminClass'>
+      <a expr:href='data:post.editUrl' expr:title='data:top.editPostMsg'>
+        <img alt='' class='icon-action' height='18' src='https://resources.blogblog.com/img/icon18_edit_allbkg.gif' width='18'/>
+      </a>
+    </span>
+  </b:if>
+</b:includable>
+              <b:includable id='shareButtons' var='post'>
+  <b:if cond='data:top.showEmailButton'><a class='goog-inline-block share-button sb-email' expr:href='data:post.sharePostUrl + &quot;&amp;target=email&quot;' expr:title='data:top.emailThisMsg' target='_blank'><span class='share-button-link-text'><data:top.emailThisMsg/></span></a></b:if><b:if cond='data:top.showBlogThisButton'><a class='goog-inline-block share-button sb-blog' expr:href='data:post.sharePostUrl + &quot;&amp;target=blog&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=270,width=475\&quot;); return false;&quot;' expr:title='data:top.blogThisMsg' target='_blank'><span class='share-button-link-text'><data:top.blogThisMsg/></span></a></b:if><b:if cond='data:top.showTwitterButton'><a class='goog-inline-block share-button sb-twitter' expr:href='data:post.sharePostUrl + &quot;&amp;target=twitter&quot;' expr:title='data:top.shareToTwitterMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToTwitterMsg/></span></a></b:if><b:if cond='data:top.showFacebookButton'><a class='goog-inline-block share-button sb-facebook' expr:href='data:post.sharePostUrl + &quot;&amp;target=facebook&quot;' expr:onclick='&quot;window.open(this.href, \&quot;_blank\&quot;, \&quot;height=430,width=640\&quot;); return false;&quot;' expr:title='data:top.shareToFacebookMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToFacebookMsg/></span></a></b:if><b:if cond='data:top.showPinterestButton'><a class='goog-inline-block share-button sb-pinterest' expr:href='data:post.sharePostUrl + &quot;&amp;target=pinterest&quot;' expr:title='data:top.shareToPinterestMsg' target='_blank'><span class='share-button-link-text'><data:top.shareToPinterestMsg/></span></a></b:if>
+</b:includable>
+              <b:includable id='status-message'>
+  <b:if cond='data:navMessage'>
+  <div class='status-msg-wrap'>
+    <div class='status-msg-body'>
+      <data:navMessage/>
+    </div>
+    <div class='status-msg-border'>
+      <div class='status-msg-bg'>
+        <div class='status-msg-hidden'><data:navMessage/></div>
+      </div>
+    </div>
+  </div>
+  <div style='clear: both;'/>
+  </b:if>
+</b:includable>
+              <b:includable id='threaded-comment-form' var='post'>
+  <div class='comment-form'>
+    <a name='comment-form'/>
+    <b:if cond='data:mobile'>
+      <p><data:blogCommentMessage/></p>
+      <data:blogTeamBlogMessage/>
+      <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
+      <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' expr:height='data:cmtIframeInitialHeight' frameborder='0' id='comment-editor' name='comment-editor' src='' style='display: none' width='100%'/>
+    <b:else/>
+      <p><data:blogCommentMessage/></p>
+      <data:blogTeamBlogMessage/>
+      <a expr:href='data:post.commentFormIframeSrc' id='comment-editor-src'/>
+      <iframe allowtransparency='true' class='blogger-iframe-colorize blogger-comment-from-post' expr:height='data:cmtIframeInitialHeight' frameborder='0' id='comment-editor' name='comment-editor' src='' width='100%'/>
+    </b:if>
+    <data:post.cmtfpIframe/>
+    <script type='text/javascript'>
+      BLOG_CMT_createIframe(&#39;<data:post.appRpcRelayPath/>&#39;);
+    </script>
+  </div>
+</b:includable>
+              <b:includable id='threaded_comment_js' var='post'>
+  <script async='async' expr:src='data:post.commentSrc' type='text/javascript'/>
+
+  <script type='text/javascript'>
+    (function() {
+      var items = <data:post.commentJso/>;
+      var msgs = <data:post.commentMsgs/>;
+      var config = <data:post.commentConfig/>;
+
+// <![CDATA[
+      var cursor = null;
+      if (items && items.length > 0) {
+        cursor = parseInt(items[items.length - 1].timestamp) + 1;
+      }
+
+      var bodyFromEntry = function(entry) {
+        var text = (entry &&
+                    ((entry.content && entry.content.$t) ||
+                     (entry.summary && entry.summary.$t))) ||
+            '';
+        if (entry && entry.gd$extendedProperty) {
+          for (var k in entry.gd$extendedProperty) {
+            if (entry.gd$extendedProperty[k].name == 'blogger.contentRemoved') {
+              return '<span class="deleted-comment">' + text + '</span>';
+            }
+          }
+        }
+        return text;
+      }
+
+      var parse = function(data) {
+        cursor = null;
+        var comments = [];
+        if (data && data.feed && data.feed.entry) {
+          for (var i = 0, entry; entry = data.feed.entry[i]; i++) {
+            var comment = {};
+            // comment ID, parsed out of the original id format
+            var id = /blog-(\d+).post-(\d+)/.exec(entry.id.$t);
+            comment.id = id ? id[2] : null;
+            comment.body = bodyFromEntry(entry);
+            comment.timestamp = Date.parse(entry.published.$t) + '';
+            if (entry.author && entry.author.constructor === Array) {
+              var auth = entry.author[0];
+              if (auth) {
+                comment.author = {
+                  name: (auth.name ? auth.name.$t : undefined),
+                  profileUrl: (auth.uri ? auth.uri.$t : undefined),
+                  avatarUrl: (auth.gd$image ? auth.gd$image.src : undefined)
+                };
+              }
+            }
+            if (entry.link) {
+              if (entry.link[2]) {
+                comment.link = comment.permalink = entry.link[2].href;
+              }
+              if (entry.link[3]) {
+                var pid = /.*comments\/default\/(\d+)\?.*/.exec(entry.link[3].href);
+                if (pid && pid[1]) {
+                  comment.parentId = pid[1];
+                }
+              }
+            }
+            comment.deleteclass = 'item-control blog-admin';
+            if (entry.gd$extendedProperty) {
+              for (var k in entry.gd$extendedProperty) {
+                if (entry.gd$extendedProperty[k].name == 'blogger.itemClass') {
+                  comment.deleteclass += ' ' + entry.gd$extendedProperty[k].value;
+                } else if (entry.gd$extendedProperty[k].name == 'blogger.displayTime') {
+                  comment.displayTime = entry.gd$extendedProperty[k].value;
+                }
+              }
+            }
+            comments.push(comment);
+          }
+        }
+        return comments;
+      };
+
+      var paginator = function(callback) {
+        if (hasMore()) {
+          var url = config.feed + '?alt=json&v=2&orderby=published&reverse=false&max-results=50';
+          if (cursor) {
+            url += '&published-min=' + new Date(cursor).toISOString();
+          }
+          window.bloggercomments = function(data) {
+            var parsed = parse(data);
+            cursor = parsed.length < 50 ? null
+                : parseInt(parsed[parsed.length - 1].timestamp) + 1
+            callback(parsed);
+            window.bloggercomments = null;
+          }
+          url += '&callback=bloggercomments';
+          var script = document.createElement('script');
+          script.type = 'text/javascript';
+          script.src = url;
+          document.getElementsByTagName('head')[0].appendChild(script);
+        }
+      };
+      var hasMore = function() {
+        return !!cursor;
+      };
+      var getMeta = function(key, comment) {
+        if ('iswriter' == key) {
+          var matches = !!comment.author
+              && comment.author.name == config.authorName
+              && comment.author.profileUrl == config.authorUrl;
+          return matches ? 'true' : '';
+        } else if ('deletelink' == key) {
+          return config.baseUri + '/comment/delete/'
+               + config.blogId + '/' + comment.id;
+        } else if ('deleteclass' == key) {
+          return comment.deleteclass;
+        }
+        return '';
+      };
+
+      var replybox = null;
+      var replyUrlParts = null;
+      var replyParent = undefined;
+
+      var onReply = function(commentId, domId) {
+        if (replybox == null) {
+          // lazily cache replybox, and adjust to suit this style:
+          replybox = document.getElementById('comment-editor');
+          if (replybox != null) {
+            replybox.height = '250px';
+            replybox.style.display = 'block';
+            replyUrlParts = replybox.src.split('#');
+          }
+        }
+        if (replybox && (commentId !== replyParent)) {
+          replybox.src = '';
+          document.getElementById(domId).insertBefore(replybox, null);
+          replybox.src = replyUrlParts[0]
+              + (commentId ? '&parentID=' + commentId : '')
+              + '#' + replyUrlParts[1];
+          replyParent = commentId;
+        }
+      };
+
+      var hash = (window.location.hash || '#').substring(1);
+      var startThread, targetComment;
+      if (/^comment-form_/.test(hash)) {
+        startThread = hash.substring('comment-form_'.length);
+      } else if (/^c[0-9]+$/.test(hash)) {
+        targetComment = hash.substring(1);
+      }
+
+      // Configure commenting API:
+      var configJso = {
+        'maxDepth': config.maxThreadDepth
+      };
+      var provider = {
+        'id': config.postId,
+        'data': items,
+        'loadNext': paginator,
+        'hasMore': hasMore,
+        'getMeta': getMeta,
+        'onReply': onReply,
+        'rendered': true,
+        'initComment': targetComment,
+        'initReplyThread': startThread,
+        'config': configJso,
+        'messages': msgs
+      };
+
+      var render = function() {
+        if (window.goog && window.goog.comments) {
+          var holder = document.getElementById('comment-holder');
+          window.goog.comments.render(holder, provider);
+        }
+      };
+
+      // render now, or queue to render when library loads:
+      if (window.goog && window.goog.comments) {
+        render();
+      } else {
+        window.goog = window.goog || {};
+        window.goog.comments = window.goog.comments || {};
+        window.goog.comments.loadQueue = window.goog.comments.loadQueue || [];
+        window.goog.comments.loadQueue.push(render);
+      }
+    })();
+// ]]>
+  </script>
+</b:includable>
+              <b:includable id='threaded_comments' var='post'>
+  <div class='comments' id='comments'>
+    <a name='comments'/>
+    <h4><data:post.commentLabelFull/>:</h4>
+
+    <div class='comments-content'>
+      <b:include cond='data:post.embedCommentForm' data='post' name='threaded_comment_js'/>
+      <div id='comment-holder'>
+         <data:post.commentHtml/>
+      </div>
+    </div>
+
+    <p class='comment-footer'>
+      <b:if cond='data:post.allowNewComments'>
+        <b:include data='post' name='threaded-comment-form'/>
+      <b:else/>
+        <data:post.noNewCommentsText/>
+      </b:if>
+    </p>
+
+    <b:if cond='data:showCmtPopup'>
+      <div id='comment-popup'>
+        <iframe allowtransparency='true' frameborder='0' id='comment-actions' name='comment-actions' scrolling='no'>
+        </iframe>
+      </div>
+    </b:if>
+
+    <div id='backlinks-container'>
+    <div expr:id='data:widget.instanceId + &quot;_backlinks-container&quot;'>
+    </div>
+    </div>
+  </div>
+</b:includable>
+            </b:widget>
+            <b:widget id='HTML14' locked='false' title='' type='HTML'>
+              <b:widget-settings>
+                <b:widget-setting name='content'><![CDATA[<style>
+  .imo-title {
+    margin: 20px 0 12px 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+    line-height: 1.35;
+    color: #111;
+    text-align: left;
+    font-family: Georgia, serif;
+  }
+
+  .imo-card {
+    width: 440px;
+    max-width: 100%;
+    margin: 0 auto 0 auto;
+    text-align: center;
+    font-family: Georgia, serif;
+  }
+
+  .imo-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+  }
+
+  .imo-link {
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 0.95rem;
+    color: #0b5ed7;
+    text-decoration: none;
+  }
+
+  .imo-link:hover {
+    text-decoration: underline;
+  }
+</style>]]></b:widget-setting>
+              </b:widget-settings>
+              <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+            </b:widget>
+          </b:section>
+        </div>
+        </div>
+
+        <div class='column-left-outer'>
+        <div class='column-left-inner'>
+          <aside>
+          <macro:include id='main-column-left-sections' name='sections'>
+            <macro:param default='0' name='num' value='0'/>
+            <macro:param default='sidebar-left' name='idPrefix'/>
+            <macro:param default='sidebar' name='class'/>
+            <macro:param default='true' name='includeBottom'/>
+          </macro:include>
+          </aside>
+        </div>
+        </div>
+
+        <div class='column-right-outer'>
+        <div class='column-right-inner'>
+          <aside>
+          <macro:include id='main-column-right-sections' name='sections'>
+            <macro:param default='2' name='num' value='1'/>
+            <macro:param default='sidebar-right' name='idPrefix'/>
+            <macro:param default='sidebar' name='class'/>
+            <macro:param default='true' name='includeBottom'/>
+          </macro:include>
+          </aside>
+        </div>
+        </div>
+
+        </div>
+
+        <div style='clear: both'/>
+      <!-- columns -->
+      </div>
+
+    <!-- main -->
+    </div>
+    </div>
+    </div>
+
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 13: FOOTER                                           === -->
+<!-- ==-  Attribution widget &#8212; copyright bar κάτω από τη σελίδα        ==- -->
+<!-- ==================================================================== -->
+    <footer style='margin:0;padding:0;'>
+    <div class='footer-outer' style='margin:0;padding:0;'>
+    <div class='fauxborder-left footer-fauxborder-left'>
+    <div class='fauxborder-right footer-fauxborder-right'/>
+    <div class='region-inner footer-inner' style='margin:0;padding:0;'>
+      <macro:include id='footer-sections' name='sections'>
+        <macro:param default='2' name='num' value='1'/>
+        <macro:param default='footer' name='idPrefix'/>
+        <macro:param default='foot' name='class'/>
+        <macro:param default='false' name='includeBottom'/>
+      </macro:include>
+      <!-- outside of the include in order to lock Attribution widget -->
+      <b:section class='foot' id='footer-3' name='Footer' showaddelement='no'>
+        <b:widget id='Attribution1' locked='false' title='' type='Attribution'>
+          <b:widget-settings>
+            <b:widget-setting name='copyright'/>
+          </b:widget-settings>
+          <b:includable id='main'>
+    <div class='widget-content' style='text-align: center;'>
+      <b:if cond='data:attribution != &quot;&quot;'>
+       <data:attribution/>
+      </b:if>
+    </div>
+
+    <b:include name='quickedit'/>
+  </b:includable>
+        </b:widget>
+      </b:section>
+    </div>
+    </div>
+    <div class='footer-cap-bottom cap-bottom'>
+      <div class='cap-left'/>
+      <div class='cap-right'/>
+    </div>
+    </div>
+    </footer>
+
+  <!-- content -->
+  </div>
+  </div>
+  <div class='content-cap-bottom cap-bottom'>
+    <div class='cap-left'/>
+    <div class='cap-right'/>
+  </div>
+  </div>
+  </div>
+
+  <script type='text/javascript'>
+    window.setTimeout(function() {
+        document.body.className = document.body.className.replace(&#39;loading&#39;, &#39;&#39;);
+      }, 10);
+  </script>
+
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 14: GLOBAL SCRIPTS                                   === -->
+<!-- ==-  Scripts που τρέχουν μετά τη φόρτωση &#8212; επεξεργάσου προσεκτικά ==- -->
+<!-- ==================================================================== -->
+<script>
+function toggleSearch(event) {
+  event.preventDefault();
+  const box = document.getElementById(&quot;searchBox&quot;);
+  if (box.style.display === &quot;block&quot;) {
+    box.style.display = &quot;none&quot;;
+  } else {
+    box.style.display = &quot;block&quot;;
+    box.querySelector(&quot;input&quot;).focus();
+  }
+}
+document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
+  var btn = document.querySelector(&quot;.eisa-search-btn&quot;);
+  if (btn) btn.addEventListener(&quot;click&quot;, toggleSearch);
+});
+</script>
+
+<!-- &#9472;&#9472; 14.1 &#8212; Image ALT auto-fill + lazy loading &#9472;&#9472; -->
+<script type='text/javascript'>
+//<![CDATA[
+document.addEventListener('DOMContentLoaded', function () {
+  // Όλες οι περιοχές σώματος ανάρτησης
+  var scopes = document.querySelectorAll('.post-body');
+
+  // Τίτλος σελίδας (fallback)
+  var og = document.querySelector('meta[property="og:title"]');
+  var pageTitle = (og && og.content ? og.content : document.title);
+  if (pageTitle) { pageTitle = pageTitle.trim(); }
+
+  Array.prototype.forEach.call(scopes, function (scope) {
+    var imgs = scope.querySelectorAll('img');
+    Array.prototype.forEach.call(imgs, function (img) {
+      // Συμπλήρωση ALT αν λείπει
+      var alt = img.getAttribute('alt');
+      var hasAlt = alt && alt.trim() !== '';
+      if (!hasAlt) {
+        var figure = img.closest ? img.closest('figure') : null;
+        var figcap = figure ? figure.querySelector('figcaption') : null;
+        var caption = (figcap && figcap.innerText) ? figcap.innerText.trim() : '';
+        var titleAttr = img.getAttribute('title');
+        var fallback = (titleAttr && titleAttr.trim()) || caption || pageTitle || 'image';
+        img.setAttribute('alt', fallback);
+      }
+
+      // Lazy loading + async decoding
+      if (!img.getAttribute('loading'))  img.setAttribute('loading', 'lazy');
+      if (!img.getAttribute('decoding')) img.setAttribute('decoding', 'async');
+
+      // Πλήρωση width/height για μείωση CLS
+      if (!img.getAttribute('width') && img.naturalWidth)   img.setAttribute('width',  img.naturalWidth);
+      if (!img.getAttribute('height') && img.naturalHeight) img.setAttribute('height', img.naturalHeight);
+      
+    });
+  });
+});
+//]]>
+</script>
+
+<!-- &#9472;&#9472; Label badges για newsit cards &#9472;&#9472; -->
+<script>
+document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+  var cards = document.querySelectorAll(&#39;.newsit-card&#39;);
+  cards.forEach(function(card) {
+    var labelSpan = card.querySelector(&#39;.post-label-data&#39;);
+    if (!labelSpan) return;
+    var labelText = labelSpan.textContent.trim();
+    if (!labelText) return;
+    var thumb = card.querySelector(&#39;.thumb&#39;);
+    if (!thumb) return;
+    var badge = document.createElement(&#39;span&#39;);
+    badge.className = &#39;label-badge&#39;;
+    badge.textContent = labelText;
+    thumb.appendChild(badge);
+  });
+});
+</script>
+
+<!-- &#9472;&#9472; 14.2 &#8212; Label sorting by frequency (φθίνουσα) &#9472;&#9472; -->
+<script>
+// Ταξινόμηση των ετικετών κατά συχνότητα (μεγαλύτερες πρώτες)
+document.addEventListener(&#39;DOMContentLoaded&#39;, () =&gt; {
+  const list = document.querySelector(&#39;#Label1 ul, .label-list ul, .labels ul&#39;);
+  if (!list) return;
+
+  const items = Array.from(list.querySelectorAll(&#39;li&#39;));
+
+  // Συνάρτηση για να διαβάζει το νούμερο μέσα στις παρενθέσεις (π.χ. &quot;Άλγεβρα (12)&quot;)
+  const getCount = el =&gt; {
+    const match = el.textContent.match(/\((\d+)\)/);
+    return match ? parseInt(match[1], 10) : 0;
+  };
+
+  // Ταξινόμηση φθίνουσα (μεγαλύτερα πρώτα)
+  items.sort((a, b) =&gt; getCount(b) - getCount(a));
+
+  // Ανακατασκευή της λίστας
+  items.forEach(li =&gt; list.appendChild(li));
+});
+</script>
+
+
+<!-- &#9472;&#9472; 14.3 &#8212; Active menu link highlighting &#9472;&#9472; -->
+
+
+
+<!-- &#9472;&#9472; 14.3+14.4 &#8212; Active menu + Search toggle &#9472;&#9472; -->
+<script>
+/* toggleSearch: defined above */
+</script>
+<!-- &#9472;&#9472; 14.5 &#8212; Floating math buttons (Oracle, Puzzle, Inspire) &#9472;&#9472; -->
+<!-- EisatoponAI &#8211; Animated Floating AI Math Toolbar -->
+
+
+  
+  
+
+<!-- &#9472;&#9472; 14.6 &#8212; Lazy loading για όλες τις εικόνες &#9472;&#9472; -->
+<!-- Lazy loading for all images - EisatoponAI -->
+<script>
+document.addEventListener(&quot;DOMContentLoaded&quot;, function () {
+  // 1. Εξαίρεση της ΠΡΩΤΗΣ εικόνας των αναρτήσεων (hero thumbnail)
+  try {
+    var firstHeroImg = document.querySelector(
+      &quot;#Blog1 .blog-posts .post-outer img, #Blog1 .blog-posts article img&quot;
+    );
+    if (firstHeroImg) {
+      firstHeroImg.setAttribute(&quot;data-no-lazy&quot;, &quot;true&quot;);
+      firstHeroImg.removeAttribute(&quot;loading&quot;);
+    }
+  } catch (e) {}
+
+  // 2. Lazy-loading για ΟΛΕΣ τις υπόλοιπες εικόνες
+  var images = document.querySelectorAll(&quot;img:not([data-no-lazy])&quot;);
+
+  images.forEach(function (img) {
+    if (!img.hasAttribute(&quot;loading&quot;)) {
+      img.setAttribute(&quot;loading&quot;, &quot;lazy&quot;);
+    }
+    img.setAttribute(&quot;decoding&quot;, &quot;async&quot;);
+
+    try {
+      var src = img.getAttribute(&quot;src&quot;);
+      if (src &amp;&amp; /\/s[0-9]+\//.test(src)) {
+        img.setAttribute(&quot;src&quot;, src.replace(/\/s[0-9]+\//, &quot;/s800/&quot;));
+      }
+    } catch (e) {}
+  });
+
+  // 3. IntersectionObserver για browsers χωρίς καλό native lazy-loading
+  if (&quot;IntersectionObserver&quot; in window) {
+    let observer = new IntersectionObserver(function (entries, obs) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          let img = entry.target;
+          if (img.dataset.src) img.src = img.dataset.src;
+          obs.unobserve(img);
+        }
+      });
+    });
+
+    document.querySelectorAll(&quot;img[data-src]&quot;).forEach(function (img) {
+      observer.observe(img);
+    });
+  }
+});
+</script>
+<!-- /Lazy loading -->
+
+
+
+
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 15: MACRO INCLUDABLE (sections)                      === -->
+<!-- ==-  Blogger macro &#8212; ΜΗΝ επεξεργαστείς                            ==- -->
+<!-- ==================================================================== -->
+
+<!-- &#9472;&#9472; Labels View More &#9472;&#9472; -->
+
+
+
+<!-- &#9472;&#9472; Remove duplicate posts from sections &#9472;&#9472; -->
+<script type='text/javascript'>
+//<![CDATA[
+(function() {
+  function removeDuplicates() {
+    // Μόνο featured + grid — ΟΧΙ τα label sections (Γρίφοι, Άρθρα)
+    var seenUrls = [];
+
+    // Πρώτα μάζεψε URLs από featured + grid (όχι limit-3)
+    var mainCards = document.querySelectorAll('.newsit-feature .newsit-card, .newsit-grid:not(.limit-3) .newsit-card');
+    mainCards.forEach(function(card) {
+      var link = card.querySelector('a.thumb');
+      if (!link) return;
+      seenUrls.push(link.href);
+    });
+
+    // Μετά κρύψε duplicates ΜΟΝΟ μέσα στο featured+grid
+    var allMainCards = document.querySelectorAll('.newsit-feature .newsit-card, .newsit-grid:not(.limit-3) .newsit-card');
+    var seen = [];
+    allMainCards.forEach(function(card) {
+      var link = card.querySelector('a.thumb');
+      if (!link) return;
+      var url = link.href;
+      if (seen.indexOf(url) !== -1) {
+        card.style.display = 'none';
+      } else {
+        seen.push(url);
+      }
+    });
+  }
+
+  window.addEventListener('load', removeDuplicates);
+})();
+//]]>
+</script>
+
+<!-- &#9472;&#9472; Active menu link &#9472;&#9472; -->
+<script>
+//<![CDATA[
+(function(){
+  function setActiveMenu() {
+    var links = document.querySelectorAll('.newsit-like-menu a');
+    var currentPath = location.pathname;
+    var m = currentPath.match(/\/search\/label\/([^/]+)/);
+    var currentLabel = m ? decodeURIComponent(m[1]) : null;
+    links.forEach(function(a) {
+      a.classList.remove('active');
+      var href = a.getAttribute('href') || '';
+      if (currentLabel) {
+        var lm = href.match(/\/search\/label\/([^/]+)/);
+        if (lm && decodeURIComponent(lm[1]).toLowerCase() === currentLabel.toLowerCase()) {
+          a.classList.add('active');
+        }
+      } else if ((currentPath === '/' || currentPath === '') && (href === '/' || href === '')) {
+        a.classList.add('active');
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setActiveMenu);
+  } else {
+    setActiveMenu();
+  }
+})();
+//]]>
+</script>
+
+  
+<!-- Labels View More - MutationObserver -->
+<script type='text/javascript'>
+//<![CDATA[
+(function() {
+  var SHOW = 14;
+  var colors = ['#2563eb','#059669','#d97706','#7c3aed','#e11d48','#16a34a','#ea580c','#475569'];
+  var widths = [95,90,55,42,28,24,23,15];
+  var done = false;
+
+  function initLabels(container) {
+    if (done) return;
+    var spans = Array.prototype.slice.call(container.querySelectorAll(':scope > span'));
+    if (spans.length === 0) return;
+    done = true;
+
+    spans.forEach(function(span, i) {
+      var c = colors[i % colors.length];
+      var w = widths[i] || 8;
+      var a = span.querySelector('a');
+      if (a) {
+        a.style.color = c;
+        if (!span.querySelector('.eisa-bar')) {
+          var bar = document.createElement('div');
+          bar.className = 'eisa-bar';
+          bar.style.cssText = 'height:4px;border-radius:4px;background:'+c+';opacity:0.7;margin-top:10px;width:'+w+'%';
+          span.appendChild(bar);
+        }
+      }
+      if (i >= SHOW) {
+        span.classList.add('lbl-hidden');
+        span.dataset.hidden = '1';
+      }
+    });
+
+    var hidden = spans.filter(function(s) { return s.dataset.hidden; });
+    if (hidden.length === 0) return;
+    if (container.querySelector('.eisa-view-more-btn')) return;
+
+    var btn = document.createElement('button');
+    btn.className = 'eisa-view-more-btn';
+    btn.textContent = 'View more labels (' + hidden.length + ') ▼';
+    btn.style.cssText = 'grid-column:1/-1;width:100%;margin-top:4px;padding:10px;background:#fff;border:1.5px solid #ddd;border-radius:8px;font-size:13px;font-weight:700;color:#555;cursor:pointer;text-align:center;';
+    var open = false;
+    btn.addEventListener('click', function() {
+      open = !open;
+      hidden.forEach(function(s) {
+        s.classList[open ? 'remove' : 'add']('lbl-hidden');
+      });
+      btn.textContent = open ? 'View less labels ▲' : 'View more labels (' + hidden.length + ') ▼';
+    });
+    var ref = spans[SHOW - 1];
+    if (ref && ref.nextSibling) { container.insertBefore(btn, ref.nextSibling); }
+    else { container.appendChild(btn); }
+  }
+
+  function observe() {
+    var container = document.querySelector('.cloud-label-widget-content');
+    if (container && container.querySelectorAll(':scope > span').length > 0) {
+      initLabels(container);
+      return;
+    }
+    var obs = new MutationObserver(function(m, o) {
+      var c = document.querySelector('.cloud-label-widget-content');
+      if (c && c.querySelectorAll(':scope > span').length > 0) {
+        o.disconnect();
+        initLabels(c);
+      }
+    });
+    obs.observe(document.body || document.documentElement, { childList: true, subtree: true });
+    setTimeout(function() { obs.disconnect(); }, 15000);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', observe);
+  } else {
+    observe();
+  }
+})();
+//]]>
+</script>
+<style>
+/* ===== LABEL BADGE ===== */
+.newsit-card .label-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #e60000;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  z-index: 10;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  pointer-events: none;
+  white-space: nowrap;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+</style>
+<style>
+#eisa-scroll-top {
+  position: fixed; bottom: 30px; right: 30px;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #e60000; border: none; cursor: pointer;
+  display: none; align-items: center; justify-content: center;
+  z-index: 9999; box-shadow: 0 4px 14px rgba(230,0,0,0.4);
+  transition: transform 0.2s ease;
+}
+#eisa-scroll-top:hover { transform: scale(1.1); }
+#eisa-scroll-top .scroll-e {
+  font-family: Georgia, serif; font-size: 24px; color: white;
+  line-height: 1; position: absolute; bottom: 8px;
+}
+#eisa-scroll-top .scroll-arrow {
+  position: absolute; top: -10px; left: 50%; transform: translateX(-50%);
+  background: #e60000; border-radius: 50%; width: 22px; height: 22px;
+  display: flex; align-items: center; justify-content: center;
+  border: 2.5px solid white;
+}
+@media (max-width: 768px) {
+  #eisa-scroll-top { bottom: 20px; right: 16px; width: 50px; height: 50px; }
+  #eisa-scroll-top .scroll-e { font-size: 20px; bottom: 6px; }
+  #eisa-scroll-top .scroll-arrow { width: 20px; height: 20px; top: -9px; }
+}
+</style>
+<button aria-label='Scroll to top' id='eisa-scroll-top' onclick='window.scrollTo({top:0,behavior:&apos;smooth&apos;})'>
+  <div class='scroll-arrow'>
+    <svg fill='none' height='11' viewBox='0 0 24 24' width='11'>
+      <path d='M12 19V5M5 12l7-7 7 7' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='3'/>
+    </svg>
+  </div>
+  <span class='scroll-e'>e</span>
+</button>
+<script>
+(function() {
+  var btn = document.getElementById(&#39;eisa-scroll-top&#39;);
+  if (!btn) return;
+  window.addEventListener(&#39;scroll&#39;, function() {
+    btn.style.display = window.scrollY &gt; 300 ? &#39;flex&#39; : &#39;none&#39;;
+  }, { passive: true });
+})();
+</script>
+<script>
+document.addEventListener(&#39;DOMContentLoaded&#39;, function() {
+  var h2 = document.querySelector(&#39;#Label1 h2&#39;);
+  if (h2) {
+    h2.innerHTML = h2.innerHTML.replace(&#39;AI&#39;, &#39;<span style='color:#e60000;font-weight:900;'>AI</span>&#39;);
+  }
+});
+</script>
+<script>
+//<![CDATA[
+(function(){
+  function setActiveMenu() {
+    var links = document.querySelectorAll('.newsit-like-menu a');
+    var currentPath = location.pathname;
+    var m = currentPath.match(/\/search\/label\/([^/]+)/);
+    var currentLabel = m ? decodeURIComponent(m[1]) : null;
+    links.forEach(function(a) {
+      a.classList.remove('active');
+      var href = a.getAttribute('href') || '';
+      if (currentLabel) {
+        var lm = href.match(/\/search\/label\/([^/]+)/);
+        if (lm && decodeURIComponent(lm[1]).toLowerCase() === currentLabel.toLowerCase()) {
+          a.classList.add('active');
+        }
+      } else if ((currentPath === '/' || currentPath === '') && (href === '/' || href === '')) {
+        a.classList.add('active');
+      }
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setActiveMenu);
+  } else {
+    setActiveMenu();
+  }
+})();
+//]]>
+</script>
+</body>
+
+<macro:includable id='sections' var='col'>
+  <macro:if cond='data:col.num == 0'>
+  <macro:else/>
+    <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-1&quot;' preferred='yes' showaddelement='yes'/>
+
+    <macro:if cond='data:col.num &gt;= 2'>
+      <table border='0' cellpadding='0' cellspacing='0' mexpr:class='&quot;section-columns columns-&quot; + data:col.num'>
+      <tbody>
+      <tr>
+        <td class='first columns-cell'>
+          <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-2-1&quot;'/>
+        </td>
+
+        <td class='columns-cell'>
+          <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-2-2&quot;'/>
+        </td>
+
+        <macro:if cond='data:col.num &gt;= 3'>
+          <td class='columns-cell'>
+            <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-2-3&quot;'/>
+          </td>
+        </macro:if>
+
+        <macro:if cond='data:col.num &gt;= 4'>
+          <td class='columns-cell'>
+            <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-2-4&quot;'/>
+          </td>
+        </macro:if>
+      </tr>
+      </tbody>
+      </table>
+
+      <macro:if cond='data:col.includeBottom'>
+        <b:section mexpr:class='data:col.class' mexpr:id='data:col.idPrefix + &quot;-3&quot;' showaddelement='no'/>
+      </macro:if>
+    </macro:if>
+  </macro:if>
+</macro:includable>
+
+
+
+<!-- ==================================================================== -->
+<!-- ===  ΕΝΟΤΗΤΑ 16: SIDEBAR WIDGETS                                  === -->
+<!-- ==-  sidebar-right-1: HTML7 (Related Posts), HTML5/2/6 (sidebar fixes) ==- -->
+<!-- ==================================================================== -->
+<b:section-contents id='sidebar-right-1'>
+  <b:widget id='HTML7' locked='false' title='' type='HTML'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<!-- ΣΧΕΤΙΚΑ ΑΡΘΡΑ – Gadget για Blogger (labels από JSON-LD ή DOM) -->
+<div id="eisa-related-anchor" style="display:none"></div>
+<script>
+//<![CDATA[
+(function(){
+  var MAX = 3;
+  var BLOG_URL = 'https://www.eisatopon.gr';
+  var isItem = /\/\d{4}\/\d{2}\//.test(location.pathname);
+  if (!isItem) return;
+
+  // Διαβάζουμε canonical για να μη προτείνουμε το ίδιο άρθρο
+  var CANONICAL = '';
+  try{ var c = document.querySelector('link[rel="canonical"]'); if (c && c.href) CANONICAL = c.href.replace(/\?m=1$/,''); }catch(e){}
+
+  function findPostBody(){
+    return document.querySelector('.post-body.entry-content, .post .entry-content, [itemprop="articleBody"]');
+  }
+
+  // ---- ΛΗΨΗ ΕΤΙΚΕΤΩΝ ----
+  function getLabelsFromJSONLD(){
+    var out = [];
+    try{
+      var scripts = document.querySelectorAll('script[type="application/ld+json"]');
+      for (var i=0;i<scripts.length;i++){
+        var txt = scripts[i].textContent || scripts[i].innerText || '';
+        if (!txt) continue;
+        var data;
+        try { data = JSON.parse(txt); } catch(e){ continue; }
+        if (!data) continue;
+
+        // Μπορεί να είναι αντικείμενο ή array από αντικείμενα
+        var arr = Array.isArray(data) ? data : [data];
+        for (var j=0;j<arr.length;j++){
+          var obj = arr[j];
+          if (obj && obj['@type'] === 'BreadcrumbList' && Array.isArray(obj.itemListElement)){
+            obj.itemListElement.forEach(function(li){
+              var item = li && li.item;
+              var name = li && li.name;
+              var url  = (typeof item === 'string') ? item : (item && item['@id']);
+              if (url && /\/search\/label\//.test(url)){
+                // κρατάμε το όνομα (ετικέτα)
+                out.push(String(name || '').trim());
+              }
+            });
+          }
+        }
+      }
+    }catch(e){}
+    return Array.from(new Set(out.filter(Boolean)));
+  }
+
+  function getLabelsFromDOM(){
+    var out = [];
+    var links = document.querySelectorAll('.post-labels a, a[rel="tag"], a[href*="/search/label/"]');
+    links.forEach(function(a){
+      var m = a.href && a.href.match(/\/search\/label\/([^?#]+)/);
+      if (m) out.push(decodeURIComponent(m[1]));
+    });
+    return Array.from(new Set(out));
+  }
+
+  function getLabels(){
+    var a = getLabelsFromJSONLD();
+    if (a.length) return a;
+    return getLabelsFromDOM();
+  }
+
+  // ---- JSONP FEED ----
+  function loadJSONP(url, cb){
+    var cbname = '__EISA_CB_' + Math.random().toString(36).slice(2);
+    window[cbname] = function(data){ try{ cb(data); } finally { delete window[cbname]; s.remove(); } };
+    var s = document.createElement('script');
+    s.src = url + (url.indexOf('?')>-1?'&':'?') + 'alt=json-in-script&max-results=20&callback=' + cbname;
+    s.onerror = function(){ cb(null); delete window[cbname]; s.remove(); };
+    document.body.appendChild(s);
+  }
+
+  function altLink(entry){
+    var links = entry && entry.link || [];
+    for (var i=0;i<links.length;i++) if (links[i].rel==='alternate') return (links[i].href||'').replace(/\?m=1$/,'');
+    return '';
+  }
+
+  function firstImg(entry){
+    var html = (entry && entry.content && entry.content.$t) ? entry.content.$t : '';
+    var tag  = html.match(/<img[^>]+>/i);
+    if (tag){
+      var m = String(tag[0]).match(/src=["']([^"']+)["']/i);
+      if (m){
+        var src = m[1];
+        if (/googleusercontent\.com|blogger\.com/i.test(src)){
+          src = src.replace(/\/s\d+(\-c)?\//, '/s800/').replace(/=s\d+(\-c)?(\-rw)?/, '=s800');
+        }
+        return src;
+      }
+    }
+    if (entry && entry.media$thumbnail && entry.media$thumbnail.url){
+      return entry.media$thumbnail.url.replace(/\/s72\-c\//,'/s800/').replace(/=s72(\-c)?(\-rw)?/, '=s800');
+    }
+    return '';
+  }
+
+  function escapeHtml(t){ var d=document.createElement('div'); d.textContent=t||''; return d.innerHTML; }
+
+  // ---- RENDER ----
+  function render(entries){
+    var postBody = findPostBody();
+    if (!postBody) return;
+
+    var mount = document.createElement('div');
+    mount.id = 'eisa-related';
+    mount.style.margin = '24px 0';
+
+    if (!entries || !entries.length){
+      mount.innerHTML = "<div style='background:#e8f5ff;border:1px solid #cfe9ff;border-radius:12px;padding:14px 16px;opacity:.8'>Δεν βρέθηκαν σχετικά άρθρα.</div>";
+      postBody.appendChild(mount);
+      return;
+    }
+
+    // Φιλτράρισμα + shuffle
+    var seen = {};
+    var list = entries
+      .map(function(e){ return { url: altLink(e), title: e.title && e.title.$t || 'Χωρίς τίτλο', img: firstImg(e) }; })
+      .filter(function(it){ return it.url && (!CANONICAL || it.url !== CANONICAL); });
+
+    // Shuffle
+    for (var i=list.length-1;i>0;i--){ var r=Math.floor(Math.random()*(i+1)); var tmp=list[i]; list[i]=list[r]; list[r]=tmp; }
+
+    // Build
+    var html = "<div id='eisatopon-more-box' style='background:#e8f5ff;border:1px solid #cfe9ff;border-radius:14px;padding:14px 16px'>";
+    html    += "  <h3 style='margin:0 0 10px;color:#004c7d;font:700 18px/1.3 Arial,Helvetica,sans-serif'>";
+    html    += "<span style='color:red;'>➕</span> Περισσότερα από το EisatoponAI</h3>";
+    html    += "  <div style='display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))'>";
+    var shown = 0;
+    for (var j=0;j<list.length && shown<MAX;j++){
+      var it = list[j];
+      if (seen[it.url]) continue; seen[it.url]=1;
+      html += "<a href='"+it.url+"' style='text-decoration:none;color:#000'>";
+      html += "  <div style='background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08)'>";
+      if (it.img){ html += "    <div style='aspect-ratio:16/9;overflow:hidden'><img src='"+it.img+"' alt='' style='width:100%;height:100%;object-fit:cover;display:block'></div>"; }
+      html += "    <div style='padding:10px 12px;font-weight:600'>"+escapeHtml(it.title)+"</div>";
+      html += "  </div></a>";
+      shown++;
+    }
+    html += "  </div></div>";
+
+    mount.innerHTML = html;
+    postBody.appendChild(mount);
+  }
+
+  // ---- ΕΚΚΙΝΗΣΗ: φέρε από πολλές ετικέτες ώσπου να γεμίσεις MAX ----
+  function start(){
+    var postBody = findPostBody();
+    if (!postBody) return;
+
+    var loader = document.createElement('div');
+    loader.style.margin = '16px 0'; loader.style.opacity = '.7';
+    loader.textContent = 'Φόρτωση σχετικών άρθρων...';
+    postBody.appendChild(loader);
+
+    var labels = getLabels();                 // π.χ. ["Γρίφοι","Γεωμετρία"]
+    var feedBase = BLOG_URL + '/feeds/posts/default';
+    var collected = [];
+
+    function finish(){
+      try{ loader.remove(); }catch(e){}
+      render(collected);
+    }
+
+    // Αν έχουμε ετικέτες, φέρ’ τες διαδοχικά μέχρι να γεμίσει
+    function fetchNextLabel(idx){
+      if (collected.length >= MAX || idx >= labels.length){
+        if (collected.length < MAX){
+          // Τελικό fallback: πρόσφατα
+          loadJSONP(feedBase, function(dr){
+            var ent = dr && dr.feed && dr.feed.entry || [];
+            collected = collected.concat(ent);
+            finish();
+          });
+        } else { finish(); }
+        return;
+      }
+      var lbl = labels[idx];
+      loadJSONP(feedBase + '/-/' + encodeURIComponent(lbl), function(d){
+        var ent = d && d.feed && d.feed.entry || [];
+        collected = collected.concat(ent || []);
+        fetchNextLabel(idx+1);
+      });
+    }
+
+    if (labels.length) fetchNextLabel(0);
+    else {
+      // Δεν βρέθηκαν ετικέτες καθόλου → πρόσφατα
+      loadJSONP(feedBase, function(dr){
+        var ent = dr && dr.feed && dr.feed.entry || [];
+        collected = collected.concat(ent || []);
+        finish();
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
+})();
+//]]]]><![CDATA[>
+</script>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML5' locked='false' title='' type='HTML'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<!-- Sidebar image CSS: see HTML2 widget below -->]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML2' locked='false' title='' type='HTML'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<style>
+/* Κεντράρισμα εικόνων στη sidebar (Image + HTML gadgets) */
+.sidebar .widget.Image .widget-content,
+.sidebar .widget.HTML  .widget-content,
+#sidebar-left  .widget-content,
+#sidebar-right .widget-content {
+  text-align: center !important;   /* κεντράρει ό,τι είναι inline/inline-block */
+}
+
+/* Τα links που τυλίγουν εικόνες */
+.sidebar .widget.Image .widget-content a,
+.sidebar .widget.HTML  .widget-content a,
+#sidebar-left  .widget-content a,
+#sidebar-right .widget-content a {
+  display: inline-block !important;  /* να μπορεί να κεντραριστεί */
+  float: none !important;
+}
+
+/* Οι ίδιες οι εικόνες */
+.sidebar .widget.Image .widget-content img,
+.sidebar .widget.HTML  .widget-content img,
+#sidebar-left  .widget-content img,
+#sidebar-right .widget-content img {
+  display: inline-block !important;  /* παίζει με text-align:center στον γονέα */
+  margin: 0 auto !important;
+  float: none !important;
+  max-width: 100%;
+  height: auto;
+}
+
+/* (προαιρετικό) thumbnails “Δημοφιλείς Αναρτήσεις” */
+.PopularPosts .item-thumbnail a,
+.PopularPosts .item-thumbnail img {
+  display: block !important;
+  margin: 0 auto !important;
+  float: none !important;
+}
+</style>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML6' locked='false' title='' type='HTML'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<!-- Sidebar image CSS: see HTML2 widget below -->]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+  </b:widget>
+</b:section-contents><b:section-contents id='footer-1'>
+  <b:widget id='HTML12' locked='false' title='' type='HTML'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<style>
+
+/* Wrapper */
+.lang-toggle-bar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+/* Βασικό κουμπί */
+.lang-toggle-btn {
+  padding: 8px 16px;
+  font-size: 15px;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.25s;
+  border: none;
+  color: #fff;
+}
+
+/* Σημαίες ως μικρά icons */
+.lang-flag {
+  width: 22px;
+  height: 14px;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+/* Ελληνικό κουμπί */
+.lang-btn-el {
+  background: #1a73e8; /* Google blue */
+}
+.lang-btn-el:hover {
+  background: #155fc0;
+}
+
+/* English κουμπί */
+.lang-btn-en {
+  background: #d62828; /* κόκκινο σημαίας UK */
+}
+.lang-btn-en:hover {
+  background: #b71f1f;
+}
+
+/* Active κουμπί */
+.lang-toggle-btn.active {
+  box-shadow: 0 0 10px rgba(0,0,0,0.35);
+  transform: scale(1.05);
+}
+
+/* Content blocks */
+.post-lang { display: none; }
+.post-lang.active { display: block; }
+
+</style>
+
+
+<!-- ── 17.3 — Labels cloud widget (Label1) ── -->
+  <b:widget id='HTML11' locked='false' title='' type='HTML'>
+    <b:widget-settings>
+      <b:widget-setting name='content'>
+<!-- Πήγαινε στο Blogger > Διάταξη > Προσθήκη Gadget > HTML/JavaScript -->
+<!-- Και επικόλλησε τον παρακάτω κώδικα -->
+
+<style>
+.tts-widget-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white !important;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+    text-decoration: none;
+    margin: 15px 0;
+}
+
+.tts-widget-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+.tts-widget-btn:active {
+    transform: translateY(0);
+}
+
+.tts-widget-btn.playing {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+}
+
+.tts-widget-btn .icon {
+    font-size: 18px;
+}
+</style></b:widget-setting></b:widget-settings></b:widget>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+  </b:widget>
+  <b:widget id='Label1' locked='false' title='EisatoponAI Labels' type='Label' version='1'>
+    <b:widget-settings>
+      <b:widget-setting name='sorting'>FREQUENCY</b:widget-setting>
+      <b:widget-setting name='display'>CLOUD</b:widget-setting>
+      <b:widget-setting name='selectedLabelsList'>AI,Bernoulli,Cantor,David Hilbert,Euler,Fermat,Fibonacci,G. H.Hardy,Gauss,Illusion,Interview Questions,Isaac Newton,LECTURES,Problem of the week,Puzzles,René Descartes,SPACE MATH @ NASA,Sam Loyd,Sangaku,TEDEd,Άλγεβρα,Άλυτα προβλήματα,Άπειρο,Άρθρα Eisatopon,Άρρητοι αριθμοί,Α Γυμνασίου,Α Λυκείου,Ανάλυση,Ανισότητες,Αποδείξεις χωρίς λόγια,Αριθμογρίφοι,Αριθμός π,Αρχιμήδης,Αστρονομία,Αϊνστάϊν,Β Γυμνασίου,Β Λυκείου,Βιβλία,Γεωμετρία,Γνωρίζετε ότι,Γρίφοι,Δημοτικό_ταλέντα,Διαγωνίσματα,Εικασία,Ελληνική Μαθηματική Εταιρεία,Εξισώσεις,Θεωρήματα,Θεός,Κανονικά πολύγωνα,Κρυπτάριθμοι,Κώστας Δόρτσιος,Λογάριθμοι,Μαθηματικά,Μαθηματικά αναμνηστικά,Μαθηματικά κατεύθυνσης Γ Λυκείου,Μαθηματικά κόλπα,Μαθηματικά περιοδικά,Μαθηματικές Ολυμπιάδες,Μαθηματικοί διαγωνισμοί,Ολοκληρώματα,Παράδοξα,Πιθανότητες,Πολυώνυμα,Πρώτοι αριθμοί,Πυθαγόρας,Πυθαγόρειο θεώρημα,Ρήσεις,Ρίζες,Ραμανουτζάν,Στατιστική,Στερεομετρία,Στοιχεία Ευκλείδη,Συναρτήσεις,Συνδυαστική,Συστήματα,Τέχνη και Μαθηματικά,Τετράγωνα,Τεχνητή νοημοσύνη,Τοπολογία,Τρίγωνα,Τριγωνομετρία,Υπερβατικοί αριθμοί,Φυσική,Χιούμορ,Χρυσή τομή,αριθμός e,αριθμός φ,εμβαδόν</b:widget-setting>
+      <b:widget-setting name='showType'>USER_SELECTED</b:widget-setting>
+      <b:widget-setting name='showFreqNumbers'>true</b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:if cond='data:blog.url == data:blog.homepageUrl'>
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2><data:title/></h2>
+  </b:if>
+  <div expr:class='&quot;widget-content &quot; + data:display + &quot;-label-widget-content&quot;'>
+    <b:if cond='data:display == &quot;list&quot;'>
+      <ul>
+        <b:loop values='data:labels' var='label'>
+          <li>
+            <b:if cond='data:blog.url == data:label.url'>
+              <span expr:dir='data:blog.languageDirection'><data:label.name/></span>
+            <b:else/>
+              <a expr:dir='data:blog.languageDirection' expr:href='data:label.url'><data:label.name/></a>
+            </b:if>
+            <b:if cond='data:showFreqNumbers'>
+              <span dir='ltr'>(<data:label.count/>)</span>
+            </b:if>
+          </li>
+        </b:loop>
+      </ul>
+    <b:else/>
+      <b:loop values='data:labels' var='label'>
+        <span expr:class='&quot;label-size label-size-&quot; + data:label.cssSize'>
+          <b:if cond='data:blog.url == data:label.url'>
+            <span expr:dir='data:blog.languageDirection'><data:label.name/></span>
+          <b:else/>
+            <a expr:dir='data:blog.languageDirection' expr:href='data:label.url'><data:label.name/></a>
+          </b:if>
+          <b:if cond='data:showFreqNumbers'>
+            <span class='label-count' dir='ltr'>(<data:label.count/>)</span>
+          </b:if>
+        </span>
+      </b:loop>
+    </b:if>
+    <b:include name='quickedit'/>
+  </div>
+  </b:if>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML13' locked='false' title='' type='HTML' version='1'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<!-- &#9472;&#9472; 12.2 &#8212; Βιβλία EisatoponAI (PDF) &#9472;&#9472; -->
+
+<!-- ===== ΒΙΒΛΙΑ EISATOPONAI ===== -->
+
+<h2 style='border-left:5px solid #d40000; padding-left:16px; font-size:29px; font-weight:800; margin:30px 0 20px 0; color:#1e3a8a;'>
+  Βιβλία EisatoponAI
+  <span style='font-weight:500; font-size:19px; color:#555;'>
+    &#8211; Ψηφιακές εκδόσεις &#183; Άμεση λήψη PDF
+  </span>
+</h2>
+
+<section style='margin:0 auto 40px; padding:30px 25px; background:#f8fafc; border-radius:20px; max-width:960px;'>
+
+  <div class="eisa-books-wrap" style='display:flex; gap:30px; justify-content:center; flex-wrap:wrap;'>
+
+    <!-- BOOK 1 -->
+    <div class="eisa-book" style='background:#fff; border-radius:16px; padding:20px 18px 18px; width:260px; text-align:center; box-shadow:0 10px 25px rgba(0,0,0,0.1); position:relative;'>
+      <div style='position:absolute; top:14px; right:14px; background:#d40000; color:#fff; font-size:12px; font-weight:800; padding:5px 11px; border-radius:20px;'>PDF</div>
+      <a href='https://www.eisatopon.gr/p/pdf_26.html' style='text-decoration:none;'>
+        <img src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEghY1bbnGh_yxu7dciEefwOWD43Afw6xbOr-lwTt4kDurRzLae1Xx7lYx8wdbFZKxLPralusHfYHaTnfim0QypWB1wzV_QrigbkyQbvs4L-VQzOykV5ExNHCgDftmCIdc22NOsQleKm3qa5Hbi-XdJsK3QmC5gS1PmAEHXFRYc_Il4hGpG4sJeD5g8Eqeg/w441-h640/%CE%A7%CF%89%CF%81%CE%AF%CF%82%20%CF%84%CE%AF%CF%84%CE%BB%CE%BF.png' style='width:100%; max-width:190px; border-radius:10px; display:block; margin:0 auto 16px;' alt='Βιβλίο 1'/>
+      </a>
+      <a href='https://www.eisatopon.gr/p/pdf_26.html' style='display:block; background:#d40000; color:#fff; padding:11px 24px; border-radius:25px; font-weight:700; font-size:14px; text-decoration:none; margin:10px 0;'>Αγορά PDF</a>
+      <div style='font-size:12.5px; color:#555; margin-top:6px;'>🔒 Ασφαλής πληρωμή</div>
+    </div>
+
+    <!-- BOOK 2 -->
+    <div class="eisa-book" style='background:#fff; border-radius:16px; padding:20px 18px 18px; width:260px; text-align:center; box-shadow:0 10px 25px rgba(0,0,0,0.1); position:relative;'>
+      <div style='position:absolute; top:14px; right:14px; background:#d40000; color:#fff; font-size:12px; font-weight:800; padding:5px 11px; border-radius:20px;'>PDF</div>
+      <a href='https://www.eisatopon.gr/p/pdf.html' style='text-decoration:none;'>
+        <img src='https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgl2sHS2oSp-zc7v_1FLAQOjej-3iEKPaXcE33mOiFUf93ezwxyULDeVnSvOk9udH6ENlrTh8ETVGh86HoJUj3weX6yVfceZeFbt9xHvcJRPqI-e9AvYaK9IUAjs1zZ1Akp8Odj22GQdqq3LLBY24ku7h4DTJtGr5vVKt2pWl00D3cUXyJC2m95QE7f79I/w456-h640/%CE%A7%CF%89%CF%81%CE%AF%CF%82%20%CF%84%CE%AF%CF%84%CE%BB%CE%BF.png' style='width:100%; max-width:190px; border-radius:10px; display:block; margin:0 auto 16px;' alt='Βιβλίο 2'/>
+      </a>
+      <a href='https://www.eisatopon.gr/p/pdf.html' style='display:block; background:#d40000; color:#fff; padding:11px 24px; border-radius:25px; font-weight:700; font-size:14px; text-decoration:none; margin:10px 0;'>Αγορά PDF</a>
+      <div style='font-size:12.5px; color:#555; margin-top:6px;'>🔒 Ασφαλής πληρωμή</div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+@media (max-width: 768px) {
+
+  .eisa-books-wrap {
+    gap: 16px !important;
+  }
+
+  .eisa-book {
+    width: 170px !important;
+    padding: 14px 12px !important;
+  }
+
+  .eisa-book img {
+    max-width: 110px !important;
+    margin-bottom: 12px !important;
+  }
+
+  .eisa-book a {
+    font-size: 13px !important;
+    padding: 9px 18px !important;
+  }
+
+}
+</style>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <b:if cond='data:blog.url == data:blog.homepageUrl'>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+  </b:if>
+</b:includable>
+  </b:widget>
+  <b:widget id='HTML9' locked='false' title='' type='HTML'>
+    <b:widget-settings>
+      <b:widget-setting name='content'><![CDATA[<style>
+.social-icons {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+}
+.social-icons a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+}
+.social-icons a .sicon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.social-icons a:hover .sicon { transform: translateY(-3px); opacity: 0.85; }
+.social-icons a span {
+  font-size: 10px;
+  color: #888;
+  font-family: Arial, sans-serif;
+}
+@media (max-width: 768px) {
+  .social-icons { gap: 6px; flex-wrap: nowrap; }
+  .social-icons a .sicon { width: 28px; height: 28px; }
+  .social-icons a .sicon svg { width: 13px; height: 13px; }
+  .social-icons a span { font-size: 9px; }
+}
+</style>
+
+<div class="social-icons">
+
+  <a href="https://www.facebook.com/groups/eisatopon" target="_blank" rel="noopener">
+    <div class="sicon" style="background:#1877F2;">
+      <svg width="16" height="16" viewbox="0 0 24 24" fill="white"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></path></svg>
+    </div>
+    <span>Facebook</span>
+  </a>
+
+  <a href="https://x.com/SokRo55633484" target="_blank" rel="noopener">
+    <div class="sicon" style="background:#000;">
+      <svg width="14" height="14" viewbox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.742l7.736-8.851L1.254 2.25H8.08l4.259 5.631L18.244 2.25z"/></path></svg>
+    </div>
+    <span>X</span>
+  </a>
+
+  <a href="https://www.instagram.com/eisatopon/" target="_blank" rel="noopener">
+    <div class="sicon" style="background:#E4405F;">
+      <svg width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></circle></circle></rect></svg>
+    </div>
+    <span>Instagram</span>
+  </a>
+
+  <a href="https://www.youtube.com/@e-MathAI" target="_blank" rel="noopener">
+    <div class="sicon" style="background:#FF0000;">
+      <svg width="16" height="16" viewbox="0 0 24 24" fill="white"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46A2.78 2.78 0 001.46 6.42 29 29 0 001 12a29 29 0 00.46 5.58a2.78 2.78 0 001.95 1.96C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.96A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#FF0000"/></polygon></path></svg>
+    </div>
+    <span>YouTube</span>
+  </a>
+
+  <a href="https://www.linkedin.com/in/eisatopon-a-2988a8127/" target="_blank" rel="noopener">
+    <div class="sicon" style="background:#0A66C2;">
+      <svg width="16" height="16" viewbox="0 0 24 24" fill="white"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2" fill="white"/></circle></path></svg>
+    </div>
+    <span>LinkedIn</span>
+  </a>
+
+  <a href="https://gr.pinterest.com/AIMathematics/" target="_blank" rel="noopener">
+    <div class="sicon" style="background:#E60023;">
+      <svg width="16" height="16" viewbox="0 0 24 24" fill="white"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></path></svg>
+    </div>
+    <span>Pinterest</span>
+  </a>
+
+</div>]]></b:widget-setting>
+    </b:widget-settings>
+    <b:includable id='main'>
+  <!-- only display title if it's non-empty -->
+  <b:if cond='data:title != &quot;&quot;'>
+    <h2 class='title'><data:title/></h2>
+  </b:if>
+  <div class='widget-content'>
+    <data:content/>
+  </div>
+
+  <b:include name='quickedit'/>
+</b:includable>
+  </b:widget>
+</b:section-contents></html>
