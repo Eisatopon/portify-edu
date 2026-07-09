@@ -3995,6 +3995,8 @@ document.addEventListener(&quot;DOMContentLoaded&quot;, function() {
 <script>
 //<![CDATA[
 (function(){
+  /* Ασφάλεια: σε σελίδες άρθρου/page φορτώνεται το MathJax — εκεί ΔΕΝ κάνουμε κανέναν καθαρισμό. */
+  if (window.MathJax) { return; }
   var MAP = {
     '\\times':'×','\\cdot':'·','\\div':'÷','\\pm':'±','\\mp':'∓',
     '\\leq':'≤','\\le':'≤','\\geq':'≥','\\ge':'≥','\\neq':'≠','\\ne':'≠',
