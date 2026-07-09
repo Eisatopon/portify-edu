@@ -2044,6 +2044,34 @@ h1.title a {
   outline-offset: 2px !important;
   border-radius: 6px;
 }
+/* ============================================================
+   ✨ VISUAL POLISH — EisatoponAI (additive, brand-consistent)
+   Δεν αλλάζει layout/χρωματική ταυτότητα — μόνο micro-refinements.
+   ============================================================ */
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; }
+::selection { background: #e60000; color: #fff; }
+::-moz-selection { background: #e60000; color: #fff; }
+
+/* Κάρτες: πιο ζωντανό αλλά διακριτικό hover */
+.newsit-card { transition: transform .28s cubic-bezier(.2,.7,.3,1), box-shadow .28s ease; }
+.newsit-card:hover { transform: translateY(-4px); box-shadow: 0 14px 34px rgba(15,23,42,.14); }
+.newsit-card .thumb img { transition: transform .5s cubic-bezier(.2,.7,.3,1); }
+.newsit-card .meta h3 a { transition: color .18s ease; }
+.newsit-card .meta h3 a:hover { color: #e60000; }
+.newsit-card .label-badge { box-shadow: 0 3px 10px rgba(230,0,0,.32); }
+
+/* Κουμπιά: ομαλή απόκριση */
+.eisa-more-btn, .eisa-pager-btn, .eisa-pager-home, .cta-btn { transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, color .18s ease; }
+.eisa-more-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(212,0,0,.3); }
+#eisa-scroll-top:hover { box-shadow: 0 6px 20px rgba(230,0,0,.5); }
+
+/* Σεβασμός prefers-reduced-motion (accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .newsit-card, .newsit-card .thumb img, .eisa-more-btn, .eisa-pager-btn, .cta-btn, #eisa-scroll-top { transition: none !important; }
+  .newsit-card:hover { transform: none; }
+}
 </style>
 </head>
 

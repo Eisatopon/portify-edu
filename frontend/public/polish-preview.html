@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>EisatoponAI — Visual Polish Preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet"/>
+<style>
+/* ---- core theme subset (όπως στο live) ---- */
+:root{ --font-body:"Noto Sans",system-ui,sans-serif; --font-heading:"Montserrat",sans-serif; }
+*{box-sizing:border-box;}
+body{font-family:var(--font-body);margin:0;background:#fff;color:#111;}
+h1,h2,h3{font-family:var(--font-heading);}
+.wrap{max-width:1200px;margin:0 auto;padding:24px 16px;}
+
+/* header */
+.eisa-header{background:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px 20px;min-height:80px;gap:12px;border-bottom:3px solid #000;}
+.eisa-counter{font-size:14px;color:#333;line-height:1.6;min-width:130px;}
+.eisa-logo{text-align:center;flex:1;}
+.eisa-logo h1{font-family:'Montserrat';font-weight:800;font-size:48px;letter-spacing:-1px;margin:0;color:#000;line-height:1.05;}
+.ai-red{color:#e60000;font-weight:900;}
+.eisa-logo p{font-size:16px;color:#000;margin:4px 0 0;}
+.eisa-search-btn{background:none;border:none;cursor:pointer;font-size:28px;color:#000;}
+
+/* menu */
+.newsit-like-menu{background:#f5f6f7;border-top:1.7px solid #000;border-bottom:1px solid #000;overflow-x:auto;}
+.newsit-like-menu ul{list-style:none;margin:0;padding:0;display:flex;justify-content:center;align-items:center;}
+.newsit-like-menu a{display:block;padding:12px 16px;text-decoration:none;font-weight:700;color:#000;font-size:15px;transition:color .2s ease;white-space:nowrap;}
+.newsit-like-menu a:hover,.newsit-like-menu a.active{color:#e60000;}
+.newsit-like-menu a.active{border-bottom:2px solid #e60000;}
+
+/* section header */
+.eisa-section-header{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin:20px 0 15px;font-family:Arial;font-weight:700;color:#000;}
+.eisa-section-title{font-size:28px;flex:1;}
+.eisa-redbar{width:60px;height:5px;background:#e60000;display:inline-block;}
+.eisa-more-btn{display:inline-block;padding:5px 12px;border-radius:20px;background:#d40000;color:#fff;text-decoration:none;font-size:14px;font-weight:600;}
+
+/* feature + cards */
+.newsit-feature{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:24px;align-items:stretch;margin-bottom:28px;}
+.newsit-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.08);display:flex;flex-direction:column;position:relative;}
+.newsit-card .thumb{position:relative;aspect-ratio:16/9;overflow:hidden;display:block;}
+.newsit-card .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease;}
+.newsit-card:hover .thumb img{transform:scale(1.03);}
+.newsit-card .meta{padding:12px 14px;}
+.newsit-card .meta h3{margin:0 0 6px;font-size:clamp(15px,1.9vw,22px);line-height:1.25;}
+.newsit-card.center h3{font-size:clamp(22px,2.6vw,32px);font-weight:800;}
+.newsit-card .meta h3 a{text-decoration:none;color:inherit;}
+.newsit-card .snippet{color:#444;font-size:14px;line-height:1.45;}
+.newsit-card .date{color:#e60000;font-size:12px;margin-top:8px;font-weight:600;}
+.newsit-card .label-badge{position:absolute;top:10px;right:10px;background:#e60000;color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;text-transform:uppercase;}
+.newsit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+
+/* exam hero */
+.exam-hero{position:relative;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#0f172a,#1e3a5f,#0f172a);color:#fff;box-shadow:0 8px 32px rgba(0,0,0,.3);margin:28px 0;}
+.hero-flex{display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;padding:24px 32px;}
+.hero-text h2{font-size:26px;margin:0 0 10px;font-weight:800;color:#fff;}
+.hero-text p{font-size:15px;margin:0;opacity:.85;}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;font-weight:700;border-radius:12px;background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff;border:none;cursor:pointer;box-shadow:0 4px 15px rgba(59,130,246,.4);}
+
+.label{padding:40px 0 8px;font-weight:800;color:#888;font-size:13px;letter-spacing:1px;text-transform:uppercase;}
+
+/* ============================================================
+   ✨ VISUAL POLISH (το νέο) — additive, brand-consistent
+   ============================================================ */
+html{scroll-behavior:smooth;}
+body{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;}
+::selection{background:#e60000;color:#fff;}
+::-moz-selection{background:#e60000;color:#fff;}
+
+.newsit-card{transition:transform .28s cubic-bezier(.2,.7,.3,1),box-shadow .28s ease;}
+.newsit-card:hover{transform:translateY(-4px);box-shadow:0 14px 34px rgba(15,23,42,.14);}
+.newsit-card .thumb img{transition:transform .5s cubic-bezier(.2,.7,.3,1);}
+.newsit-card .meta h3 a{transition:color .18s ease;}
+.newsit-card .meta h3 a:hover{color:#e60000;}
+.newsit-card .label-badge{box-shadow:0 3px 10px rgba(230,0,0,.32);}
+
+.eisa-more-btn,.cta-btn{transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease,color .18s ease;}
+.eisa-more-btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(212,0,0,.3);}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 6px 25px rgba(59,130,246,.5);background:linear-gradient(135deg,#2563eb,#1d4ed8);}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  .newsit-card,.newsit-card .thumb img,.eisa-more-btn,.cta-btn{transition:none!important;}
+  .newsit-card:hover{transform:none;}
+}
+</style>
+</head>
+<body>
+  <div class="eisa-header">
+    <div class="eisa-counter">16ος χρόνος<br/>ημέρα 5672η</div>
+    <div class="eisa-logo"><h1>Eisatopon<span class="ai-red">AI</span></h1><p>Your Daily Experience of Math Adventures</p></div>
+    <button class="eisa-search-btn">🔍</button>
+  </div>
+  <nav class="newsit-like-menu"><ul>
+    <li><a class="active" href="#">Math Chaser PRO</a></li>
+    <li><a href="#">Τράπεζα Πανελλαδικών</a></li>
+    <li><a href="#">Τράπεζα Διαγωνισμών ΕΜΕ</a></li>
+    <li><a href="#">IMO Problem Bank</a></li>
+    <li><a href="#">Rubik Cube</a></li>
+  </ul></nav>
+
+  <div class="wrap">
+    <div class="exam-hero"><div class="hero-flex">
+      <div class="hero-text"><h2>Γράψε 20 στις Πανελλαδικές</h2><p>Διαδραστικά τεστ με άμεσο feedback • Προσομοίωση εξετάσεων</p></div>
+      <div><button class="cta-btn">Ξεκίνα τώρα →</button></div>
+    </div></div>
+
+    <div class="eisa-section-header"><span class="eisa-section-title">Πρόσφατα Άρθρα</span><span class="eisa-redbar"></span><a class="eisa-more-btn" href="#">Δες όλα</a></div>
+
+    <div class="newsit-feature">
+      <article class="newsit-card"><a class="thumb"><img src="https://picsum.photos/id/20/800/450"/></a><span class="label-badge">Γεωμετρία</span><div class="meta"><h3><a href="#">Αλυσίδα εφαπτομένων κύκλων γύρω από δοθέντα κύκλο</a></h3><div class="snippet">Με ιδιαίτερη χαρά παρουσιάζω μια όμορφη μαθηματική εργασία…</div><div class="date">Δευτέρα 18 Μαΐου 2026</div></div></article>
+      <article class="newsit-card center"><a class="thumb"><img src="https://picsum.photos/id/180/800/450"/></a><span class="label-badge">Βιβλία</span><div class="meta"><h3><a href="#">Portify.gr: Το Πολλαπλό Βιβλίο Έρχεται — Νέα Σχολικά Βιβλία 2027-2028</a></h3><div class="snippet">Η επανάσταση του Πολλαπλού Βιβλίου ξεκινά από το 2027-2028…</div><div class="date">Τετάρτη 24 Ιουνίου 2026</div></div></article>
+      <article class="newsit-card"><a class="thumb"><img src="https://picsum.photos/id/1062/800/450"/></a><span class="label-badge">Γρίφοι</span><div class="meta"><h3><a href="#">Μπορούν Τρία Σετ Μπλοκ να Γεμίσουν ένα Κουτί 5×10×10;</a></h3><div class="snippet">Θεωρούμε ένα ορθογώνιο κουτί διαστάσεων 5×10×10…</div><div class="date">Παρασκευή 15 Μαΐου 2026</div></div></article>
+    </div>
+
+    <div class="newsit-grid">
+      <article class="newsit-card"><a class="thumb"><img src="https://picsum.photos/id/1025/800/450"/></a><span class="label-badge">Άρθρα</span><div class="meta"><h3><a href="#">Δεύτερο δείγμα κάρτας</a></h3><div class="snippet">Σύντομη περιγραφή…</div><div class="date">Μάιος 2026</div></div></article>
+      <article class="newsit-card"><a class="thumb"><img src="https://picsum.photos/id/1074/800/450"/></a><span class="label-badge">Γεωμετρία</span><div class="meta"><h3><a href="#">Τρίτο δείγμα κάρτας</a></h3><div class="snippet">Σύντομη περιγραφή…</div><div class="date">Μάιος 2026</div></div></article>
+      <article class="newsit-card"><a class="thumb"><img src="https://picsum.photos/id/1084/800/450"/></a><span class="label-badge">Σκάκι</span><div class="meta"><h3><a href="#">Τέταρτο δείγμα κάρτας</a></h3><div class="snippet">Σύντομη περιγραφή…</div><div class="date">Μάιος 2026</div></div></article>
+    </div>
+  </div>
+</body>
+</html>
