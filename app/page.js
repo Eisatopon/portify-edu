@@ -4,6 +4,7 @@ import { useSearchParams } from 'next/navigation';
 import BookCard from '@/src/components/BookCard';
 import Filters from '@/src/components/Filters';
 import { useBookFilters } from '@/src/hooks/useBookFilters';
+import { getSupabase } from '@/src/lib/supabase';
 import { LEVEL_BADGE } from '@/src/lib/constants';
 import InstallPWA from '@/src/components/InstallPWA';
 import ThemeToggle from '@/src/components/ThemeToggle';
@@ -169,13 +170,48 @@ function HomePageInner() {
   const showBooks = !!(level || query || showFavs);
   const displayBooks = showFavs ? favBooks : filtered;
 
+  // Popularity sort — fetch aggregate ratings once, sort by (count, avg)
+  const [sortBy, setSortBy] = useState('default');
+  const [ratingsMap, setRatingsMap] = useState(null);
+  useEffect(() => {
+    let alive = true;
+    (async () => {
+      const sb = getSupabase();
+      if (!sb) return;
+      const { data, error } = await sb.from('ratings').select('book_id, stars');
+      if (!alive || error || !data) return;
+      const m = {};
+      for (const r of data) {
+        const e = m[r.book_id] || (m[r.book_id] = { sum: 0, count: 0 });
+        e.sum += r.stars; e.count += 1;
+      }
+      for (const k in m) m[k].avg = m[k].sum / m[k].count;
+      setRatingsMap(m);
+    })();
+    return () => { alive = false; };
+  }, []);
+
+  const sortedBooks = useMemo(() => {
+    if (sortBy !== 'popular' || !ratingsMap) return displayBooks;
+    const score = (b) => {
+      const r = ratingsMap[b.id];
+      if (!r) return { c: 0, a: 0 };
+      return { c: r.count, a: r.avg };
+    };
+    return [...displayBooks].sort((x, y) => {
+      const sx = score(x), sy = score(y);
+      // Wilson-ish: περισσότερες + καλύτερες αξιολογήσεις πρώτα
+      return (sy.a * sy.c) - (sx.a * sx.c) || sy.c - sx.c || sy.a - sx.a;
+    });
+  }, [displayBooks, sortBy, ratingsMap]);
+
   // Paginate the grid so selecting a level renders instantly (no 200+ cards at once)
   const PAGE_SIZE = 24;
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
-  }, [level, grade, subject, query, showFavs]);
-  const visibleBooks = displayBooks.slice(0, visibleCount);
+  }, [level, grade, subject, query, showFavs, sortBy]);
+  const visibleBooks = sortedBooks.slice(0, visibleCount);
 
   return (
     <>
@@ -336,6 +372,21 @@ function HomePageInner() {
                   {grade && <> · <strong>{grades.find(g => g.grade === grade)?.label}</strong></>}</>
                 )}
               </p>
+              {!showFavs && sortedBooks.length > 1 && (
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, margin: '0 0 14px' }} data-testid="sort-control">
+                  <label htmlFor="sortBy" style={{ fontSize: 13, color: 'var(--text-2)', fontWeight: 600 }}>Ταξινόμηση:</label>
+                  <select
+                    id="sortBy"
+                    data-testid="sort-select"
+                    value={sortBy}
+                    onChange={e => setSortBy(e.target.value)}
+                    style={{ padding: '7px 10px', borderRadius: 8, border: '1px solid var(--border)', background: 'var(--white)', color: 'var(--text)', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}
+                  >
+                    <option value="default">Προεπιλογή</option>
+                    <option value="popular">⭐ Δημοφιλή (καλύτερη βαθμολογία)</option>
+                  </select>
+                </div>
+              )}
               {(loading || booksLoading) ? <SkeletonGrid /> : (
                 <div className="books-grid">
                   {displayBooks.length === 0 ? (

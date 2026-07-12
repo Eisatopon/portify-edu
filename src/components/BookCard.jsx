@@ -44,15 +44,27 @@ export default function BookCard({ book, isFav, onToggleFav }) {
         <p className="book-publisher">{book.publisher}</p>
       </div>
       <StarRating bookId={book.id} />
-      <div className="book-actions">
+      <div className="book-actions" style={{ display: 'flex', gap: 8 }}>
         <Link
           href={`/book/${slug}`}
           className="btn-pdf"
-          style={{ width: '100%', textDecoration: 'none', textAlign: 'center', display: 'block' }}
+          style={{ flex: 1, textDecoration: 'none', textAlign: 'center', display: 'block' }}
           aria-label={`Άνοιγμα: ${book.title}`}
         >
           Άνοιξε
         </Link>
+        {book.pdfUrl && (
+          <a
+            href={`/api/pdf?url=${encodeURIComponent(book.pdfUrl)}&dl=1&name=${encodeURIComponent(slug)}`}
+            className="btn-download"
+            data-testid="card-download-btn"
+            aria-label={`Λήψη PDF: ${book.title}`}
+            onClick={e => e.stopPropagation()}
+            style={{ flexShrink: 0, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minWidth: 44, padding: '0 12px', borderRadius: 8, border: '1px solid var(--border)', background: 'var(--white)', color: 'var(--blue)', fontSize: 16, fontWeight: 700, textDecoration: 'none', cursor: 'pointer' }}
+          >
+            <span aria-hidden="true">⬇</span>
+          </a>
+        )}
       </div>
     </div>
   );

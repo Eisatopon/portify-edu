@@ -9,6 +9,9 @@ export async function GET(req) {
   if (!url || !url.includes('ebooksdl.cti.gr')) {
     return new Response('Invalid URL', { status: 400 });
   }
+  const wantsDownload = searchParams.get('dl') === '1';
+  const rawName = (searchParams.get('name') || 'portify-vivlio').replace(/[^\w.\-]+/g, '_').slice(0, 80);
+  const fileName = rawName.toLowerCase().endsWith('.pdf') ? rawName : `${rawName}.pdf`;
 
   const range = req.headers.get('range');
 
@@ -26,7 +29,7 @@ export async function GET(req) {
 
   const headers = new Headers({
     'Content-Type': 'application/pdf',
-    'Content-Disposition': 'inline',
+    'Content-Disposition': wantsDownload ? `attachment; filename="${fileName}"` : 'inline',
     'Accept-Ranges': 'bytes',
     // Browser cache: 7 days
     'Cache-Control': 'public, max-age=604800, immutable',
