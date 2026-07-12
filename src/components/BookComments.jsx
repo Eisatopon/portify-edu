@@ -134,7 +134,7 @@ export default function BookComments({ bookId }) {
       ) : (
         <ul data-testid="comment-list" style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
           {comments.map(c => (
-            <li key={c.id} data-testid="comment-item" style={{ background: 'var(--card, #fff)', border: '1px solid var(--border)', borderRadius: 10, padding: '12px 14px' }}>
+            <li key={c.id} data-testid="comment-item" style={{ background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 10, padding: '12px 14px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 5 }}>
                 <span aria-hidden="true" style={{ width: 26, height: 26, borderRadius: '50%', background: 'var(--blue-light)', color: 'var(--blue)', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 700, flexShrink: 0 }}>
                   {(c.nickname || 'Α').trim().charAt(0).toUpperCase()}
