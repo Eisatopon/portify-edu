@@ -34,6 +34,7 @@ export default function PdfViewer({ pdfUrl, title }) {
   const containerRef = useRef(null);
   const docRef = useRef(null);
   const [status, setStatus] = useState('loading'); // loading | ready | error
+  const [dead, setDead] = useState(false); // πηγή 404/μη διαθέσιμη
   const [numPages, setNumPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -42,6 +43,7 @@ export default function PdfViewer({ pdfUrl, title }) {
     let cancelled = false;
     setStatus('loading');
     setNumPages(0);
+    setDead(false);
     // Safety net: if the document can't open in time, fall back to the iframe.
     const failTimer = setTimeout(() => { if (!cancelled) setStatus(s => s === 'loading' ? 'error' : s); }, 25000);
     async function start() {
@@ -53,7 +55,10 @@ export default function PdfViewer({ pdfUrl, title }) {
         // actually slower (many round-trips). A single streamed download of the
         // whole file is ~2x faster, then we render page 1 first.
         const resp = await fetch(proxied);
-        if (!resp.ok) throw new Error('fetch ' + resp.status);
+        if (!resp.ok) {
+          if ([400, 404, 410].includes(resp.status)) { if (!cancelled) setDead(true); }
+          throw new Error('fetch ' + resp.status);
+        }
         const data = await resp.arrayBuffer();
         if (cancelled) return;
         const pdf = await pdfjsLib.getDocument({ data }).promise;
@@ -121,6 +126,32 @@ export default function PdfViewer({ pdfUrl, title }) {
   }, [status, numPages]);
 
   if (status === 'error') {
+    // Πραγματικά νεκρός σύνδεσμος πηγής → αξιοπρεπές μήνυμα (όχι το raw error της Μελίσπης)
+    if (dead) {
+      return (
+        <div data-testid="pdf-viewer-unavailable" style={{ width: '100%', minHeight: 420, background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 12, padding: '40px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+          <div style={{ maxWidth: 460 }}>
+            <div aria-hidden="true" style={{ fontSize: 44, marginBottom: 12 }}>📕</div>
+            <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--text)', margin: '0 0 8px' }}>Το βιβλίο δεν είναι διαθέσιμο αυτή τη στιγμή</h3>
+            <p style={{ fontSize: 14, color: 'var(--text-2)', lineHeight: 1.55, margin: '0 0 18px' }}>
+              Ο σύνδεσμος του αρχείου από την πηγή (Ψηφιακή Βιβλιοθήκη «Μελίσπη») φαίνεται να άλλαξε ή αποσύρθηκε προσωρινά. Δοκίμασε να το αναζητήσεις απευθείας εκεί:
+            </p>
+            <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href="https://ebooksdl.cti.gr/home.jsp" target="_blank" rel="noopener noreferrer"
+                data-testid="pdf-source-link"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '10px 18px', borderRadius: 8, background: 'var(--blue)', color: '#fff', textDecoration: 'none', fontWeight: 600, fontSize: 14 }}>
+                Αναζήτηση στη Μελίσπη ↗
+              </a>
+              <button type="button" onClick={() => window.location.reload()}
+                style={{ padding: '10px 18px', borderRadius: 8, background: 'var(--white)', color: 'var(--text)', border: '1px solid var(--border)', fontWeight: 600, fontSize: 14, cursor: 'pointer' }}>
+                Δοκίμασε ξανά
+              </button>
+            </div>
+          </div>
+        </div>
+      );
+    }
+    // Έγκυρο αρχείο αλλά αργό/απέτυχε ο viewer → fallback στο native iframe
     return (
       <div data-testid="pdf-viewer-fallback" style={{ position: 'relative', width: '100%', height: 'calc(100vh - 240px)', minHeight: 500, background: '#1e293b', borderRadius: 8, overflow: 'hidden' }}>
         <iframe src={pdfUrl} title={title} style={{ width: '100%', height: '100%', border: 'none', display: 'block' }} />
