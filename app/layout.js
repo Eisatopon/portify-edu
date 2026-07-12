@@ -4,6 +4,7 @@ import './globals.css';
 import HotKeys from '@/src/components/HotKeys';
 import ServiceWorkerRegister from '@/src/components/ServiceWorkerRegister';
 import IntroSplash from '@/src/components/IntroSplash';
+import GlobalAiButton from '@/src/components/GlobalAiButton';
 import { GoogleAnalytics } from '@next/third-parties/google';
 
 const manrope = Manrope({
@@ -97,6 +98,7 @@ export default function RootLayout({ children }) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD_SITE) }} />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD_ORG) }} />
         {children}
+        <GlobalAiButton />
         {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
       </body>
     </html>

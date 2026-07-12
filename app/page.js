@@ -289,6 +289,18 @@ function HomePageInner() {
             )}
           </div>
 
+          <div style={{ marginTop: 16, display: 'flex', justifyContent: 'center' }}>
+            <button
+              type="button"
+              data-testid="hero-ai-cta"
+              onClick={() => window.dispatchEvent(new Event('portify:open-ai'))}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 20px', borderRadius: 999, border: '1.5px solid rgba(255,255,255,0.55)', background: 'rgba(255,255,255,0.14)', color: '#fff', fontSize: 14.5, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit', backdropFilter: 'blur(4px)' }}
+            >
+              <span aria-hidden="true" style={{ fontSize: 18 }}>🤖</span>
+              Ρώτησε τον AI βοηθό για οποιοδήποτε βιβλίο
+            </button>
+          </div>
+
           <div className="hero-stats">
             <div className="hero-stat"><div className="n">{count}</div><div className="l">βιβλία</div></div>
             <div className="hero-stat"><div className="n">22.000+</div><div className="l">Μαθησιακά Αντικείμενα (ΨΜΑ)</div></div>

@@ -8,6 +8,13 @@ const QUICK_PROMPTS = [
   { label: '❓ Ερωτήσεις', text: 'Γράψε μου ερωτήσεις για να εξασκηθώ' },
 ];
 
+const GENERAL_PROMPTS = [
+  { label: '📚 Ποιο βιβλίο;', text: 'Σε ποιο σχολικό βιβλίο θα βρω την ύλη για τα κλάσματα;' },
+  { label: '💡 Εξήγησέ μου', text: 'Εξήγησέ μου απλά μια έννοια που δυσκολεύομαι' },
+  { label: '📝 Ασκήσεις', text: 'Δώσε μου ασκήσεις για εξάσκηση σε ένα μάθημα' },
+  { label: '❓ Πανελλαδικές', text: 'Τι ύλη πέφτει στις Πανελλαδικές στα Μαθηματικά;' },
+];
+
 function katexNode(content, display, key) {
   if (typeof window !== 'undefined' && window.katex) {
     try {
@@ -131,8 +138,11 @@ function Message({ m, katexReady }) {
 export default function AiChatPanel({ bookTitle, bookSubject, bookLevel, bitstreamId, onClose }) {
   const [isOpen, setIsOpen] = useState(true);
   const safeTitle = (bookTitle || '').replace(/"/g, '\u201C');
+  const promptList = bookTitle ? QUICK_PROMPTS : GENERAL_PROMPTS;
   const [messages, setMessages] = useState([
-    { id: 0, role: 'assistant', text: `Γεια! Είμαι ο AI βοηθός σου για το βιβλίο «${safeTitle}». Τι θέλεις να μάθεις;` }
+    { id: 0, role: 'assistant', text: bookTitle
+        ? `Γεια! Είμαι ο AI βοηθός σου για το βιβλίο «${safeTitle}». Τι θέλεις να μάθεις;`
+        : 'Γεια! 👋 Είμαι ο AI βοηθός του Portify. Ρώτησέ με για οποιοδήποτε σχολικό βιβλίο, μάθημα ή άσκηση — Δημοτικό, Γυμνάσιο ή Λύκειο!' }
   ]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -209,7 +219,7 @@ export default function AiChatPanel({ bookTitle, bookSubject, bookLevel, bitstre
         <div style={{ background: 'linear-gradient(135deg, #1a4fa8, #3b82f6)', color: 'white', padding: '14px 18px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
           <div>
             <div style={{ fontWeight: 600, fontSize: 15 }}>AI Βοηθός</div>
-            <div style={{ fontSize: 11, opacity: 0.85, marginTop: 2 }}>{bookTitle}</div>
+            <div style={{ fontSize: 11, opacity: 0.85, marginTop: 2 }}>{bookTitle || 'Όλα τα βιβλία · Δημοτικό–Λύκειο'}</div>
           </div>
           <button onClick={handleClose} aria-label="Κλείσιμο" style={{ background: 'rgba(255,255,255,0.2)', border: 'none', color: 'white', width: 30, height: 30, borderRadius: 8, cursor: 'pointer', fontSize: 14 }}>✕</button>
         </div>
@@ -226,7 +236,7 @@ export default function AiChatPanel({ bookTitle, bookSubject, bookLevel, bitstre
 
         <div style={{ padding: '10px 14px', background: 'white', borderTop: '1px solid #e2e8f0', flexShrink: 0 }}>
           <div style={{ display: 'flex', gap: 6, overflowX: 'auto', paddingBottom: 8, WebkitOverflowScrolling: 'touch' }} data-testid="ai-quick-prompts">
-            {QUICK_PROMPTS.map((qp, i) => (
+            {promptList.map((qp, i) => (
               <button key={i} onClick={() => sendMessage(qp.text)} disabled={loading} data-testid={`ai-quick-prompt-${i}`}
                 style={{ flexShrink: 0, whiteSpace: 'nowrap', background: '#f1f5f9', border: '1px solid #e2e8f0', borderRadius: 999, padding: '6px 12px', fontSize: 12, color: '#334155', cursor: loading ? 'default' : 'pointer', fontFamily: 'inherit', opacity: loading ? 0.5 : 1 }}>
                 {qp.label}
