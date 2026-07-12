@@ -6,6 +6,7 @@ import SimilarBooks from '@/src/components/SimilarBooks';
 import PackageSiblings from '@/src/components/PackageSiblings';
 import SupplementaryMaterial from '@/src/components/SupplementaryMaterial';
 import BookReader from '@/src/components/BookReader';
+import BookComments from '@/src/components/BookComments';
 import { getBitstreamId } from '@/src/lib/psma';
 import { recordVisit, getBookStats, timeAgoGreek } from '@/src/lib/readingHistory';
 import allBooks from '@/src/data/books.json';
@@ -147,6 +148,8 @@ export default function BookViewerClient({ book, psma = [], tags = [] }) {
       <PackageSiblings book={book} allBooks={allBooks} />
 
       <SimilarBooks currentBook={book} allBooks={allBooks} />
+
+      <BookComments bookId={book.id} />
 
       <style jsx>{`
         @keyframes spin { to { transform: rotate(360deg); } }
