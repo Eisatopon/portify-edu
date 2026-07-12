@@ -26,8 +26,8 @@ export default function GlobalAiButton() {
           onClick={() => setOpen(true)}
           data-testid="global-ai-btn"
           aria-label="Άνοιγμα AI βοηθού — ρώτησε για οποιοδήποτε βιβλίο"
+          className="global-ai-fab"
           style={{
-            position: 'fixed', bottom: 20, right: 20, zIndex: 1000,
             display: 'inline-flex', alignItems: 'center', gap: 8,
             padding: '12px 18px', borderRadius: 999, border: 'none', cursor: 'pointer',
             background: 'linear-gradient(135deg, #1a4fa8, #3b82f6)', color: '#fff',
