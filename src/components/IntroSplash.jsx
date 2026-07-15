@@ -1,9 +1,13 @@
+Άνοιξε: https://github.com/Eisatopon/portify-edu/edit/main/src/components/IntroSplash.jsx
+Κάνε κλικ μέσα στον editor → Ctrl+A (Select All) → Delete.
+Επικόλλησε (Ctrl+V) ολόκληρο το παρακάτω:
 'use client';
 // src/components/IntroSplash.jsx — Portify intro splash · "Friendly Mascot"
-// Παίζει μόνο μια φορά ανά session. Skip button. Σέβεται prefers-reduced-motion.
+// Παίζει το πολύ μία φορά τον μήνα. Σέβεται prefers-reduced-motion.
 import { useEffect, useState } from 'react';
 
-const STORAGE_KEY = 'portify_intro_v3';
+const STORAGE_KEY = 'portify_intro_seen_at';
+const SHOW_INTERVAL_MS = 30 * 24 * 60 * 60 * 1000; // εμφάνιση το πολύ μία φορά τον μήνα
 const AUTO_DISMISS_MS = 900;
 const FADE_OUT_MS = 300;
 
@@ -13,12 +17,13 @@ export default function IntroSplash() {
 
   useEffect(() => {
     try {
-      if (sessionStorage.getItem(STORAGE_KEY)) return;
+      const last = Number(localStorage.getItem(STORAGE_KEY) || 0);
+      if (last && Date.now() - last < SHOW_INTERVAL_MS) return; // το είδε πρόσφατα
       if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        sessionStorage.setItem(STORAGE_KEY, '1');
+        localStorage.setItem(STORAGE_KEY, String(Date.now()));
         return;
       }
-      sessionStorage.setItem(STORAGE_KEY, '1');
+      localStorage.setItem(STORAGE_KEY, String(Date.now()));
       setShow(true);
 
       const tFade = setTimeout(() => setClosing(true), AUTO_DISMISS_MS);
