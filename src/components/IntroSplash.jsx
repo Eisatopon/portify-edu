@@ -1,6 +1,3 @@
-Άνοιξε: https://github.com/Eisatopon/portify-edu/edit/main/src/components/IntroSplash.jsx
-Κάνε κλικ μέσα στον editor → Ctrl+A (Select All) → Delete.
-Επικόλλησε (Ctrl+V) ολόκληρο το παρακάτω:
 'use client';
 // src/components/IntroSplash.jsx — Portify intro splash · "Friendly Mascot"
 // Παίζει το πολύ μία φορά τον μήνα. Σέβεται prefers-reduced-motion.
