@@ -1,5 +1,6 @@
 // app/tag/[slug]/page.js — tag pages: portify.gr book links FIRST, external ΨΜΑ links AFTER.
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import GuideTopBar from '@/src/components/GuideTopBar';
 import tags from '@/src/data/tags.json';
@@ -81,8 +82,7 @@ export default async function TagPage({ params }) {
                   <Link href={`/book/${bookSlug(b)}`} data-testid={`tag-book-link-${bookSlug(b)}`}
                     style={{ display: 'flex', gap: 12, alignItems: 'center', padding: 12, borderRadius: 12, border: '1px solid var(--border, #e5e7eb)', textDecoration: 'none', background: 'var(--card, #fff)' }}>
                     {b.thumbnail ? (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img src={b.thumbnail} alt={b.title} width={44} height={60} loading="lazy" style={{ width: 44, height: 60, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }} />
+                      <Image src={b.thumbnail} alt={b.title} width={44} height={60} style={{ width: 44, height: 60, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }} />
                     ) : null}
                     <span style={{ minWidth: 0 }}>
                       <span style={{ display: 'block', fontSize: 14, fontWeight: 600, color: 'var(--text-1)', lineHeight: 1.3 }}>{b.title}</span>

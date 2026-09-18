@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { getSupabase } from '@/src/lib/supabase';
 import { bookSlug } from '@/src/lib/slug';
@@ -50,7 +51,11 @@ export default function TrendingBooks({ allBooks }) {
                 onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}>
                 <div style={{ position: 'absolute', top: 14, left: 14, background: i < 3 ? '#f59e0b' : 'rgba(15, 23, 42, 0.7)', color: '#fff', fontSize: 11, fontWeight: 700, padding: '2px 8px', borderRadius: 20, zIndex: 1 }}>#{i + 1}</div>
                 {book.thumbnail
-                  ? <img src={book.thumbnail} alt="" style={{ width: '100%', aspectRatio: '5/7', objectFit: 'cover', borderRadius: 6, display: 'block' }} loading="lazy" />
+                  ? (
+                    <div style={{ position: 'relative', width: '100%', aspectRatio: '5/7', borderRadius: 6, overflow: 'hidden' }}>
+                      <Image src={book.thumbnail} alt="" fill sizes="(max-width: 560px) 45vw, 160px" style={{ objectFit: 'cover' }} />
+                    </div>
+                  )
                   : <div style={{ width: '100%', aspectRatio: '5/7', background: 'var(--bg)', borderRadius: 6 }} />}
                 <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', marginTop: 8, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', minHeight: 32 }}>
                   {book.subject}

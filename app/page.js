@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useRef, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import BookCard from '@/src/components/BookCard';
 import Filters from '@/src/components/Filters';
 import { useBookFilters } from '@/src/hooks/useBookFilters';
@@ -269,7 +270,7 @@ function HomePageInner() {
                       onMouseLeave={e => e.currentTarget.style.background = 'none'}
                     >
                       {book.thumbnail ? (
-                        <img src={book.thumbnail} alt="" style={{ width: 36, height: 48, objectFit: 'cover', borderRadius: 4, flexShrink: 0 }} />
+                        <Image src={book.thumbnail} alt="" width={36} height={48} style={{ width: 36, height: 48, objectFit: 'cover', borderRadius: 4, flexShrink: 0 }} />
                       ) : (
                         <div style={{ width: 36, height: 48, background: '#f1f5f9', borderRadius: 4, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18 }}>📖</div>
                       )}
