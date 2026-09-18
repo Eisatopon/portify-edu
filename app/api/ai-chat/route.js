@@ -1,10 +1,24 @@
+import { readFile } from 'node:fs/promises';
+import path from 'node:path';
 import { checkRateLimit, getClientIp } from '@/src/lib/rateLimit';
-import psmaData from '@/src/data/psma.json';
 import { rankPsma } from '@/src/lib/psmaRank';
 
 export const runtime = 'nodejs';
 
 const MAX_QUESTION_LEN = 600;
+const PSMA_SHARD_DIR = path.join(process.cwd(), 'src', 'data', 'psma-shards');
+
+// Loads the ΨΜΑ list for ONE book from its own small shard file instead of
+// holding the full ~4.5MB psma.json dataset in memory for every invocation.
+async function loadPsmaShard(bitstreamId) {
+  if (!bitstreamId || !/^\d+$/.test(String(bitstreamId))) return [];
+  try {
+    const raw = await readFile(path.join(PSMA_SHARD_DIR, `${bitstreamId}.json`), 'utf8');
+    return JSON.parse(raw);
+  } catch {
+    return []; // no shard for this book, or file missing — degrade gracefully
+  }
+}
 
 function bad(msg, status = 400, extra = {}) {
   return Response.json({ error: msg }, { status, headers: extra });
@@ -22,8 +36,8 @@ function stripUrls(text) {
 }
 
 // Build a RAG context block from the book's official Digital Learning Objects (ΨΜΑ).
-function buildPsmaContext(bitstreamId, question) {
-  const list = (bitstreamId && psmaData[String(bitstreamId)]) || [];
+async function buildPsmaContext(bitstreamId, question) {
+  const list = await loadPsmaShard(bitstreamId);
   if (!list.length) return { contextText: '', sources: [] };
   const ranked = rankPsma(list, question, 6);
   const sources = ranked
@@ -120,7 +134,7 @@ export async function POST(req) {
   const q = question.trim();
 
   // 3. RAG: retrieve relevant official ΨΜΑ for this book
-  const { contextText, sources } = buildPsmaContext(bitstreamId, q);
+  const { contextText, sources } = await buildPsmaContext(bitstreamId, q);
   const systemPrompt = buildSystemPrompt({ bookSubject, bookTitle, bookLevel, contextText });
 
   // 4. Call LLM: Groq primary, Gemini fallback
