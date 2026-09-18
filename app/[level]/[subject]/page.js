@@ -1,5 +1,6 @@
 // app/[level]/[subject]/page.js — per-subject SEO landing pages, e.g. /lykeio/mathimatika
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import allBooks from '@/src/data/books.json';
 import { GRADE_LABELS } from '@/src/lib/constants';
@@ -144,8 +145,7 @@ export default async function SubjectPage({ params }) {
                 <li key={b.id}>
                   <Link href={`/book/${bookSlug(b)}`} data-testid={`subject-book-link-${bookSlug(b)}`} style={{ display: 'flex', gap: 12, alignItems: 'center', padding: 12, borderRadius: 12, border: '1px solid var(--border, #e5e7eb)', textDecoration: 'none', background: 'var(--card, #fff)' }}>
                     {b.thumbnail ? (
-                      /* eslint-disable-next-line @next/next/no-img-element */
-                      <img src={b.thumbnail} alt={b.title} width={44} height={60} loading="lazy" style={{ width: 44, height: 60, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }} />
+                      <Image src={b.thumbnail} alt={b.title} width={44} height={60} style={{ width: 44, height: 60, objectFit: 'cover', borderRadius: 6, flexShrink: 0 }} />
                     ) : null}
                     <span style={{ minWidth: 0 }}>
                       <span style={{ display: 'block', fontSize: 14, fontWeight: 600, color: 'var(--text-1)', lineHeight: 1.3 }}>{b.title}</span>

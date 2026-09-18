@@ -4,6 +4,7 @@
 // student sees the book immediately. The full 41MB interactive PDF (PdfViewer)
 // loads only when they tap "Διάβασε ολόκληρο το βιβλίο" — saving mobile data.
 import { useState } from 'react';
+import Image from 'next/image';
 import PdfViewer from '@/src/components/PdfViewer';
 
 export default function BookReader({ pdfUrl, title, previewSrc }) {
@@ -28,12 +29,14 @@ export default function BookReader({ pdfUrl, title, previewSrc }) {
       }}
     >
       {imgOk ? (
-        <img
+        <Image
           src={previewSrc}
           alt={`Προεπισκόπηση 1ης σελίδας: ${title}`}
           onError={() => setImgOk(false)}
-          loading="eager"
-          style={{ maxWidth: '100%', maxHeight: '100%', height: 'auto', objectFit: 'contain', boxShadow: '0 4px 24px rgba(0,0,0,0.35)' }}
+          fill
+          priority
+          sizes="(max-width: 768px) 100vw, 700px"
+          style={{ objectFit: 'contain', filter: 'drop-shadow(0 4px 24px rgba(0,0,0,0.35))' }}
         />
       ) : (
         <div style={{ color: '#e2e8f0', textAlign: 'center', padding: 24 }}>

@@ -2,6 +2,7 @@
 // src/components/PackageSiblings.jsx — Shows other books in the same Teaching Package
 // (same subject + grade + publisher as the current book).
 // Renders nothing if the package has only 1 book (this one).
+import Image from 'next/image';
 import Link from 'next/link';
 import { getPackageForBook, bookPartLabel } from '@/src/lib/packages';
 import { bookSlug } from '@/src/lib/slug';
@@ -32,7 +33,7 @@ export default function PackageSiblings({ book, allBooks }) {
           <Link key={b.id} href={`/book/${bookSlug(b)}`} className="pkg-card">
             <div className="pkg-thumb">
               {b.thumbnail
-                ? <img src={b.thumbnail} alt="" loading="lazy" />
+                ? <Image src={b.thumbnail} alt="" fill sizes="(max-width: 480px) 40vw, 160px" style={{ objectFit: 'cover' }} />
                 : <div className="pkg-thumb-placeholder">📕</div>}
             </div>
             <div className="pkg-card-body">
@@ -111,16 +112,12 @@ export default function PackageSiblings({ book, allBooks }) {
           border-color: var(--blue, #1a4fa8);
         }
         .pkg-thumb {
+          position: relative;
           width: 100%;
           aspect-ratio: 5 / 7;
           background: var(--bg, #f8fafc);
           overflow: hidden;
           display: flex; align-items: center; justify-content: center;
-        }
-        .pkg-thumb img {
-          width: 100%; height: 100%;
-          object-fit: cover;
-          display: block;
         }
         .pkg-thumb-placeholder {
           font-size: 40px;

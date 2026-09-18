@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { SUBJECT_ICONS, LEVEL_BADGE } from '@/src/lib/constants';
 import { isStudentBook, shortTypeLabel } from '@/src/lib/bookType';
@@ -17,7 +18,14 @@ export default function BookCard({ book, isFav, onToggleFav }) {
     <div className="book-card">
       <Link href={`/book/${slug}`} className="book-cover" style={{ position: 'relative', textDecoration: 'none' }} aria-label={`Άνοιγμα: ${book.title}`}>
         {book.thumbnail && !imgError ? (
-          <img src={book.thumbnail} alt={`Εξώφυλλο: ${book.title}`} onError={() => setImgError(true)} loading="lazy" />
+          <Image
+            src={book.thumbnail}
+            alt={`Εξώφυλλο: ${book.title}`}
+            onError={() => setImgError(true)}
+            fill
+            sizes="(max-width: 480px) 45vw, (max-width: 900px) 25vw, 162px"
+            style={{ objectFit: 'cover' }}
+          />
         ) : (
           <div className="cover-placeholder">
             <span className="cover-icon" aria-hidden="true">{icon}</span>

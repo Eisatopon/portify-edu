@@ -1,5 +1,6 @@
 // app/not-found.js — custom 404 for entire site
 import Link from 'next/link';
+import Image from 'next/image';
 import allBooks from '@/src/data/books.json';
 import { bookSlug } from '@/src/lib/slug';
 import { LEVEL_BADGE } from '@/src/lib/constants';
@@ -55,7 +56,11 @@ export default function NotFound() {
                 <Link key={book.id} href={`/book/${bookSlug(book)}`} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
                   <div style={{ background: 'var(--white)', border: '1px solid var(--border)', borderRadius: 10, padding: 10 }}>
                     {book.thumbnail
-                      ? <img src={book.thumbnail} alt="" style={{ width: '100%', aspectRatio: '5/7', objectFit: 'cover', borderRadius: 6, display: 'block' }} loading="lazy" />
+                      ? (
+                        <div style={{ position: 'relative', width: '100%', aspectRatio: '5/7', borderRadius: 6, overflow: 'hidden' }}>
+                          <Image src={book.thumbnail} alt="" fill sizes="(max-width: 560px) 45vw, 160px" style={{ objectFit: 'cover' }} />
+                        </div>
+                      )
                       : <div style={{ width: '100%', aspectRatio: '5/7', background: 'var(--bg)', borderRadius: 6 }} />}
                     <div style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)', marginTop: 8, textAlign: 'left' }}>
                       {book.subject}

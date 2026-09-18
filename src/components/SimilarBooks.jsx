@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 import Link from 'next/link';
 import { bookSlug } from '@/src/lib/slug';
 import { LEVEL_BADGE } from '@/src/lib/constants';
@@ -29,7 +30,11 @@ export default function SimilarBooks({ currentBook, allBooks, max = 6 }) {
                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.boxShadow = 'var(--t-shadow-lg)'; }}
                 onMouseLeave={e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}>
                 {book.thumbnail
-                  ? <img src={book.thumbnail} alt="" style={{ width: '100%', aspectRatio: '5/7', objectFit: 'cover', borderRadius: 6, display: 'block' }} loading="lazy" />
+                  ? (
+                    <div style={{ position: 'relative', width: '100%', aspectRatio: '5/7', borderRadius: 6, overflow: 'hidden' }}>
+                      <Image src={book.thumbnail} alt="" fill sizes="(max-width: 560px) 40vw, 140px" style={{ objectFit: 'cover' }} />
+                    </div>
+                  )
                   : <div style={{ width: '100%', aspectRatio: '5/7', background: 'var(--bg)', borderRadius: 6 }} />}
                 <div style={{ fontSize: 11, fontWeight: 600, color: 'var(--text)', marginTop: 6, overflow: 'hidden', textOverflow: 'ellipsis', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', minHeight: 28 }}>
                   {book.publisher}
